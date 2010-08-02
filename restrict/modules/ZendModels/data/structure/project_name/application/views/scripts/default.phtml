@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?php echo PROJECT_NAME; ?></title>
+<link rel="stylesheet" type="text/css" href="<?php echo PATH_APPLICATION; ?>/public/styles/zend.generic.css" />
+<link rel="stylesheet" href="<?php echo PATH_APPLICATION; ?>/public/styles/jquery.treeview.css" />
+<link rel="stylesheet" href="<?php echo PATH_APPLICATION; ?>/public/styles/ui-lightness/jquery-ui-1.8rc1.custom.css" />
+<script src="<?php echo PATH_APPLICATION; ?>/public/scripts/jquery.js" type="text/javascript"></script>
+<script src="<?php echo PATH_APPLICATION; ?>/public/scripts/jquery-ui-1.8rc1.custom.min.js" type="text/javascript"></script>
+<script src="<?php echo PATH_APPLICATION; ?>/public/scripts/jquery.maskedinput-1.2.2.min.js" type="text/javascript"></script>
+<script src="<?php echo PATH_APPLICATION; ?>/public/scripts/jquery.treeview.js" type="text/javascript"></script>
+<script src="<?php echo PATH_APPLICATION; ?>/public/scripts/default.js" type="text/javascript"></script>
+</head>
+<body>
+	<?php echo $this->render($this->header); ?>
+	<div id="container">
+	
+	<?php echo $this->render($this->body); ?>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+.entities_tree
+{
+	list-style-image:url(css_images/entities.gif);
+	list-style-type:none !IMPORTANT;
+	list-style-position: outside;
+	margin:0px;
+}
+.entity_tree
+{
+	font-weight:bold;
+}
+.attribute_tree
+{
+	margin-left:16px;
+}
+.property_tree
+{
+	margin-left:16px;
+}
+.property_tree_name
+{
+	font-weight:bold;
+	border-right: solid 1px #669;
+	background-color: #f0f0f0;
+	width:125px;
+}
+.property_tree_value
+{
+	border-bottom:solid 1px #f0f0f0;
+}
+.attribute_table_tree td
+{
+	font-size:11px;
+}
+.attribute_table_tree
+{
+	border:solid 1px #669;
+	width:350px;
+}

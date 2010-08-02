@@ -1,0 +1,43 @@
+img.logo { float: right; border:none; margin: 10px 10px 0 0 }
+#main { padding: 0 }
+#main h1 { padding: 15px 10px 15px 0 }
+dl { margin-top: 0 }
+dt { color: #a00; font-weight: bold }
+#api dt, #debugging dt { font-size: 120%; margin: 5px 0 }
+dd { margin: 0 0 20px 0; color: #555 }
+dl.options { margin: 10px 25px }
+code.inline { background-color: #ffc }
+.footer { padding-top: 20px; margin-top: 30px; border-top: 1px solid #ddd; color: #666 }
+#header { background-color: #eee; font-weight: normal; margin:0; padding:10px; font-size: small }
+
+h1, h2 .anchors a, .sampleAnchors a { font-family: 'trebuchet ms', verdana, arial }
+
+.anchors { background-color: #eee; border-bottom: 1px solid #ccc; zoom:1 }
+.anchors, .sampleAnchors { list-style: none; margin: 0; padding: 0 0 1px; }
+.anchors:after, .sampleAnchors:after { display: block; clear: both; content: " "; }
+.anchors li { float: left; margin: 0 1px 0 0; }
+.anchors a, .sampleAnchors a {
+    display: block; position: relative; top: 1px; border: 1px solid #ccc;
+    border-bottom: 0; z-index: 99999999; padding: 2px 9px 1px; color: #444; text-decoration: none;
+}
+.anchors .on a { padding-bottom: 2px; font-weight: bold; }
+.anchors a:focus, .anchors a:active, .sampleAnchors a:focus, .sampleAnchors a:active { outline: none; }
+.anchors .on a, .anchors a:hover, .anchors a:focus, .anchors a:active { background: #fff; }
+.anchors .on a:link, .anchors .on a:visited {  cursor: text; }
+.anchors a:hover, .anchors a:focus, .anchors a:active { cursor: pointer; }
+.on { display: block; }
+.anchors a h2 { padding:0; margin:2px }
+.tabs-selected a { background-color: #fff; color: #000; font-weight: bold; border-bottom: 1px solid #fff; margin-bottom: -1px; overflow: visible }
+
+.tabContent { padding: 10px 25px; clear: left; background-color: #fff; margin: 0 0 30px 0; zoom:1}
+.sampleTabContent { padding: 10px 25px; clear: left; background-color: #fff; margin: 0 0 50px 0; border: 1px solid #ddd; zoom:1}
+.tabs-hide { display: none; background-color: #fff }
+
+.sampleAnchors a { display: block; }
+.sampleAnchors li { float: left; margin: 0 1px 0 0; }
+.sample-tab-selected a { background-color: #fff; color: #000; font-weight: bold; border-bottom: 1px solid #fff; margin-bottom: -1px; overflow: visible}
+
+
+div.growlUI { background: url(check48.png) no-repeat 10px 10px }
+div.growlUI h1, div.growlUI h2 { font-size: 12px;color: white; padding: 5px 5px 5px 75px; text-align: left }
+div.growlUI h2 { font-size: 18px }

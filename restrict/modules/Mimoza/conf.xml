@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <config src="config/index.php" />
+    <scripts>
+        <js src="config/script.js" />
+    </scripts>
+    <styles>
+        <css src="config/style.css" />
+    </styles>
+</root>

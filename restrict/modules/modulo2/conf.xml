@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<scripts>
+		<js src="meu_js2.js" />
+	</scripts>
+	<styles>
+		<css src="meu_style.css" />
+	</styles>
+	<config src="page.php" />
+</root>

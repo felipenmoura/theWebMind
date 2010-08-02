@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+	<name value="ZendModels" />
+	<fullName value="ZendModels"/>
+	<language value="PHP" />
+	<details>
+		<detail name="Pattern" value="Zend" />
+		<detail name="Pattern" value="MVC" />
+		<detail name="Library" value="Zend Framework" />
+		<detail name="Library" value="jQuery" />
+		<detail name="Library" value="jQuery UI" />
+		<detail name="Library" value="Masked Input" />
+		<detail name="Mask pattern" value="http://tinyurl.com/28bm9t" />
+ 		<detail name="Requirement" value="Active Record" />
+ 		<detail name="Requirement" value="ModRewrite On" />
+ 		<detail name="Requirement" value="Zend library on localhost" />
+	</details>
+	<version value="0.1" />
+	<description value="A Zend Models abstraction" />
+	<authors>
+		<author value="Jaydson Nascimento Gomes" email='jaydson@thewebmind.org'/>
+		<author value="Felipe Nascimento de Moura" email='felipe@thewebmind.org'/>
+	</authors>
+	<date value="06/2010" />
+	<thumb value="zendModels.png" />
+	<license value="license.txt" />
+</root>
+

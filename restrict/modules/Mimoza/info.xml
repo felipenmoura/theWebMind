@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <name value="Mimoza" />
+    <fullName vale="Mind Module for Zend Framework Applications" />
+    <language value="PHP" />
+    <details>
+        <detail name="Pattern" value="Zend Framework Standard Architecture" />
+        <detail name="Pattern" value="MVC" />
+        <detail name="Requirement" value="Zend Framework" />
+    </details>
+    <version value="0.02" />
+    <description value="Mimoza is an implementation for Mind Technology to construct Zend Framework Applications" />
+    <authors>
+        <author email="wandersonwhcr@gmail.com" value="Wanderson Henrique Camargo Rosa" />
+    </authors>
+    <date value="05/2010" />
+    <thumb value="config/images/icon.png" />
+    <license value="LICENSE.TXT" />
+</root>

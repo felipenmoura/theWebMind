@@ -1,0 +1,47 @@
+.ui-tabs-nav /* .ui-helper-reset .ui-helper-clearfix .ui-widget-header .ui-corner-all .ui-sortable*/
+{
+	background-image:none!IMPORTANT;
+	background-color: #669;
+}
+.ui-tabs-nav li a
+{
+	background-image:none !IMPORTANT;
+	background-color: #fff;
+	color:#000;
+	font-weight:normal !IMPORTANT;
+}
+.ui-tabs-selected a, .ui-tabs-selected li
+{
+	color:#fff !IMPORTANT;
+	background-color: #66f !IMPORTANT;
+}
+.mindEditor_lineNumberColumnArea, .mindEditor_lineNumberColumn, .footer, .menuTopBar, #pluginsIcons
+{
+	background-color: #dde !IMPORTANT;
+}
+.ui-dialog-titlebar
+{
+	background-image:none!IMPORTANT;
+	background-color: #aad !IMPORTANT;
+	color:#fff;
+}
+.projectListItemLine
+{
+	background-image:none!IMPORTANT;
+	background-color: #dde !IMPORTANT;
+	text-align:right;
+	padding-right:3px;
+}
+.rootVoice
+{
+	background-color: #66f !IMPORTANT;
+	color: #fff !IMPORTANT;
+}
+.menuShadow
+{
+	background-color:#00f !IMPORTANT;
+}
+.voice a
+{
+	color: #66f;
+}

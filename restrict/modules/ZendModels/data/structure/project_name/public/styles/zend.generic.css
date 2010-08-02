@@ -1,0 +1,44 @@
+
+body{
+font-family:"frutiger linotype","lucida grande",helvetica,arial,sans-serif;
+color:#333;
+font-size: 76%;
+}
+
+
+#container{
+	font-family:arial;
+	font-size:18px;	
+	float:left;
+	text-align:left;
+}
+
+#header{
+	margin-top:15px;
+	height:50px;
+	font-size:22px;
+	border-bottom:1px solid black;
+	text-align:center;
+		
+}
+
+.menu{
+	float:left;
+	padding:12px;
+	width:150px;
+	height:100%;	
+}
+
+#content{
+clear:both;
+background-color: #ffffff;
+color: #333;
+}
+
+#footer{
+border:1px solid black;
+}
+
+#warning {
+color : red;
+}

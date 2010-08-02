@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mindLanguage>
+	<verbs>
+		<verb value="tem"/>
+		<verb value="teem"/>
+		<verb value="têm"/>
+		<verb value="possuem"/>
+		<verb value="terá"/>
+		<verb value="terão"/>
+		<verb value="terao"/>
+		<verb value="possui"/>
+		<verb value="possuem"/>
+		<verb value="conta com"/>
+		<verb value="contam com"/>
+		<verb value="faz"/>
+		<verb value="fazem"/>
+		<verb value="usa"/>
+		<verb value="usam"/>
+		<verb value="pertence a"/>
+	<verb value="ganha"/><verb value="ministra"/><verb value="apresenta"/></verbs>
+	<belongs>
+		<verb value="pode ser"/>
+		<verb value="pode ter"/>
+		<verb value="pode possuir"/>
+		<verb value="podem ser"/>
+		<verb value="podem possuir"/>
+		<verb value="podem ter"/>
+		<verb value="poderão ser"/>
+		<verb value="poderão possuir"/>
+		<verb value="poderão ter"/>
+		<verb value="poderá ser"/>
+		<verb value="poderá possuir"/>
+		<verb value="poderá ter"/>
+		<verb value="poderao ser"/>
+		<verb value="poderao ter"/>
+		<verb value="podera ser"/>
+		<verb value="podera ter"/>
+	</belongs>
+	<obligation>
+		<verb value="é"/>
+		<verb value="são"/>
+		<verb value="será"/>
+		<verb value="serão"/>
+	</obligation>
+	<types>
+		<type value="char">
+			<substantive value="caractere"/>
+		    <substantive value="char"/>
+		    <substantive value="caracteres"/>
+		    <substantive value="letras"/>
+		    <substantive value="letra"/>
+		    <substantive value="booleano"/>
+		    <substantive value="boolean"/>
+		    <substantive value="bool"/>
+		    <substantive value="alpha"/>
+		<substantive value="hora"/></type>
+		<type value="varchar">
+			<substantive value="varchar"/>
+		    <substantive value="caractere variante"/>
+		    <substantive value="caracteres variantes"/>
+		    <substantive value="campo"/>
+		    <substantive value="input"/>
+		    <substantive value="entrada"/>
+		    <substantive value="string"/>
+		    <substantive value="descrição"/>
+		    <substantive value="descricao"/>
+		</type>
+		<type value="text">
+			<substantive value="text"/>
+		    <substantive value="texto livre"/>
+		    <substantive value="texto"/>
+		    <substantive value="conteúdo"/>
+		    <substantive value="conteudo"/>
+			<substantive value="textarea"/>
+		</type>
+		<type value="password">
+			<substantive value="password"/>
+		    <substantive value="pwd"/>
+		    <substantive value="senha"/>
+		    <substantive value="chave secreta"/>
+		    <substantive value="chave"/>
+		</type>
+		<type value="file">
+			<substantive value="file"/>
+		    <substantive value="arquivo"/>
+		    <substantive value="blob"/>
+		    <substantive value="bytea"/>
+		    <substantive value="binário"/>
+		    <substantive value="binario"/>
+		    <substantive value="lo"/>
+		    <substantive value="imagem"/>
+		    <substantive value="gráfico"/>
+		    <substantive value="grafico"/>
+		    <substantive value="doc"/>
+		    <substantive value="pdf"/>
+		    <substantive value="spreedsheet"/>
+		</type>
+		<type value="smallint">
+			<substantive value="smallint"/>
+			<substantive value="tiny int"/>
+		</type>
+		<type value="int">
+			<substantive value="int"/>
+		    <substantive value="inteiro"/>
+		    <substantive value="integer"/>
+		    <substantive value="numérico"/>
+		    <substantive value="numerico"/>
+		    <substantive value="numero"/>
+		    <substantive value="número"/>
+		</type>
+		<type value="bigint">
+			<substantive value="bigint"/>
+		</type>
+		<type value="real">
+			<substantive value="float"/>
+			<substantive value="real"/>
+			<substantive value="floating"/>
+			<substantive value="valor"/>
+			<substantive value="dinheiro"/>
+			<substantive value="percento"/>
+			<substantive value="percentagem"/>
+			<substantive value="fração"/>
+			<substantive value="fracao"/>
+		</type>
+		<type value="time">
+			<substantive value="date"/>
+			<substantive value="data\/hora"/>
+			<substantive value="data e hora"/>
+			<substantive value="data hora"/>
+			<substantive value="datahora"/>
+			<substantive value="data"/>
+			<substantive value="tempo"/>
+			<substantive value="horário"/>
+			<substantive value="horario"/>
+			<substantive value="timestamp"/>
+			<substantive value="calendário"/>
+			<substantive value="calendario"/>
+		</type>
+	</types>
+	<required>
+		<adjective value="obrigatório"/>
+		<adjective value="obrigatorio"/>
+		<adjective value="não nulo"/>
+		<adjective value="nao nulo"/>
+		<adjective value="not null"/>
+		<adjective value="requerido"/>
+		<adjective value="necessário"/>
+		<adjective value="necessario"/>
+		<adjective value="required"/>
+		<adjective value="needed"/>
+	</required>
+	<unique>
+		<adjective value="unique"/>
+		<adjective value="único"/>
+		<adjective value="unico"/>
+	</unique>
+	<especialchars>
+		<char value="á"/>
+		<char value="é"/>
+		<char value="í"/>
+		<char value="ó"/>
+		<char value="ú"/>
+		<char value="à"/>
+		<char value="è"/>
+		<char value="ì"/>
+		<char value="ò"/>
+		<char value="ù"/>
+		<char value="ã"/>
+		<char value="õ"/>
+		<char value="ü"/>
+		<char value="ä"/>
+		<char value="ë"/>
+		<char value="ï"/>
+		<char value="ö"/>
+		<char value="ü"/>
+		<char value="â"/>
+		<char value="ê"/>
+		<char value="î"/>
+		<char value="ô"/>
+		<char value="û"/>
+		<char value="ç"/>
+		<char value=" "/>
+	</especialchars>
+	<fixedchars>
+		<char value="a"/>
+		<char value="e"/>
+		<char value="i"/>
+		<char value="o"/>
+		<char value="u"/>
+		<char value="a"/>
+		<char value="e"/>
+		<char value="i"/>
+		<char value="o"/>
+		<char value="u"/>
+		<char value="a"/>
+		<char value="o"/>
+		<char value="u"/>
+		<char value="a"/>
+		<char value="e"/>
+		<char value="i"/>
+		<char value="o"/>
+		<char value="u"/>
+		<char value="a"/>
+		<char value="e"/>
+		<char value="i"/>
+		<char value="o"/>
+		<char value="u"/>
+		<char value="c"/>
+		<char value="_"/>
+	</fixedchars>
+	<quantifiersId>
+		<world value="ou então"/>
+		<world value="ou entao"/>
+		<world value="ou"/>
+		<world value="até"/>
+		<world value="ate"/>
+	</quantifiersId>
+	<quantifiers>
+		<min>
+			<min>
+				<quantifier value="0"/>
+				<quantifier value="zero"/>
+			    <quantifier value="nenhum"/>
+			    <quantifier value="nenhuma"/>
+			    <quantifier value="ou não"/>
+			    <quantifier value="ou nao"/>
+			</min>
+			<max>
+				<quantifier value="1"/>
+				<quantifier value="um"/>
+				<quantifier value="uma"/>
+			</max>
+		</min>
+		<max>
+			<min>
+				<quantifier value="uma"/>
+				<quantifier value="1"/>
+				<quantifier value="um único"/>
+				<quantifier value="um unico"/>
+				<quantifier value="uma única"/>
+				<quantifier value="uma unica"/>
+				<quantifier value="um"/>
+			</min>
+			<max>
+				<quantifier value="n"/>
+				<quantifier value="m"/>
+				<quantifier value="muitos"/>
+				<quantifier value="muitas"/>
+				<quantifier value="muito"/>
+				<quantifier value="muita"/>
+				<quantifier value="vários"/>
+				<quantifier value="várias"/>
+				<quantifier value="varios"/>
+				<quantifier value="varias"/>
+				<quantifier value="diversos"/>
+				<quantifier value="diversas"/>
+				<quantifier value="infinitos"/>
+				<quantifier value="infinitas"/>
+				<quantifier value="alguns"/>
+				<quantifier value="algumas"/>
+				<quantifier value="uns"/>
+				<quantifier value="umas"/>
+				<quantifier value="mais"/>
+				<quantifier value="infinitamente"/>
+			</max>
+		</max>
+	</quantifiers>
+</mindLanguage>

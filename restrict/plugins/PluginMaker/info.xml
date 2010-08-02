@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<name value='PluginMaker'/>
+	<date value='03/2010'/>
+	<authors>
+		<author value='Felipe Nascimento de Moura' email='felipenmoura@gmail.com'/>
+	</authors>
+	<link value='http://www.thewebmind.org'/>
+	<description>A Plugin with which you can build the main structure of your own plugins</description>
+</root>

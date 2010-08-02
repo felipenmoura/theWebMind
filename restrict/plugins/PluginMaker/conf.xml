@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<version value='1.0'/>
+	<extraconffile value='conf_file.php'/> <!-- inside DATA directory -->
+	<openas value='modal' /> <!-- none|modal|tab|window -->
+	<runAt value='none' /> <!-- none|load|run|open|report -->
+	<!--
+		load: when the plugin is loaded
+		run: when the project runs
+		open: when a project is opened
+		report: when an error occurres
+	-->
+	<useicon value='icon.png' /> <!-- false|[url (inside DATA directory)] --><!--  if openAS is a tab, then it runs the plugin, otherwise, it opens the modal/window  -->
+	<dependsonproject value='false'></dependsonproject>
+</root>
