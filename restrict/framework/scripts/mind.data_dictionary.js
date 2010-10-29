@@ -1,3 +1,0 @@
-Mind.DataDictionary= function(pObj){
-	
-}

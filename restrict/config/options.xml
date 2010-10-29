@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root><defaultIdiom value="pt-BR"/><defaultDBMS value="PostgreSQL"/><lookForUpdate value="never"/><actionWithNewVersion value="-1"/><actionWithNewSubVersion value="-1"/><actionWithNewUpdates value="-1"/><useGlobalSynDic>on</useGlobalSynDic><useLocalSynDic>on</useLocalSynDic><addAutomatically>global</addAutomatically><reportDecisions>on</reportDecisions><reportDoubts>on</reportDoubts></root>

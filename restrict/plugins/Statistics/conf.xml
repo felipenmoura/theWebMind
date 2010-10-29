@@ -1,8 +1,0 @@
-<root>
-	<version value="1.0"/>
-	<extraconffile value="conf_file.php"/>
-	<openas value="tab"/>
-	<runAt value="run"/>
-	<useicon value="false"/>
-	<dependsonproject value="true"/>
-</root>
