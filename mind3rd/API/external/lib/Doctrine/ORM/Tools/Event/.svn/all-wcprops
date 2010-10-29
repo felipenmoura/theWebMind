@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Event
+END
+GenerateSchemaEventArgs.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Event/GenerateSchemaEventArgs.php
+END
+GenerateSchemaTableEventArgs.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Event/GenerateSchemaTableEventArgs.php
+END

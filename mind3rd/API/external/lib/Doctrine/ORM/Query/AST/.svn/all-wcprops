@@ -1,0 +1,299 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST
+END
+Subselect.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/Subselect.php
+END
+DeleteClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/DeleteClause.php
+END
+SelectExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SelectExpression.php
+END
+InputParameter.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/InputParameter.php
+END
+UpdateItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/UpdateItem.php
+END
+IndexBy.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/IndexBy.php
+END
+OrderByClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/OrderByClause.php
+END
+CollectionMemberExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/CollectionMemberExpression.php
+END
+PartialObjectExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/PartialObjectExpression.php
+END
+LikeExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/LikeExpression.php
+END
+IdentificationVariableDeclaration.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/IdentificationVariableDeclaration.php
+END
+ConditionalPrimary.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ConditionalPrimary.php
+END
+HavingClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/HavingClause.php
+END
+BetweenExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/BetweenExpression.php
+END
+QuantifiedExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/QuantifiedExpression.php
+END
+JoinVariableDeclaration.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/JoinVariableDeclaration.php
+END
+SelectClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SelectClause.php
+END
+ArithmeticTerm.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ArithmeticTerm.php
+END
+SimpleArithmeticExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SimpleArithmeticExpression.php
+END
+GroupByClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/GroupByClause.php
+END
+OrderByItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/OrderByItem.php
+END
+ArithmeticFactor.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ArithmeticFactor.php
+END
+JoinAssociationPathExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/JoinAssociationPathExpression.php
+END
+ComparisonExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ComparisonExpression.php
+END
+ConditionalTerm.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ConditionalTerm.php
+END
+Literal.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/Literal.php
+END
+Join.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/Join.php
+END
+ExistsExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ExistsExpression.php
+END
+FromClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/FromClause.php
+END
+ConditionalFactor.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ConditionalFactor.php
+END
+SelectStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SelectStatement.php
+END
+ASTException.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ASTException.php
+END
+AggregateExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/AggregateExpression.php
+END
+UpdateStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/UpdateStatement.php
+END
+WhereClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/WhereClause.php
+END
+RangeVariableDeclaration.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/RangeVariableDeclaration.php
+END
+InstanceOfExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/InstanceOfExpression.php
+END
+ArithmeticExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ArithmeticExpression.php
+END
+SimpleSelectExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SimpleSelectExpression.php
+END
+SubselectFromClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SubselectFromClause.php
+END
+PathExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/PathExpression.php
+END
+UpdateClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/UpdateClause.php
+END
+ConditionalExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/ConditionalExpression.php
+END
+NullComparisonExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/NullComparisonExpression.php
+END
+Node.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/Node.php
+END
+EmptyCollectionComparisonExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/EmptyCollectionComparisonExpression.php
+END
+InExpression.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/InExpression.php
+END
+SimpleSelectClause.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/SimpleSelectClause.php
+END
+DeleteStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Query/AST/DeleteStatement.php
+END

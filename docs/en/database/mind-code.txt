@@ -1,0 +1,55 @@
+@user=users.
+@project=projects.
+@version=versions.
+@object=objects.
+@component=components.
+@property=properties.
+
+project has many users.
+
+  project has name:varchar(255, required).
+  project has info:text().
+  project has creator:int() // a user key.
+  project has dt_creation:date(-1, "Exec:now()").
+
+user has many projects.
+
+  user has name:varchar(255).
+  user has login:varchar(40, required).
+  user has pwd:varchar(40, required).
+  user has status:char(1);
+  user has type:char(1, {A=Admin|N=Normal}).
+
+project has many versions.
+
+  version has version:varchar(9, required).
+  version has tag:varchar(60).
+  version has obs:text(2048).
+  version has originalcode:text().
+  version has machine_lang:varchar(16) // the chosen language, like PHP, Java Python.
+  version has framework:varchar(60) // the chosen framework to generate the code.
+  version has database:varchar(16) // the chosen DBMS to deal with .
+  version has a user.
+
+version has many objects.
+
+  objects have type:char(1, {T=Table|C=Class|I=Interface}).
+  objects have name:varchar(256).
+  every object has version:int(-1).
+  object has locked:int(-1, "Exec:0") // use 0 or 1.
+  object has info:varchar(2048).
+
+each object may have many components.
+
+  components have type:char(1, {P=Propertie|M=Method|A=Annotation}).
+  each component have properties.
+
+All the properties have name:varchar(255, required).
+And the properties have value:text().
+Also, the properties have comment:varchar(255).
+
+  properties may have many properties.
+
+
+
+

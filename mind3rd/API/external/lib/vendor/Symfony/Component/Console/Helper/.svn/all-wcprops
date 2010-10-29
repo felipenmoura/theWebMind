@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper
+END
+HelperSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper/HelperSet.php
+END
+DialogHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper/DialogHelper.php
+END
+Helper.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper/Helper.php
+END
+HelperInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper/HelperInterface.php
+END
+FormatterHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Helper/FormatterHelper.php
+END

@@ -1,0 +1,8 @@
+<?php
+	class Create_Project
+	{
+		public function Create_Project($params)
+		{
+			echo "creating project ".$params[0];
+		}
+	}
