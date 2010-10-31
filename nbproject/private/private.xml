@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/var/www/mind/mind3rd/API/L10N/En.php</file>
+        <file>file:/var/www/mind/mind3rd/API/classes/Mind.php</file>
+        <file>file:/var/www/mind/mind3rd/env/defaults.ini</file>
+        <file>file:/var/www/mind/mind3rd/API/programs/Auth.php</file>
+        <file>file:/var/www/mind/index.php</file>
+        <file>file:/var/www/mind/mind3rd/API/utils.php</file>
+        <file>file:/var/www/mind/mind3rd/API/http.php</file>
+        <file>file:/var/www/mind/mind3rd/API/programs/RunTest.php</file>
+        <file>file:/var/www/mind/mind3rd/API/external/Symfony/Component/Console/Command/Command.php</file>
+        <file>file:/var/www/mind/mind3rd/API/shell.php</file>
+    </open-files>
 </project-private>

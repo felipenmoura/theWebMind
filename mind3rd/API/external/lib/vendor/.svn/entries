@@ -1,37 +1,0 @@
-10
-
-dir
-4932
-http://svn.github.com/doctrine/doctrine2.git/lib/vendor
-http://svn.github.com/doctrine/doctrine2.git
-
-
-
-2010-10-11T13:15:18.000000Z
-4932
-benjamin.eberlei
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-27cf1600-089b-f978-97ba-ce57b7db7bff
-
-Symfony
-dir
-
-doctrine-dbal
-dir
-
-doctrine-common
-dir
-

@@ -1,14 +1,22 @@
 <?php
-	class Clear
+	use Symfony\Component\Console\Input\InputArgument,
+		Symfony\Component\Console\Input\InputOption,
+		Symfony\Component\Console;
+	
+	class Clear extends Symfony\Component\Console\Command\Command
 	{
-		public function Clear($params){
-			if(php_uname('s'))
-			{
-				if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
-					system("clear");
-				else
-					system("cls");
-			}
+		public function configure()
+		{
+			$this->setName('clear')
+				 ->setDescription('Clears the console')
+				 ->setDefinition(array())
+				 ->setHelp(<<<EOT
+			Clears the console
+EOT
+					);
+		}
+		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
+		{
+			system('clear');
 		}
 	}
-?>

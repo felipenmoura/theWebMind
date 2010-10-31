@@ -7,30 +7,41 @@
 	* variables, such as language for localization
 	*/
 	session_start();
-	function __autoload($class)
+	define('_CONSOLE_LINE_LENGTH_', 80);
+
+	function __autoload($what)
 	{
 		GLOBAL $_MIND;
-		$class= preg_replace("/[ '\"\\\.\/]/", '', $class);
-		if(!isset($_SESSION['auth']) && $class != 'autenticate' && $class != 'help' && $class != 'clear')
-        {
-            $_MIND->write('not_allowed');
-            throw new Exception('');
-            return false;
-        }
-		$f= _MINDSRC_.'/mind3rd/API/programs/'.$class.'.php';
-		if(file_exists($f) && !class_exists($class))
-			require $f;
-		else{
-				$f= _MINDSRC_.'/'.$class.'.php';
-				if(file_exists($f) && !class_exists($class))
-					require $f;
-				else{
-						throw new Exception($_MIND->write('shell_no_such_file', false));
-						return false;
-					}
+		$what= preg_replace("/[ '\"\.\/]/", '', $what);
+		if(file_exists(_MINDSRC_.'/mind3rd/API/programs/'.$what.'.php'))
+		{
+			include(_MINDSRC_.'/mind3rd/API/programs/'.$what.'.php');
+			return true;
+		}
+		if(strpos($what, '\\')>=0)
+		{
+			$what= explode('\\', $what);
+			$what= array_pop($what);
+		}
+		$dirs= Array(
+			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Input/',
+			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Output/',
+			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/',
+			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Helper/'
+		);
+		for($i=0; $i<sizeof($dirs); $i++)
+		{
+			if(file_exists($dirs[$i].$what.'.php'))
+			{
+				require_once($dirs[$i].$what.'.php');
+				return true;
 			}
-		return true;
+		}
+		echo " [ERROR] Class not found: ".$what."\n";
+		exit;
+		return false;
 	}
+
 	require('interfaces/program.php');
 	require('classes/Mind.php');
 	if(isset($_SERVER['argv']))
