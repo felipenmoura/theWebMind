@@ -42,8 +42,31 @@
 		return false;
 	}
 
-	require('interfaces/program.php');
-	require('classes/Mind.php');
+	require(_MINDSRC_.'/mind3rd/API/interfaces/program.php');
+	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
+	require(_MINDSRC_.'/mind3rd/API/classes/MindCommand.php');
+	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Shell.php');
+	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Application.php');
+	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/Command.php');
+
+	use Symfony\Component\Console\Application;
+	use Symfony\Component\Console\Helper\HelperSet;
+
+	$app= new Symfony\Component\Console\Application('mind');
+	$app->addCommands(Array(
+		new RunTest(),
+		new Quit(),
+		new Auth(),
+		new Clear(),
+		new Info(),
+		new Create()
+	));
+
+	$helperSet= false;
+	$helperSet = ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
+    $app->setHelperSet($helperSet);
+	
+
 	if(isset($_SERVER['argv']))
 	{
 		$params= $_SERVER['argv'];

@@ -1,24 +1,34 @@
 <?php
-	echo "<b>Requisition data:</b><br/>";
-    print_r($_REQ);
-	echo "<br/><b>Return:</b><br/>";
-	if(isset($_REQ['data']) && sizeof($_REQ['data'])>0)
+	/**
+	 * This is the server file which will receive the requisition
+	 * All the HTTP requests are goning to reach this file, so,
+	 * it will treat the POST data before routing the requisition
+	 * With this, you can send by post, the program variable, saying
+	 * the program you want to execute, and the parameters you want
+	 * to pass
+	 */
+	if(!isset($_REQ))
 	{
-		$program= preg_replace("/['\"\\\.\/]/", '', $_REQ['data'][0]);
-		for($i=1; $i<sizeof($_REQ['data']); $i++)
-		{
-			$params[]= $_REQ['data'][$i];
-		}
+		Mind::write("http_invalid_requisition");
+		exit;
+	}
+	if(!isset($_REQ['data']))
+		$_REQ['data']= Array();
+	
+	foreach($_POST as $k=>$value)
+	{
+		$_REQ['data'][$k]= preg_replace("/['\"\\\.\/]/", '', $value);
 	}
 
-	if(file_exists('mind3rd/API/programs/'.ucfirst($program).".php"))
+	if(isset($app))
 	{
-		include('mind3rd/API/programs/'.ucfirst($program).".php");
-		//$program= new $program($params);
-		$program= new $program($program);
-		echo "\n";
-		exit;
-	}else{
-		//echo "No such function!\nType mind -h  or mind command -h for help\n";
-			$_MIND->write('no_such_file', true, $program);
-         }
+		if(!isset($_REQ['data']) || !isset($_REQ['data']['program']))
+		{
+			Mind::write('programRequired');
+			return false;
+		}
+		$program= $app->findCommand($_REQ['data']['program']);
+		$program= $program->getFileName();
+		$program = new $program();
+		$program->HTTPExecute();
+	}

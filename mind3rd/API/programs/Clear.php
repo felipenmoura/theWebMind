@@ -3,7 +3,7 @@
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
 	
-	class Clear extends Symfony\Component\Console\Command\Command
+	class Clear extends MindCommand implements program
 	{
 		public function configure()
 		{
@@ -18,5 +18,19 @@ EOT
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
 			system('clear');
+		}
+
+		public function HTTPExecute()
+		{
+		}
+
+		private function action()
+		{
+			return $this;
+		}
+
+		public function runAction()
+		{
+			return $this->action();
 		}
 	}

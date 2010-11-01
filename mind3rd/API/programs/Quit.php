@@ -3,13 +3,14 @@
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
 	
-	class Quit extends Symfony\Component\Console\Command\Command
+	class Quit extends MindCommand implements program
 	{
 		public function configure()
 		{
 			$this->setName('exit')
 				 ->setDescription('Finishes the application')
 				 ->setDefinition(Array())
+				 ->setFileName('Quit')
 				 ->setHelp(<<<EOT
 			Finishes the application, leaving the console;
 EOT
@@ -17,7 +18,24 @@ EOT
 		}
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
-			echo "Logging out...\n";
+			$this->runAction();
 			exit;
+		}
+
+		public function HTTPExecute()
+		{
+			$this->runAction();
+		}
+
+		private function action()
+		{
+			session_destroy();
+			Mind::write('bye');
+			return $this;
+		}
+
+		public function runAction()
+		{
+			return $this->action();
 		}
 	}

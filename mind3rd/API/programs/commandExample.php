@@ -3,7 +3,7 @@
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
 	
-	class CommandName extends Symfony\Component\Console\Command\Command
+	class CommandName extends MindCommand implements program
 	{
 		public function configure()
 		{
@@ -28,5 +28,21 @@ EOT
 		}
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
+			$this->runAction();
+		}
+
+		public function HTTPExecute()
+		{
+			$this->runAction();
+		}
+
+		private function action()
+		{
+			return $this;
+		}
+
+		public function runAction()
+		{
+			return $this->action();
 		}
 	}

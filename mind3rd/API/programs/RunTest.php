@@ -1,10 +1,12 @@
 <?php
-
+	//use Mind\Command;
+	
 	use Symfony\Component\Console\Input\InputArgument,
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
+	
     
-	class RunTest extends Symfony\Component\Console\Command\Command
+	class RunTest extends MindCommand implements program
 	{
 		public function configure()
 		{
@@ -12,26 +14,56 @@
 					->setName('test')
 					->setDescription('Performs some tests on theWebMind')
 					->setDefinition(array())
+					->setRestrict(false)
+					->setFileName('RunTest')
 					->setHelp(<<<EOT
 			Executes specific tests and report their results, about the system itself
 EOT
 					);
 		}
+
+		private function action()
+		{
+			$this->runStep1();
+			$this->runStep2();
+		}
+		public function runAction()
+		{
+			return $this->action();
+		}
+
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
-			if(!isset($_SESSION['auth']))
-			{
-				Mind::write('not_allowed');
-				Mind::write('not_allowed_tip');
+			if(!parent::execute($input, $output))
 				return false;
-			}
-			$this->runStep1();
+			return $this->runAction();
 		}
 		
+		public function HTTPExecute()
+		{
+			if(!parent::HTTPExecute())
+				return false;
+			return $this->runAction();
+		}
+
 		private function runStep1()
 		{
+			// by this point, if it reached here, we know these steps are ok
 			Mind::message('Autoloader', '[OK]');
 			Mind::message('Includes', '[OK]');
+			Mind::message('Namespaces', '[OK]');
+		}
+		private function runStep2()
+		{
+			if(!$db = new SQLiteDatabase(_MINDSRC_.'/mind3rd/SQLite/mind'))
+			{
+				Mind::message('Database', '[Fail]');
+				return false;
+			}
+			Mind::message('Database', '[OK]');
 			return true;
+		}
+		public function  __construct($name = null) {
+			parent::__construct($name);
 		}
 	}
