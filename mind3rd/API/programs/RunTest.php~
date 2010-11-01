@@ -1,0 +1,30 @@
+<?php
+
+	use Symfony\Component\Console\Input\InputArgument,
+		Symfony\Component\Console\Input\InputOption,
+		Symfony\Component\Console;
+    
+	class RunTest extends Symfony\Component\Console\Command\Command
+	{
+		public function configure()
+		{
+			$this
+					->setName('test')
+					->setDescription('Executes arbitrary DQL directly from the command line.')
+					->setDefinition(array())
+					->setHelp(<<<EOT
+			Executes arbitrary DQL directly from the command line.
+EOT
+					);
+		}
+		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
+		{
+			$this->runStep1();
+		}
+		
+		private function runStep1()
+		{
+			Mind::message('Autoloader', '[OK]');
+			return true;
+		}
+	}

@@ -3,20 +3,21 @@
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
 	
-	class Clear extends Symfony\Component\Console\Command\Command
+	class Quit extends Symfony\Component\Console\Command\Command
 	{
 		public function configure()
 		{
-			$this->setName('clear')
-				 ->setDescription('Clears the console')
-				 ->setDefinition(array())
+			$this->setName('exit')
+				 ->setDescription('Finishes the application')
+				 ->setDefinition(Array())
 				 ->setHelp(<<<EOT
-			Clears the console
+			Finishes the application, leaving the console;
 EOT
 					);
 		}
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
-			system('clear');
+			echo "Logging out...\n";
+			exit;
 		}
 	}
