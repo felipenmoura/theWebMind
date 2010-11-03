@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver
+END
+Driver.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/Driver.php
+END
+StaticPHPDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/StaticPHPDriver.php
+END
+XmlDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/XmlDriver.php
+END
+DriverChain.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/DriverChain.php
+END
+YamlDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/YamlDriver.php
+END
+AbstractFileDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/AbstractFileDriver.php
+END
+DatabaseDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/DatabaseDriver.php
+END
+PHPDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/PHPDriver.php
+END
+DoctrineAnnotations.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php
+END
+AnnotationDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php
+END

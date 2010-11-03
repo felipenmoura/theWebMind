@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id
+END
+TableGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id/TableGenerator.php
+END
+SequenceGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id/SequenceGenerator.php
+END
+IdentityGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id/IdentityGenerator.php
+END
+AssignedGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id/AssignedGenerator.php
+END
+AbstractIdGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Id/AbstractIdGenerator.php
+END

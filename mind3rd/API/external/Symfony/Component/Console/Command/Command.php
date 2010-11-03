@@ -17,7 +17,15 @@ use Symfony\Component\Console\Application;
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
-
+/*
+ * Changed by Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * due to integrate it with plugins, from theWebMind Project
+ * Line 165 and 167
+ * added lines:
+ * $this->runPlugins('before');
+ * and
+ * $this->runPlugins('after');
+ */
 /**
  * Base class for all commands.
  *
@@ -156,7 +164,13 @@ class Command
     }
     else
     {
-      return $this->execute($input, $output);
+		/*
+		 * Changed by Felipe Nascimento <felipenmoura@gmail.com>
+		 */
+		$this->runPlugins('before');
+		$ret= $this->execute($input, $output);
+		$this->runPlugins('after');
+      return $ret;
     }
   }
 

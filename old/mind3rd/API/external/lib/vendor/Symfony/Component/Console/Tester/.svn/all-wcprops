@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Tester
+END
+ApplicationTester.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Tester/ApplicationTester.php
+END
+CommandTester.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/doctrine/doctrine2.git/!svn/ver/4932/lib/vendor/Symfony/Component/Console/Tester/CommandTester.php
+END

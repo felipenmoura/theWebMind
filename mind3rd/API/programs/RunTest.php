@@ -26,6 +26,7 @@ EOT
 		{
 			$this->runStep1();
 			$this->runStep2();
+			$this->runStep3();
 		}
 		public function runAction()
 		{
@@ -63,6 +64,15 @@ EOT
 			Mind::message('Database', '[OK]');
 			return true;
 		}
+		private function runStep3()
+		{
+			if(!is_readable(Mind::$projectsDir) || !is_writable(Mind::$projectsDir))
+				$stat= '[Fail]';
+			else
+				$stat= '[OK]';
+			Mind::message('Read & Write permissions', $stat);
+		}
+
 		public function  __construct($name = null) {
 			parent::__construct($name);
 		}

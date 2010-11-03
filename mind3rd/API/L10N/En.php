@@ -30,6 +30,12 @@ class En {
 		$this->messages['no_such_file']				= Mind::message("\nMain: No such command '%s'", "[Fail]", false);
 		$this->messages['auth_fail']				= Mind::message("\nAuth: Wrong user or password", "[Fail]", false);
 		$this->messages['bye']						= "Logging out...\n";
+		$this->messages['invalidCreateParams']		= Mind::message("Main: Invalid parameters", "[Fail]", false);
+		$this->messages['invalidOption']			= Mind::message("Invalid option '%s'", '[Fail]', false);
+		$this->messages['projectAlreadyExists']		= Mind::message("There is, already, another project with the same name", '[Fail]', false);
+		$this->messages['projectCreated']			= Mind::message("Created project '%s'", '[Ok]', false);
+		$this->messages['userCreated']			= Mind::message("Created user '%s'", '[Ok]', false);
+
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Invalid HTTP requisition.
    You *must* send some POST data acoording your request, and also a variable "program" by post, with the name of the program you want to run.

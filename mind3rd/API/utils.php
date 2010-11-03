@@ -44,6 +44,8 @@
 
 	require(_MINDSRC_.'/mind3rd/API/interfaces/program.php');
 	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
+	require(_MINDSRC_.'/mind3rd/API/classes/MindDB.php');
+	require(_MINDSRC_.'/mind3rd/API/classes/MindPlugin.php');
 	require(_MINDSRC_.'/mind3rd/API/classes/MindCommand.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Shell.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Application.php');
@@ -59,7 +61,8 @@
 		new Auth(),
 		new Clear(),
 		new Info(),
-		new Create()
+		new Create(),
+		new Show()
 	));
 
 	$helperSet= false;
@@ -73,6 +76,24 @@
 		array_shift($params);
 	}
 	$_MIND= new Mind();
+
+	/* let's load the plugins, if they are allowed */
+	Mind::$triggers= array_keys($app->getCommands());
+	if($_MIND->defaults['plugins']==1)
+	{
+		require(_MINDSRC_.'/mind3rd/API/interfaces/plugin.php');
+		$d = dir(_MINDSRC_.'/mind3rd/API/plugins');
+		while(false !== ($entry = $d->read()))
+		{
+			if(substr($entry, 0, 1) !=  '.')
+			{
+				include(_MINDSRC_.'/mind3rd/API/plugins/'.$entry.'/'.$entry.'.php');
+				Mind::addPlugin(new $entry());
+			}
+		}
+		$d->close();
+	}
+	
 	if($_REQ['env']=='shell')
             include('shell.php');
 	else

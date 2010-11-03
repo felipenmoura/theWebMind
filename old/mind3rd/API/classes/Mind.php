@@ -1,0 +1,26 @@
+<?php
+	class Mind
+	{
+		public $about= null;
+		public $defaults= null;
+		public $conf= null;
+		public $l10n= null;
+		
+		public function write($k, $echo=true)
+		{
+			//$msg= $this->l10n->xpath("/root/speach[@voice='".$k."']");
+			//echo "/root/".$k;
+			$msg= (string)$this->l10n->$k;
+			if($echo)
+				echo $msg;
+			return $msg;
+		}
+		
+		public function Mind(){
+			$path= _MINDSRC_;
+			$this->about= parse_ini_file($path.'/mind3rd/env/about.ini');
+			$this->defaults= parse_ini_file($path.'/mind3rd/env/defaults.ini');
+			$this->conf= parse_ini_file($path.'/mind3rd/env/mind.ini');
+			$this->l10n= SimpleXML_load_file($path.'/mind3rd/API/L10N/'.$this->defaults['defaul_human_language'].'.xml');
+		}
+	}

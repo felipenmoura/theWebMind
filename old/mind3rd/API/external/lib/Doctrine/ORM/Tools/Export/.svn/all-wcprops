@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Export
+END
+ClassMetadataExporter.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Export/ClassMetadataExporter.php
+END
+ExportException.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Export/ExportException.php
+END

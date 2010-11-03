@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Console
+END
+ConsoleRunner.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Console/ConsoleRunner.php
+END
+MetadataFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/doctrine/doctrine2.git/!svn/ver/4932/lib/Doctrine/ORM/Tools/Console/MetadataFilter.php
+END

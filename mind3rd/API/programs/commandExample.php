@@ -16,6 +16,7 @@
 						    'Description of the option',
 						    'object'
 						),
+						new InputOption('detailed', '-d', InputOption::PARAMETER_NONE, ''),
 						new InputOption(
 						    'first-result', null, InputOption::PARAMETER_REQUIRED,
 						    'The first result in the result set.'

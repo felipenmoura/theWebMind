@@ -1,0 +1,54 @@
+#!/usr/bin/env php
+<?php
+	/**
+	 * this file will be only accessed trhough the console
+	 * if you pass the parameter install to it, it will
+	 * create the SQLite database, start it, and try to
+	 * create shortcuts, allowing the use of the comand
+	 * mind, in your console
+	 */
+
+	/**
+	 * @var _MIND
+	 * @global mixed $_GLOBALS['_MIND'] This variable contains many information about the proect, the system and also have some methods an attributes to deal with such data
+	 */
+	$_MIND= Array();
+	$_MIND['env']= 'shell';
+
+	// checks if it has received any argument
+	if(sizeOf($_SERVER['argv'])>0)
+	{
+		// installation should create the required SQLite database and a shortcut command
+		if($_SERVER['argv'][1] == 'install')
+		{
+			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
+			{
+				echo ".";
+				echo shell_exec("sudo touch /bin/mind; echo .");
+				echo shell_exec("sudo echo '#!/usr/bin/env php' > /bin/mind; echo .");
+				echo shell_exec("sudo echo '<?php' >> /bin/mind; echo .");
+				
+				echo shell_exec("sudo echo \"".'\$_REQ= Array(); \$_REQ[\'env\']= \'shell\';'.
+								" define('_MINDSRC_', '".  getcwd()."'); ".
+								" require('".getcwd()."/mind3rd/API/utils.php');\" >> /bin/mind; echo .");
+				echo shell_exec("sudo chmod 777 /bin/mind; echo .");
+			}else{
+					// TODO: prepare it to other operating systems
+				 }
+			if($db = new SQLiteDatabase('mind3rd/SQLite/mind'))
+			{
+                            $DDL= file_get_contents('mind3rd/SQLite/ddl.sql');
+                            if(!$db->queryExec($DDL))
+                            {
+                                die($err);
+                            }
+                            $db->queryExec("INSERT into user(name, login, pwd, status, type) VALUES ('Administrator', 'admin', '".sha1('admin')."', 'A', 'A');");
+			}else{
+				die($err);
+			}
+			echo "Done\n";
+			exit;
+		}
+		// if not installing, it should be redirected to mind3rd/API/shell.php
+		include('location:./mind3rd/API/shell.php');
+	}

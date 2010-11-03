@@ -30,10 +30,12 @@ EOT
 		public function execute(Console\Input\InputInterface $input,
 								Console\Output\OutputInterface $output)
 		{
+			if(!parent::execute($input, $output))
+				return false;
 			if(!$pw= $input->getArgument('pwd'))
 			{
 				Mind::write('passwordRequired', true);
-				$pw= $this->getPassword(true);
+				$pw= Mind::readPassword(true);
 			}
 
 			$this->login= $input->getArgument('login');
@@ -44,6 +46,8 @@ EOT
 
 		public function HTTPExecute()
 		{
+			if(!parent::HTTPExecute())
+				return false;
 			GLOBAL $_REQ;
 			if(!isset($_REQ['data']))
 			{
@@ -72,6 +76,8 @@ EOT
 				{
 					$row = $result->current();
 					$_SESSION['auth']= JSON_encode($row);
+					$_SESSION['pk_user']= $row['pk_user'];
+					$_SESSION['status']= $row['status'];
 					$_SESSION['login']= $row['login'];
 					break;
 				}
@@ -89,47 +95,5 @@ EOT
 		public function runAction()
 		{
 			return $this->action();
-		}
-
-		/**
-		* function taken from: http://www.dasprids.de/blog/2008/08/22/getting-a-password-hidden-from-stdin-with-php-cli
-		* this method should read the user's password not showing any character of their password
-		* @param Boolan $stars if true, show an * for each typed char
-		* @return String password
-		*/
-		private function getPassword($stars = false)
-		{
-			// Get current style
-			$oldStyle = shell_exec('stty -g');
-
-			if ($stars === false) {
-				shell_exec('stty -echo');
-				$password = rtrim(fgets(STDIN), "\n");
-			} else {
-				shell_exec('stty -icanon -echo min 1 time 0');
-
-				$password = '';
-				while (true) {
-				    $char = fgetc(STDIN);
-
-				    if ($char === "\n") {
-				        break;
-				    } else if (ord($char) === 127) {
-				        if (strlen($password) > 0) {
-				            fwrite(STDOUT, "\x08 \x08");
-				            $password = substr($password, 0, -1);
-				        }
-				    } else {
-				        fwrite(STDOUT, "*");
-				        $password .= $char;
-				    }
-				}
-			}
-
-			// Reset old style
-			shell_exec('stty ' . $oldStyle);
-
-			// Return the password
-			return $password;
 		}
 	}
