@@ -47,16 +47,20 @@ EOT
 			return false;
 		$this->what= $input->getArgument('what');
 		$this->argName= $input->getArgument('name');
-		$this->info= $input->getOption('info');
-		echo "login: ";
-		$this->login= trim(fgets(fopen("php://stdin", "r")));
-		echo "pwd: ";
-		$this->pwd= Mind::readPassword(true);
-		echo "\n";
-		while($this->userType!='N' && $this->userType!='A')
+
+		if($this->what == 'user')
 		{
-			echo "Type (use A for admin, or N for normal): ";
-			$this->userType= strtoupper(trim(fgets(fopen("php://stdin", "r"))));
+			$this->info= $input->getOption('info');
+			echo "login: ";
+			$this->login= trim(fgets(fopen("php://stdin", "r")));
+			echo "pwd: ";
+			$this->pwd= Mind::readPassword(true);
+			echo "\n";
+			while($this->userType!='N' && $this->userType!='A')
+			{
+				echo "Type (use A for admin, or N for normal): ";
+				$this->userType= strtoupper(trim(fgets(fopen("php://stdin", "r"))));
+			}
 		}
 		$this->runAction();
 	}
@@ -140,7 +144,12 @@ EOT
 										 )";
 					$db->execute($qr_userProj);
 					$db->execute("COMMIT");
+
 					Mind::write('projectCreated', true, $this->argName);
+					
+					Mind::openProject(Array('pk_project'=>$key,
+											 'name'=>$this->argName));
+
 					echo "\n";
 				break;
 			case 'user':

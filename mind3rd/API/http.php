@@ -7,6 +7,8 @@
 	 * the program you want to execute, and the parameters you want
 	 * to pass
 	 */
+
+	header('Content-type: text/html; charset=utf-8');
 	if(!isset($_REQ))
 	{
 		Mind::write("http_invalid_requisition");
@@ -18,6 +20,14 @@
 	foreach($_POST as $k=>$value)
 	{
 		$_REQ['data'][$k]= preg_replace("/['\"\\\.\/]/", '', $value);
+	}
+
+	if(isset($_SESSION['currentProject']))
+	{
+		$p= Array();
+		$p['pk_project']= $_SESSION['currentProject'];
+		$p['name']= $_SESSION['currentProjectName'];
+		Mind::openProject($p);
 	}
 
 	if(isset($app))

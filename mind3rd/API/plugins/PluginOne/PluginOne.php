@@ -13,6 +13,6 @@
 
 		public function  __construct() {
 			$this->setTrigger('test');
-			$this->setEvent('before');
+			$this->setEvent('after');
 		}
 	}

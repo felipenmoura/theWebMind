@@ -12,11 +12,14 @@
 		public $about= null;
 		public $defaults= null;
 		public $conf= null;
+		public static $currentProject= null;
 		public static  $projectsDir= '';
 		public static $pluginList= Array();
-		private static $l10n= null;
+		public static $l10n= null;
 		public static $triggers= Array();
 		public static $modelsDir= "";
+		public static $lexer;
+		public static $langPath= "";
 
 		/**
 		 * This method returns or outputs messages using the L10N library
@@ -86,8 +89,9 @@
 			$this->about= parse_ini_file($path.'/mind3rd/env/about.ini');
 			$this->defaults= parse_ini_file($path.'/mind3rd/env/defaults.ini');
 			$this->conf= parse_ini_file($path.'/mind3rd/env/mind.ini');
-			include($path.'/mind3rd/API/L10N/'.$this->defaults['defaul_human_language'].'.php');
-			Mind::$l10n= new $this->defaults['defaul_human_language']();
+			include($path.'/mind3rd/API/L10N/'.$this->defaults['default_human_language'].'.php');
+			Mind::$l10n= new $this->defaults['default_human_language']();
+			Mind::$langPath= $path.'/mind3rd/API/languages/';
 		}
 		/**
 		* function taken from: http://www.dasprids.de/blog/2008/08/22/getting-a-password-hidden-from-stdin-with-php-cli
@@ -220,5 +224,53 @@
 																'after'=>Array());
 				Mind::$pluginList[$plugin->trigger][$plugin->event][]= $plugin;
 			}
+		}
+
+		static function hasProject($project)
+		{
+			GLOBAL $_MIND;
+			$projectfile= Mind::$projectsDir.$project;
+			$noAccess= true;
+
+			$db= new MindDB();
+			$hasProject= "SELECT pk_project,
+								 project.name as name
+							from project_user,
+								 project
+						   where fk_user= ".$_SESSION['pk_user']."
+							 and project.name = '".$project."'
+							 and fk_project = pk_project
+						 ";
+			$data= $db->query($hasProject);
+			if(sizeof($data)>0)
+				foreach($data as $row)
+				{
+					$noAccess= false;
+					break;
+				}
+
+			if(!file_exists($projectfile) || $noAccess)
+			{
+				Mind::write('noProject', true, $project);
+				return false;
+			}
+			return $row;
+		}
+
+		public static function openProject($p)
+		{
+			$_SESSION['currentProject']= $p['pk_project'];
+			$_SESSION['currentProjectName']= $p['name'];
+			$_SESSION['currentProjectDir']= Mind::$projectsDir.$p['name'];
+			$p['path']= Mind::$projectsDir.$p['name'];
+			$p['sources']= Mind::$projectsDir.$p['name'].'/sources';
+			Mind::$currentProject= $p;
+			if(isset($_SESSION['currentProject']))
+			{
+				if($_SESSION['currentProject'] == $p['pk_project'])
+					return true;
+			}
+			Mind::write('projectOpened', true, $p['name']);
+			return true;
 		}
 	}

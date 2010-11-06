@@ -32,7 +32,7 @@ EOT
 
 		public function HTTPExecute()
 		{
-			if(!parent::HTTPExecute($input, $output))
+			if(!parent::HTTPExecute())
 				return false;
 			GLOBAL $_REQ;
 			$this->whatToShow= $_REQ['data']['what'];

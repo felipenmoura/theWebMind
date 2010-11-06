@@ -27,7 +27,11 @@
 			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Input/',
 			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Output/',
 			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/',
-			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Helper/'
+			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Helper/',
+			_MINDSRC_.'/mind3rd/API/cortex/Lexer/',
+			_MINDSRC_.'/mind3rd/API/cortex/tokenizer/',
+			_MINDSRC_.'/mind3rd/API/cortex/canonic/',
+			_MINDSRC_.'/mind3rd/API/cortex/sintaxer/'
 		);
 		for($i=0; $i<sizeof($dirs); $i++)
 		{
@@ -62,7 +66,9 @@
 		new Clear(),
 		new Info(),
 		new Create(),
-		new Show()
+		new Show(),
+		new Analyze(),
+		new SetUse()
 	));
 
 	$helperSet= false;
@@ -93,6 +99,8 @@
 		}
 		$d->close();
 	}
+
+	Mind::$lexer= new Lexer();
 	
 	if($_REQ['env']=='shell')
             include('shell.php');

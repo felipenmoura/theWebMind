@@ -4,10 +4,10 @@
  *
  * @author felipe
  */
-class En {
+class ptBR {
 	private $messages= Array();
 
-	public $name= 'en';
+	public $name= 'pt-BR';
 
 	/**
 	 * This method returns the translated message
@@ -24,6 +24,7 @@ class En {
 	}
 	public function __construct()
 	{
+		header('Content-type: text/html; charset=iso-8859-1');
 		$this->messages['programRequired']			= Mind::message("API: You must send the program name, to execute", '[Fail]', false);
 		$this->messages['loginRequired']			= Mind::message("Auth: Both login and password are required", '[Fail]', false);
 		$this->messages['passwordRequired']			= "I need a password for this user, please: ";

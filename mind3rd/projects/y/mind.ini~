@@ -1,0 +1,25 @@
+; This file will be used by mind3rd due to generate
+; the structure or even code for it
+;
+; First, let's inform mind3rd about what you want
+; to use in your application
+;
+; The idiom is the human language you want to use
+idiom=pt-br
+; The technology you specify here, will be used as
+; the backend of your application
+; this will be the name of the model you want to apply
+; to your app, of course, it depends on the models
+; you've got installed
+technology=php-zf
+; You will need to configure your database
+; the module you choose will probably try to implement
+; some PDO drivers, so, put the one you want, here
+database_drive=pgsql
+; now, the ip address or host name
+database_addr=localhost
+; then, the port
+database_port=5432
+; and here, the user and password
+database_user=root
+dataase_pwd=root
