@@ -61,9 +61,11 @@ EOT
 			// search for special/unknown characters
 			if(!Mind::$lexer->sweep($main))
 				return false;
+			if(!Mind::$canonic->sweep(Mind::$content))
+				return false;
 			// mark specific tokens
 			//if(!Mind::tokenizer::sweep($main))
-				return false;
+			//	return false;
 			// keep substantives and verbs on their canonical form
 			// on male singular, for example
 			//if(!Mind::canonic::sweep($main))

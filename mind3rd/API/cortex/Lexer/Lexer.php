@@ -96,8 +96,9 @@ class Lexer
 			$fixed= str_replace($char, $token, $fixed);
 		}
 		$fixed= preg_replace("/\n/", $this->tokens[' '], $fixed);
-		$fixed= explode($this->tokens[' '], $fixed);
-		print_r($fixed);
+		$fixed= array_filter(explode($this->tokens[' '], $fixed));
+		Mind::$content= $fixed;
+		return sizeof(Mind::$content)>0? Mind::$content: false;
 	}
 
 	public function translateChars($str)
@@ -112,6 +113,7 @@ class Lexer
 		GLOBAL $_MIND;
 		$this->lang= Mind::$l10n->name;
 		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
+		include(Mind::$langPath.$this->lang.'/Inflect.php');
 		$this->validChars= (string)$xml->validchars->lower;
 		$this->validChars.= (string)$xml->validchars->upper;
 		$this->validChars.= (string)$xml->validchars->special;
@@ -124,6 +126,10 @@ class Lexer
 		$this->replacements[1]= (string)$xml->replacements->to;
 		
 		$this->tokens[' ']= chr('176');
+		$this->tokens['.']= chr('176').'.'.chr('176');
+
+		// prepare it to the next step
+		Mind::$canonic= new Canonic();
 	}
 }
 ?>

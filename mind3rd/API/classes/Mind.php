@@ -19,7 +19,10 @@
 		public static $triggers= Array();
 		public static $modelsDir= "";
 		public static $lexer;
+		public static $canonic;
+		public static $tokenizer;
 		public static $langPath= "";
+		public static $content= "";
 
 		/**
 		 * This method returns or outputs messages using the L10N library
