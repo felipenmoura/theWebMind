@@ -1,6 +1,2 @@
-/**
- * This is a model, created to ilustrate how and where
- * you can write your code
- * You may have as many files as you want, altough, the
- * main.mnd is required
- */
+bem, sabemos que todo professor pode ter muitos alunos e que cada aluno pode ter vários professores.
+Tamabém, que cada professora tem um chefe.

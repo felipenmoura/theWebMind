@@ -8,7 +8,7 @@
 -->
 <root>
 	<validchars>
-		<lower>abdefghijklmnopqrstuvxyzw</lower>
+		<lower>abcdefghijklmnopqrstuvxyzw</lower>
 		<upper>ABCDEFGHIJKLMNOPQRSTUVXYZW</upper>
 		<special>áéíóúÁÉÍÓÚ"."ÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</special>
 		<numbers>1234567890</numbers>

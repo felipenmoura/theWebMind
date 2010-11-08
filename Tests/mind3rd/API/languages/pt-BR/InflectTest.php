@@ -76,6 +76,7 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	 * @todo Implement testToMale().
 	 */
 	public function testToMale() {
+		$this->assertEquals(Inflect::toMale('cada'), 'cada');
 		$this->assertEquals(Inflect::toMale('aluna'), 'aluno');
 		$this->assertEquals(Inflect::toMale('ré'), 'réu');
 		$this->assertEquals(Inflect::toMale('gata'), 'gato');
