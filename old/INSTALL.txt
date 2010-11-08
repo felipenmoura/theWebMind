@@ -1,8 +1,0 @@
-Requires:
-	PHP 5.3
-	PHP-cli
-
-In your console, run:
-	sudo php mind install
-
-You're good to go

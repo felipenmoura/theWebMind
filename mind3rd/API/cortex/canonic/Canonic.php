@@ -13,7 +13,7 @@ class Canonic extends Inflect{
 
 	public static function canonize($word)
 	{
-		if(!self::is_singular($word))
+		if(!self::isSingular($word))
 			$word= self::toSingular($word);
 		if(self::isFemale($word))
 			$word= self::toMale($word);

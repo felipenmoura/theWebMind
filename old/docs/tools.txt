@@ -1,5 +1,0 @@
-Diagrama de sequência
-	http://www.websequencediagrams.com/
-Diagrama ER
-	http://thewebmind.org/
-

@@ -22,6 +22,12 @@ class ptBR {
 		else
 			return false;
 	}
+
+	/**
+	 * Construct
+	 * This method should start all the messages, setting them
+	 * to the class::$messages
+	 */
 	public function __construct()
 	{
 		//header('Content-type: text/html; charset=iso-8859-1');

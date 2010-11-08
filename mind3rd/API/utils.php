@@ -29,6 +29,10 @@
 			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/',
 			_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Helper/',
 			_MINDSRC_.'/mind3rd/API/cortex/Lexer/',
+			_MINDSRC_.'/mind3rd/API/interfaces/',
+			_MINDSRC_.'/mind3rd/API/programs/',
+			_MINDSRC_.'/mind3rd/API/L10N/',
+			_MINDSRC_.'/mind3rd/API/classes/',
 			_MINDSRC_.'/mind3rd/API/cortex/tokenizer/',
 			_MINDSRC_.'/mind3rd/API/cortex/canonic/',
 			_MINDSRC_.'/mind3rd/API/cortex/sintaxer/'
@@ -46,11 +50,11 @@
 		return false;
 	}
 
-	require(_MINDSRC_.'/mind3rd/API/interfaces/program.php');
+	/*require(_MINDSRC_.'/mind3rd/API/interfaces/program.php');
 	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
 	require(_MINDSRC_.'/mind3rd/API/classes/MindDB.php');
 	require(_MINDSRC_.'/mind3rd/API/classes/MindPlugin.php');
-	require(_MINDSRC_.'/mind3rd/API/classes/MindCommand.php');
+	require(_MINDSRC_.'/mind3rd/API/classes/MindCommand.php');*/
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Shell.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Application.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/Command.php');

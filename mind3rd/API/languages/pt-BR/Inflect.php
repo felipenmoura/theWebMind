@@ -22,7 +22,7 @@
  * @name Inflect
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
-class Inflect
+class Inflect implements inflection
 {
     static $plural = array(
 		'/^a$/i'						=> "a",
@@ -81,6 +81,7 @@ class Inflect
 
 	static $genreSpecific= Array(
 		'ele'							=> 'ela',
+		'cada'							=> 'cada',
 		'eles'							=> 'elas',
 		'cônsul' 						=> 'consulesa',
 		'visconde' 						=> 'viscondessa',
@@ -129,11 +130,11 @@ class Inflect
 
     /**
      *	@author Felipe Nascimento de Moura <felipenmoura@gmail.com>
-     *  @method is_singular
+     *  @method isSingular
      *  @return boolean
      *  @param String $string
      */
-    public static function is_singular( $string )
+    public static function isSingular( $string )
     {
     	// if it is uncountable, then, it may be treated as a singular
     	if(in_array($string, Inflect::$uncountable))

@@ -4,3 +4,5 @@ Diagrama ER
 	http://thewebmind.org/
 MindMap
 	http://www.mindmeister.com/
+Class Diagram
+	http://creately.com

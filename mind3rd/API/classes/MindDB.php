@@ -5,7 +5,7 @@
  */
 
 /**
- * Description of MindDB
+ * Basic abstraction of the SQLite layer
  *
  * @author felipe
  */
@@ -13,6 +13,11 @@ class MindDB {
 	private $db= null;
 	public $lastInsertedId= 0;
 
+	/**
+	 * @method query
+	 * @param String $qr
+	 * @return Mixed
+	 */
 	public function query($qr)
 	{
 		$ret= sqlite_query($this->db, $qr);
@@ -24,11 +29,16 @@ class MindDB {
 		return $ar_ret;
 	}
 
+	/**
+	 * Performs a command into the database
+	 * @param String $command
+	 * @return Int
+	 */
 	public function execute($command)
 	{
 		$ret= sqlite_exec($this->db, $command);
 		$this->lastInsertedId= sqlite_last_insert_rowid($this->db);
-		return ;
+		return $this->lastInsertedId;
 	}
 
     public function  __construct()

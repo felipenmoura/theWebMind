@@ -13,13 +13,14 @@
 		public $defaults= null;
 		public $conf= null;
 		public static $currentProject= null;
-		public static  $projectsDir= '';
+		public static $projectsDir= '';
 		public static $pluginList= Array();
 		public static $l10n= null;
 		public static $triggers= Array();
 		public static $modelsDir= "";
 		public static $lexer;
 		public static $canonic;
+		public static $syntaxer;
 		public static $tokenizer;
 		public static $langPath= "";
 		public static $content= "";
@@ -99,6 +100,7 @@
 		/**
 		* function taken from: http://www.dasprids.de/blog/2008/08/22/getting-a-password-hidden-from-stdin-with-php-cli
 		* this method should read the passwords from console, not showing any character
+		* or replacing them by stars(asterisks)
 		* @method readPassword
 		* @param Boolan $stars if true, show an * for each typed char
 		* @return String password
@@ -194,11 +196,11 @@
 		* Removes recusrively a directory
 		* @author thiago <erkethan@free.fr>
 		* @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
-		* @name deleteDirectory
+		* @method deleteDir
 		* @param String $dir
 		* @return boolean
 		*/
-		static function deleteDirectory($dir)
+		static function deleteDir($dir)
 		{
 			if(!file_exists($dir))
 				return true;
@@ -208,10 +210,10 @@
 			{
 				if ($item == '.' || $item == '..')
 					continue;
-				if(!$this->deleteDirectory($dir . "/" . $item))
+				if(!$this->deleteDir($dir . "/" . $item))
 				{
 					chmod($dir . "/" . $item, 0777);
-					if(!$this->deleteDirectory($dir . "/" . $item))
+					if(!$this->deleteDir($dir . "/" . $item))
 						return false;
 				}
 			}
