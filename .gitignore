@@ -1,0 +1,21 @@
+##
+## Projects
+##
+mind3rd/projects/*
+
+##
+## SQLite
+##
+mind3rd/SQLite/mind
+
+##
+## Temporary files
+##
+mind3rd/API/temp/*
+
+##
+## Development meta files
+##
+.project
+.DS_Store
+nbproject

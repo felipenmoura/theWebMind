@@ -167,10 +167,16 @@ class Command
 		/*
 		 * Changed by Felipe Nascimento <felipenmoura@gmail.com>
 		 */
-		$this->runPlugins('before');
-		$ret= $this->execute($input, $output);
-		$this->runPlugins('after');
-      return $ret;
+		if(method_exists($this, 'runPlugins'))
+		{
+			$this->runPlugins('before');
+			$ret= $this->execute($input, $output);
+			$this->runPlugins('after');
+			return $ret;
+		}else
+		{
+			$ret= $this->execute($input, $output);
+		}
     }
   }
 
