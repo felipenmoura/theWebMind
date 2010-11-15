@@ -6,3 +6,5 @@ MindMap
 	http://www.mindmeister.com/
 Class Diagram
 	http://creately.com
+Many different charts
+	http://www.lucidchart.com/
