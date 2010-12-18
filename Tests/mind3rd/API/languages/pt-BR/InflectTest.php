@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__FILE__) . '/../../../../../mind3rd/API/interfaces/inflection.php';
 require_once dirname(__FILE__) . '/../../../../../mind3rd/API/languages/pt-BR/Inflect.php';
 
 /**
@@ -184,7 +184,5 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	public function testIsFemale9() {
 		$this->assertTrue(Inflect::isFemale('pequenininha'));
 	}
-
 }
-
 ?>

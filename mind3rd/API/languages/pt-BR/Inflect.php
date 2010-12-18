@@ -13,7 +13,6 @@
 	 *  let me know :)
 	 */
 
-
 /**
  * This class should inflect words for different idioms
  * changing its genre and number
@@ -115,6 +114,7 @@ class Inflect implements inflection
         'óculos',
 		'para',
 		'do',
+		'que',
 		'de',
 		'da',
         'oculos',
