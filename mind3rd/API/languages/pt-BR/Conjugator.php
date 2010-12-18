@@ -7,8 +7,16 @@
  * @author felipe
  */
 class Conjugator {
+	/**
+	 * @var AssocArray $verbs - The associative list of verbs
+	 * @static $verbs
+	 */
 	public static $verbs= false;
 
+	/**
+	 *
+	 * @var AssocArray An array of verbs that may indicate a possibility
+	 */
 	static $possibilities= Array(
 		'poder',
 		'podem',
@@ -17,6 +25,11 @@ class Conjugator {
 		'possivelmente',
 		'provavelmente'
 	);
+
+	/**
+	 *
+	 * @var AssocArray the possible flections a verb may suffer
+	 */
     static $flections = array(
 		'/õe$/'								=> 'ôr',
 		'/rão$/'							=> 'r',
@@ -34,6 +47,10 @@ class Conjugator {
 		'/mos$/'							=> 'r'
 	);
 
+	/**
+	 *
+	 * @var AssocArray A list of fixed exceptions
+	 */
 	static $exceptions= Array(
 		'sei'								=> 'saber',
 		'dei'								=> 'dar',
@@ -50,21 +67,37 @@ class Conjugator {
 
 	);
 
+	/**
+	 * Returns if the passed word means the verb is a possibility
+	 * @param string $word
+	 * @return boolean
+	 */
 	public static function isAPosibility($string)
 	{
 		return in_array($string, self::$possibilities);
 	}
 
+	/**
+	 * Returns if the passed word is in the infinitive form
+	 * @param string $word
+	 * @return boolean
+	 */
 	public static function isInfinitive($string)
 	{
 		foreach(self::$flections as $pattern=>$result)
 		{
-			if(preg_match('/'.$result.'$/i', $string))
+			if(preg_match('/'.$result.'$/i', $string) && self::isInVerbList($string))
 				return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Tries to bring any word to its infinitive form
+	 * Returns false if it is not in the verbs.list
+	 * @param string $word
+	 * @return string
+	 */
 	public static function toInfinitive($string)
     {
 		$string= strtolower($string);
@@ -92,6 +125,11 @@ class Conjugator {
 		return false;
     }
 
+	/**
+	 * Verifies if the passed word is in the verbs.list
+	 * @param string $word
+	 * @return boolean
+	 */
 	public static function isInVerbList($string)
 	{
 		if(!self::$verbs)

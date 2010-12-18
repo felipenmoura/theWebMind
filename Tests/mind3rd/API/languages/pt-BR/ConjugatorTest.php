@@ -83,6 +83,15 @@ class ConjugatorTest extends PHPUnit_Framework_TestCase {
 	public function testIsVerb17() {
 		$this->assertTrue(Conjugator::isVerb('levantaremos'));
 	}
+	public function testIsVerb18() {
+		$this->assertFalse(Conjugator::isVerb('abajur'));
+	}
+	public function testIsVerb19() {
+		$this->assertFalse(Conjugator::isVerb('cadeira'));
+	}
+	public function testIsVerb20() {
+		$this->assertFalse(Conjugator::isVerb('violão'));
+	}
 
 	// testing the toInfinitive method
 	// NOTICE that its goas is about the present/future words...
