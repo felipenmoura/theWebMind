@@ -24,6 +24,7 @@
 		public static $tokenizer;
 		public static $langPath= "";
 		public static $content= "";
+		public static $curLang= 'en';
 
 		/**
 		 * This method returns or outputs messages using the L10N library
@@ -94,8 +95,12 @@
 			$this->defaults= parse_ini_file($path.'/mind3rd/env/defaults.ini');
 			$this->conf= parse_ini_file($path.'/mind3rd/env/mind.ini');
 			include($path.'/mind3rd/API/L10N/'.$this->defaults['default_human_language'].'.php');
+			Mind::$curLang= $this->defaults['default_human_languageName'];
 			Mind::$l10n= new $this->defaults['default_human_language']();
 			Mind::$langPath= $path.'/mind3rd/API/languages/';
+			Mind::$curLang= $this->defaults['default_human_language'];
+			$langPath= $path.'/mind3rd/API/languages/'.$this->defaults['default_human_languageName'].'/';
+			set_include_path(get_include_path() . PATH_SEPARATOR . $langPath);
 		}
 		/**
 		* function taken from: http://www.dasprids.de/blog/2008/08/22/getting-a-password-hidden-from-stdin-with-php-cli

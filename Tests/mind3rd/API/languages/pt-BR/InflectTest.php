@@ -53,6 +53,12 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	public function testisSingular7() {
 		$this->assertTrue(Inflect::isSingular('atlas'));
 	}
+	public function testisSingular8() {
+		$this->assertTrue(Inflect::isSingular('professor'));
+	}
+	public function testisSingular9() {
+		$this->assertFalse(Inflect::isSingular('professores'));
+	}
 
 	public function testToPlural() {
 		$this->assertEquals(Inflect::toPlural('homem'), 'homens');
@@ -103,6 +109,9 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	public function testToSingular7() {
 		$this->assertEquals(Inflect::toSingular('alunas'), 'aluna');
 	}
+	public function testToSingular8() {
+		$this->assertEquals(Inflect::toSingular('professores'), 'professor');
+	}
 
 	public function testToFemale() {
 		$this->assertEquals(Inflect::toFemale('aluno'), 'aluna');
@@ -150,6 +159,9 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	public function testToMale8() {
 		$this->assertEquals(Inflect::toMale('doutora'), 'doutor');
 	}
+	public function testToMale9() {
+		$this->assertEquals(Inflect::toMale('professora'), 'professor');
+	}
 
 	public function testIsFemale() {
 		$this->assertTrue(Inflect::isFemale('mulher'));
@@ -180,6 +192,9 @@ class InflectTest extends PHPUnit_Framework_TestCase {
 	}
 	public function testIsFemale9() {
 		$this->assertTrue(Inflect::isFemale('pequenininha'));
+	}
+	public function testIsFemale10() {
+		$this->assertFalse(Inflect::isFemale('professor'));
 	}
 }
 ?>

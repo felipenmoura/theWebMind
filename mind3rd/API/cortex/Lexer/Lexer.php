@@ -1,12 +1,8 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Lexer
- *
+ * This class sweeps the passed words and validates if
+ * its content matches with the valid chars
+ * @package cortex.analyst
  * @author felipe
  */
 class Lexer
@@ -16,6 +12,7 @@ class Lexer
 	public  $lang= 'en';
 	private $content= "";
 	private $tokens= Array();
+	private $glue= '';
 
 	/**
 	 * Thanks to saeedco (no more information found about him!)
@@ -58,6 +55,11 @@ class Lexer
 		return $array;
 	}
 
+	/**
+	 * Validates the sent char
+	 * @param char $letter
+	 * @return boolean
+	 */
 	private function isValidChar($letter)
 	{
 		$letter= ($letter);
@@ -74,6 +76,12 @@ class Lexer
 		return false;
 	}
 
+	/**
+	 * Performs a sweep over the sent content and replace any
+	 * special char, also removing any invalid char.
+	 * @param string $content
+	 * @return string The cleaned content
+	 */
     public function sweep($content)
 	{
 		$this->content= trim(str_replace("\n", ' ', $content));
@@ -84,13 +92,15 @@ class Lexer
 		// the fixed content;
 		$fixed= "";
 		// for each charactere on the content
+		// let's remove th invalid ones
 		for($i=0, $j=sizeof($this->content); $i<$j; $i++)
 		{
 			$letter= $this->content[$i];
 			if($this->isValidChar($letter))
 				$fixed.= $letter;
 		}
-		
+
+		// preparing the tokens
 		foreach($this->tokens as $char=>$token)
 		{
 			$fixed= str_replace($char, $token, $fixed);
@@ -101,16 +111,22 @@ class Lexer
 		return sizeof(Mind::$content)>0? Mind::$content: false;
 	}
 
+	/**
+	 * Returns the fixed char to the sent char
+	 * @param string $char
+	 * @return string
+	 */
 	public function translateChars($str)
 	{
 		$from = $this->replacements[0];
 		$to   = $this->replacements[1];
 		return strtr($str, $from, $to);
 	}
-
+	
 	public function __construct()
 	{
 		GLOBAL $_MIND;
+		$this->glue= chr('176');
 		$this->lang= Mind::$l10n->name;
 		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
 		include(Mind::$langPath.$this->lang.'/Inflect.php');
@@ -125,8 +141,9 @@ class Lexer
 		$this->replacements[0]= (string)$xml->replacements->from;
 		$this->replacements[1]= (string)$xml->replacements->to;
 		
-		$this->tokens[' ']= chr('176');
-		$this->tokens['.']= chr('176').'.'.chr('176');
+		$this->tokens[' ']= $this->glue;
+		$this->tokens['.']= $this->glue.'.'.$this->glue;
+		$this->tokens[',']= $this->glue.','.$this->glue;
 
 		// prepare it to the next step
 		Mind::$canonic= new Canonic();

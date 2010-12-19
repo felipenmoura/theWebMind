@@ -1,9 +1,9 @@
 <?php
 /**
  * This class should identify verbs
- * NOTICE that its goas is about the present/future words...
+ * NOTICE that its goals is about the present/future words...
  * past is not supported
- *
+ * @package cortex.analyst
  * @author felipe
  */
 class Verbalizer {
@@ -14,7 +14,6 @@ class Verbalizer {
 	public static $verbs= false;
 
 	/**
-	 *
 	 * @var AssocArray An array of verbs that may indicate a possibility
 	 */
 	static $possibilities= Array(
@@ -27,7 +26,7 @@ class Verbalizer {
 	);
 
 	/**
-	 *
+	 * @static
 	 * @var AssocArray the possible flections a verb may suffer
 	 */
     static $flections = array(
@@ -55,7 +54,7 @@ class Verbalizer {
 	);
 
 	/**
-	 *
+	 * @static
 	 * @var AssocArray A list of fixed exceptions
 	 */
 	static $exceptions= Array(
@@ -77,6 +76,7 @@ class Verbalizer {
 	/**
 	 * Returns if the passed word means the verb is a possibility
 	 * @param string $word
+	 * @static
 	 * @return boolean
 	 */
 	public static function isAPosibility($string)
@@ -87,13 +87,15 @@ class Verbalizer {
 	/**
 	 * Returns if the passed word is in the infinitive form
 	 * @param string $word
+	 * @static
 	 * @return boolean
 	 */
 	public static function isInfinitive($string)
 	{
+		$isInVerBlist= self::isInVerbList($string);
 		foreach(self::$flections as $pattern=>$result)
 		{
-			if(preg_match('/'.$result.'$/i', $string) && self::isInVerbList($string))
+			if(preg_match('/'.$result.'$/i', $string) && $isInVerBlist)
 				return true;
 		}
 		return false;
@@ -104,12 +106,14 @@ class Verbalizer {
 	 * Returns false if it is not in the verbs.list
 	 * @param string $word
 	 * @return string
+	 * @static
 	 */
 	public static function toInfinitive($string)
     {
 		$string= strtolower($string);
 		if(self::isInfinitive($string))
 			return $string;
+		
         if(isset(self::$exceptions[$string]))
 		{
 			return self::$exceptions[$string];
@@ -136,6 +140,7 @@ class Verbalizer {
 	 * Verifies if the passed word is in the verbs.list
 	 * @param string $word
 	 * @return boolean
+	 * @static
 	 */
 	public static function isInVerbList($string)
 	{
@@ -147,6 +152,7 @@ class Verbalizer {
 	/**
 	 * Returns if the received word is a verb or not
 	 * @param string $word
+	 * @static
 	 */
 	public static function isVerb($word)
 	{
@@ -157,11 +163,17 @@ class Verbalizer {
 	}
 
 	/**
+	 * This method reads the verbs.list file and
+	 * parses it to an indexed array
 	 * @name loadVerbs
+	 * @static
 	 */
 	public static function loadVerbs()
 	{
-		$fR= fopen('verbs.list', 'rb');
+		if(!file_exists('verbs.list'))
+			$fR= fopen(Mind::$langPath.Mind::$l10n->name.'/verbs.list', 'rb');
+		else
+			$fR= fopen('verbs.list', 'rb');
 		self::$verbs= Array();
 		while (!feof($fR)){
 			$verb= preg_replace('/\s/', '', fgets($fR, 4096));

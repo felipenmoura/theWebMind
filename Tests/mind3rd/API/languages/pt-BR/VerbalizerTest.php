@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/Mind.php';
 require_once dirname(__FILE__) . '/../../../../../mind3rd/API/languages/pt-BR/Verbalizer.php';
 
 /**
@@ -92,7 +93,6 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 	public function testIsVerb20() {
 		$this->assertFalse(Verbalizer::isVerb('violão'));
 	}
-
 	public function testIsVerb21() {
 		$this->assertTrue(Verbalizer::isVerb('falhar'));
 	}
@@ -126,9 +126,12 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 	public function testIsVerb31() {
 		$this->assertTrue(Verbalizer::isVerb('comeu'));
 	}
+	public function testIsVerb32() {
+		$this->assertFalse(Verbalizer::isVerb('professor'));
+	}
 
 	// testing the toInfinitive method
-	// NOTICE that its goas is about the present/future words...
+	// NOTICE that its goals is about the present/future words...
 	// past is not supported
 	public function testToInfinitive1() {
 		$this->assertEquals('saber', Verbalizer::toInfinitive('sei'));
