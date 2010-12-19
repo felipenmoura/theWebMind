@@ -93,6 +93,40 @@ class ConjugatorTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse(Conjugator::isVerb('violão'));
 	}
 
+	public function testIsVerb21() {
+		$this->assertTrue(Conjugator::isVerb('falhar'));
+	}
+	public function testIsVerb22() {
+		$this->assertTrue(Conjugator::isVerb('falhei'));
+	}
+	public function testIsVerb23() {
+		$this->assertTrue(Conjugator::isVerb('falharei'));
+	}
+	public function testIsVerb24() {
+		$this->assertTrue(Conjugator::isVerb('falhou'));
+	}
+	public function testIsVerb25() {
+		$this->assertTrue(Conjugator::isVerb('falhamos'));
+	}
+	public function testIsVerb26() {
+		$this->assertTrue(Conjugator::isVerb('falharei'));
+	}
+	public function testIsVerb27() {
+		$this->assertTrue(Conjugator::isVerb('falharemos'));
+	}
+	public function testIsVerb28() {
+		$this->assertTrue(Conjugator::isVerb('correu'));
+	}
+	public function testIsVerb29() {
+		$this->assertTrue(Conjugator::isVerb('correrás'));
+	}
+	public function testIsVerb30() {
+		$this->assertTrue(Conjugator::isVerb('falhará'));
+	}
+	public function testIsVerb31() {
+		$this->assertTrue(Conjugator::isVerb('comeu'));
+	}
+
 	// testing the toInfinitive method
 	// NOTICE that its goas is about the present/future words...
 	// past is not supported
