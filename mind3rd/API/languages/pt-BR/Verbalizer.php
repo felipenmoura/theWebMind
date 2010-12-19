@@ -6,7 +6,7 @@
  *
  * @author felipe
  */
-class Conjugator {
+class Verbalizer {
 	/**
 	 * @var AssocArray $verbs - The associative list of verbs
 	 * @static $verbs
@@ -162,10 +162,10 @@ class Conjugator {
 	public static function loadVerbs()
 	{
 		$fR= fopen('verbs.list', 'rb');
-		Conjugator::$verbs= Array();
+		self::$verbs= Array();
 		while (!feof($fR)){
 			$verb= preg_replace('/\s/', '', fgets($fR, 4096));
-			Conjugator::$verbs[$verb]= true;
+			self::$verbs[$verb]= true;
 		}
 	}
 }
