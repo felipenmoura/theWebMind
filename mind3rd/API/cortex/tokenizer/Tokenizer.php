@@ -19,7 +19,9 @@ define('MT_QMUST'   , 64);
 define('MT_QMAY'    , 128);
 define('MT_QNOTNULL', 254);
 define('MT_QKEY'    , 564);
-define('MT_ANY'    , 1024);
+define('MT_QOF'     , 1024);
+define('MT_QBE'     , 2048);
+define('MT_ANY'     , 4096);
 
 /**
  * This class will apply the most important tokens to be used.
@@ -87,6 +89,8 @@ class Tokenizer {
 		self::$qualifiers['may']   = explode(',', str_replace(', ', ',', (String)$xml->may));
 		self::$qualifiers['notnull']   = explode(',', str_replace(', ', ',', (String)$xml->notnull));
 		self::$qualifiers['key']   = explode(',', str_replace(', ', ',', (String)$xml->key));
+		self::$qualifiers['of']   = explode(',', str_replace(', ', ',', (String)$xml->of));
+		self::$qualifiers['be']   = explode(',', str_replace(', ', ',', (String)$xml->be));
 		return self::$qualifiers;
 	}
 
@@ -185,6 +189,7 @@ class Tokenizer {
 			{
 				self::$spine[]= MT_MANY;
 				continue;
+
 			}
 			if(self::isQuantifier('or', $word))
 			{
@@ -205,6 +210,16 @@ class Tokenizer {
 			if(self::isQualifier('notnull', $word))
 			{
 				self::$spine[]= MT_QNOTNULL;
+				continue;
+			}
+			if(self::isQualifier('of', $word))
+			{
+				self::$spine[]= MT_QOF;
+				continue;
+			}
+			if(self::isQualifier('be', $word))
+			{
+				self::$spine[]= MT_QBE;
 				continue;
 			}
 			if(self::isQualifier('key', $word))

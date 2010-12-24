@@ -54,11 +54,15 @@ class Verbalizer {
 	);
 
 	/**
+	 * Words that should NOT be changed
 	 * @static
 	 * @var AssocArray A list of fixed exceptions
 	 */
 	static $exceptions= Array(
 		'sei'								=> 'saber',
+		'do'								=> 'do',
+		'da'								=> 'da',
+		'de'								=> 'de',
 		'dei'								=> 'dar',
 		'dou'								=> 'dar',
 		'deu'								=> 'dar',
