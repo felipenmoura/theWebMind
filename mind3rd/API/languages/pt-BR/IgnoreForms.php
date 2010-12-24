@@ -3,6 +3,7 @@
 	 * This class provides a list of instructtions
 	 * which define when a word should be ignored,
 	 * plus a list of key words to ignore
+	 * 
 	 * @package cortex.analyst
 	 * @author felipe
 	 */
@@ -27,12 +28,14 @@
 		 * This method reads the ignore.list file and
 		 * parses it to an indexed array
 		 * @static
-		 * @static
 		 * @name loadVerbs
 		 */
 		public static function loadIgnoreList()
 		{
-			$fR= fopen('ignore.list', 'rb');
+			if(!file_exists('ignore.list'))
+				$fR= fopen(Mind::$langPath.Mind::$l10n->name.'/ignore.list', 'rb');
+			else
+				$fR= fopen('ignore.list', 'rb');
 			self::$ignoreList= Array();
 			while (!feof($fR)){
 				$word= preg_replace('/\s/', '', fgets($fR, 4096));

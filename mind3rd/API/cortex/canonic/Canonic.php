@@ -1,14 +1,16 @@
 <?php
 /**
  * This class will take the content to be used, and take
- * it to its canonical form
+ * it to its canonical form.
+ * It extends the Inflect class, from the selected language
+ *
  * @package cortex.analyst
  * @author felipe
  */
 class Canonic extends Inflect{
 
 	/**
-	 * Takes a word to its canonic form
+	 * Takes a word to its canonic form(singular, male form)
 	 * @param string$word
 	 * @return string
 	 */
@@ -26,36 +28,27 @@ class Canonic extends Inflect{
 	 * @param array $content
 	 * @return Array
 	 */
-	public function sweep(Array $content)
+	public function sweep()
 	{
-		$v= new Verbalizer;
+		$content= Mind::$content;
 		$newContent= Array();
 		foreach($content as $word)
 		{
-			if(!Verbalizer::isVerb($word) && strlen($word) > 1)
+			if(IgnoreForms::shouldBeIgnored($word))
+				continue;
+			if(strlen($word) > 1 && ($isVerb= Verbalizer::isVerb($word)))
 			{
-				//echo 'the canonic form of '.$word.' is '.Canonic::canonize($word);
-				$word= Canonic::canonize($word);
-			}
+				$word= Verbalizer::toInfinitive($word);
+			}elseif(false){
+					
+				 }else{
+						$word= Canonic::canonize($word);
+					  }
 			$newContent[]= $word;
 		}
-		/*array_map(function ($word)
-				  {
-					print_r($v);
-					//echo Verbalizer::toInfinitive($word);
-					//if(Verbalizer::isVerb($word))
-					//return Verbalizer::toInfinitive($word);
-					Canonic::canonize($word);
-				  },
-				  $content);
-		*/
-		print_r($newContent);
+		Mind::$content= $newContent;
+		Mind::$tokenizer= new Tokenizer();
 		return $newContent;
-	}
-	
-    public function __construct()
-	{
-
 	}
 }
 ?>

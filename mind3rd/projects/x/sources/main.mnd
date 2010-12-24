@@ -1,2 +1,2 @@
-bem, sabemos que todo professor pode ter muitos alunos & que cada aluno pode ter vários professores.
-Também, que cada professora tem um chefe.
+todos os professores tem um ou vários alunos.
+Chave, notnull, precisa, pode.

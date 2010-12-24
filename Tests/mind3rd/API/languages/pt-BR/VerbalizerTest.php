@@ -169,6 +169,9 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 	public function testToInfinitive12() {
 		$this->assertEquals('varrer', Verbalizer::toInfinitive('varrer'));
 	}
+	public function testToInfinitive13() {
+		$this->assertEquals('poder', Verbalizer::toInfinitive('pode'));
+	}
 
 	/**
 	 * @todo Implement testLoadVerbs().

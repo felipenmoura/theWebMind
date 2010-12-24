@@ -7,7 +7,7 @@
 		This classe has been partly inspired on the above cite codes.
 		The other methods and all the regular expression except the ones
 		refered to plural and singular on english were created by:
-		Felip Nascimento de Moura <felipenmoura@gmail.com>
+		Felipe Nascimento de Moura <felipenmoura@gmail.com>
 	 *  You can contribute changing this file and telling me, or maybe 
 	 *  adding tests to it, and in case you find anything weird, please
 	 *  let me know :)
@@ -117,6 +117,8 @@ class Inflect implements inflection
 		'que',
 		'de',
 		'da',
+		'vários',
+		'várias',
         'oculos',
         'átlas',
         'atlas',

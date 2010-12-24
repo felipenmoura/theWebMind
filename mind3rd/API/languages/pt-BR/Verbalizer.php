@@ -63,14 +63,10 @@ class Verbalizer {
 		'dou'								=> 'dar',
 		'deu'								=> 'dar',
 		'dão'								=> 'dar',
-		'deram'								=> 'dar',
 		'dará'								=> 'dar',
 		'darão'								=> 'dar',
-		'teem'								=> 'ter',
 		'terem'								=> 'ter',
-		'terão'								=> 'ter',
-		'tiveram'							=> 'ter',
-
+		'terão'								=> 'ter'
 	);
 
 	/**
