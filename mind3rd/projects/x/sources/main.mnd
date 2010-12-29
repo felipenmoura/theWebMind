@@ -1,3 +1,1 @@
-todos os professores tem um ou vários alunos.
-Chave, notnull, precisa, pode.
-O nome do usuário é caractere.
+todo aluno pode ter muitos professores e cada professor tem um ou vários alunos.

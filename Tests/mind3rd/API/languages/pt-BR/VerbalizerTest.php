@@ -30,9 +30,6 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	/**
-	 * @todo Implement testIsVerb().
-	 */
 	public function testIsVerb() {
 		$this->assertTrue(Verbalizer::isVerb('correr'));
 	}
@@ -173,14 +170,7 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('poder', Verbalizer::toInfinitive('pode'));
 	}
 
-	/**
-	 * @todo Implement testLoadVerbs().
-	 */
 	public function testLoadVerbs() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
 	}
 
 }

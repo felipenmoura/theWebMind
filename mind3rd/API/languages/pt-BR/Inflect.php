@@ -103,7 +103,9 @@ class Inflect implements inflection
 		'maestro' 						=> 'maestrina',
 		'marajá' 						=> 'marani',
 		'réu' 							=> 'ré',
-		'sultão' 						=> 'sultana'
+		'sultão' 						=> 'sultana',
+		'uma'							=> 'um',
+		'umas'							=> 'uns'
 	);
 
     static $irregular = array(

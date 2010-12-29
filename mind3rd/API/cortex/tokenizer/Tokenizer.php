@@ -1,28 +1,4 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-// Tokens to be used
-// MT stands for MindToken
-define('MT_PERIOD'  , -2);
-define('MT_COMA'    , -1);
-define('MT_VOID'    , 0);
-define('MT_VERB'    , 1);
-define('MT_SUBST'   , 2);
-define('MT_NONE'    , 4);
-define('MT_ONE'     , 8);
-define('MT_OR'      , 16);
-define('MT_MANY'    , 32);
-define('MT_QMUST'   , 64);
-define('MT_QMAY'    , 128);
-define('MT_QNOTNULL', 254);
-define('MT_QKEY'    , 564);
-define('MT_QOF'     , 1024);
-define('MT_QBE'     , 2048);
-define('MT_ANY'     , 4096);
-
 /**
  * This class will apply the most important tokens to be used.
  * It also builds the main structure to compare it to avaliable
@@ -30,12 +6,13 @@ define('MT_ANY'     , 4096);
  *
  * @author felipe
  */
-class Tokenizer {
+class Tokenizer extends Token{
 
 	public static $sintaticsList;
 	public static $quantifiers;
 	public static $qualifiers;
-	public static $spine='';
+	public static $spine= Array();
+	public static $string='';
 
 	/**
 	 * This method builds the required structure from the
@@ -151,6 +128,8 @@ class Tokenizer {
 	/**
 	 * This method runs through all the words within Mind::$content
 	 * and perform all verifications
+	 *
+	 * @return Array the spine, the whole structure of the abstracted text
 	 */
 	public function sweep()
 	{
@@ -159,85 +138,11 @@ class Tokenizer {
 		foreach($cont as $word)
 		{
 			$word= strtolower($word);
-			if(IgnoreForms::shouldBeIgnored($word))
-			{
-				self::$spine[]= MT_ANY;
-				continue;
-			}
-			if($word==',')
-			{
-				self::$spine[]= MT_COMA;
-				continue;
-			}
-			if($word=='.')
-			{
-				self::$spine[]= MT_PERIOD;
-				continue;
-			}
-			// let's check for quantifiers
-			if(self::isQuantifier('none', $word))
-			{
-				self::$spine[]= MT_NONE;
-				continue;
-			}
-			if(self::isQuantifier('one', $word))
-			{
-				self::$spine[]= MT_ONE;
-				continue;
-			}
-			if(self::isQuantifier('many', $word))
-			{
-				self::$spine[]= MT_MANY;
-				continue;
-
-			}
-			if(self::isQuantifier('or', $word))
-			{
-				self::$spine[]= MT_OR;
-				continue;
-			}
-			// and here, the qualifiers
-			if(self::isQualifier('must', $word))
-			{
-				self::$spine[]= MT_QMUST;
-				continue;
-			}
-			if(self::isQualifier('may', $word))
-			{
-				self::$spine[]= MT_QMAY;
-				continue;
-			}
-			if(self::isQualifier('notnull', $word))
-			{
-				self::$spine[]= MT_QNOTNULL;
-				continue;
-			}
-			if(self::isQualifier('of', $word))
-			{
-				self::$spine[]= MT_QOF;
-				continue;
-			}
-			if(self::isQualifier('be', $word))
-			{
-				self::$spine[]= MT_QBE;
-				continue;
-			}
-			if(self::isQualifier('key', $word))
-			{
-				self::$spine[]= MT_QKEY;
-				continue;
-			}
-			// we know these words are already on its
-			// canonic form, so, we can simply look for
-			// it on the list
-			if(Verbalizer::isInVerbList($word))
-			{
-				self::$spine[]= MT_VERB;
-				continue;
-			}
-			self::$spine[]= MT_SUBST;
+			$this->add($word);
 		}
-		print_r(self::$spine); // AQUI
-		print_r(Mind::$content);
+
+		//echo Token::$string.'<hr/>';
+		Mind::$syntaxer= new Syntaxer();
+		return Token::$spine;
 	}
 }

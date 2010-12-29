@@ -71,7 +71,7 @@ EOT
 			// prepares the model to be used to process data
 			// it transforms the original text into the mind code
 			// itself
-			//if(!Mind::sintaxer::sweep($main))
+			if(!Mind::$syntaxer->sweep())
 				return false;
 			// removes the tokens, added before
 			//if(!Mind::tokenizer::clear($main))

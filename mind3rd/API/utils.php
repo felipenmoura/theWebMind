@@ -93,7 +93,7 @@
 			_MINDSRC_.'/mind3rd/API/classes/',
 			_MINDSRC_.'/mind3rd/API/cortex/tokenizer/',
 			_MINDSRC_.'/mind3rd/API/cortex/canonic/',
-			_MINDSRC_.'/mind3rd/API/cortex/sintaxer/'
+			_MINDSRC_.'/mind3rd/API/cortex/syntaxer/'
 		);
 		for($i=0; $i<sizeof($dirs); $i++)
 		{
@@ -103,6 +103,7 @@
 				return true;
 			}
 		}
+		
 		// let's check if it is a language
 		$langPath= _MINDSRC_.'/mind3rd/API/languages/'.$_MIND->defaults['default_human_languageName'].'/'.$what.'.php';
 		if(file_exists($langPath))

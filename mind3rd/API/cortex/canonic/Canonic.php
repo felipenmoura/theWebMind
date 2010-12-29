@@ -18,8 +18,9 @@ class Canonic extends Inflect{
 	{
 		if(!self::isSingular($word))
 			$word= self::toSingular($word);
-		if(self::isFemale($word))
-			$word= self::toMale($word);
+		/*if(self::isFemale($word))			// demands more tests
+		// apparently, female substantives are brought to a wrong male form
+			$word= self::toMale($word);*/
 		return $word;
 	}
 
