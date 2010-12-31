@@ -15,9 +15,9 @@ class Token
 	const MT_SUBST   =  2;
 	const MS_SUBST   =  'S';
 	const MT_NONE    =  4;
-	const MS_NONE    =  '0';
+	const MS_NONE    =  'N';
 	const MT_ONE     = 8;
-	const MS_ONE     = '0';
+	const MS_ONE     = 'N';
 	const MT_OR      =  16;
 	const MS_OR      =  'O';
 	const MT_MANY    =  32;
@@ -40,7 +40,13 @@ class Token
 
 	public function add($word)
 	{
+		if(in_array($word, Tokenizer::$qualifiers['coma']))
+		{
+			$word= ',';
+		}
+
 		self::$words[]= $word;
+
 		if(IgnoreForms::shouldBeIgnored($word))
 		{
 			self::$spine[]= Token::MT_ANY;
@@ -132,5 +138,7 @@ class Token
 		}
 		self::$spine[]= Token::MT_SUBST;
 		self::$string.= Token::MS_SUBST;
+		
+		return $word;
 	}
 }

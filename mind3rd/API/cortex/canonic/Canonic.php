@@ -33,22 +33,23 @@ class Canonic extends Inflect{
 	{
 		$content= Mind::$content;
 		$newContent= Array();
+
+		Mind::$tokenizer= new Tokenizer();
+
 		foreach($content as $word)
 		{
 			if(IgnoreForms::shouldBeIgnored($word))
 				continue;
-			if(strlen($word) > 1 && ($isVerb= Verbalizer::isVerb($word)))
+			if(!Tokenizer::isQualifier($word) && !Tokenizer::isQuantifier($word))
 			{
-				$word= Verbalizer::toInfinitive($word);
-			}elseif(false){
-					
-				 }else{
-						$word= Canonic::canonize($word);
-					  }
+				if(strlen($word) > 1 && ($isVerb= Verbalizer::isVerb($word)))
+					$word= Verbalizer::toInfinitive($word);
+				else
+					$word= Canonic::canonize($word);
+			}
 			$newContent[]= $word;
 		}
 		Mind::$content= $newContent;
-		Mind::$tokenizer= new Tokenizer();
 		return $newContent;
 	}
 }

@@ -68,35 +68,53 @@ class Tokenizer extends Token{
 		self::$qualifiers['key']   = explode(',', str_replace(', ', ',', (String)$xml->key));
 		self::$qualifiers['of']   = explode(',', str_replace(', ', ',', (String)$xml->of));
 		self::$qualifiers['be']   = explode(',', str_replace(', ', ',', (String)$xml->be));
+		self::$qualifiers['coma'] = explode(',', str_replace(', ', ',', (String)$xml->coma));
 		return self::$qualifiers;
 	}
 
 	/**
 	 * This method verifies whether the passed word is
 	 * a valid quantifier in the passed list of quantifiers
+	 * or if it is a quantifier, in case a list is not sent
 	 *
 	 * @param string $which In which quantifier the word should be searched
 	 * @param string $what The word to be verified
 	 * @return boolean
 	 */
-	public static function isQuantifier($which, $what)
+	public static function isQuantifier($which, $what=false)
 	{
-		return (isset(self::$quantifiers[$which]) &&
-			   in_array($what, self::$quantifiers[$which]));
+		if($what)
+			return (isset(self::$quantifiers[$which]) &&
+				   in_array($what, self::$quantifiers[$which]));
+		foreach(self::$quantifiers as $qt)
+		{
+			if(in_array($which, $qt))
+				return true;
+		}
+		return false;
 	}
 
 	/**
 	 * This method verifies whether the passed word is
 	 * a valid quantifier in the passed list of qualifiers
+	 * or if it is a qualifier, in case a list is not sent
 	 *
 	 * @param string $which In which qualifier the word should be searched
 	 * @param string $what The word to be verified
 	 * @return boolean
 	 */
-	public static function isQualifier($which, $what)
+	public static function isQualifier($which, $what=false)
 	{
-		return (isset(self::$qualifiers[$which]) &&
-			   in_array($what, self::$qualifiers[$which]));
+		if($what)
+			return (isset(self::$qualifiers[$which]) &&
+				   in_array($what, self::$qualifiers[$which]));
+
+		foreach(self::$qualifiers as $ql)
+		{
+			if(in_array($which, $ql))
+				return true;
+		}
+		return false;
 	}
 
 	/**
@@ -133,7 +151,6 @@ class Tokenizer extends Token{
 	 */
 	public function sweep()
 	{
-		self::loadModifiers();
 		$cont= Mind::$content;
 		foreach($cont as $word)
 		{
@@ -141,8 +158,11 @@ class Tokenizer extends Token{
 			$this->add($word);
 		}
 
-		//echo Token::$string.'<hr/>';
 		Mind::$syntaxer= new Syntaxer();
 		return Token::$spine;
+	}
+
+	public function __construct(){
+		self::loadModifiers();;
 	}
 }

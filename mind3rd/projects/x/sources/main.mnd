@@ -1,1 +1,3 @@
-todo aluno pode ter muitos professores e cada professor tem um ou vários alunos.
+aluno tem nenhum ou vários professores.
+aluno tem zero ou vários professores.
+aluno tem 0 ou vários professores.
