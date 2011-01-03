@@ -1,3 +1,12 @@
-aluno tem nenhum ou vários professores.
-aluno tem zero ou vários professores.
-aluno tem 0 ou vários professores.
+aluno tem professor
+//professor tem piça
+professor tem aluno
+/*
+
+blablabla
+mimimi
+xxx
+blabelaebamimi
+*/
+aluno tem pai, mãe e papagaio.
+aluno tem nome:caractere(128, obrigatório, não nulo, "josé da conceição")

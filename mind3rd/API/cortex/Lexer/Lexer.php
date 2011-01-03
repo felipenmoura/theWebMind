@@ -84,10 +84,13 @@ class Lexer
 	 */
     public function sweep($content)
 	{
+		// let's treat the single line comments
+		$content= preg_replace('/\/\/.+\n/', '', $content);
+
+		// now, it's time to start working with the data
 		$this->content= trim(str_replace("\n", ' ', $content));
 		$this->originalContent= $this->content;
 		$this->content= $this->str_split_utf8($this->content);
-		// untill here, it's all fine
 
 		// the fixed content;
 		$fixed= "";
@@ -105,9 +108,18 @@ class Lexer
 		{
 			$fixed= str_replace($char, $token, $fixed);
 		}
+
+		// let's deal with the \n and multiline comments
 		$fixed= preg_replace("/\n/", $this->tokens[' '], $fixed);
-		$fixed= array_filter(explode($this->tokens[' '], $fixed));
+		$fixed= preg_replace('/\/\*.+\*\//', '', $fixed);
+
+		$exploded= explode($this->tokens[' '], $fixed);
+		//$exploded= preg_split('//', $fixed);
+
+		$fixed= array_filter($exploded);
+
 		Mind::$content= $fixed;
+
 		return sizeof(Mind::$content)>0? Mind::$content: false;
 	}
 

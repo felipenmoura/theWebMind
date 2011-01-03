@@ -44,8 +44,11 @@ class Canonic extends Inflect{
 			{
 				if(strlen($word) > 1 && ($isVerb= Verbalizer::isVerb($word)))
 					$word= Verbalizer::toInfinitive($word);
-				else
-					$word= Canonic::canonize($word);
+				else{
+					$word= explode(':', $word);
+					$word[0]= Canonic::canonize($word[0]);
+					$word= implode(':', $word);
+				}
 			}
 			$newContent[]= $word;
 		}
