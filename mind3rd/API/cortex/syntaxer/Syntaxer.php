@@ -47,7 +47,7 @@ class Syntaxer {
 		$pattern= implode('|', self::$sintatics);
 
 		// let's find all the patterns that match
-		// that means that we'll find only expressions with valid expressions
+		// that means that we'll find only expressions with valid syntax
 		$pattern= str_replace('S', 'S((( )?\,( )?S)?)+', $pattern);
 
 		preg_match_all('/'.$pattern.'/',

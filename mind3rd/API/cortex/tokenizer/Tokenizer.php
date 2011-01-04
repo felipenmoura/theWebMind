@@ -12,7 +12,18 @@ class Tokenizer extends Token{
 	public static $quantifiers;
 	public static $qualifiers;
 	public static $spine= Array();
-	public static $string='';
+	public static $string= '';
+	public static $dataTypes= Array();
+
+	/**
+	 * Parses a string into an array, splited by comas
+	 * @param Mixed $str
+	 * @return Array The string splited by comas, ignoring a space after each coma
+	 */
+	private static function parseByComa($str)
+	{
+		return explode(',', str_replace(', ', ',', (String)$str));
+	}
 
 	/**
 	 * This method builds the required structure from the
@@ -43,10 +54,10 @@ class Tokenizer extends Token{
 	public static function loadQuantifiers($xml)
 	{
 		self::$quantifiers= Array();
-		self::$quantifiers['none'] = explode(',', str_replace(', ', ',', (String)$xml->none));
-		self::$quantifiers['one']  = explode(',', str_replace(', ', ',', (String)$xml->one));
-		self::$quantifiers['many'] = explode(',', str_replace(', ', ',', (String)$xml->many));
-		self::$quantifiers['or']   = explode(',', str_replace(', ', ',', (String)$xml->or));
+		self::$quantifiers['none'] = self::parseByComa($xml->none);
+		self::$quantifiers['one']  = self::parseByComa($xml->one);
+		self::$quantifiers['many'] = self::parseByComa($xml->many);
+		self::$quantifiers['or']   = self::parseByComa($xml->or);
 		return self::$quantifiers;
 	}
 
@@ -62,14 +73,32 @@ class Tokenizer extends Token{
 	{
 
 		self::$qualifiers= Array();
-		self::$qualifiers['must']   = explode(',', str_replace(', ', ',', (String)$xml->must));
-		self::$qualifiers['may']   = explode(',', str_replace(', ', ',', (String)$xml->may));
-		self::$qualifiers['notnull']   = explode(',', str_replace(', ', ',', (String)$xml->notnull));
-		self::$qualifiers['key']   = explode(',', str_replace(', ', ',', (String)$xml->key));
-		self::$qualifiers['of']   = explode(',', str_replace(', ', ',', (String)$xml->of));
-		self::$qualifiers['be']   = explode(',', str_replace(', ', ',', (String)$xml->be));
-		self::$qualifiers['coma'] = explode(',', str_replace(', ', ',', (String)$xml->coma));
+		self::$qualifiers['must']   = self::parseByComa($xml->must);
+		self::$qualifiers['may']    = self::parseByComa($xml->may);
+		self::$qualifiers['notnull']= self::parseByComa($xml->notnull);
+		self::$qualifiers['key']    = self::parseByComa($xml->key);
+		self::$qualifiers['of']     = self::parseByComa($xml->of);
+		self::$qualifiers['be']     = self::parseByComa($xml->be);
+		self::$qualifiers['coma']   = self::parseByComa($xml->coma);
 		return self::$qualifiers;
+	}
+
+	/**
+	 * Loads the possible types to be accepted
+	 * @param SimpleXML $xml
+	 * @return Array The parsed avaliable types
+	 */
+	public static function loadTypes($xml)
+	{
+		self::$dataTypes['varchar']  = self::parseByComa($xml->varchar);
+		self::$dataTypes['char']     = self::parseByComa($xml->char);
+		self::$dataTypes['int']      = self::parseByComa($xml->int);
+		self::$dataTypes['float']    = self::parseByComa($xml->float);
+		self::$dataTypes['boolean']  = self::parseByComa($xml->boolean);
+		self::$dataTypes['date']     = self::parseByComa($xml->date);
+		self::$dataTypes['time']     = self::parseByComa($xml->time);
+		self::$dataTypes['file']     = self::parseByComa($xml->file);
+		return self::$dataTypes;
 	}
 
 	/**
@@ -131,14 +160,20 @@ class Tokenizer extends Token{
 			$qlf= simplexml_load_file(Mind::$langPath.
 									  Mind::$l10n->name.
 									  '/qualifiers.xml');
+			$tps= simplexml_load_file(Mind::$langPath.
+									  Mind::$l10n->name.
+									  '/datatypes.xml');
 			self::loadQuantifiers($qnt);
 			self::loadQualifiers($qlf);
+			self::loadTypes($tps);
 		}else{
 				self::loadSintatics(fopen('sintatics.list', 'rb'));
 				$qnt= simplexml_load_file('quantifiers.xml');
 				$qlf= simplexml_load_file('qualifiers.xml');
+				$tps= simplexml_load_file('datatypes.xml');
 				self::loadQuantifiers($qnt);
 				self::loadQualifiers($qlf);
+				self::loadTypes($tps);
 			 }
 		self::$sintaticsList= Array();
 	}
@@ -151,7 +186,18 @@ class Tokenizer extends Token{
 	 */
 	public function sweep()
 	{
-		$cont= Mind::$content;
+		$cont= &Mind::$content;
+
+		// seek for data types
+		foreach(self::$dataTypes as $type=>$options)
+		{
+			$cont= preg_replace(
+				"/\:".implode('(\(| )|\:', $options)."(\(| )/",
+				':'.$type.'(',
+				$cont
+			);
+		}
+
 		foreach($cont as $word)
 		{
 			$word= strtolower($word);
@@ -163,6 +209,6 @@ class Tokenizer extends Token{
 	}
 
 	public function __construct(){
-		self::loadModifiers();;
+		self::loadModifiers();
 	}
 }

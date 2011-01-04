@@ -11,11 +11,11 @@
 -->
 <root>
 	<varchar>string,characteres,varchar,descrição,desc,obs</varchar>
-	<char>char,caracter,letra,digito</char>
+	<char>char,caracter,caractere,letra,digito</char>
 	<int>int,integer,inteiro,dígito,número</int>
 	<float>float,real,double,dinheiro,percentagem,perc,porcentagem,precisão</float>
 	<boolean>bool,boolean,boleano</boolean>
 	<date>date,data,dia</date>
 	<time>time,tempo,datahora,datetime,dthr,dt</time>
-	<file>blob,oid,lo,file,arquivo,binario,binary</file>
+	<file>blob,oid,lo,file,arquivo,binario,binary,imagem,image,foto</file>
 </root>

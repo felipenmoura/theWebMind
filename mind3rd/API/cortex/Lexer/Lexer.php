@@ -89,14 +89,19 @@ class Lexer
 
 		// now, it's time to start working with the data
 		$this->content= trim(str_replace("\n", ' ', $content));
+		while(strstr($this->content, '	')!==false) // ignoring tabs
+			$this->content= str_replace('	', ' ', $this->content);
+		while(strstr($this->content, '  ')!==false) // ignoring multiple spaces
+			$this->content= str_replace('  ', ' ', $this->content);
+
 		$this->originalContent= $this->content;
 		$this->content= $this->str_split_utf8($this->content);
 
 		// the fixed content;
 		$fixed= "";
 		// for each charactere on the content
-		// let's remove th invalid ones
-		for($i=0, $j=sizeof($this->content); $i<$j; $i++)
+		// let's remove the invalid ones
+		for($i=0, $j=sizeof($this->content); $i<$j; ++$i)
 		{
 			$letter= $this->content[$i];
 			if($this->isValidChar($letter))
@@ -109,12 +114,25 @@ class Lexer
 			$fixed= str_replace($char, $token, $fixed);
 		}
 
+		// but content between parentheses should be left with
+		// normal spaces, instead of the space token
+		//preg_match_all('/(\(.+?\))|(".+?")/', $fixed, $matches);
+
+		// todo: fix: when the default value, between " has a ) it ends the expression
+		preg_match_all('/(\(.+?\))|(".+?")/', $fixed, $matches);
+		$i= 1;
+		$matches= $matches[0];
+		foreach($matches as $match)
+		{
+			$fixedMatch= str_replace($this->tokens[' '], ' ', $match);
+			$fixed= str_replace($match, $fixedMatch, $fixed, $i);
+		}
+
 		// let's deal with the \n and multiline comments
 		$fixed= preg_replace("/\n/", $this->tokens[' '], $fixed);
 		$fixed= preg_replace('/\/\*.+\*\//', '', $fixed);
 
 		$exploded= explode($this->tokens[' '], $fixed);
-		//$exploded= preg_split('//', $fixed);
 
 		$fixed= array_filter($exploded);
 
@@ -142,6 +160,7 @@ class Lexer
 		$this->lang= Mind::$l10n->name;
 		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
 		include(Mind::$langPath.$this->lang.'/Inflect.php');
+
 		$this->validChars= (string)$xml->validchars->lower;
 		$this->validChars.= (string)$xml->validchars->upper;
 		$this->validChars.= (string)$xml->validchars->special;
