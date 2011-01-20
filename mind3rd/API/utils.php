@@ -10,11 +10,12 @@
 	define('_CONSOLE_LINE_LENGTH_', 80);
 	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
 	
-	/*require(_MINDSRC_.'/mind3rd/API/interfaces/program.php');
-	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
-	require(_MINDSRC_.'/mind3rd/API/classes/MindDB.php');
-	require(_MINDSRC_.'/mind3rd/API/classes/MindPlugin.php');
-	require(_MINDSRC_.'/mind3rd/API/classes/MindCommand.php');*/
+	if(!Mind::isInstalled())
+	{
+		include(_MINDSRC_.'/wizard/installation-1.php');
+		exit;
+	}
+
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Shell.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Application.php');
 	require_once(_MINDSRC_.'/mind3rd/API/external/Symfony/Component/Console/Command/Command.php');

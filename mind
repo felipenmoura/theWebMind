@@ -21,33 +21,58 @@
 		// installation should create the required SQLite database and a shortcut command
 		if($_SERVER['argv'][1] == 'install')
 		{
+			// first, for linux and mac computers
 			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
 			{
-				echo ".";
-				echo shell_exec("sudo touch /bin/mind; echo .");
-				echo shell_exec("sudo echo '#!/usr/bin/env php' > /bin/mind; echo .");
-				echo shell_exec("sudo echo '<?php' >> /bin/mind; echo .");
-				
-				echo shell_exec("sudo echo \"".'\$_REQ= Array(); \$_REQ[\'env\']= \'shell\';'.
-								" define('_MINDSRC_', '".  getcwd()."'); ".
-								" require('".getcwd()."/mind3rd/API/utils.php');\" >> /bin/mind; echo .");
-				echo shell_exec("sudo chmod 777 /bin/mind; echo .");
+				echo "starting the installation...\n";
+				echo "creating the file...\n";
+				echo shell_exec("sudo touch /bin/mind");
+				echo "writing the header...\n";
+				echo shell_exec("sudo echo '#!/usr/bin/env php' > ".
+								"/bin/mind");
+				echo "writing the main commands...\n";
+				echo shell_exec("sudo echo '<?php ' >> /bin/mind");
+				echo shell_exec("sudo echo \""."\$_REQ= Array(); ".
+								"\$_REQ[\'env\']= \'shell\'; ".
+								"define('_MINDSRC_', '".  getcwd()."'); ".
+								"require('".getcwd()."/mind3rd/API/utils.php');\"".
+								">> /bin/mind;");
+				echo "setting permissions...\n";
+				echo shell_exec("sudo chmod 777 /bin/mind");
 			}else{
 					// TODO: prepare it to other operating systems
 				 }
+
+			echo "creating database...\n";
 			if($db = new SQLiteDatabase('mind3rd/SQLite/mind'))
 			{
 				$DDL= file_get_contents('mind3rd/SQLite/ddl.sql');
-				if(!$db->queryExec($DDL))
+				if(!@$db->queryExec($DDL))
 				{
-					die($err);
+					echo "Database already exists...it wont be touched\n";
 				}
-				$db->queryExec("INSERT into user(name, login, pwd, status, type) VALUES ('Administrator', 'admin', '".sha1('admin')."', 'A', 'A');");
-				chmod('mind3rd/SQLite/mind', '777');
+				echo "adding the main user...\n";
+				$db->queryExec("INSERT into user(
+									name,
+									login,
+									pwd,
+									status,
+									type
+								)VALUES(
+									'Administrator'
+									'admin',
+									'".sha1('admin')."',
+									'A',
+									'A'
+								);");
+				echo "setting database permissions...\n";
+				echo shell_exec('sudo chmod 777 '.getcwd().'/mind3rd/SQLite/mind');
 			}else{
-				die($err);
+				echo "SQLite Database could not be created. ".
+					 "Is your server working properly with SQLite?\n";
+				exit;
 			}
-			echo "Done\n";
+			echo "Finished\n";
 			exit;
 		}
 		// if not installing, it should be redirected to mind3rd/API/shell.php

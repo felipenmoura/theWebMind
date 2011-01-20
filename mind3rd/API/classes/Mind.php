@@ -27,6 +27,15 @@
 		public static $curLang= 'en';
 
 		/**
+		 * Verifies wheter the software is installed or not
+		 * @return boolean
+		 */
+		public static function isInstalled()
+		{
+			return file_exists('mind3rd/SQLite/mind');
+		}
+
+		/**
 		 * This method returns or outputs messages using the L10N library
 		 * You can pass a rich string with %s, %i, etc, sending extra parameters
 		 * If the boolean flag $echo is sent, it prints it to the output, otherwise,
