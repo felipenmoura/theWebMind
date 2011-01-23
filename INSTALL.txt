@@ -1,15 +1,10 @@
 Requires:
-	PHP 5.3
+	PHP 5.3+
 	PHP-cli
 
 Your HTTPServer's user must have permission to read and write on its folder
 
-In your console, run:
+In your console, run the following command into this directory:
 	sudo php mind install
-
-After the Ok message, go to:
-	[yourMindDir]/mind3rd/SQLite
-and set the permission to the "mind" file due to allow the PHPUser
-to access the database.
-
-You're good to go
+	
+Great! Now you're good to go
