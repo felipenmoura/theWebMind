@@ -55,6 +55,9 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
+			
+			Mind::$lexer= new Lexer();
+
 			$srcs= Mind::$currentProject['sources'];
 			$main= file_get_contents($srcs.'/main.mnd');
 
@@ -62,7 +65,6 @@ EOT
 			if(!Mind::$lexer->sweep($main))
 				return false;
 			// keep substantives and verbs on their canonical form
-			// on male singular
 			if(!Mind::$canonic->sweep())
 				return false;
 			// mark specific tokens
@@ -72,9 +74,6 @@ EOT
 			// it transforms the original text into the mind code
 			// itself
 			if(!Mind::$syntaxer->sweep())
-				return false;
-			// removes the tokens, added before
-			//if(!Mind::tokenizer::clear($main))
 				return false;
 
 			return $this;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : qualifiers.xml
+    Created on : december 21, 2010, 1:57 Am
+    Author     : felipenmoura
+    Description:
+        This file describes the words that may be used as qualifiers
+-->
+<root>
+	<must>must,should,needs,demands,requires</must>
+	<may>may,can</may>
+	<notnull>not null,notnull,required,needed</notnull>
+	<of>of</of>
+	<be>is,are</be>
+	<key>key,pk,indice</key>
+	<coma>and</coma>
+</root>

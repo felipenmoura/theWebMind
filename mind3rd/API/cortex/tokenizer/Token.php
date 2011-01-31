@@ -40,6 +40,9 @@ class Token
 
 	public function add($word)
 	{
+		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';
+		$verbalizer= Mind::$currentProject['idiom'].'\Verbalizer';
+
 		if(in_array($word, Tokenizer::$qualifiers['coma']))
 		{
 			$word= ',';
@@ -47,7 +50,7 @@ class Token
 
 		self::$words[]= $word;
 
-		if(IgnoreForms::shouldBeIgnored($word))
+		if($ignoreForms::shouldBeIgnored($word))
 		{
 			self::$spine[]= Token::MT_ANY;
 			self::$string.= Token::MS_ANY;
@@ -130,7 +133,7 @@ class Token
 		// we know these words are already on its
 		// canonic form, so, we can simply look for
 		// it on the list
-		if(Verbalizer::isInVerbList($word))
+		if($verbalizer::isInVerbList($word))
 		{
 			self::$spine[]= Token::MT_VERB;
 			self::$string.= Token::MS_VERB;

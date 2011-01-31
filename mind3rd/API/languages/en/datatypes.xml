@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : datatypes.xml
+    Created on : January 3, 2011, 12:04 AM
+    Author     : felipe
+    Description:
+        This document defines the translation and
+		definition for data types in database
+		It uses the most basic forms of data to be
+		stored
+-->
+<root>
+	<varchar>string,characters,chars,varchar,description,desc,obs,observation</varchar>
+	<char>char,character,c,letter,digit</char>
+	<int>int,integer,number</int>
+	<float>float,real,double,money,percentage,perc,precision</float>
+	<boolean>bool,boolean</boolean>
+	<date>date,day,calendar,dt</date>
+	<time>time,datetime,dthr,hr,hour</time>
+	<file>blob,oid,lo,file,binary,image,picture</file>
+</root>

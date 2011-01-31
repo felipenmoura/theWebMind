@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : lexics.xml
+    Created on : November 6, 2010, 1:40 PM
+    Author     : felipe
+    Description:
+        Lists the valid characteres to be allowed, or to be translated
+-->
+<root>
+	<validchars>
+		<lower>abcdefghijklmnopqrstuvxyzw</lower>
+		<upper>ABCDEFGHIJKLMNOPQRSTUVXYZW</upper>
+		<special>."</special>
+		<numbers>1234567890</numbers>
+		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;</symbols>
+	</validchars>
+	<replacements>
+		<from></from>
+		<to  ></to>
+	</replacements>
+</root>

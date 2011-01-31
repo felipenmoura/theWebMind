@@ -1,35 +1,29 @@
 <?php
-// Thanks to http://www.eval.ca/articles/php-pluralize (MIT license)
-//           http://dev.rubyonrails.org/browser/trunk/activesupport/lib/active_support/inflections.rb (MIT license)
-//           http://www.fortunecity.com/bally/durrus/153/gramch13.html
-//           http://www2.gsu.edu/~wwwesl/egw/crump.htm
-//
-// Changes (12/17/07)
-//   Major changes
-//   --
-//   Fixed irregular noun algorithm to use regular expressions just like the original Ruby source.
-//       (this allows for things like fireman -> firemen
-//   Fixed the order of the singular array, which was backwards.
-//
-//   Minor changes
-//   --
-//   Removed incorrect pluralization rule for /([^aeiouy]|qu)ies$/ => $1y
-//   Expanded on the list of exceptions for *o -> *oes, and removed rule for buffalo -> buffaloes
-//   Removed dangerous singularization rule for /([^f])ves$/ => $1fe
-//   Added more specific rules for singularizing lives, wives, knives, sheaves, loaves, and leaves and thieves
-//   Added exception to /(us)es$/ => $1 rule for houses => house and blouses => blouse
-//   Added excpetions for feet, geese and teeth
-//   Added rule for deer -> deer
-//
-//	Changed by Felipe Nascimento de Moura <felipenmoura@gmail.com>
-//	added is_singular static method
-//
-// Changes:
-//   Removed rule for virus -> viri
-//   Added rule for potato -> potatoes
-//   Added rule for *us -> *uses
+	/*
+		Thanks to http://www.eval.ca/articles/php-toPlural (MIT license)
+				   http://dev.rubyonrails.org/browser/trunk/activesupport/lib/active_support/inflections.rb (MIT license)
+				   http://www.fortunecity.com/bally/durrus/153/gramch13.html
+				   http://www2.gsu.edu/~wwwesl/egw/crump.htm
+		This classe has been partly inspired on the above cite codes.
+		The other methods and all the regular expression except the ones
+		refered to plural and singular on english were created by:
+		Felipe Nascimento de Moura <felipenmoura@gmail.com>
+	 *  You can contribute changing this file and telling me, or maybe
+	 *  adding tests to it, and in case you find anything weird, please
+	 *  let me know :)
+	 */
 
-class Inflect
+namespace en;
+
+/**
+ * This class should inflect words for different idioms
+ * changing its genre and number
+ * IN THIS CASE: pt-BR
+ * @name Inflect
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package cortex.analyst
+ */
+class Inflect implements \inflection
 {
     static $plural = array(
         '/(quiz)$/i'               => "$1zes",
@@ -82,6 +76,9 @@ class Inflect
         '/(us)es$/i'                => "$1",
         '/s$/i'                     => ""
     );
+	static $female= Array();
+	static $male= Array();
+	static $genreSpecific= Array();
 
     static $irregular = array(
         'move'   => 'moves',
@@ -105,18 +102,24 @@ class Inflect
         'information',
         'equipment'
     );
-    
+
+    /**
+     *	@author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     *  @method isSingular
+     *  @return boolean
+     *  @param String $string
+     */
     public static function is_singular( $string )
     {
     	// if it is uncountable, then, it may be treated as a singular
-    	if(in_array($string, Inflect::$uncountable))
+    	if(in_array($string, self::$uncountable))
     		return true;
     	// let's check for irregular forms
-    	if(in_array($string, array_keys(Inflect::$irregular)))
+    	if(in_array($string, array_keys(self::$irregular)))
     		return true;
     	// now, let's see if the word isn't the plural from a irregular form
     	// still faster than running all the plural forms, I bet
-    	elseif(in_array($string, Inflect::$irregular))
+    	elseif(in_array($string, self::$irregular))
     			return false;
     	// ok, if the word reached here, it diserves some care
     	// let's finally check if it matches with any plural rule
@@ -130,7 +133,13 @@ class Inflect
 		return true;
     }
 
-    public static function pluralize( $string )
+	/**
+	 * Set a word to plural
+	 * @method toPlural
+	 * @param String $string
+	 * @return String
+	 */
+    public static function toPlural($string)
     {
         // save some time in the case that singular and plural are the same
         if ( in_array( strtolower( $string ), self::$uncountable ) )
@@ -155,7 +164,14 @@ class Inflect
         return $string;
     }
 
-    public static function singularize( $string )
+	/**
+	 * Sets a word to singular form
+	 *
+	 * @method toSingular
+	 * @param String $string
+	 * @return String
+	 */
+    public static function toSingular($string)
     {
         // save some time in the case that singular and plural are the same
         if ( in_array( strtolower( $string ), self::$uncountable ) )
@@ -180,11 +196,15 @@ class Inflect
         return $string;
     }
 
-    public static function pluralize_if($count, $string)
-    {
-        if ($count == 1)
-            return "1 $string";
-        else
-            return $count . " " . self::pluralize($string);
-    }
+	/**
+	 * Verifies whether the given word is female or not
+	 *
+	 * @method isFemale
+	 * @param String $string
+	 * @return String
+	 */
+    public static function isFemale($string)
+	{
+		return false;
+	}
 }

@@ -7,7 +7,7 @@
  * @package cortex.analyst
  * @author felipe
  */
-class Canonic extends Inflect{
+class Canonic{
 
 	/**
 	 * Takes a word to its canonic form(singular, male form)
@@ -16,8 +16,8 @@ class Canonic extends Inflect{
 	 */
 	public static function canonize($word)
 	{
-		if(!self::isSingular($word))
-			$word= self::toSingular($word);
+		if(!pt\Inflect::isSingular($word)) /* TODO: fix it*/
+			$word= pt\Inflect::toSingular($word);
 		/*if(self::isFemale($word))			// demands more tests
 		// apparently, female substantives are brought to a wrong male form
 			$word= self::toMale($word);*/
@@ -35,15 +35,17 @@ class Canonic extends Inflect{
 		$newContent= Array();
 
 		Mind::$tokenizer= new Tokenizer();
+		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';
+		$verbalizer= Mind::$currentProject['idiom'].'\Verbalizer';
 
 		foreach($content as $word)
 		{
-			if(IgnoreForms::shouldBeIgnored($word))
+			if($ignoreForms::shouldBeIgnored($word))
 				continue;
 			if(!Tokenizer::isQualifier($word) && !Tokenizer::isQuantifier($word))
 			{
-				if(strlen($word) > 1 && ($isVerb= Verbalizer::isVerb($word)))
-					$word= Verbalizer::toInfinitive($word);
+				if(strlen($word) > 1 && ($isVerb= $verbalizer::isVerb($word)))
+					$word= $verbalizer::toInfinitive($word);
 				else{
 					$word= explode(':', $word);
 					$word[0]= Canonic::canonize($word[0]);
@@ -56,4 +58,3 @@ class Canonic extends Inflect{
 		return $newContent;
 	}
 }
-?>

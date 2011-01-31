@@ -157,11 +157,11 @@ class Lexer
 	{
 		GLOBAL $_MIND;
 		$this->glue= chr('176');
-		$this->lang= Mind::$l10n->name;
+		$this->lang= Mind::$currentProject['idiom'];
 		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
-		include(Mind::$langPath.$this->lang.'/Inflect.php');
+		//include(Mind::$langPath.$this->lang.'/Inflect.php');
 
-		$this->validChars= (string)$xml->validchars->lower;
+		$this->validChars = (string)$xml->validchars->lower;
 		$this->validChars.= (string)$xml->validchars->upper;
 		$this->validChars.= (string)$xml->validchars->special;
 		$this->validChars.= (string)$xml->validchars->numbers;

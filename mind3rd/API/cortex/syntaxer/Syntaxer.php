@@ -62,8 +62,10 @@ class Syntaxer {
 			$len= strlen($found[0]);
 			$expression= array_slice(Token::$words, $found[1], $len);
 			$tokens= array_slice(Token::$spine, $found[1], $len);
-			echo implode(' ', $expression).'-'.$found[0].'-'.implode('|', $tokens);
-			echo '<br/>';
+			$struct= $found[0];
+			
+			// let's analize it, now
+			Analyst::analize($expression, $struct, $tokens);
 		}
 		return $this;
 	}

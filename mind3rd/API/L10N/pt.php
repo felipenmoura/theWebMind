@@ -4,10 +4,10 @@
  *
  * @author felipe
  */
-class ptBR {
+class pt {
 	private $messages= Array();
 
-	public $name= 'pt-BR';
+	public $name= 'pt';
 
 	/**
 	 * This method returns the translated message
@@ -56,4 +56,3 @@ class ptBR {
 MESSAGE;
 	}
 }
-?>

@@ -1,4 +1,5 @@
 <?php
+namespace pt;
 /**
  * This class should identify verbs
  * NOTICE that its goals is about the present/future words...
@@ -171,7 +172,7 @@ class Verbalizer {
 	public static function loadVerbs()
 	{
 		if(!file_exists('verbs.list'))
-			$fR= fopen(Mind::$langPath.Mind::$l10n->name.'/verbs.list', 'rb');
+			$fR= fopen(\Mind::$langPath.\Mind::$l10n->name.'/verbs.list', 'rb');
 		else
 			$fR= fopen('verbs.list', 'rb');
 		self::$verbs= Array();

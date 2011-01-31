@@ -7,8 +7,8 @@
         This file describes the words that may be used as quantifiers
 -->
 <root>
-	<none>nada,nenhum,zero,0,nenhuma</none>
-	<one>um,uma,1,algum,alguma</one>
-	<many>um,uma,uns,alguns,umas,algumas,muito,muita,muitos,vários,muitas,várias,diversos,diversas,n,m,x</many>
-	<or>ou,até,/</or>
+	<none>none,zero,0,nothing,noone</none>
+	<one>one,1,a</one>
+	<many>many,much,some,any,various,n,m,x</many>
+	<or>or,/,to,until</or>
 </root>

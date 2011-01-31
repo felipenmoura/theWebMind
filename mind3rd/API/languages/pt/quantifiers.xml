@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : quantifiers.xml
+    Created on : November 7, 2010, 4:29 PM
+    Author     : felipenmoura
+    Description:
+        This file describes the words that may be used as quantifiers
+-->
+<root>
+	<none>nada,nenhum,zero,0,nenhuma</none>
+	<one>um,uma,1,algum,alguma</one>
+	<many>uns,alguns,umas,algumas,muito,muita,muitos,vários,muitas,várias,diversos,diversas,n,m,x</many>
+	<or>ou,até,/</or>
+</root>

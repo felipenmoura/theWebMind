@@ -1,4 +1,7 @@
 <?php
+
+	namespace pt;
+
 	/**
 	 * This class provides a list of instructtions
 	 * which define when a word should be ignored,
@@ -33,7 +36,7 @@
 		public static function loadIgnoreList()
 		{
 			if(!file_exists('ignore.list'))
-				$fR= fopen(Mind::$langPath.Mind::$l10n->name.'/ignore.list', 'rb');
+				$fR= fopen(\Mind::$langPath.\Mind::$l10n->name.'/ignore.list', 'rb');
 			else
 				$fR= fopen('ignore.list', 'rb');
 			self::$ignoreList= Array();

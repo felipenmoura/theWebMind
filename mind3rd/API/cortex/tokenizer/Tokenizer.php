@@ -30,7 +30,7 @@ class Tokenizer extends Token{
 	 * sent XML file
 	 *
 	 * @name loadSintatics
-	 * @param SimpleXML $resource
+	 * @param String $resource
 	 * @return AssocArray
 	 */
 	public static function loadSintatics($resource)
@@ -153,15 +153,16 @@ class Tokenizer extends Token{
 	{
 		if(!file_exists('sintatics.list'))
 		{
-			self::loadSintatics(fopen(Mind::$langPath.Mind::$l10n->name.'/sintatics.list', 'rb'));
+			self::loadSintatics(fopen(Mind::$langPath.Mind::$currentProject['idiom'].
+									  '/sintatics.list', 'rb'));
 			$qnt= simplexml_load_file(Mind::$langPath.
-									  Mind::$l10n->name.
+									  Mind::$currentProject['idiom'].
 									  '/quantifiers.xml');
 			$qlf= simplexml_load_file(Mind::$langPath.
-									  Mind::$l10n->name.
+									  Mind::$currentProject['idiom'].
 									  '/qualifiers.xml');
 			$tps= simplexml_load_file(Mind::$langPath.
-									  Mind::$l10n->name.
+									  Mind::$currentProject['idiom'].
 									  '/datatypes.xml');
 			self::loadQuantifiers($qnt);
 			self::loadQualifiers($qlf);
