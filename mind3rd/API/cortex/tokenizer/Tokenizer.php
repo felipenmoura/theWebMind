@@ -189,6 +189,7 @@ class Tokenizer extends Token{
 	{
 		$cont= &Mind::$content;
 
+
 		// seek for data types
 		foreach(self::$dataTypes as $type=>$options)
 		{
@@ -204,12 +205,19 @@ class Tokenizer extends Token{
 			$word= strtolower($word);
 			$this->add($word);
 		}
-
+		
 		Mind::$syntaxer= new Syntaxer();
 		return Token::$spine;
 	}
 
+	/**
+	 * The constructor
+	 */
 	public function __construct(){
+		Token::$spine= Array();
+		self::$spine= Array();
+		Token::$words= Array();
+		Token::$string= "";
 		self::loadModifiers();
 	}
 }

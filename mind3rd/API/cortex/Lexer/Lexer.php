@@ -10,6 +10,7 @@ class Lexer
 	private $validChars;
 	private $replacements;
 	public  $lang= 'en';
+	public  $originalContent= '';
 	private $content= "";
 	private $tokens= Array();
 	private $glue= '';
@@ -84,6 +85,7 @@ class Lexer
 	 */
     public function sweep($content)
 	{
+		Mind::$originalContent= $content;
 		// let's treat the single line comments
 		$content= preg_replace('/\/\/.+\n/', '', $content);
 
@@ -137,6 +139,7 @@ class Lexer
 		$fixed= array_filter($exploded);
 
 		Mind::$content= $fixed;
+		$this->content= "";
 
 		return sizeof(Mind::$content)>0? Mind::$content: false;
 	}

@@ -7,7 +7,7 @@
 	<input type='button' value='run info' onclick="runInfo()"/>
 	<input type='button' value='show projects' onclick="showProjects()"/>
 	<input type='button' value='show users' onclick="showUsers()"/>
-	<input type='button' value='analyze project x' onclick="analyze()"/>
+	<input type='button' value='analyze project x' onclick="analyzeX()"/>
 	<input type='button' value='analyze project y' onclick="analyzeY()"/>
 	<input type='button' value='logoff' onclick="logoff()"/>
 </body>
@@ -85,7 +85,7 @@
 		});
 	}
 	
-	function analyze()
+	function analyzeX()
 	{
 	
 		$.ajax({
@@ -97,7 +97,7 @@
 				name:'x'
 			},
 			success: function(ret){
-				document.getElementById('result').innerHTML= "<br/>"+ret
+				document.getElementById('result').innerHTML= "";
 				$.ajax({
 							type:'POST',
 							url:'http://localhost/mind/',
@@ -105,7 +105,7 @@
 								program:'analyze'
 							},
 							success: function(ret){
-								document.getElementById('result').innerHTML+= "<br/>"+ret
+								document.getElementById('result').innerHTML= ret;
 							}
 						});
 			}
@@ -124,15 +124,15 @@
 				name:'y'
 			},
 			success: function(ret){
-				document.getElementById('result').innerHTML= "<br/>"+ret
+				document.getElementById('result').innerHTML= "";
 				$.ajax({
 							type:'POST',
 							url:'http://localhost/mind/',
 							data:{
 								program:'analyze'
 							},
-							success: function(ret){
-								document.getElementById('result').innerHTML+= "<br/>"+ret
+							success: function(retY){
+								document.getElementById('result').innerHTML= retY;
 							}
 						});
 			}

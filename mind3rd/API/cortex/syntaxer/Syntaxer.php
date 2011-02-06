@@ -25,7 +25,7 @@ class Syntaxer {
 	public static function loadSintaticList()
 	{
 		if(!file_exists('sintatics.list'))
-			$fR= fopen(Mind::$langPath.Mind::$l10n->name.'/sintatics.list', 'rb');
+			$fR= fopen(Mind::$langPath.Mind::$curLang.'/sintatics.list', 'rb');
 		else
 			$fR= fopen('sintatics.list', 'rb');
 

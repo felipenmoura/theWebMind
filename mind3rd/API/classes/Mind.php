@@ -26,6 +26,7 @@
 		public static $tokenizer;
 		public static $langPath= "";
 		public static $content= "";
+		public static $originalContent= "";
 		public static $curLang= 'en';
 
 		/**

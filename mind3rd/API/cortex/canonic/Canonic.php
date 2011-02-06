@@ -10,7 +10,7 @@
 class Canonic{
 
 	/**
-	 * Takes a word to its canonic form(singular, male form)
+	 * Takes a word to its canonic form(singular/male form)
 	 * @param string$word
 	 * @return string
 	 */
@@ -33,6 +33,10 @@ class Canonic{
 	{
 		$content= Mind::$content;
 		$newContent= Array();
+
+		// PAREI AQUI
+			//print_r(Mind::$content);
+			//echo "\ncanonic--------------------------\n";
 
 		Mind::$tokenizer= new Tokenizer();
 		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';

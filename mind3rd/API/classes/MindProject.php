@@ -71,6 +71,7 @@ class MindProject {
 		Mind::$currentProject= $p;
 		Mind::$curLang= Mind::$currentProject['idiom'];
 		Mind::$content= '';
+		//Mind::$
 		Mind::write('projectOpened', true, $p['name']);
 		return true;
 	}
