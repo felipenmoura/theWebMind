@@ -44,6 +44,10 @@ EOT
 
 		public function runAction()
 		{
-			return $this->action();
+			$ret= $this->action();
+			// this is used to run the plugins set to be executed
+			// AFTER the execution of the current program
+			parent::runAction();
+			return $ret;
 		}
 	}

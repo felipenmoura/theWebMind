@@ -31,6 +31,8 @@ EOT
 
 		public function runAction()
 		{
-			return $this->action();
+			$ret= $this->action();
+			parent::runAction();
+			return $ret;
 		}
 	}
