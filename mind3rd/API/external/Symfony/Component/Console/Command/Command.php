@@ -164,19 +164,7 @@ class Command
     }
     else
     {
-		/*
-		 * Changed by Felipe Nascimento <felipenmoura@gmail.com>
-		 */
-		if(method_exists($this, 'runPlugins'))
-		{
-			$this->runPlugins('before');
-			$ret= $this->execute($input, $output);
-			$this->runPlugins('after');
-			return $ret;
-		}else
-		{
-			$ret= $this->execute($input, $output);
-		}
+		$ret= $this->execute($input, $output);
     }
   }
 

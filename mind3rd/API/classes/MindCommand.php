@@ -89,7 +89,8 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 		{
 			foreach(Mind::$pluginList[$this->name][$evt] as $plugin)
 			{
-				$plugin->run($this);
+				if($plugin->active !== false)
+					$plugin->run($this);
 			}
 		}
 	}
@@ -105,7 +106,12 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	public function execute(Console\Input\InputInterface $input,
 							Console\Output\OutputInterface $output)
 	{
+		$this->runPlugins('before');
 		return $this->verifyCredentials();
+	}
+
+	public function  __() {
+		$this->runPlugins('after');
 	}
 
 	/**
@@ -119,6 +125,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 		GLOBAL $_REQ;
 		if($_REQ['env'] =='http')
 		{
+			$this->runPlugins('before');
 			return $this->verifyCredentials();
 		}
 	}
@@ -165,5 +172,14 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 
 		// Return the password
 		return $password;
+	}
+
+	/**
+	 * This method will execute the plugins that should run AFTER
+	 * the execution of the program, so, call parent::runAction AFTER
+	 * each program::runAction command blocks
+	 */
+	public function runAction(){
+		$this->runPlugins('after');
 	}
 }

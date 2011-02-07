@@ -28,9 +28,12 @@ EOT
 			$this->runStep2();
 			$this->runStep3();
 		}
+		
 		public function runAction()
 		{
-			return $this->action();
+			$ret= $this->action();
+			parent::runAction();
+			return $ret;
 		}
 
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)

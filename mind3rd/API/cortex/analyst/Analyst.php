@@ -20,7 +20,7 @@ class Analyst {
     public static function analize($expression, $structure, $structureKeys){
 
 		// let's simply print it as a message, by now
-		echo implode(' ', $expression).'-'.$structure.'-'.implode('|', $structureKeys)."<br/>\n";
+		//echo implode(' ', $expression).'-'.$structure.'-'.implode('|', $structureKeys)."<br/>\n";
 		
 		return true;
 	}

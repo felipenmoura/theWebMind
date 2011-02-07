@@ -8,9 +8,9 @@
 	 * will only execute if the program runs plugins on after
 	 * event
 	 */
-	class PluginOne extends MindPlugin implements plugin
+	class PluginTwo extends MindPlugin implements plugin
 	{
-		public $name= "Plugin One";
+		public $name= "Plugin Two";
 		public $version= "0.1";
 		public $description = "This is a demo plugin, disabled by default";
 		public $links= Array();
@@ -21,12 +21,12 @@
 
 		public function run()
 		{
-			echo "EXECUTING THE PLUGIN ONE!!!\n";
+			echo "EXECUTING THE PLUGIN TWO!!!\n";
 		}
 
 		public function __construct()
 		{
 			$this->setTrigger('test');
-			$this->setEvent('before');
+			$this->setEvent('after');
 		}
 	}

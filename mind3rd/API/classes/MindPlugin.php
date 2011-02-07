@@ -8,6 +8,10 @@
 	{
 		public $trigger= null;
 		public $event= 'after';
+		public $name;
+		public $version;
+		public $description;
+		public $links= Array();
 
 		public function setTrigger($trg)
 		{
