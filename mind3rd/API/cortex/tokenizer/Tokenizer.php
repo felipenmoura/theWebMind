@@ -37,7 +37,7 @@ class Tokenizer extends Token{
 	{
 		while (!feof($resource))
 		{
-			$word= preg_replace('/\s/', '', fgets($resource, 4096));
+			$word= preg_replace(COMA_SEPARATOR, '', fgets($resource, 4096));
 			self::$sintaticsList[$word]= true;
 		}
 		return self::$sintaticsList;

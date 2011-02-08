@@ -7,6 +7,7 @@
 	* variables, such as language for localization
 	*/
 	require(_MINDSRC_.'/mind3rd/API/utils/header.php');
+	include(_MINDSRC_.'/mind3rd/API/utils/constants.php');
 	
 	$app= new Symfony\Component\Console\Application('mind');
 	$app->addCommands(Array(

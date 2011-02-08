@@ -63,22 +63,22 @@
 			$this->name= substr($str, 0, $typeStart);
 
 			// identifying details
-			if(preg_match("/\(.*/", $str, $details))
+			if(preg_match(PROP_DETAILS, $str, $details))
 			{
 				$details= $details[0];
 
 				// identifying the default value
-				if(preg_match("/\".*\"/", $details, $default))
+				if(preg_match(PROP_DEFAULT, $details, $default))
 				{
 					$default= $default[0];
 					$details= str_replace($default, "", $str, $one);
 
 					// checking if the default value isn't a value or a function call
-					if($default[1]=='=' || strtolower(substr($default, 1, 5)) == 'exec:')
+					if($default[1]=='=' || strtolower(substr($default, 1, 5)) == EXEC_STRING)
 					{
-						$default= preg_replace("/(^(\"=)|(\"exec\:))|(\"$)/i", "", $default);
+						$default= preg_replace(PROP_DEFEXEC, "", $default);
 					}
-					//$default= preg_replace("/(^\")|(\"$)/", "", $default);
+					
 					$this->default= $default;
 				}
 

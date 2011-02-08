@@ -2,7 +2,7 @@
 /**
  * This class sweeps the passed words and validates if
  * its content matches with the valid chars
- * @package cortex.analyst
+ * 
  * @author felipe
  */
 class Lexer
@@ -19,6 +19,7 @@ class Lexer
 	 * Thanks to saeedco (no more information found about him!)
 	 * Source: http://br2.php.net/manual/en/function.str-split.php#83331
 	 * Idioms it is supposed to work properly
+	 * English
 	 * Chinese
 	 * Japanese
 	 * Arabic
@@ -87,7 +88,7 @@ class Lexer
 	{
 		Mind::$originalContent= $content;
 		// let's treat the single line comments
-		$content= preg_replace('/\/\/.+\n/', '', $content);
+		$content= preg_replace(SINGLE_COMMENT, '', $content);
 
 		// now, it's time to start working with the data
 		$this->content= trim(str_replace("\n", ' ', $content));
@@ -119,7 +120,7 @@ class Lexer
 					if($letter == ' ')
 						$letter= $this->tmpSpace;
 					if($letter == ',')
-						$letter= $this->tmpComma;
+						$letter= $this->tmpComa;
 					if($letter == '.')
 						$letter= $this->tmpPeriod;
 				}
@@ -138,12 +139,12 @@ class Lexer
 		// normal spaces, instead of the space token
 		// restoring the inition format for attribute details
 		$fixed= str_replace($this->tmpSpace, " ", $fixed);
-		$fixed= str_replace($this->tmpComma, ",", $fixed);
+		$fixed= str_replace($this->tmpComa, ",", $fixed);
 		$fixed= str_replace($this->tmpPeriod, ".", $fixed);
 
 		// let's deal with the \n and multiline comments
-		$fixed= preg_replace("/\n/", $this->tokens[' '], $fixed);
-		$fixed= preg_replace('/\/\*.+\*\//', '', $fixed);
+		$fixed= preg_replace(NEW_LINE, $this->tokens[' '], $fixed);
+		$fixed= preg_replace(MULTILINE_COMMENT, '', $fixed);
 
 		$exploded= explode($this->tokens[' '], $fixed);
 
@@ -170,12 +171,12 @@ class Lexer
 	public function __construct()
 	{
 		GLOBAL $_MIND;
-		$this->glue= chr('176');
-		$this->tmpSpace = "__MINDTMPSPACEGLUEFORSPACESBETWEENPARENTHESES__";
-		$this->tmpComma = "__MINDTMPCOMAGLUEFORSPACESBETWEENPARENTHESES__";
-		$this->tmpPeriod = "__MINDTMPPERIODGLUEFORSPACESBETWEENPARENTHESES__";
-		$this->lang= Mind::$currentProject['idiom'];
-		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
+		$this->glue		 = chr('176');
+		$this->tmpSpace  = chr('177');
+		$this->tmpComa	 = chr('178');
+		$this->tmpPeriod = chr('179');
+		$this->lang		 = Mind::$currentProject['idiom'];
+		$xml			 = simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
 
 		$this->validChars = (string)$xml->validchars->lower;
 		$this->validChars.= (string)$xml->validchars->upper;

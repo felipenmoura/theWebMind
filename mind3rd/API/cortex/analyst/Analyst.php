@@ -39,7 +39,6 @@ class Analyst {
 		$i= 0;
 		foreach($structureKeys as $token)
 		{
-			//echo $expression[$i]."<hr>";
 			$word= $expression[$i];
 
 			// if it is a substantive
@@ -51,7 +50,6 @@ class Analyst {
 					//echo "it is an entity!\n";
 				}else{ // otherwise, it must be a property
 					$tmpProperty= new MindProperty($word);
-					//echo " is a property\n";
 				}
 			}
 
