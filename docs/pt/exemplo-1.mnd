@@ -1,0 +1,16 @@
+aluno tem      professor
+//professor tem piça
+	professor tem aluno
+aluno tem foto:arquivo(xx)
+/*
+
+blablabla
+mimimi
+xxx
+blabelaebamimi
+*/
+aluno tem pai, mãe e papagaio.
+aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da conceição")
+pai tem \pilha.
+mae tem nome, idade e sexo:char().
+mãe tem nome, idade e sexo.

@@ -5,7 +5,7 @@
 	 * It will have the regular expression dictionary, mainly
 	 */
 
-// REGULAR EXPRESSIONS
+	// REGULAR EXPRESSIONS
 	define('PROP_DETAILS', "/\(.*/");
 	define('PROP_DEFAULT', "/\".*\"/");
 	define('PROP_DEFEXEC', "/(^(\"=)|(\"exec\:))|(\"$)/i");

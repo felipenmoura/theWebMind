@@ -52,7 +52,6 @@ class Analyst {
 					$tmpProperty= new MindProperty($word);
 				}
 			}
-
 			$i++;
 		}
 		return true;

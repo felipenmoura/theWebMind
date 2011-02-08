@@ -1,0 +1,14 @@
+//teacher have student.
+/*
+you can use "exec:command()" or "=value" to apply commands
+or numeric values to your default value
+students have age:int, sex:boolean, color:varchar(7).
+*/
+students have name:varchar(80, required, "=jon(son of bob)", key).
+
+/* this is another
+test again */
+
+teacher     have   nome:varchar(40, not null, "maria(son of jose) da silva", key).
+
+and we know that each teacher may have one or many stuends.
