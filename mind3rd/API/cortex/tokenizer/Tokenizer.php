@@ -189,7 +189,6 @@ class Tokenizer extends Token{
 	{
 		$cont= &Mind::$content;
 
-
 		// seek for data types
 		foreach(self::$dataTypes as $type=>$options)
 		{

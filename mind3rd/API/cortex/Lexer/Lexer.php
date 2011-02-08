@@ -101,13 +101,31 @@ class Lexer
 
 		// the fixed content;
 		$fixed= "";
+
 		// for each charactere on the content
 		// let's remove the invalid ones
+		$inside= 0;
 		for($i=0, $j=sizeof($this->content); $i<$j; ++$i)
 		{
 			$letter= $this->content[$i];
 			if($this->isValidChar($letter))
+			{
+				if($letter == '(')
+					$inside++;
+				if($letter == ')' && $inside>0)
+					$inside--;
+				if($inside > 0)
+				{
+					if($letter == ' ')
+						$letter= $this->tmpSpace;
+					if($letter == ',')
+						$letter= $this->tmpComma;
+					if($letter == '.')
+						$letter= $this->tmpPeriod;
+				}
+
 				$fixed.= $letter;
+			}
 		}
 
 		// preparing the tokens
@@ -118,17 +136,10 @@ class Lexer
 
 		// but content between parentheses should be left with
 		// normal spaces, instead of the space token
-		//preg_match_all('/(\(.+?\))|(".+?")/', $fixed, $matches);
-
-		// todo: fix: when the default value, between " has a ) it ends the expression
-		preg_match_all('/(\(.+?\))|(".+?")/', $fixed, $matches);
-		$i= 1;
-		$matches= $matches[0];
-		foreach($matches as $match)
-		{
-			$fixedMatch= str_replace($this->tokens[' '], ' ', $match);
-			$fixed= str_replace($match, $fixedMatch, $fixed, $i);
-		}
+		// restoring the inition format for attribute details
+		$fixed= str_replace($this->tmpSpace, " ", $fixed);
+		$fixed= str_replace($this->tmpComma, ",", $fixed);
+		$fixed= str_replace($this->tmpPeriod, ".", $fixed);
 
 		// let's deal with the \n and multiline comments
 		$fixed= preg_replace("/\n/", $this->tokens[' '], $fixed);
@@ -160,9 +171,11 @@ class Lexer
 	{
 		GLOBAL $_MIND;
 		$this->glue= chr('176');
+		$this->tmpSpace = "__MINDTMPSPACEGLUEFORSPACESBETWEENPARENTHESES__";
+		$this->tmpComma = "__MINDTMPCOMAGLUEFORSPACESBETWEENPARENTHESES__";
+		$this->tmpPeriod = "__MINDTMPPERIODGLUEFORSPACESBETWEENPARENTHESES__";
 		$this->lang= Mind::$currentProject['idiom'];
 		$xml= simplexml_load_file(Mind::$langPath.$this->lang.'/lexics.xml');
-		//include(Mind::$langPath.$this->lang.'/Inflect.php');
 
 		$this->validChars = (string)$xml->validchars->lower;
 		$this->validChars.= (string)$xml->validchars->upper;

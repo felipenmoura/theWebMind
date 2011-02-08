@@ -12,6 +12,6 @@
 	<notnull>not null,notnull,required,needed</notnull>
 	<of>of</of>
 	<be>is,are</be>
-	<key>key,pk,indice</key>
+	<key>key,pk,index</key>
 	<coma>and</coma>
 </root>
