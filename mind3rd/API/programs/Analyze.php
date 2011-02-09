@@ -55,7 +55,8 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
-			
+
+			$startingTime= microtime();
 			Mind::$lexer= new Lexer();
 
 			$srcs= Mind::$currentProject['sources'];
@@ -76,6 +77,13 @@ EOT
 			if(!Mind::$syntaxer->sweep())
 				return false;
 
+			$endingTime= microtime();
+
+			// do NOT print it if you have MANY entities, the webbrowser freezes
+			//print_r(Analyst::getUniverse());
+			echo "Time: ".
+					number_format(((float)$endingTime) - ((float)$startingTime), 4).
+				 "s\n";
 			return $this;
 		}
 
