@@ -30,9 +30,10 @@ class Verbalizer {
 	 * @var AssocArray the possible flections a verb may suffer
 	 */
     static $flections = array(
-		'/y$/'								=> 'ies',
-		'/s$/'								=> 'es',
-		'/.$/'								=> '$1s'
+		'/ies$/'							=> 'y',
+		'/es$/'								=> 's',
+		'/es$/'								=> '',
+		'/s$/'								=> ''
 	);
 
 	/**
@@ -66,11 +67,14 @@ class Verbalizer {
 	public static function isInfinitive($string)
 	{
 		$isInVerBlist= self::isInVerbList($string);
+		if($isInVerBlist)
+			return true;
+		/*
 		foreach(self::$flections as $pattern=>$result)
 		{
 			if(preg_match('/'.$result.'$/i', $string) && $isInVerBlist)
 				return true;
-		}
+		}*/
 		return false;
 	}
 
@@ -98,7 +102,7 @@ class Verbalizer {
 
         foreach(self::$flections as $pattern=>$result)
         {
-            $pattern= ''.$pattern.'i';
+            $pattern= $pattern.'i';
             if(preg_match($pattern, $string))
 			{
 				$tmpWord= preg_replace($pattern, $result, $string);

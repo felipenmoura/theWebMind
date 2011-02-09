@@ -18,32 +18,50 @@ namespace en;
 /**
  * This class should inflect words for different idioms
  * changing its genre and number
- * IN THIS CASE: pt-BR
+ * IN THIS CASE: en
  * @name Inflect
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @package cortex.analyst
  */
 class Inflect implements \inflection
 {
-    static $plural = array(
-        '/(quiz)$/i'               => "$1zes",
-        '/^(ox)$/i'                => "$1en",
-        '/([m|l])ouse$/i'          => "$1ice",
-        '/(matr|vert|ind)ix|ex$/i' => "$1ices",
-        '/(x|ch|ss|sh)$/i'         => "$1es",
-        '/([^aeiouy]|qu)y$/i'      => "$1ies",
-        '/(hive)$/i'               => "$1s",
-        '/(?:([^f])fe|([lr])f)$/i' => "$1$2ves",
-        '/(shea|lea|loa|thie)f$/i' => "$1ves",
-        '/sis$/i'                  => "ses",
-        '/([ti])um$/i'             => "$1a",
+	static $plural = array(
+		'/z$/'							=> 'zes',
+		'/^(ox)$/i'						=> "$1en",
+		'/([m|l])ouse$/i'				=> "$1ice",
+        '/(matr|vert|ind)ix|ex$/i'		=> "$1ices",
+        '/y$/i'							=> "ies",
+        '/f$/i'							=> "ves",
         '/(tomat|potat|ech|her|vet)o$/i'=> "$1oes",
-        '/(bu)s$/i'                => "$1ses",
-        '/(alias)$/i'              => "$1es",
-        '/(octop)us$/i'            => "$1i",
-        '/(ax|test)is$/i'          => "$1es",
-        '/(us)$/i'                 => "$1es",
-        '/s$/i'                    => "s"
+		'/s$/'							=> "ses"
+	);
+	static $singular = array(
+		'/rs$/'				=> 'r',
+		'/ies$/'			=> 'y',
+		'/shes$/'			=> 'sh',
+		'/s$/'				=> ''
+	);
+	/*
+    static $plural = array(
+        '/(quiz)$/i'					=> "$1zes",
+        '/^(ox)$/i'						=> "$1en",
+        '/([m|l])ouse$/i'				=> "$1ice",
+        '/(matr|vert|ind)ix|ex$/i'		=> "$1ices",
+        '/(x|ch|ss|sh)$/i'				=> "$1es",
+        '/([^aeiouy]|qu)y$/i'			=> "$1ies",
+        '/(hive)$/i'					=> "$1s",
+        '/(?:([^f])fe|([lr])f)$/i'		=> "$1$2ves",
+        '/(shea|lea|loa|thie)f$/i'		=> "$1ves",
+        '/sis$/i'						=> "ses",
+        '/([ti])um$/i'					=> "$1a",
+        '/(tomat|potat|ech|her|vet)o$/i'=> "$1oes",
+        '/(bu)s$/i'						=> "$1ses",
+        '/(alias)$/i'					=> "$1es",
+        '/(octop)us$/i'					=> "$1i",
+        '/(ax|test)is$/i'				=> "$1es",
+        '/(us)$/i'						=> "$1es",
+        '/y$/i'							=> "ies",
+        '/s$/i'							=> "s"
     );
 
     static $singular = array(
@@ -62,7 +80,7 @@ class Inflect implements \inflection
         '/(m)ovies$/i'              => "$1ovie",
         '/(s)eries$/i'              => "$1eries",
         '/([^aeiouy]|qu)ies$/i'     => "$1y",
-        '/([lr])ves$/i'             => "$1f",
+        '/ves$/i'		            => "ve",
         '/(tive)s$/i'               => "$1",
         '/(hive)s$/i'               => "$1",
         '/(li|wi|kni)ves$/i'        => "$1fe",
@@ -74,8 +92,10 @@ class Inflect implements \inflection
         '/(h|bl)ouses$/i'           => "$1ouse",
         '/(corpse)s$/i'             => "$1",
         '/(us)es$/i'                => "$1",
+        '/ies$/i'					=> "y",
         '/s$/i'                     => ""
     );
+	*/
 	static $female= Array();
 	static $male= Array();
 	static $genreSpecific= Array();
@@ -88,7 +108,8 @@ class Inflect implements \inflection
         'child'  => 'children',
         'man'    => 'men',
         'tooth'  => 'teeth',
-        'person' => 'people'
+        'person' => 'people',
+		'mouse'  => 'mice'
     );
 
     static $uncountable = array(
@@ -109,7 +130,7 @@ class Inflect implements \inflection
      *  @return boolean
      *  @param String $string
      */
-    public static function is_singular( $string )
+    public static function isSingular( $string )
     {
     	// if it is uncountable, then, it may be treated as a singular
     	if(in_array($string, self::$uncountable))
@@ -121,9 +142,9 @@ class Inflect implements \inflection
     	// still faster than running all the plural forms, I bet
     	elseif(in_array($string, self::$irregular))
     			return false;
-    	// ok, if the word reached here, it diserves some care
+    	// ok, if the word reached here, it diserves some attemtion
     	// let's finally check if it matches with any plural rule
-    	foreach(self::$plural as $pattern => $result)
+    	foreach(self::$singular as $pattern => $result)
         {
             if(preg_match( $pattern, $string))
             {
@@ -206,5 +227,14 @@ class Inflect implements \inflection
     public static function isFemale($string)
 	{
 		return false;
+	}
+
+	public static function toFemale($word)
+	{
+		return $word;
+	}
+	public static function toMale($word)
+	{
+		return $word;
 	}
 }
