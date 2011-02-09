@@ -67,6 +67,7 @@ class Syntaxer {
 			// let's analize it, now
 			Analyst::analize($expression, $struct, $tokens);
 		}
+		print_r(Analyst::getUniverse());
 		return $this;
 	}
 }

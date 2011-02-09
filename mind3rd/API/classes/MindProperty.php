@@ -144,6 +144,6 @@
 		{
 			$this->definition= $definition;
 			$this->parse();
-			echo json_encode($this)."\n";
+			//echo json_encode($this)."\n";
 		}
 	}

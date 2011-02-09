@@ -16,8 +16,9 @@ class Canonic{
 	 */
 	public static function canonize($word)
 	{
-		if(!pt\Inflect::isSingular($word)) /* TODO: fix it*/
-			$word= pt\Inflect::toSingular($word);
+		$inflec= Mind::$currentProject['idiom']."\Inflect";
+		if(!$inflec::isSingular($word)) /* TODO: fix it*/
+			$word= $inflec::toSingular($word);
 		/*if(self::isFemale($word))			// demands more tests
 		// apparently, female substantives are brought to a wrong male form
 			$word= self::toMale($word);*/
