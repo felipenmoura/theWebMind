@@ -2,7 +2,7 @@ TheWebMind
 ===============================================
 This is the source code for theWebMind project.
 
-Requires:
+Requirements:
 ---------
 	* PHP 5.3+
 	* PHP-cli
