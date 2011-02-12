@@ -41,8 +41,8 @@ Unit tests are on Tests directory, run it with PHPUnit
 	[yourMindDir]/Tests
 
 Useful/interesting links:
-	http://thewebmind.org
-	http://docs.thewebmind.org
-	contact@thewebmind.org
-	http://twitter.com/thewebmind
-	http://twitter.com/felipenmoura
+	[Official website](http://thewebmind.org "theWebMind")
+	[Documentation](http://docs.thewebmind.org "documentation")
+	[Contact](mailto:contact@thewebmind.org "contact")
+	[Twitter](http://twitter.com/thewebmind "twitter")
+	[Contribute](http://thewebmind.org/contribute "Contribute")
