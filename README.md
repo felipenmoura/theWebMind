@@ -18,7 +18,7 @@ In your console, run the following command into this directory:
 
 Great! Now you're good to go
 
-------
+* * *
 
 To perform some examples and tests, access in your browser
 the IDE demo
