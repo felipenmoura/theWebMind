@@ -1,18 +1,24 @@
 TheWebMind
 ===============================================
 
-Requires:
-	PHP 5.3+
-	PHP-cli
-	PHP-SQLite
+This is the source code for theWebMind project.
 
-Installation
-	**For now, only working on mac and Linux...sorry bill!**
-	Your HTTPServer's user must have permission to read and write on its folder
-	In your console, run the following command into this directory:
+Requires:
+---------
+	* PHP 5.3+
+	* PHP-cli
+	* PHP-SQLite
+
+Installation:
+-------------
+`For now, only working on mac and Linux...sorry bill!`  
+Your HTTPServer's user must have permission to read and write on its folder
+In your console, run the following command into this directory:
 		$sudo php mind install
 
-	Great! Now you're good to go
+Great! Now you're good to go
+
+------
 
 To perform some examples and tests, access in your browser
 the IDE demo
