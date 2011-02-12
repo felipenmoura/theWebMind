@@ -90,6 +90,7 @@
 			if(!$tmpType)
 			{
 				//TODO: Darwin::add($this->type);
+				Darwin::addDoubt($this->type, 'dataType');
 				echo "UNKNOWN TYPE...for a while";
 				return false;
 			}else
