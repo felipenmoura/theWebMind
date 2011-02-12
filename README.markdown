@@ -1,13 +1,12 @@
 TheWebMind
-===============================================
 
 ##Requirements:
 	PHP 5.3+
 	PHP-cli
 	PHP-SQLite
-
 ##Installation:
-**For now, only working on mac and Linux...sorry bill!**
+*For now, only working on mac and Linux...sorry bill!*
+
 Your HTTPServer's user must have permission to read and write on its folder
 In your console, run the following command into this directory:
 		$sudo php mind install
