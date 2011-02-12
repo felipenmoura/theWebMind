@@ -4,9 +4,9 @@ This is the source code for theWebMind project.
 
 Requirements:
 ---------
-	* PHP 5.3+
-	* PHP-cli
-	* PHP-SQLite
+* PHP 5.3+
+* PHP-cli
+* PHP-SQLite
 
 Installation:
 -------------
