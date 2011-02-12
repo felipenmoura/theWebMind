@@ -2,7 +2,6 @@ TheWebMind
 ===============================================
 This is the source code for theWebMind project.
 
-
 Requires:
 ---------
 	* PHP 5.3+
@@ -30,10 +29,10 @@ the docs directory
 
 Your projects are stored at:
 	[yourMindDir]/projects/[projectName]
-	You can write your codes directly in sources/main.mnd in your
-	project's source directory
-	You can see the generated documentation and source code on 'docs' and
-	'app' directories, into the project's directory
+You can write your codes directly in sources/main.mnd in your  
+project's source directory.  
+You can see the generated documentation and source code on 'docs' and  
+'app' directories, into the project's directory.
 
 Please, check/change the data and options as you need, on
 	[yourMindDir]/env/defaults.ini
