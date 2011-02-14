@@ -13,8 +13,10 @@
 			$this
 					->setName('test')
 					->setDescription('Performs some tests on theWebMind')
-					->setDefinition(array())
 					->setRestrict(false)
+					 ->setDefinition(Array(
+						 new InputOption('unit', '-u', InputOption::PARAMETER_NONE, 'Execute unit tests, also')
+					 ))
 					->setFileName('RunTest')
 					->setHelp(<<<EOT
 			Executes specific tests and report their results, about the system itself
@@ -24,9 +26,44 @@ EOT
 
 		private function action()
 		{
+			GLOBAL $_MIND;
 			$this->runStep1();
 			$this->runStep2();
 			$this->runStep3();
+			if($this->unitTestsAlso)
+			{
+				if(file_exists(_MINDSRC_."/Tests/bundle.list"))
+				{
+					if(!isset($_MIND->conf['phpunit-src']))
+					{
+						// TODO: put it into speaker classes, to use l10n messages
+						echo "    You must specify where to find phpUnit classes\n";
+						echo "    You can configure it on mind3rd/env/mind.ini ini file\n";
+						echo "    changing the phpunit-src ini property\n";
+						return false;
+					}
+					// TODO: it doesn't work yet
+					/*
+					$unitTestsFolder= _MINDSRC_."/Tests/";
+					$unitTestsList= file_get_contents($unitTestsFolder."bundle.list");
+					$unitTestsList= explode("\n", $unitTestsList);
+
+					foreach($unitTestsList as $unitTests)
+					{
+						$unitTests= explode(' ', $unitTests);
+						echo "Applying Unit tests to ".$unitTests[1]."\n";
+						//include_once $unitTestsFolder.$unitTests[0];
+						echo shell_exec("phpunit ".$unitTestsFolder.$unitTests[0]);
+						break;
+					}
+					*/
+				}else
+				{
+					// TODO: send it to the speaker
+					echo "[Error] Unit Tests not fount in [root]/Tests\n";
+					return false;
+				}
+			}
 		}
 		
 		public function runAction()
@@ -40,13 +77,23 @@ EOT
 		{
 			if(!parent::execute($input, $output))
 				return false;
+
+			$this->unitTestsAlso= $input->getOption('unit')? true: false;
+
 			return $this->runAction();
 		}
 		
 		public function HTTPExecute()
 		{
+			GLOBAL $_REQ;
 			if(!parent::HTTPExecute())
 				return false;
+
+			$this->unitTestsAlso= (isset($_REQ['data'])
+									&&
+								   isset($_REQ['data']['unit']))?
+									   true: false;
+			
 			return $this->runAction();
 		}
 

@@ -15,3 +15,12 @@
 	define('MULTILINE_COMMENT', '/\/\*.+?\*\//');
 	define('NEW_LINE', "/\n/");
 	define('EXEC_STRING', 'exec:'); // equal(=) is also acceptable
+
+	// addresses
+	define('PROJECTS_DIR', '/mind3rd/projects/');
+	define('MODELS_DIR',   '/mind3rd/API/models/');
+	define('ABOUT_INI',    '/mind3rd/env/about.ini');
+	define('DEFAULTS_INI', '/mind3rd/env/defaults.ini');
+	define('MIND_CONF',    '/mind3rd/env/mind.ini');
+	define('L10N_DIR',     '/mind3rd/API/L10N/');
+	define('LANG_PATH',    '/mind3rd/API/languages/');

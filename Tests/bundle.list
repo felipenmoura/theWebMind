@@ -1,0 +1,6 @@
+mind3rd/API/languages/en/IgnoreFormsTest.php en\IgnoreFormsTest
+mind3rd/API/languages/en/InflectTest.php en\InflectTest
+mind3rd/API/languages/en/VerbalizerTest.php en\VerbalizerTest
+mind3rd/API/languages/pt/IgnoreFormsTest.php pt\IgnoreFormsTest
+mind3rd/API/languages/pt/InflectTest.php pt\InflectTest
+mind3rd/API/languages/pt/VerbalizerTest.php pt\VerbalizerTest

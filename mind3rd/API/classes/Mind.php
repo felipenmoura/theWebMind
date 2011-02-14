@@ -13,6 +13,7 @@
 		public $defaults= null;
 		public $conf= null;
 
+		public static $autoloadPaths= Array();
 		public static $currentProject= null;
 		public static $ref= Array();
 		public static $projectsDir= '';
@@ -149,22 +150,36 @@
 		}
 		
 		/**
+		 * Adds a directory to the autoload source paths list
+		 * @param String $path 
+		 */
+		public static function autoloadRegisterPath($path)
+		{
+			if(is_string($path) && !in_array($path, Mind::$autoloadPaths))
+				Mind::$autoloadPaths[]= $path;
+			else
+				foreach($path as $p)
+					if(!in_array($p, Mind::$autoloadPaths))
+						Mind::$autoloadPaths[]= $p;
+		}
+
+		/**
 		 * Constructor
 		 */
 		public function Mind(){
 			$path= _MINDSRC_;
-			Mind::$projectsDir= $path.'/mind3rd/projects/';
-			Mind::$modelsDir= $path.'/mind3rd/API/models/';
-			$this->about= parse_ini_file($path.'/mind3rd/env/about.ini');
-			$this->defaults= parse_ini_file($path.'/mind3rd/env/defaults.ini');
-			$this->conf= parse_ini_file($path.'/mind3rd/env/mind.ini');
-			include($path.'/mind3rd/API/L10N/'.$this->defaults['default_human_language'].'.php');
+			Mind::$projectsDir= $path.PROJECTS_DIR;
+			Mind::$modelsDir= $path.MODELS_DIR;
+			$this->about= parse_ini_file($path.ABOUT_INI);
+			$this->defaults= parse_ini_file($path.DEFAULTS_INI);
+			$this->conf= parse_ini_file($path.MIND_CONF);
+			include($path.L10N_DIR.$this->defaults['default_human_language'].'.php');
 			Mind::$curLang= $this->defaults['default_human_languageName'];
 			Mind::$l10n= new $this->defaults['default_human_language']();
-			Mind::$langPath= $path.'/mind3rd/API/languages/';
+			Mind::$langPath= $path.LANG_PATH;
 			Mind::$curLang= $this->defaults['default_human_language'];
 
-			$langPath= $path.'/mind3rd/API/languages/';//.$this->defaults['default_human_languageName'].'/';
+			$langPath= $path.LANG_PATH;
 			set_include_path(get_include_path() . PATH_SEPARATOR . $langPath);
 		}
 	}

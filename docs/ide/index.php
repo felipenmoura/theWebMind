@@ -1,6 +1,6 @@
 <script src='scripts/jquery.js'></script>
 <body>
-	<div id='result' style='white-space:pre;'></div>
+	<pre><div id='result' style='white-space:pre;'></div></pre>
 	<br/>
 	<input type='button' value='autenticate' onclick="autenticate()"/>
 	<input type='button' value='run test' onclick="runTest()"/>
@@ -32,7 +32,8 @@
 			type:'POST',
 			url:'http://localhost/mind/',
 			data:{
-				program:'test'
+				program:'test',
+				unit: true
 			},
 			success: function(ret){
 				document.getElementById('result').innerHTML= ret
