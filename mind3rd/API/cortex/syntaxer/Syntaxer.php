@@ -41,6 +41,8 @@ class Syntaxer {
 	 */
 	public function sweep()
 	{
+		// loading stintatic list: all the avaliable, allowed syntaxes
+		// formats, specified by the selected idiom
 		self::loadSintaticList();
 
 		// mounting the regular expression
@@ -48,15 +50,19 @@ class Syntaxer {
 
 		// let's find all the patterns that match
 		// that means that we'll find only expressions with valid syntax
-		$pattern= str_replace('S', 'S((( )?\,( )?S)?)+', $pattern);
+		// reminding that the pattern was dynamicaly created before
+		$pattern= str_replace('S', VALID_SUBST_SYNTAX, $pattern);
 
+		// finding the valid syntaxes
 		preg_match_all('/'.$pattern.'/',
 					   Token::$string,
 					   $matches,
 					   PREG_OFFSET_CAPTURE);
-		// as we know it's only one block, we can use it straight
+
+		// as we know it's only one block, we can use it straightly
 		$matches= $matches[0];
 
+		// now we gotta analyse each valid expression
 		foreach($matches as $found)
 		{
 			$len= strlen($found[0]);
@@ -65,6 +71,7 @@ class Syntaxer {
 			$struct= $found[0];
 			
 			// let's analize it, now
+			// Analyst will store it on its own static structure
 			Analyst::analize($expression, $struct, $tokens);
 		}
 		return $this;

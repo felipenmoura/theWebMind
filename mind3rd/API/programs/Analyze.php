@@ -13,13 +13,16 @@
 	class Analyze extends MindCommand implements program
 	{
 		private $nameSpace= false;
+		public  $autoCommit= false;
+
 		public function configure()
 		{
 			$this->setName('analyze')
 				 ->setDescription('Analyze the the code for your application')
 				 ->setRestrict(true)
 				 ->setDefinition(Array(
-					new InputArgument('namespace', InputArgument::OPTIONAL, 'Analyze an specific namespace')
+					new InputArgument('namespace', InputArgument::OPTIONAL, 'Analyze an specific namespace'),
+					new InputOption('commit', false, InputOption::PARAMETER_NONE, "Commit the result after analisys")
 				 ))
 				 ->setHelp(<<<EOT
 	This program will analyze your code, typed on your application directory, on all the files .mnd starting for the main.mnd
@@ -34,6 +37,7 @@ EOT
 			if(!parent::execute($input, $output))
 				return false;
 			$this->nameSpace= $input->getArgument('namespace');
+			$this->autoCommit= $input->getOption('commit');
 			$this->runAction();
 		}
 
@@ -44,6 +48,8 @@ EOT
 				return false;
 			if(isset($_REQ['data']['namespace']))
 			$this->nameSpace= $_REQ['data']['namespace'];
+			if(isset($_REQ['data']['commit']))
+				$this->autoCommit= $_REQ['data']['commit'];
 			$this->runAction();
 		}
 
@@ -76,6 +82,11 @@ EOT
 			// itself
 			if(!Mind::$syntaxer->sweep())
 				return false;
+
+			if($this->autoCommit)
+			{
+				MindProject::commit();
+			}
 
 			$endingTime= microtime();
 

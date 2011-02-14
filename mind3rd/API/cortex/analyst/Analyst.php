@@ -44,7 +44,7 @@ class Analyst {
 	 * @param Array $structureKeys
 	 * @return Boolean True if everything went ok, false when any error occurred
 	 */
-    public static function analize($expression, $structure, $structureKeys){
+    public static function analize($expression, $structure, Array $structureKeys){
 
 		// setting up
 		$tmpProperties= Array();
@@ -67,6 +67,7 @@ class Analyst {
 				continue;
 			}
 
+			// setting quantifiers
 			if(
 				$min == null &&
 				(

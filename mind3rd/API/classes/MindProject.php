@@ -4,7 +4,7 @@
  *
  * @author felipe
  */
-class MindProject {
+class MindProject extends VersionManager{
     /**
 	 * Returns true if the project already exists,
 	 * false, otherwise
