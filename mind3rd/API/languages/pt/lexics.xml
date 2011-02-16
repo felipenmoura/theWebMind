@@ -13,7 +13,6 @@
 		<special>áéíóúÁÉÍÓÚ"."ÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</special>
 		<numbers>1234567890</numbers>
 		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;</symbols>
-		<!--<symbols>\/!@#$%&*()_-+=[]{},.'"</symbols>-->
 	</validchars>
 	<replacements>
 		<from>áéíóúÁÉÍÓÚÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</from>

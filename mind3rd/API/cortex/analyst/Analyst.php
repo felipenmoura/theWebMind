@@ -34,6 +34,23 @@ class Analyst {
 					);
 	}
 
+	public static function printWhatYouGet($detailed=false)
+	{
+		echo "Entities: ".sizeof(self::$entities)."\n";
+		foreach(self::$entities as $entity)
+		{
+			echo "   ".$entity->name."\n";
+		}
+		echo "Properties: "."\n";
+		echo "Relations: "."\n";
+	}
+
+	public static function reset()
+	{
+		self::$entities= Array();
+		self::$relations= Array();
+	}
+
 	/**
 	 * This method receives each expression and analizes
 	 * the best way to act and to store the understood
@@ -108,6 +125,9 @@ class Analyst {
 				// if it is an entity
 				if(MindEntity::isEntity($word))
 				{
+					// fixing any special char
+					$word= Mind::$lexer->fixWordChars($word);
+
 					// yeah, I know it looks crazy, but try to follow my thoughts
 					// let's instantiate a new Entity in case it has not been
 					// instantiated before

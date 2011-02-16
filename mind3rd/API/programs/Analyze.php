@@ -63,6 +63,9 @@ EOT
 			}
 
 			$startingTime= microtime();
+			$startingTime= explode(' ', $startingTime);
+			$startingTime= $startingTime[1] + $startingTime[0];
+
 			Mind::$lexer= new Lexer();
 
 			$srcs= Mind::$currentProject['sources'];
@@ -89,9 +92,12 @@ EOT
 			}
 
 			$endingTime= microtime();
+			$endingTime= explode(' ', $endingTime);
+			$endingTime= $endingTime[1] + $endingTime[0];
 
 			// do NOT print it if you have MANY entities, the webbrowser freezes
 			//print_r(Analyst::getUniverse());
+			echo Analyst::printWhatYouGet();
 			echo "Time: ".
 					number_format(((float)$endingTime) - ((float)$startingTime), 4).
 				 "s\n";

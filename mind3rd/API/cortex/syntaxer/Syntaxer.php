@@ -62,6 +62,9 @@ class Syntaxer {
 		// as we know it's only one block, we can use it straightly
 		$matches= $matches[0];
 
+		// let's clear the Analyst memory as it uses static properties
+		Analyst::reset();
+
 		// now we gotta analyse each valid expression
 		foreach($matches as $found)
 		{

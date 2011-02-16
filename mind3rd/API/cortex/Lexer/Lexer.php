@@ -79,6 +79,39 @@ class Lexer
 	}
 
 	/**
+	 * Parses the string encoding and return a valid name
+	 * to be used on databases or restricted names
+	 * 
+	 * @param String $word
+	 * @return String
+	 */
+	public function fixWordChars($word)
+	{
+		$word= strtolower($word);
+		$word= $this->str_split_utf8($word);
+		$str= "";
+		for($i=0, $j=sizeof($word); $i<$j; $i++)
+		{
+			//$str.= strtr(utf8_decode($word[$i]), utf8_decode("ã"), "a");
+			$str.= $this->translateChars($word[$i]);
+		}
+		return $str;
+	}
+
+	/**
+	 * Returns the fixed char to the sent char
+	 * @param string $char
+	 * @return string
+	 */
+	public function translateChars($str)
+	{
+		$str= strtolower($str);
+		$from = $this->replacements[0];
+		$to   = $this->replacements[1];
+		return strtr(utf8_decode($str), utf8_decode($from), $to);
+	}
+
+	/**
 	 * Performs a sweep over the sent content and replace any
 	 * special char, also removing any invalid char.
 	 * @param string $content
@@ -125,6 +158,7 @@ class Lexer
 						$letter= $this->tmpPeriod;
 				}
 
+				//$fixed.= $this->translateChars($letter);
 				$fixed.= $letter;
 			}
 		}
@@ -157,17 +191,9 @@ class Lexer
 	}
 
 	/**
-	 * Returns the fixed char to the sent char
-	 * @param string $char
-	 * @return string
+	 * The constructor
+	 * @global Mind $_MIND
 	 */
-	public function translateChars($str)
-	{
-		$from = $this->replacements[0];
-		$to   = $this->replacements[1];
-		return strtr($str, $from, $to);
-	}
-	
 	public function __construct()
 	{
 		GLOBAL $_MIND;
