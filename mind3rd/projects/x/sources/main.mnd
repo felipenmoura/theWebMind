@@ -1,4 +1,3 @@
-aluno tem pai, mãe, avó e páéíóúãẽõâêôapagaio.
 aluno tem      professor
 
 	professor tem aluno
@@ -11,10 +10,11 @@ mimimi
 xxx
 blabelaebamimi
 */
-/*
-aluno tem pai, mae, avós e papagaio.
+
+//aluno tem pai, mãe, avós e papagaio.
+aluno tem pai, mãe.
+aluno tem tio, tia.
 aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da conceição")
 pai tem \pilha.
 mãe tem nome:varchar, idade:int e sexo:char().
 pai tem nome:varchar, idade:int e sexo:char().
-*/

@@ -36,6 +36,7 @@ class Analyst {
 
 	public static function printWhatYouGet($detailed=true)
 	{
+		echo "<hr/>";
 		$props= 0;
 		echo "Entities: ".sizeof(self::$entities)."\n";
 		foreach(self::$entities as $entity)
@@ -48,10 +49,10 @@ class Analyst {
 				echo "      ".$prop->name."\n";
 			}
 		}
-		foreach(self::$relations as $rel)
+		foreach(self::$relations as $k=>$rel)
 		{
 			echo "      ".
-				 $rel->name.': '.$rel->focus->name.' -> '.$rel->rel->name.
+				 $k.': '.$rel->focus->name.' -> '.$rel->rel->name.
 				 "\n";
 		}
 		echo "Properties: ".$props."\n";
@@ -151,7 +152,7 @@ class Analyst {
 					// we will use the first entity on each expression as focus
 					if(!$focus)
 					{
-						$focus= self::$entities[$word];
+						$focus= &self::$entities[$word];
 					}else{
 							/*
 							 * here, if it is an entity and the focused
@@ -159,7 +160,8 @@ class Analyst {
 							 * it is the second entity on the instruction, so,
 							 * it is a relation between entities(or should be)
 							 */
-							$rel= self::$entities[$word];
+							$rel= &self::$entities[$word];
+
 							/*
 							 * we will use this relationName as index on an
 							 * indexed array to speed up the search for
@@ -173,13 +175,17 @@ class Analyst {
 										->setMin($min)
 										->setMax($max)
 										->setUsedVerb($linkVerb)
-										->setEntities($focus, $rel);
+										->setEntities(
+												self::$entities[$focus->name],
+												self::$entities[$rel->name]);
 							// now, both entities will POINT to the same relation
+							//echo $focus->name."-".$rel->name."\n";
 							$focus->addRef($curRelation);
 							$rel->addRef($curRelation);
 
 							// and let's use the relation name as index, as said before
-							self::$relations[$relationName]= &$curRelation;
+							echo $relationName."--\n";
+							self::$relations[$relationName]= $curRelation;
 						 }
 				}else{
 					// ok, after that, this is just easy, now :)
