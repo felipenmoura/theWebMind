@@ -6,7 +6,7 @@
 	 */
 	class MindRelation {
 
-		public $name;
+		public  $name;
 		private $linkTypes		= Array('possibility', 'must', 'action');
 		private $linkType		= 'action';
 		private $quantifiers	= Array(0, 1, 'n');
@@ -15,6 +15,20 @@
 		private $verb			= '';
 		private $focus			= null;
 		private $rel			= null;
+
+		/**
+		 * Return properties from the current relation
+		 * These properties were set to private due to set limitations
+		 * but they may be open for get operations
+		 *
+		 * @param String $what
+		 * @return Mixed
+		 */
+		public function __get($what)
+		{
+			if(isset($this->$what))
+				return $this->$what;
+		}
 
 		public function setLinkType($linkType)
 		{

@@ -36,6 +36,15 @@ class Lexer
 		// place each character of the string into and array
 		$split=1;
 		$array = array();
+
+		/*
+		 * SOMEONE HERE, PLEASE! Explain that for me!
+		 * ONLY the 'ó' char isnt working when treated...even 'Ó' is!
+		 * ALL the other characteres are working just fine!
+		 * Someone who could fix it in a better way, please
+		 */
+		$str= str_replace('ó', 'o', $str);
+
 		for ( $i=0; $i < strlen( $str ); ){
 			$value = ord($str[$i]);
 			if($value > 127){
@@ -87,15 +96,15 @@ class Lexer
 	 */
 	public function fixWordChars($word)
 	{
-		$word= strtolower($word);
+		$word= preg_replace('/^\\\/', '', strtolower($word));
+
 		$word= $this->str_split_utf8($word);
 		$str= "";
 		for($i=0, $j=sizeof($word); $i<$j; $i++)
 		{
-			//$str.= strtr(utf8_decode($word[$i]), utf8_decode("ã"), "a");
 			$str.= $this->translateChars($word[$i]);
 		}
-		return $str;
+		return strtolower($str);
 	}
 
 	/**
@@ -105,7 +114,11 @@ class Lexer
 	 */
 	public function translateChars($str)
 	{
-		$str= strtolower($str);
+		//$str= strtolower($str);
+		if($str == 'ó')
+			echo "ERA A PORRA DO OOOO";
+		else
+			echo $str.'.';
 		$from = $this->replacements[0];
 		$to   = $this->replacements[1];
 		return strtr(utf8_decode($str), utf8_decode($from), $to);

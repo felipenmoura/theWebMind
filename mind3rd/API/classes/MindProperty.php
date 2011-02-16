@@ -97,7 +97,7 @@
 				$type= $tmpType;
 
 			// identifying the name
-			$this->name= substr($str, 0, $typeStart);
+			$this->name= substr($str, 0, $typeStart-1);
 
 			// identifying details
 			if(preg_match(PROP_DETAILS, $str, $details))

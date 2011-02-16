@@ -34,15 +34,28 @@ class Analyst {
 					);
 	}
 
-	public static function printWhatYouGet($detailed=false)
+	public static function printWhatYouGet($detailed=true)
 	{
+		$props= 0;
 		echo "Entities: ".sizeof(self::$entities)."\n";
 		foreach(self::$entities as $entity)
 		{
-			echo "   ".$entity->name."\n";
+			if($detailed)
+				echo "   ".$entity->name."\n";
+			foreach($entity->properties as $prop)
+			{
+				$props++;
+				echo "      ".$prop->name."\n";
+			}
 		}
-		echo "Properties: "."\n";
-		echo "Relations: "."\n";
+		foreach(self::$relations as $rel)
+		{
+			echo "      ".
+				 $rel->name.': '.$rel->focus->name.' -> '.$rel->rel->name.
+				 "\n";
+		}
+		echo "Properties: ".$props."\n";
+		echo "Relations: ".sizeof(self::$relations)."\n";
 	}
 
 	public static function reset()
