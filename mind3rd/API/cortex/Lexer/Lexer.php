@@ -114,11 +114,6 @@ class Lexer
 	 */
 	public function translateChars($str)
 	{
-		//$str= strtolower($str);
-		if($str == 'ó')
-			echo "ERA A PORRA DO OOOO";
-		else
-			echo $str.'.';
 		$from = $this->replacements[0];
 		$to   = $this->replacements[1];
 		return strtr(utf8_decode($str), utf8_decode($from), $to);
