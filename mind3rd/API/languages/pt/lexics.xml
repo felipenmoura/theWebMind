@@ -12,7 +12,7 @@
 		<upper>ABCDEFGHIJKLMNOPQRSTUVXYZW</upper>
 		<special>áéíóúÁÉÍÓÚ"."ÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</special>
 		<numbers>1234567890</numbers>
-		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;</symbols>
+		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;|{}[]</symbols>
 	</validchars>
 	<replacements>
 		<from>áéíóúÁÉÍÓÚÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</from>

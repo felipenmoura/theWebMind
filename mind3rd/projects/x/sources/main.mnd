@@ -16,5 +16,5 @@ aluno tem pai, mãe.
 aluno tem tio, tia.
 aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da conceição")
 pai tem \pilha.
-mãe tem nome:varchar, idade:int e sexo:char().
+mãe tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).
 pai tem nome:varchar, idade:int e sexo:char().

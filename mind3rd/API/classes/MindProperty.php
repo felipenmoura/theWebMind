@@ -10,6 +10,7 @@
 		public $name= false;
 		public $type= "text";
 		public $size= 0;
+		public $options= Array();
 		public $default= null;
 		public $required= false;
 		public $refTo= false;
@@ -130,6 +131,21 @@
 				// identifying its size
 				if(preg_match(PROP_SIZE, $details, $size))
 					$this->size= $size[0];
+
+				// identifying the options
+				if(preg_match(PROP_OPTIONS, $details, $options))
+				{
+					$options= explode('|',
+								preg_replace(PROP_OPTIONS_CLEAR,
+											'',
+											$options[0])
+							);
+					foreach($options as &$opt)
+					{
+						$opt= explode('=', $opt, 2);
+					}
+					$this->options= $options;
+				}
 			}
 			return true;
 		}
