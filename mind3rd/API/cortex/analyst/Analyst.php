@@ -26,6 +26,11 @@ class Analyst {
 	public static $entities= Array();
 	public static $relations= Array();
 
+	/**
+	 * Gets the whole interpreted context, with all the
+	 * analysed information
+	 * @return Array
+	 */
 	public static function getUniverse()
 	{
 		return Array(
@@ -34,9 +39,12 @@ class Analyst {
 					);
 	}
 
+	/**
+	 * Prints out the analysed content
+	 * @param boolean $detailed
+	 */
 	public static function printWhatYouGet($detailed=true)
 	{
-		echo "<hr/>";
 		$props= 0;
 		echo "Entities: ".sizeof(self::$entities)."\n";
 		foreach(self::$entities as $entity)
@@ -59,6 +67,14 @@ class Analyst {
 		echo "Relations: ".sizeof(self::$relations)."\n";
 	}
 
+	public static function normalizeIt()
+	{
+		Normalizer::normalize();
+	}
+
+	/**
+	 * Reset the properties of the analyst itself
+	 */
 	public static function reset()
 	{
 		self::$entities= Array();
@@ -76,6 +92,9 @@ class Analyst {
 	 * @return Boolean True if everything went ok, false when any error occurred
 	 */
     public static function analize($expression, $structure, Array $structureKeys){
+		// I'm gonna try to put it in stepByStep style to
+		// get it easier for me and for you to understand
+		// and follow the thoughts
 
 		// setting up
 		$tmpProperties= Array();
@@ -179,12 +198,10 @@ class Analyst {
 												self::$entities[$focus->name],
 												self::$entities[$rel->name]);
 							// now, both entities will POINT to the same relation
-							//echo $focus->name."-".$rel->name."\n";
 							$focus->addRef($curRelation);
 							$rel->addRef($curRelation);
 
 							// and let's use the relation name as index, as said before
-							echo $relationName."--\n";
 							self::$relations[$relationName]= $curRelation;
 						 }
 				}else{
@@ -203,5 +220,26 @@ class Analyst {
 			foreach($tmpProperties as $prop)
 				$focus->addProperty($prop);
 		}
+	}
+
+	public static function sweep($matches)
+	{
+
+		// let's clear the Analyst memory as it uses static properties
+		self::reset();
+
+		// now we gotta analyse each valid expression
+		foreach($matches as $found)
+		{
+			$len= strlen($found[0]);
+			$expression= array_slice(Token::$words, $found[1], $len);
+			$tokens= array_slice(Token::$spine, $found[1], $len);
+			$struct= $found[0];
+
+			// let's analize it, now
+			// Analyst will store it on its own static structure
+			Analyst::analize($expression, $struct, $tokens);
+		}
+		self::normalizeIt();
 	}
 }

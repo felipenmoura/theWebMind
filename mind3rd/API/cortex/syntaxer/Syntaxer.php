@@ -62,21 +62,8 @@ class Syntaxer {
 		// as we know it's only one block, we can use it straightly
 		$matches= $matches[0];
 
-		// let's clear the Analyst memory as it uses static properties
-		Analyst::reset();
+		Analyst::sweep($matches);
 
-		// now we gotta analyse each valid expression
-		foreach($matches as $found)
-		{
-			$len= strlen($found[0]);
-			$expression= array_slice(Token::$words, $found[1], $len);
-			$tokens= array_slice(Token::$spine, $found[1], $len);
-			$struct= $found[0];
-			
-			// let's analize it, now
-			// Analyst will store it on its own static structure
-			Analyst::analize($expression, $struct, $tokens);
-		}
 		return $this;
 	}
 }
