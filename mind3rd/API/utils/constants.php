@@ -7,7 +7,7 @@
 
 	// REGULAR EXPRESSIONS
 	define('PROP_DETAILS', "/\(.*/");
-	define('PROP_DEFAULT', "/\".*\"/");
+	define('PROP_DEFAULT', "/(?<!\\\)\".+?(?<!\\\)\"/");
 	define('PROP_OPTIONS', '/\{(.+?)\}/');
 	define('PROP_OPTIONS_CLEAR', '/^\{|\}$/');
 	define('PROP_DEFEXEC', "/(^(\"=)|(\"exec\:))|(\"$)/i");
