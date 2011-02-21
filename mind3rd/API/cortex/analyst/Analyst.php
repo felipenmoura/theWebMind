@@ -219,7 +219,7 @@ class Analyst {
 			foreach($tmpProperties as $prop)
 				$focus->addProperty($prop);
 		}
-		echo $linkType;
+		
 		if($relation)
 			return Array('min'=>$min,
 						 'max'=>$max,

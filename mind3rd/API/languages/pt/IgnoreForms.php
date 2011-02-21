@@ -36,7 +36,7 @@
 		public static function loadIgnoreList()
 		{
 			if(!file_exists('ignore.list'))
-				$fR= fopen(\Mind::$langPath.\Mind::$l10n->name.'/ignore.list', 'rb');
+				$fR= fopen(\Mind::$langPath.\Mind::$currentProject['idiom'].'/ignore.list', 'rb');
 			else
 				$fR= fopen('ignore.list', 'rb');
 			self::$ignoreList= Array();

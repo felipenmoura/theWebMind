@@ -1,20 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/Mind.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/cortex/Lexer/Lexer.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/cortex/canonic/Canonic.php';
-
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/MindEntity.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/utils/constants.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/VersionManager.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/MindProject.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/MindRelation.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/MindEntity.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/classes/MindProperty.php';
-
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/cortex/analyst/Analyst.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/cortex/tokenizer/Token.php';
-require_once dirname(__FILE__) . '/../../../../../mind3rd/API/cortex/tokenizer/Tokenizer.php';
-
+require(dirname(__FILE__) . '/../../../../../Tests/config.php');
 
 /**
  * Test class for Tokenizer.
@@ -32,6 +17,10 @@ class TokenizerTest extends PHPUnit_Framework_TestCase {
 	 * This method is called before a test is executed.
 	 */
 	protected function setUp() {
+		Mind::$currentProject['idiom']= 'en';
+		Mind::$langPath= dirname(__FILE__) . '/../../../../../mind3rd/API/languages/';
+		require_once dirname(__FILE__) . '/../../../../../mind3rd/API/languages/en/IgnoreForms.php';
+		require_once dirname(__FILE__) . '/../../../../../mind3rd/API/languages/en/Verbalizer.php';
 		Tokenizer::loadModifiers(dirname(__FILE__) . '/../../../../../mind3rd/API/languages/en/');
 		$this->object = new Tokenizer;
 		//$this->object->loadModifiers('../../languages/en/');
@@ -45,31 +34,15 @@ class TokenizerTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	/**
-	 * @todo Implement testIsQuantifier().
-	 */
-	public function testIsQuantifier() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
+	public function testSweep1() {
+		$ar= Array('each','teacher','must', 'have', 'one','or','many','student','.');
+		$exp= Array(2, 2, 64, 1, 8, 16, 32, 2, -2);
+		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
-
-	/**
-	 * @todo Implement testIsQualifier().
-	 */
-	public function testIsQualifier() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
-	}
-
-	public function testSweep() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
+	public function testSweep2() {
+		$ar= Array('teacher', 'have', 'one','student','.');
+		$exp= Array(2, 1, 8, 2, -2);
+		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
 
 }
