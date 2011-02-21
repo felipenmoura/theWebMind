@@ -7,7 +7,7 @@
         This file describes the words that may be used as qualifiers
 -->
 <root>
-	<must>dever,precisar,demandar,necessitar</must>
+	<must>precisa,dever,precisar,demandar,necessitar</must>
 	<may>poder</may>
 	<notnull>obrigatório,not null,notnull,não nulo,requerido,required,necessário</notnull>
 	<of>de,do,da,dos,das</of>

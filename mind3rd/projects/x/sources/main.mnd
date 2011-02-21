@@ -1,20 +1,16 @@
-aluno tem      professor
+cada professor deve ter um ou muitos alunos.
 
-	professor tem aluno
-aluno tem foto:arquivo(xx)
+//	professor tem aluno
+//aluno tem foto:arquivo(xx)
+
 
 /*
-
-blablabla
-mimimi
-xxx
-blabelaebamimi
-*/
-
-aluno tem pai, mãe, avós, e papagaio.
+//cada mãe pode ter um ou vários alunos.
+aluno tem pai, mãe, avós e papagaio.
 //aluno tem pai, mãe.
 //aluno tem tio, tia.
 aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da \"conceição\" machado", "hffd")
 pai tem \pilha.
 mãe tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).
 pai tem nome:varchar, idade:int e sexo:char(), cpf:int(obrigatório).
+*/

@@ -118,7 +118,6 @@
 					}
 					
 					$this->default= $default;
-					echo $default."\n";
 				}
 
 				// identifying if it is required

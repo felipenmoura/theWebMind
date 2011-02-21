@@ -52,11 +52,12 @@
 		 */
 		public function setMin($min)
 		{
-			if($min != 'n' && in_array($min, $this->quantifiers))
+			if($min === 0 || $min === 1)
 			{
 				$this->min= $min;
 				return $this;
 			}
+			throw new Exception("Invalid minimum quantifier: ".$min, 0);
 			return false;
 		}
 
@@ -67,11 +68,12 @@
 		 */
 		public function setMax($max)
 		{
-			if($max !== 0 && in_array($max, $this->quantifiers))
+			if($max == 1 || $max == 'n')
 			{
 				$this->max= $max;
 				return $this;
 			}
+			throw new Exception("Invalid maximum quantifier: ".$max, 0);
 			return false;
 		}
 

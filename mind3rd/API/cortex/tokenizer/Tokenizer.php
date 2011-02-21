@@ -149,9 +149,11 @@ class Tokenizer extends Token{
 	/**
 	 * This method is called to load each possible modifier
 	 */
-	public static function loadModifiers()
+	public static function loadModifiers($modifiersSrc= false)
 	{
-		if(!file_exists('sintatics.list'))
+		if(self::$quantifiers) // it is already loaded
+			return true;
+		if(!$modifiersSrc && !file_exists('sintatics.list'))
 		{
 			self::loadSintatics(fopen(Mind::$langPath.Mind::$currentProject['idiom'].
 									  '/sintatics.list', 'rb'));
@@ -168,10 +170,10 @@ class Tokenizer extends Token{
 			self::loadQualifiers($qlf);
 			self::loadTypes($tps);
 		}else{
-				self::loadSintatics(fopen('sintatics.list', 'rb'));
-				$qnt= simplexml_load_file('quantifiers.xml');
-				$qlf= simplexml_load_file('qualifiers.xml');
-				$tps= simplexml_load_file('datatypes.xml');
+				self::loadSintatics(fopen($modifiersSrc.'sintatics.list', 'rb'));
+				$qnt= simplexml_load_file($modifiersSrc.'quantifiers.xml');
+				$qlf= simplexml_load_file($modifiersSrc.'qualifiers.xml');
+				$tps= simplexml_load_file($modifiersSrc.'datatypes.xml');
 				self::loadQuantifiers($qnt);
 				self::loadQualifiers($qlf);
 				self::loadTypes($tps);
@@ -185,10 +187,13 @@ class Tokenizer extends Token{
 	 *
 	 * @return Array the spine, the whole structure of the abstracted text
 	 */
-	public function sweep()
+	public function sweep($content=false)
 	{
-		$cont= &Mind::$content;
-
+		if($content)
+			$cont= $content;
+		else
+			$cont= &Mind::$content;
+		
 		// seek for data types
 		foreach(self::$dataTypes as $type=>$options)
 		{
@@ -206,6 +211,7 @@ class Tokenizer extends Token{
 		}
 		
 		Mind::$syntaxer= new Syntaxer();
+		//print_r(Token::$spine);
 		return Token::$spine;
 	}
 

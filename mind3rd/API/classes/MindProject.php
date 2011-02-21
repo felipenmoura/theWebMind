@@ -47,7 +47,7 @@ class MindProject extends VersionManager{
 	public static function loadIdiom($idiom)
 	{
 		$idiom= str_replace('\\', DIRECTORY_SEPARATOR, $idiom);
-		$langPath= $path.'/mind3rd/API/languages/'.$idiom.'/';
+		$langPath= '/mind3rd/API/languages/'.$idiom.'/';
 		
 		set_include_path(get_include_path() . PATH_SEPARATOR . $langPath);
 	}

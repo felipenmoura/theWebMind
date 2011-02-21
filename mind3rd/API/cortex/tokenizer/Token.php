@@ -4,35 +4,35 @@ class Token
 	// Tokens to be used
 	// MT stands for MindTokenizer
 	// MS stands for MindSyntaxer
-	const MT_PERIOD  = -2;
+	const MT_PERIOD  =  -2;
 	const MS_PERIOD  = '.';
 	const MT_COMA    =  -1;
-	const MS_COMA    =  ',';
-	const MT_VOID    =  0;
+	const MS_COMA    = ',';
+	const MT_VOID    =   0;
 	const MS_VOID    =  '';
-	const MT_VERB    =  1;
-	const MS_VERB    =  'V';
-	const MT_SUBST   =  2;
-	const MS_SUBST   =  'S';
-	const MT_NONE    =  4;
-	const MS_NONE    =  'N';
-	const MT_ONE     = 8;
+	const MT_VERB    =   1;
+	const MS_VERB    = 'V';
+	const MT_SUBST   =   2;
+	const MS_SUBST   = 'S';
+	const MT_NONE    =   4;
+	const MS_NONE    = 'N';
+	const MT_ONE     =   8;
 	const MS_ONE     = 'N';
 	const MT_OR      =  16;
-	const MS_OR      =  'O';
+	const MS_OR      = 'O';
 	const MT_MANY    =  32;
-	const MS_MANY    =  'N';
-	const MT_QMUST   = 64;
+	const MS_MANY    = 'N';
+	const MT_QMUST   =  64;
 	const MS_QMUST   = 'Q';
-	const MT_QMAY    =  128;
-	const MS_QMAY    =  'Q';
+	const MT_QMAY    = 128;
+	const MS_QMAY    = 'Q';
 	const MT_QNOTNULL= 254;
-	const MT_QKEY    =  564;
-	const MT_QOF     =  1024;
-	const MS_QOF     =  'C';
-	const MT_QBE     =  2048;
-	const MT_ANY     =  4096;
-	const MS_ANY     =  '*';
+	const MT_QKEY    = 564;
+	const MT_QOF     =1024;
+	const MS_QOF     = 'C';
+	const MT_QBE     =2048;
+	const MT_ANY     =4096;
+	const MS_ANY     = '*';
 
 	public static $spine= Array();
 	public static $words= Array();

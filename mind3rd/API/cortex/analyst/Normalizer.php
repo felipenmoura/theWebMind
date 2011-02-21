@@ -1,7 +1,10 @@
 <?php
 	/**
 	 * Will normalize the data and entities structure applying
-	 * rules and patterns
+	 * rules and patterns. Thanks for Edgar F. Codd for all he
+	 * created and wondered for the Relational Model
+	 *
+	 * firs: 
 	 *
 	 * foreach entity
 	 *	

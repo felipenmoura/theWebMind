@@ -50,7 +50,7 @@ class Analyst {
 		foreach(self::$entities as $entity)
 		{
 			if($detailed)
-				echo "   ".$entity->name."\n";
+				echo "   (".$entity->relevance.")".$entity->name."\n";
 			foreach($entity->properties as $prop)
 			{
 				$props++;
@@ -102,8 +102,9 @@ class Analyst {
 		$focus= null;
 		$linkVerb= null;
 		$min= null;
-		$max= 'n';
+		$max= null;
 		$linkType= 'action';
+		$relation= false;
 
 		// foreach token
 		foreach($structureKeys as $token)
@@ -118,25 +119,15 @@ class Analyst {
 			}
 
 			// setting quantifiers
-			if(
-				$min == null &&
-				(
-					$token == Tokenizer::MT_NONE ||
-					$token == Tokenizer::MT_ONE
-				)
-			  )
+			if($token == Tokenizer::MT_NONE)
 			{
-				$min= ($token == Tokenizer::MT_ONE)? 1: 0;
+				$min= 0;
 				continue;
 			}
-			if(
-				$min != null &&
-				(
-					$token == Tokenizer::MT_MANY ||
-					$token == Tokenizer::MT_ONE
-				)
-			  )
+			if($token == Tokenizer::MT_ONE || $token == Tokenizer::MT_MANY)
 			{
+				if(!is_null($max))
+					$min= $max;
 				$max= ($token == Tokenizer::MT_ONE)? 1: 'n';
 			}
 
@@ -173,6 +164,13 @@ class Analyst {
 					{
 						$focus= &self::$entities[$word];
 					}else{
+							$relation= true;
+							// if min or max quantifier have not been set
+							if(is_null($min))
+								$min= ($linkType == 'must')? 1: 0;
+							if(is_null($max))
+								$max= 'n';
+
 							/*
 							 * here, if it is an entity and the focused
 							 * entity has already been selected, it means
@@ -190,6 +188,7 @@ class Analyst {
 
 							// let's create the relation itself
 							$curRelation= new MindRelation($relationName);
+
 							$curRelation->setLinkType($linkType)
 										->setMin($min)
 										->setMax($max)
@@ -220,11 +219,18 @@ class Analyst {
 			foreach($tmpProperties as $prop)
 				$focus->addProperty($prop);
 		}
+		echo $linkType;
+		if($relation)
+			return Array('min'=>$min,
+						 'max'=>$max,
+						 'linkVerb'=>$linkVerb,
+						 'linkType'=>$linkType,
+						 'focus'=>$focus->name,
+						 'rel'=>$rel->name);
 	}
 
 	public static function sweep($matches)
 	{
-
 		// let's clear the Analyst memory as it uses static properties
 		self::reset();
 
