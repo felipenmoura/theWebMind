@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>phpDocumentor Parser Errors and Warnings</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#AnalystTest.php">AnalystTest.php</a><br>
+<a href="#Analyze.php">Analyze.php</a><br>
+<a href="#Application.php">Application.php</a><br>
+<a href="#ApplicationTester.php">ApplicationTester.php</a><br>
+<a href="#ArgvInput.php">ArgvInput.php</a><br>
+<a href="#ArrayInput.php">ArrayInput.php</a><br>
+<a href="#Auth.php">Auth.php</a><br>
+<a href="#Canonic.php">Canonic.php</a><br>
+<a href="#Clear.php">Clear.php</a><br>
+<a href="#Command.php">Command.php</a><br>
+<a href="#command.php">command.php</a><br>
+<a href="#commandExample.php">commandExample.php</a><br>
+<a href="#CommandTester.php">CommandTester.php</a><br>
+<a href="#config.php">config.php</a><br>
+<a href="#ConsoleOutput.php">ConsoleOutput.php</a><br>
+<a href="#constants.php">constants.php</a><br>
+<a href="#Create.php">Create.php</a><br>
+<a href="#Darwin.php">Darwin.php</a><br>
+<a href="#DialogHelper.php">DialogHelper.php</a><br>
+<a href="#En.php">En.php</a><br>
+<a href="#FormatterHelper.php">FormatterHelper.php</a><br>
+<a href="#header.php">header.php</a><br>
+<a href="#HelpCommand.php">HelpCommand.php</a><br>
+<a href="#Helper.php">Helper.php</a><br>
+<a href="#HelperInterface.php">HelperInterface.php</a><br>
+<a href="#HelperSet.php">HelperSet.php</a><br>
+<a href="#http.php">http.php</a><br>
+<a href="#IgnoreForms.php">IgnoreForms.php</a><br>
+<a href="#IgnoreFormsTest.php">IgnoreFormsTest.php</a><br>
+<a href="#index.php">index.php</a><br>
+<a href="#Inflect.php">Inflect.php</a><br>
+<a href="#inflection.php">inflection.php</a><br>
+<a href="#InflectTest.php">InflectTest.php</a><br>
+<a href="#Info.php">Info.php</a><br>
+<a href="#Input.php">Input.php</a><br>
+<a href="#InputArgument.php">InputArgument.php</a><br>
+<a href="#InputDefinition.php">InputDefinition.php</a><br>
+<a href="#InputInterface.php">InputInterface.php</a><br>
+<a href="#InputOption.php">InputOption.php</a><br>
+<a href="#installation-1.php">installation-1.php</a><br>
+<a href="#installation-2.php">installation-2.php</a><br>
+<a href="#Lexer.php">Lexer.php</a><br>
+<a href="#ListCommand.php">ListCommand.php</a><br>
+<a href="#main.php">main.php</a><br>
+<a href="#Mind.php">Mind.php</a><br>
+<a href="#MindCommand.php">MindCommand.php</a><br>
+<a href="#MindDB.php">MindDB.php</a><br>
+<a href="#MindDir.php">MindDir.php</a><br>
+<a href="#MindEntity.php">MindEntity.php</a><br>
+<a href="#MindPlugin.php">MindPlugin.php</a><br>
+<a href="#MindProject.php">MindProject.php</a><br>
+<a href="#MindProperty.php">MindProperty.php</a><br>
+<a href="#MindRelation.php">MindRelation.php</a><br>
+<a href="#MindSpeaker.php">MindSpeaker.php</a><br>
+<a href="#Normalizer.php">Normalizer.php</a><br>
+<a href="#NullOutput.php">NullOutput.php</a><br>
+<a href="#Output.php">Output.php</a><br>
+<a href="#OutputInterface.php">OutputInterface.php</a><br>
+<a href="#plugin.php">plugin.php</a><br>
+<a href="#PluginOne.php">PluginOne.php</a><br>
+<a href="#PluginTwo.php">PluginTwo.php</a><br>
+<a href="#program.php">program.php</a><br>
+<a href="#pt.php">pt.php</a><br>
+<a href="#Quit.php">Quit.php</a><br>
+<a href="#RunTest.php">RunTest.php</a><br>
+<a href="#Setup.php">Setup.php</a><br>
+<a href="#SetUse.php">SetUse.php</a><br>
+<a href="#Shell.php">Shell.php</a><br>
+<a href="#shell.php">shell.php</a><br>
+<a href="#Show.php">Show.php</a><br>
+<a href="#StreamOutput.php">StreamOutput.php</a><br>
+<a href="#StringInput.php">StringInput.php</a><br>
+<a href="#Syntaxer.php">Syntaxer.php</a><br>
+<a href="#Token.php">Token.php</a><br>
+<a href="#Tokenizer.php">Tokenizer.php</a><br>
+<a href="#TokenizerTest.php">TokenizerTest.php</a><br>
+<a href="#UnixSetup.php">UnixSetup.php</a><br>
+<a href="#utils.php">utils.php</a><br>
+<a href="#Verbalizer.php">Verbalizer.php</a><br>
+<a href="#VerbalizerTest.php">VerbalizerTest.php</a><br>
+<a href="#VersionManager.php">VersionManager.php</a><br>
+<a href="#WinSetup.php">WinSetup.php</a><br>
+<a name="Post-parsing"></a>
+<h1>Post-parsing</h1>
+<h2>Warnings:</h2><br>
+<b>Warning</b> - Class VerbalizerTest parent \ not found<br>
+<b>Warning</b> - Class IgnoreFormsTest parent \ not found<br>
+<b>Warning</b> - Class VerbalizerTest parent PHPUnit_Framework_TestCase not found<br>
+<b>Warning</b> - Class InflectTest parent \ not found<br>
+<b>Warning</b> - Class TokenizerPTTest parent PHPUnit_Framework_TestCase not found<br>
+<b>Warning</b> - Class MindCommand parent Symfony not found<br>
+<b>Warning</b> - Class AnalystPtTest parent PHPUnit_Framework_TestCase not found<br>
+<b>Warning</b> - Class IgnoreFormsTest parent PHPUnit_Framework_TestCase not found<br>
+<b>Warning</b> - Class InflectTest parent PHPUnit_Framework_TestCase not found<br>
+<b>Warning</b> - 
+duplicate class element "IgnoreFormsTest" in file /var/www/mind/Tests/mind3rd/API/languages/pt/IgnoreFormsTest.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "Verbalizer" in file /var/www/mind/mind3rd/API/languages/pt/Verbalizer.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate global variable element "$_MIND" in file /var/www/mind/mind3rd/API/cortex/Lexer/Lexer.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "VerbalizerTest" in file /var/www/mind/Tests/mind3rd/API/languages/pt/VerbalizerTest.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate global variable element "$_MIND" in file /var/www/mind/mind3rd/API/classes/MindProject.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "IgnoreForms" in file /var/www/mind/mind3rd/API/languages/pt/IgnoreForms.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "InflectTest" in file /var/www/mind/Tests/mind3rd/API/languages/pt/InflectTest.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate class element "Inflect" in file /var/www/mind/mind3rd/API/languages/pt/Inflect.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<a name="Analyst.php"></a>
+<h1>Analyst.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - no @package tag was used in a DocBlock for class Analyst<br>
+<b>Warning on line 250</b> - File "/var/www/mind/mind3rd/API/cortex/analyst/Analyst.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="AnalystTest.php"></a>
+<h1>AnalystTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class AnalystPtTest<br>
+<b>Warning on line 182</b> - File "/var/www/mind/Tests/mind3rd/API/cortex/analyst/AnalystTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Analyze.php"></a>
+<h1>Analyze.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class Analyze<br>
+<b>Warning on line 112</b> - File "/var/www/mind/mind3rd/API/programs/Analyze.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Application.php"></a>
+<h1>Application.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 47</b> - DocBlock would be page-level, but precedes class "Application", use another DocBlock to document the file<br>
+<a name="ApplicationTester.php"></a>
+<h1>ApplicationTester.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class ApplicationTester<br>
+<b>Warning on line 91</b> - File "/var/www/mind/mind3rd/API/external/Symfony/Component/Console/Tester/ApplicationTester.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ArgvInput.php"></a>
+<h1>ArgvInput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 41</b> - DocBlock would be page-level, but precedes class "ArgvInput", use another DocBlock to document the file<br>
+<a name="ArrayInput.php"></a>
+<h1>ArrayInput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - DocBlock would be page-level, but precedes class "ArrayInput", use another DocBlock to document the file<br>
+<a name="Auth.php"></a>
+<h1>Auth.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class Auth<br>
+<b>Warning on line 100</b> - File "/var/www/mind/mind3rd/API/programs/Auth.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Canonic.php"></a>
+<h1>Canonic.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - DocBlock would be page-level, but precedes class "Canonic", use another DocBlock to document the file<br>
+<a name="Clear.php"></a>
+<h1>Clear.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Clear<br>
+<b>Warning on line 37</b> - File "/var/www/mind/mind3rd/API/programs/Clear.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Command.php"></a>
+<h1>Command.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 36</b> - DocBlock would be page-level, but precedes class "Command", use another DocBlock to document the file<br>
+<a name="command.php"></a>
+<h1>command.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - File "/var/www/mind/mind3rd/API/utils/command.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="commandExample.php"></a>
+<h1>commandExample.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class CommandName<br>
+<b>Warning on line 52</b> - File "/var/www/mind/mind3rd/API/programs/commandExample.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="CommandTester.php"></a>
+<h1>CommandTester.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class CommandTester<br>
+<b>Warning on line 91</b> - File "/var/www/mind/mind3rd/API/external/Symfony/Component/Console/Tester/CommandTester.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="config.php"></a>
+<h1>config.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - File "/var/www/mind/Tests/config.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ConsoleOutput.php"></a>
+<h1>ConsoleOutput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 29</b> - DocBlock would be page-level, but precedes class "ConsoleOutput", use another DocBlock to document the file<br>
+<a name="constants.php"></a>
+<h1>constants.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 32</b> - File "/var/www/mind/mind3rd/API/utils/constants.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Create.php"></a>
+<h1>Create.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 18</b> - no @package tag was used in a DocBlock for class Create<br>
+<b>Warning on line 189</b> - File "/var/www/mind/mind3rd/API/programs/Create.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Darwin.php"></a>
+<h1>Darwin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Darwin<br>
+<b>Warning on line 11</b> - File "/var/www/mind/mind3rd/API/cortex/Darwin/Darwin.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="DialogHelper.php"></a>
+<h1>DialogHelper.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - DocBlock would be page-level, but precedes class "DialogHelper", use another DocBlock to document the file<br>
+<a name="En.php"></a>
+<h1>En.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class En<br>
+<b>Warning on line 17</b> - @method magic tag does not have name, illegal. Ignoring tag "@method getMessage "<br>
+<b>Warning on line 50</b> - File "/var/www/mind/mind3rd/API/L10N/En.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="FormatterHelper.php"></a>
+<h1>FormatterHelper.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "FormatterHelper", use another DocBlock to document the file<br>
+<a name="header.php"></a>
+<h1>header.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 63</b> - File "/var/www/mind/mind3rd/API/utils/header.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="HelpCommand.php"></a>
+<h1>HelpCommand.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - DocBlock would be page-level, but precedes class "HelpCommand", use another DocBlock to document the file<br>
+<a name="Helper.php"></a>
+<h1>Helper.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "Helper", use another DocBlock to document the file<br>
+<a name="HelperInterface.php"></a>
+<h1>HelperInterface.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "HelperInterface", use another DocBlock to document the file<br>
+<a name="HelperSet.php"></a>
+<h1>HelperSet.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - DocBlock would be page-level, but precedes class "HelperSet", use another DocBlock to document the file<br>
+<a name="http.php"></a>
+<h1>http.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 43</b> - File "/var/www/mind/mind3rd/API/http.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="IgnoreForms.php"></a>
+<h1>IgnoreForms.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "IgnoreForms", use another DocBlock to document the file<br>
+<b>Warning on line 12</b> - DocBlock would be page-level, but precedes class "IgnoreForms", use another DocBlock to document the file<br>
+<a name="IgnoreFormsTest.php"></a>
+<h1>IgnoreFormsTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class IgnoreFormsTest<br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for class IgnoreFormsTest<br>
+<b>Warning on line 48</b> - File "/var/www/mind/Tests/mind3rd/API/languages/pt/IgnoreFormsTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 59</b> - File "/var/www/mind/Tests/mind3rd/API/languages/en/IgnoreFormsTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="index.php"></a>
+<h1>index.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 17</b> - File "/var/www/mind/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 155</b> - File "/var/www/mind/docs/ide/index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Inflect.php"></a>
+<h1>Inflect.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - DocBlock would be page-level, but precedes class "Inflect", use another DocBlock to document the file<br>
+<b>Warning on line 26</b> - DocBlock would be page-level, but precedes class "Inflect", use another DocBlock to document the file<br>
+<b>Warning on line 132</b> - @method magic tag does not have name, illegal. Ignoring tag "@method isSingular "<br>
+<b>Warning on line 142</b> - @method magic tag does not have name, illegal. Ignoring tag "@method isSingular "<br>
+<b>Warning on line 162</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toPlural "<br>
+<b>Warning on line 173</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toPlural "<br>
+<b>Warning on line 194</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toSingular "<br>
+<b>Warning on line 205</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toSingular "<br>
+<b>Warning on line 226</b> - @method magic tag does not have name, illegal. Ignoring tag "@method isFemale "<br>
+<b>Warning on line 237</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toFemale "<br>
+<b>Warning on line 259</b> - @method magic tag does not have name, illegal. Ignoring tag "@method toMale "<br>
+<b>Warning on line 281</b> - @method magic tag does not have name, illegal. Ignoring tag "@method isFemale "<br>
+<a name="inflection.php"></a>
+<h1>inflection.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for interface inflection<br>
+<b>Warning on line 14</b> - File "/var/www/mind/mind3rd/API/interfaces/inflection.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="InflectTest.php"></a>
+<h1>InflectTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class InflectTest<br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for class InflectTest<br>
+<b>Warning on line 112</b> - File "/var/www/mind/Tests/mind3rd/API/languages/en/InflectTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 199</b> - File "/var/www/mind/Tests/mind3rd/API/languages/pt/InflectTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Info.php"></a>
+<h1>Info.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class Info<br>
+<b>Warning on line 51</b> - File "/var/www/mind/mind3rd/API/programs/Info.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Input.php"></a>
+<h1>Input.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - DocBlock would be page-level, but precedes class "Input", use another DocBlock to document the file<br>
+<a name="InputArgument.php"></a>
+<h1>InputArgument.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "InputArgument", use another DocBlock to document the file<br>
+<a name="InputDefinition.php"></a>
+<h1>InputDefinition.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - DocBlock would be page-level, but precedes class "InputDefinition", use another DocBlock to document the file<br>
+<a name="InputInterface.php"></a>
+<h1>InputInterface.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "InputInterface", use another DocBlock to document the file<br>
+<a name="InputOption.php"></a>
+<h1>InputOption.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "InputOption", use another DocBlock to document the file<br>
+<a name="installation-1.php"></a>
+<h1>installation-1.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - File "/var/www/mind/mind3rd/env/setup/wizard/installation-1.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="installation-2.php"></a>
+<h1>installation-2.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - File "/var/www/mind/mind3rd/env/setup/wizard/installation-2.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Lexer.php"></a>
+<h1>Lexer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Lexer<br>
+<b>Warning on line 233</b> - File "/var/www/mind/mind3rd/API/cortex/Lexer/Lexer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListCommand.php"></a>
+<h1>ListCommand.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - DocBlock would be page-level, but precedes class "ListCommand", use another DocBlock to document the file<br>
+<a name="main.php"></a>
+<h1>main.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 0</b> - File "/var/www/mind/docs/help/main.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Mind.php"></a>
+<h1>Mind.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for class Mind<br>
+<b>Warning on line 107</b> - @method magic tag does not have name, illegal. Ignoring tag "@method deleteDir "<br>
+<b>Warning on line 184</b> - File "/var/www/mind/mind3rd/API/classes/Mind.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindCommand.php"></a>
+<h1>MindCommand.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 12</b> - no @package tag was used in a DocBlock for class MindCommand<br>
+<b>Warning on line 32</b> - @method magic tag does not have name, illegal. Ignoring tag "@method getFileName "<br>
+<b>Warning on line 65</b> - @method magic tag does not have name, illegal. Ignoring tag "@method verifyCredentials "<br>
+<b>Warning on line 85</b> - @method magic tag does not have name, illegal. Ignoring tag "@method runPlugins "<br>
+<b>Warning on line 105</b> - @method magic tag does not have name, illegal. Ignoring tag "@method execute "<br>
+<b>Warning on line 122</b> - @method magic tag does not have name, illegal. Ignoring tag "@method HTTPExecute "<br>
+<b>Warning on line 140</b> - @method magic tag does not have name, illegal. Ignoring tag "@method readPassword "<br>
+<b>Warning on line 184</b> - File "/var/www/mind/mind3rd/API/classes/MindCommand.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindDB.php"></a>
+<h1>MindDB.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class MindDB<br>
+<b>Warning on line 20</b> - @method magic tag does not have name, illegal. Ignoring tag "@method query "<br>
+<b>Warning on line 54</b> - File "/var/www/mind/mind3rd/API/classes/MindDB.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindDir.php"></a>
+<h1>MindDir.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class MindDir<br>
+<b>Warning on line 66</b> - @method magic tag does not have name, illegal. Ignoring tag "@method deleteDir "<br>
+<b>Warning on line 85</b> - File "/var/www/mind/mind3rd/API/classes/MindDir.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindEntity.php"></a>
+<h1>MindEntity.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class MindEntity<br>
+<b>Warning on line 98</b> - File "/var/www/mind/mind3rd/API/classes/MindEntity.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindPlugin.php"></a>
+<h1>MindPlugin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class MindPlugin<br>
+<b>Warning on line 42</b> - File "/var/www/mind/mind3rd/API/classes/MindPlugin.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindProject.php"></a>
+<h1>MindProject.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class MindProject<br>
+<b>Warning on line 77</b> - File "/var/www/mind/mind3rd/API/classes/MindProject.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindProperty.php"></a>
+<h1>MindProperty.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class MindProperty<br>
+<b>Warning on line 165</b> - File "/var/www/mind/mind3rd/API/classes/MindProperty.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindRelation.php"></a>
+<h1>MindRelation.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class MindRelation<br>
+<b>Warning on line 113</b> - File "/var/www/mind/mind3rd/API/classes/MindRelation.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MindSpeaker.php"></a>
+<h1>MindSpeaker.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class MindSpeaker<br>
+<b>Warning on line 61</b> - File "/var/www/mind/mind3rd/API/classes/MindSpeaker.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Normalizer.php"></a>
+<h1>Normalizer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class Normalizer<br>
+<b>Warning on line 22</b> - File "/var/www/mind/mind3rd/API/cortex/analyst/Normalizer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="NullOutput.php"></a>
+<h1>NullOutput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 23</b> - DocBlock would be page-level, but precedes class "NullOutput", use another DocBlock to document the file<br>
+<a name="Output.php"></a>
+<h1>Output.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 27</b> - DocBlock would be page-level, but precedes class "Output", use another DocBlock to document the file<br>
+<b>Warning on line 200</b> - 
+duplicate class element "Output" in file /var/www/mind/mind3rd/API/external/Symfony/Component/Console/Output/Output.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning on line 200</b> - no @package tag was used in a DocBlock for class Output<br>
+<a name="OutputInterface.php"></a>
+<h1>OutputInterface.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 21</b> - DocBlock would be page-level, but precedes class "OutputInterface", use another DocBlock to document the file<br>
+<a name="plugin.php"></a>
+<h1>plugin.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for interface plugin<br>
+<b>Warning on line 13</b> - File "/var/www/mind/mind3rd/API/interfaces/plugin.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="PluginOne.php"></a>
+<h1>PluginOne.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class PluginOne<br>
+<b>Warning on line 31</b> - File "/var/www/mind/mind3rd/API/plugins/PluginOne/PluginOne.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="PluginTwo.php"></a>
+<h1>PluginTwo.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - no @package tag was used in a DocBlock for class PluginTwo<br>
+<b>Warning on line 31</b> - File "/var/www/mind/mind3rd/API/plugins/PluginTwo/PluginTwo.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="program.php"></a>
+<h1>program.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for interface program<br>
+<b>Warning on line 11</b> - File "/var/www/mind/mind3rd/API/interfaces/program.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pt.php"></a>
+<h1>pt.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class pt<br>
+<b>Warning on line 17</b> - @method magic tag does not have name, illegal. Ignoring tag "@method getMessage "<br>
+<b>Warning on line 57</b> - File "/var/www/mind/mind3rd/API/L10N/pt.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Quit.php"></a>
+<h1>Quit.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Quit<br>
+<b>Warning on line 41</b> - File "/var/www/mind/mind3rd/API/programs/Quit.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="RunTest.php"></a>
+<h1>RunTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class RunTest<br>
+<b>Warning on line 128</b> - File "/var/www/mind/mind3rd/API/programs/RunTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Setup.php"></a>
+<h1>Setup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Setup<br>
+<b>Warning on line 40</b> - File "/var/www/mind/mind3rd/env/setup/Setup.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="SetUse.php"></a>
+<h1>SetUse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 13</b> - no @package tag was used in a DocBlock for class SetUse<br>
+<b>Warning on line 74</b> - File "/var/www/mind/mind3rd/API/programs/SetUse.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Shell.php"></a>
+<h1>Shell.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 28</b> - DocBlock would be page-level, but precedes class "Shell", use another DocBlock to document the file<br>
+<a name="shell.php"></a>
+<h1>shell.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "/var/www/mind/mind3rd/API/shell.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Show.php"></a>
+<h1>Show.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Show<br>
+<b>Warning on line 150</b> - File "/var/www/mind/mind3rd/API/programs/Show.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="StreamOutput.php"></a>
+<h1>StreamOutput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 29</b> - DocBlock would be page-level, but precedes class "StreamOutput", use another DocBlock to document the file<br>
+<a name="StringInput.php"></a>
+<h1>StringInput.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 25</b> - DocBlock would be page-level, but precedes class "StringInput", use another DocBlock to document the file<br>
+<a name="Syntaxer.php"></a>
+<h1>Syntaxer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 16</b> - no @package tag was used in a DocBlock for class Syntaxer<br>
+<b>Warning on line 68</b> - File "/var/www/mind/mind3rd/API/cortex/syntaxer/Syntaxer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Token.php"></a>
+<h1>Token.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class Token<br>
+<b>Warning on line 146</b> - File "/var/www/mind/mind3rd/API/cortex/tokenizer/Token.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Tokenizer.php"></a>
+<h1>Tokenizer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Tokenizer<br>
+<b>Warning on line 227</b> - File "/var/www/mind/mind3rd/API/cortex/tokenizer/Tokenizer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="TokenizerTest.php"></a>
+<h1>TokenizerTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class TokenizerPTTest<br>
+<b>Warning on line 102</b> - File "/var/www/mind/Tests/mind3rd/API/cortex/tokenizer/TokenizerTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="UnixSetup.php"></a>
+<h1>UnixSetup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class UnixSetup<br>
+<b>Warning on line 46</b> - File "/var/www/mind/mind3rd/env/setup/UnixSetup.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="utils.php"></a>
+<h1>utils.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 58</b> - File "/var/www/mind/mind3rd/API/utils.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Verbalizer.php"></a>
+<h1>Verbalizer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - DocBlock would be page-level, but precedes class "Verbalizer", use another DocBlock to document the file<br>
+<b>Warning on line 9</b> - DocBlock would be page-level, but precedes class "Verbalizer", use another DocBlock to document the file<br>
+<a name="VerbalizerTest.php"></a>
+<h1>VerbalizerTest.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class VerbalizerTest<br>
+<b>Warning on line 10</b> - no @package tag was used in a DocBlock for class VerbalizerTest<br>
+<b>Warning on line 76</b> - File "/var/www/mind/Tests/mind3rd/API/languages/en/VerbalizerTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 177</b> - File "/var/www/mind/Tests/mind3rd/API/languages/pt/VerbalizerTest.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="VersionManager.php"></a>
+<h1>VersionManager.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class VersionManager<br>
+<b>Warning on line 13</b> - File "/var/www/mind/mind3rd/API/classes/VersionManager.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="WinSetup.php"></a>
+<h1>WinSetup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class WinSetup<br>
+<b>Warning on line 32</b> - File "/var/www/mind/mind3rd/env/setup/WinSetup.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 23 Feb 2011 18:06:14 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

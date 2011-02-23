@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Application</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Application</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">An Application is the container for a collection of commands.</p>
+<p class="description"><p>It is the main entry point of a Console application.</p><p>This class is optimized for a standard CLI environment.</p><p>Usage:</p><p>$app = new Application('myapp', '1.0 (stable)');      $app-&gt;addCommand(new SimpleCommand());      $app-&gt;run();</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Fabien Potencier &lt;<a href="mailto:fabien.potencier@symfony-project.com">fabien.potencier@symfony-project.com</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_mind3rd---API---external---Symfony---Component---Console---Application.php.html">/mind3rd/API/external/Symfony/Component/Console/Application.php</a> (line <span class="field">47</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																																								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$aliases" title="details" class="var-name">$aliases</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$application" title="details" class="var-name">$application</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$autoExit" title="details" class="var-name">$autoExit</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$catchExceptions" title="details" class="var-name">$catchExceptions</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$commands" title="details" class="var-name">$commands</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$definition" title="details" class="var-name">$definition</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$helperSet" title="details" class="var-name">$helperSet</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$name" title="details" class="var-name">$name</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$runningCommand" title="details" class="var-name">$runningCommand</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$version" title="details" class="var-name">$version</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$wantHelps" title="details" class="var-name">$wantHelps</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																												<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#getAbbreviations" title="details" class="method-name">getAbbreviations</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$names</span>)
+									</div>
+																																																																																																																																																								
+												<div class="method-definition">
+											<span class="method-result">Application</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span> = <span class="var-default">'UNKNOWN'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">'UNKNOWN'</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+										<a href="#addCommand" title="details" class="method-name">addCommand</a>
+											(<span class="var-type"><a href="../../symfony/console/Command.html">Command</a></span>&nbsp;<span class="var-name">$command</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addCommands" title="details" class="method-name">addCommands</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$commands</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#asText" title="details" class="method-name">asText</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string|DOMDocument</span>
+										<a href="#asXml" title="details" class="method-name">asXml</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>], [<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$asDom</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#doRun" title="details" class="method-name">doRun</a>
+											(<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>&nbsp;<span class="var-name">$input</span>, <span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+										<a href="#findCommand" title="details" class="method-name">findCommand</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#findNamespace" title="details" class="method-name">findNamespace</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span>)
+									</div>
+																								<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+										<a href="#getCommand" title="details" class="method-name">getCommand</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getCommands" title="details" class="method-name">getCommands</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/InputDefinition.html">InputDefinition</a></span>
+										<a href="#getDefinition" title="details" class="method-name">getDefinition</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getHelp" title="details" class="method-name">getHelp</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/HelperSet.html">HelperSet</a></span>
+										<a href="#getHelperSet" title="details" class="method-name">getHelperSet</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getLongVersion" title="details" class="method-name">getLongVersion</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getName" title="details" class="method-name">getName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getNamespaces" title="details" class="method-name">getNamespaces</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getVersion" title="details" class="method-name">getVersion</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Boolean</span>
+										<a href="#hasCommand" title="details" class="method-name">hasCommand</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+										<a href="#register" title="details" class="method-name">register</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#renderException" title="details" class="method-name">renderException</a>
+											(<span class="var-type">Exception</span>&nbsp;<span class="var-name">$e</span>, <span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#run" title="details" class="method-name">run</a>
+											([<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>&nbsp;<span class="var-name">$input</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAutoExit" title="details" class="method-name">setAutoExit</a>
+											(<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$boolean</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setCatchExceptions" title="details" class="method-name">setCatchExceptions</a>
+											(<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$boolean</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setHelperSet" title="details" class="method-name">setHelperSet</a>
+											(<span class="var-type"><a href="../../symfony/console/HelperSet.html">HelperSet</a></span>&nbsp;<span class="var-name">$helperSet</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setName" title="details" class="method-name">setName</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVersion" title="details" class="method-name">setVersion</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$aliases" id="$aliases"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$aliases</span>
+						(line <span class="line-number">50</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$application" id="$application"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$application</span>
+						(line <span class="line-number">51</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$autoExit" id="$autoExit"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$autoExit</span>
+						(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$catchExceptions" id="$catchExceptions"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$catchExceptions</span>
+						(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$commands" id="$commands"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$commands</span>
+						(line <span class="line-number">49</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$definition" id="$definition"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$definition</span>
+						(line <span class="line-number">58</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$helperSet" id="$helperSet"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$helperSet</span>
+						(line <span class="line-number">59</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$name" id="$name"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$name</span>
+						(line <span class="line-number">54</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$runningCommand" id="$runningCommand"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$runningCommand</span>
+						(line <span class="line-number">53</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$version" id="$version"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$version</span>
+						(line <span class="line-number">55</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$wantHelps" id="$wantHelps"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$wantHelps</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">52</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetAbbreviations" id="getAbbreviations"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getAbbreviations</span> (line <span class="line-number">572</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an array of possible abbreviations given a set of names.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of abbreviations</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getAbbreviations
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$names</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$names</span><span class="var-description">: An array of names</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">67</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Application</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span> = <span class="var-default">'UNKNOWN'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">'UNKNOWN'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The name of the application</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$version</span><span class="var-description">: The version of the application</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddCommand" id="addCommand"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addCommand</span> (line <span class="line-number">379</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds a command object.</p>
+<p class="description"><p>If a command with the same name already exists, it will be overridden.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The registered command</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+		<span class="method-name">
+			addCommand
+		</span>
+					(<span class="var-type"><a href="../../symfony/console/Command.html">Command</a></span>&nbsp;<span class="var-name">$command</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/Command.html">Command</a></span>
+				<span class="var-name">$command</span><span class="var-description">: A Command object</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddCommands" id="addCommands"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addCommands</span> (line <span class="line-number">362</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds an array of command objects.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addCommands
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$commands</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$commands</span><span class="var-description">: An array of commands</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodasText" id="asText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">asText</span> (line <span class="line-number">607</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a text representation of the Application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A string representing the Application</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			asText
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: An optional namespace name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodasXml" id="asXml"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">asXml</span> (line <span class="line-number">655</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an XML representation of the Application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An XML string representing the Application</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string|DOMDocument</span>
+		<span class="method-name">
+			asXml
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>], [<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$asDom</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: An optional namespace name</span>			</li>
+					<li>
+				<span class="var-type">Boolean</span>
+				<span class="var-name">$asDom</span><span class="var-description">: Whether to return a DOM or an XML string</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddoRun" id="doRun"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">doRun</span> (line <span class="line-number">152</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Runs the current application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0 if everything went fine, or an error code</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			doRun
+		</span>
+					(<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>&nbsp;<span class="var-name">$input</span>, <span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>
+				<span class="var-name">$input</span><span class="var-description">: An Input instance</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>
+				<span class="var-name">$output</span><span class="var-description">: An Output instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfindCommand" id="findCommand"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">findCommand</span> (line <span class="line-number">487</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Finds a command by name or alias.</p>
+<p class="description"><p>Contrary to getCommand, this command tries to find the best  match if you give it an abbreviation of a name or alias.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A Command instance</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+		<span class="method-name">
+			findCommand
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: A command name or a command alias</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfindNamespace" id="findNamespace"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">findNamespace</span> (line <span class="line-number">460</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Finds a registered namespace by a name or an abbreviation.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A registered namespace</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			findNamespace
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$namespace</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$namespace</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetCommand" id="getCommand"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCommand</span> (line <span class="line-number">400</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a registered command by name or alias.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A Command object</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+		<span class="method-name">
+			getCommand
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The command name or alias</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetCommands" id="getCommands"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCommands</span> (line <span class="line-number">546</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the commands (registered in the given namespace if provided).</p>
+<p class="description"><p>The array keys are the full names and the values the command instances.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of Command instances</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getCommands
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$namespace</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$namespace</span><span class="var-description">: A namespace name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetDefinition" id="getDefinition"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getDefinition</span> (line <span class="line-number">236</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the InputDefinition related to this Application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The InputDefinition instance</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/InputDefinition.html">InputDefinition</a></span>
+		<span class="method-name">
+			getDefinition
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetHelp" id="getHelp"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHelp</span> (line <span class="line-number">246</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the help message.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A help message.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getHelp
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetHelperSet" id="getHelperSet"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHelperSet</span> (line <span class="line-number">226</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the helper set associated with the command</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The HelperSet isntance associated with this command</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/HelperSet.html">HelperSet</a></span>
+		<span class="method-name">
+			getHelperSet
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetLongVersion" id="getLongVersion"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getLongVersion</span> (line <span class="line-number">333</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the long version of the application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The long application version</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getLongVersion
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getName</span> (line <span class="line-number">293</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the name of the application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The application name</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetNamespaces" id="getNamespaces"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getNamespaces</span> (line <span class="line-number">441</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an array of all unique namespaces used by currently registered commands.</p>
+<p class="description"><p>It does not returns the global namespace which always exists.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of namespaces</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getNamespaces
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetVersion" id="getVersion"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getVersion</span> (line <span class="line-number">313</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the application version.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The application version</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getVersion
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodhasCommand" id="hasCommand"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasCommand</span> (line <span class="line-number">429</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if the command exists, false otherwise</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the command exists, false otherwise</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Boolean</span>
+		<span class="method-name">
+			hasCommand
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The command name or alias</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodregister" id="register"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">register</span> (line <span class="line-number">352</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Registers a new command.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The newly created command</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/Command.html">Command</a></span>
+		<span class="method-name">
+			register
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The command name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrenderException" id="renderException"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">renderException</span> (line <span class="line-number">710</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders a catched exception.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			renderException
+		</span>
+					(<span class="var-type">Exception</span>&nbsp;<span class="var-name">$e</span>, <span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Exception</span>
+				<span class="var-name">$e</span><span class="var-description">: An exception instance</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>
+				<span class="var-name">$output</span><span class="var-description">: An OutputInterface instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrun" id="run"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">run</span> (line <span class="line-number">103</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Runs the current application.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0 if everything went fine, or an error code</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			run
+		</span>
+					([<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>&nbsp;<span class="var-name">$input</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>&nbsp;<span class="var-name">$output</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/InputInterface.html">InputInterface</a></span>
+				<span class="var-name">$input</span><span class="var-description">: An Input instance</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../symfony/console/OutputInterface.html">OutputInterface</a></span>
+				<span class="var-name">$output</span><span class="var-description">: An Output instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAutoExit" id="setAutoExit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAutoExit</span> (line <span class="line-number">283</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets whether to automatically exit after a command execution or not.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAutoExit
+		</span>
+					(<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$boolean</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Boolean</span>
+				<span class="var-name">$boolean</span><span class="var-description">: Whether to automatically exit after a command execution or not</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetCatchExceptions" id="setCatchExceptions"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCatchExceptions</span> (line <span class="line-number">273</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets whether to catch exceptions or not during commands execution.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setCatchExceptions
+		</span>
+					(<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$boolean</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Boolean</span>
+				<span class="var-name">$boolean</span><span class="var-description">: Whether to catch exceptions or not during commands execution</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetHelperSet" id="setHelperSet"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setHelperSet</span> (line <span class="line-number">216</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set a helper set to be used with the command.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setHelperSet
+		</span>
+					(<span class="var-type"><a href="../../symfony/console/HelperSet.html">HelperSet</a></span>&nbsp;<span class="var-name">$helperSet</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/HelperSet.html">HelperSet</a></span>
+				<span class="var-name">$helperSet</span><span class="var-description">: The helper set</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetName" id="setName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setName</span> (line <span class="line-number">303</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the application name.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setName
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The application name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetVersion" id="setVersion"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVersion</span> (line <span class="line-number">323</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the application version.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVersion
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$version</span><span class="var-description">: The application version</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 23 Feb 2011 18:05:50 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
