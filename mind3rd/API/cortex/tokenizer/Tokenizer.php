@@ -151,8 +151,8 @@ class Tokenizer extends Token{
 	 */
 	public static function loadModifiers($modifiersSrc= false)
 	{
-		if(self::$quantifiers) // it is already loaded
-			return true;
+		/*if(self::$quantifiers) // it is already loaded
+			return true;*/
 		if(!$modifiersSrc && !file_exists('sintatics.list'))
 		{
 			self::loadSintatics(fopen(Mind::$langPath.Mind::$currentProject['idiom'].
@@ -193,7 +193,7 @@ class Tokenizer extends Token{
 			$cont= $content;
 		else
 			$cont= &Mind::$content;
-		print_r($cont);
+		//print_r($cont);
 		// seek for data types
 		foreach(self::$dataTypes as $type=>$options)
 		{
@@ -211,7 +211,7 @@ class Tokenizer extends Token{
 		}
 		
 		Mind::$syntaxer= new Syntaxer();
-		print_r(Token::$spine);
+		//print_r(Token::$spine);
 		return Token::$spine;
 	}
 
