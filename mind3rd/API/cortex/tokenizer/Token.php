@@ -59,7 +59,6 @@ class Token
 		{
 			self::$spine[]= Token::MT_ANY;
 			self::$string.= Token::MS_ANY;
-			echo $word."<<<<<< ";
 			return;
 		}
 		if($word==',')

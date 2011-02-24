@@ -30,4 +30,5 @@
 
 	// other constants
 	define('QUANTIFIER_MAX_MAX',  'n');
-	define('QUANTIFIER_MAX_MIN',  1);
+	define('QUANTIFIER_MAX_MIN',   1);
+	define('PROPERTY_SEPARATOR',  "_");

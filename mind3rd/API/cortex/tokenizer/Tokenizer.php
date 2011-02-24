@@ -205,14 +205,25 @@ class Tokenizer extends Token{
 		}
 
 		// adding each word as its token
-		foreach($cont as $word)
+		for($i=0, $j=sizeof($cont); $i<$j; $i++)
 		{
+			$word= $cont[$i];
+			/*if(isset($cont[$i+1])
+				&&
+			   Tokenizer::isQualifier('of', $cont[$i+1])
+				&&
+			   isset($cont[$i+2]))
+			{
+				$word= $word.'_'.$cont[$i+2];
+			}else{
+					$word= strtolower($word);
+					$this->add($word);
+				 }*/
 			$word= strtolower($word);
 			$this->add($word);
 		}
 		
 		Mind::$syntaxer= new Syntaxer();
-		//print_r(Token::$spine);
 		return Token::$spine;
 	}
 

@@ -36,6 +36,31 @@ class Syntaxer {
 	}
 
 	/**
+	 * Fixes the composed substantives(defined by the use of
+	 * the "of" tokens)
+	 */
+	public function fetchComposedSubstantives()
+	{
+		// for each word
+		for($i=0, $j=sizeof(Token::$spine); $i<$j; $i++)
+		{
+			// if it is a substantive and there is another substantive
+			// two positions after, with an OF token between them
+			if( Token::$spine[$i] == Token::MT_SUBST
+				&& isset(Token::$spine[$i+1])
+				&& isset(Token::$spine[$i+2])
+				&& Token::$spine[$i+1] == Token::MT_QOF
+				&& Token::$spine[$i+2] == Token::MT_SUBST)
+			{
+				// rewrite the substantive
+				Token::$words[$i+2]= Token::$words[$i+2].
+									 PROPERTY_SEPARATOR.
+									 Token::$words[$i];
+			}
+		}
+	}
+	
+	/**
 	 * Sweeps the content to apply the rules and identify patterns
 	 * @name sweep
 	 */
@@ -53,6 +78,8 @@ class Syntaxer {
 		// reminding that the pattern was dynamicaly created before
 		$pattern= str_replace('S', VALID_SUBST_SYNTAX, $pattern);
 
+		$this->fetchComposedSubstantives();
+		
 		// finding the valid syntaxes
 		preg_match_all('/'.$pattern.'/',
 					   Token::$string,

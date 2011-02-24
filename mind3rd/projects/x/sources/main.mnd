@@ -1,4 +1,5 @@
 cada professor deve ter um ou vários alunos.
+
 sogra e sogro     tem um genro e nora.
 sogra, sogro, genro e nora tem nome:varchar(200, obrigatório), idade:int e
 sexo:char(1, {F=Feminino|M=Masculino}).
@@ -12,3 +13,8 @@ aluno tem um pai e mãe.
 aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da \"conceição\" machado")
 pai usa \pilha.
 tanto mãe quanto pai tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).
+
+professor também tem pai e mãe.
+aluno pode ter divérsos irmãos.
+Cada irmão pode ter filhos, e cada filho pode ter filho.
+A grade de cadeiras terá várias disciplinas.

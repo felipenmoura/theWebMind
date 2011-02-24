@@ -101,6 +101,9 @@ EOT
 			echo "Time: ".
 					number_format(((float)$endingTime) - ((float)$startingTime), 4).
 				 "s\n";
+			$memory= ((memory_get_usage() / 1024)/1024);
+			$memory= number_format($memory, 2);
+			echo $memory."MBs\n";
 			return $this;
 		}
 
