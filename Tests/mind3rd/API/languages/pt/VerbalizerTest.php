@@ -46,7 +46,7 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(pt\Verbalizer::isVerb('apresentar'));
 	}
 	public function testIsVerb5() {
-		$this->assertTrue(pt\Verbalizer::isVerb('coloco'));
+		$this->assertTrue(pt\Verbalizer::isVerb('sobrescreve'));
 	}
 	public function testIsVerb6() {
 		$this->assertTrue(pt\Verbalizer::isVerb('lemos'));

@@ -4,7 +4,6 @@
  * it to its canonical form.
  * It extends the Inflect class, from the selected language
  *
- * @package cortex.analyst
  * @author felipe
  */
 class Canonic{

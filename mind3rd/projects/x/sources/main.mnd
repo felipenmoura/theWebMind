@@ -1,10 +1,11 @@
-cada professor deve ter um ou muitos alunos.
-
+//cada professor deve ter um ou muitos alunos.
+sogra e sogro     tem um genro e nora.
+sogra e sogro tem nome:varchar(200, obrigatório).
 //	professor tem aluno
 //aluno tem foto:arquivo(xx)
-
-
 /*
+
+
 //cada mãe pode ter um ou vários alunos.
 aluno tem pai, mãe, avós e papagaio.
 //aluno tem pai, mãe.

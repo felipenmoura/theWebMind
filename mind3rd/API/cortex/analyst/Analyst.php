@@ -3,28 +3,13 @@
  * This class is responsable to the analisys of the system
  * preparing the relations and apply the first rules
  *
- * foreach token
- * if isSubst & MindProp.isProperty
- * 	if !prop
- * 		if !evidencedEntity
- * 			setEvidencedEntity
- * 		else
- * 			MindEntity.addRelation
- * 	else
- * 		if !mindProp.isValid
- * 			echo ERROR
- * 		if !mindProp.isKnown
- * 			MindDarwin.addToDoubts
- * 			return
- * 		MindEntity.addProp
- * 		return
- *
  * @author felipe
  */
 class Analyst {
 
-	public static $entities= Array();
+	public static $entities	= Array();
 	public static $relations= Array();
+	public static $focused	= Array();
 
 	/**
 	 * Gets the whole interpreted context, with all the
@@ -81,6 +66,58 @@ class Analyst {
 		self::$relations= Array();
 	}
 
+	public static function addToFocus(MindEntity &$entity)
+	{
+		self::$focused[]= $entity;
+	}
+	
+	public static function addRelationToFocused(MindEntity &$rel, $linkType,
+									            $linkVerb, $min, $max)
+	{
+		// for each focused entity
+		foreach(self::$focused as $focus)
+		{
+			/*
+			 * we will use this relationName as index on an
+			 * indexed array to speed up the search for
+			 * relations in the future
+			 */
+			$relationName= $focus->name."_".$rel->name;
+
+			// let's create the relation itself
+			$curRelation= new MindRelation($relationName);
+
+			$curRelation->setLinkType($linkType)
+						->setMin($min)
+						->setMax($max)
+						->setUsedVerb($linkVerb)
+						->setEntities(
+								self::$entities[$focus->name],
+								self::$entities[$rel->name]);
+			// now, both entities will POINT to the same relation
+			$focus->addRef($curRelation);
+			$rel->addRef($curRelation);
+
+			// and let's use the relation name as index, as said before
+			self::$relations[$relationName]= $curRelation;
+		}
+	}
+	
+	public static function addPropertyToFocused(MindProperty &$prop)
+	{
+		// for each focused entity
+		foreach(self::$focused as $focus)
+			$focus->addProperty($prop);
+	}
+	
+	public static function getFocusedNames()
+	{
+		$focused= Array();
+		foreach(self::$focused as $focus)
+			$focused[]= $focus->name;
+		return $focused;
+	}
+	
 	/**
 	 * This method receives each expression and analizes
 	 * the best way to act and to store the understood
@@ -97,14 +134,15 @@ class Analyst {
 		// and follow the thoughts
 
 		// setting up
+		self::$focused= Array();
 		$tmpProperties= Array();
-		$i= 0;
-		$focus= null;
-		$linkVerb= null;
-		$min= null;
-		$max= null;
-		$linkType= 'action';
-		$relation= false;
+		$i            = 0;
+		$linkVerb     = null;
+		$min          = null;
+		$max          = null;
+		$linkType     = 'action';
+		$relation     = false;
+		$posVerb      = false;
 
 		// foreach token
 		foreach($structureKeys as $token)
@@ -115,6 +153,7 @@ class Analyst {
 			if($token==Tokenizer::MT_VERB)
 			{
 				$linkVerb= $word;
+				$posVerb= true;
 				continue;
 			}
 
@@ -160,9 +199,9 @@ class Analyst {
 
 					// each instruction *should* have one focused entity
 					// we will use the first entity on each expression as focus
-					if(!$focus)
+					if(!$posVerb)
 					{
-						$focus= &self::$entities[$word];
+						self::addToFocus(self::$entities[$word]);
 					}else{
 							$relation= true;
 							// if min or max quantifier have not been set
@@ -175,33 +214,14 @@ class Analyst {
 							 * here, if it is an entity and the focused
 							 * entity has already been selected, it means
 							 * it is the second entity on the instruction, so,
-							 * it is a relation between entities(or should be)
+							 * it is a relation between entities
 							 */
-							$rel= &self::$entities[$word];
-
-							/*
-							 * we will use this relationName as index on an
-							 * indexed array to speed up the search for
-							 * relations in the future
-							 */
-							$relationName= $focus->name."_".$rel->name;
-
-							// let's create the relation itself
-							$curRelation= new MindRelation($relationName);
-
-							$curRelation->setLinkType($linkType)
-										->setMin($min)
-										->setMax($max)
-										->setUsedVerb($linkVerb)
-										->setEntities(
-												self::$entities[$focus->name],
-												self::$entities[$rel->name]);
-							// now, both entities will POINT to the same relation
-							$focus->addRef($curRelation);
-							$rel->addRef($curRelation);
-
-							// and let's use the relation name as index, as said before
-							self::$relations[$relationName]= $curRelation;
+							
+							self::addRelationToFocused(self::$entities[$word],
+									                   $linkType,
+									                   $linkVerb,
+									                   $min,
+									                   $max);
 						 }
 				}else{
 					// ok, after that, this is just easy, now :)
@@ -214,19 +234,22 @@ class Analyst {
 		// adding the properties to the focused entity
 		// we're doing it now, because according to the selected idiom
 		// the sequence of focused entity and properties may vary
-		if(sizeof($tmpProperties)>0 && $focus)
+		if(sizeof($tmpProperties)>0 && $posVerb)
 		{
 			foreach($tmpProperties as $prop)
-				$focus->addProperty($prop);
+				self::addPropertyToFocused($prop);
 		}
 		
+		// if there was a relation, we will return some details about it
 		if($relation)
 			return Array('min'=>$min,
 						 'max'=>$max,
 						 'linkVerb'=>$linkVerb,
 						 'linkType'=>$linkType,
-						 'focus'=>$focus->name,
-						 'rel'=>$rel->name);
+						 'focus'=>implode(', ', self::getFocusedNames()),
+						 'rel'=>self::$entities[$word]->name);
+		// otherwise, we return the focused entities
+		return self::$focused;
 	}
 
 	public static function sweep($matches)

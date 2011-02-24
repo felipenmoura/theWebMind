@@ -193,7 +193,7 @@ class Tokenizer extends Token{
 			$cont= $content;
 		else
 			$cont= &Mind::$content;
-		//print_r($cont);
+		
 		// seek for data types
 		foreach(self::$dataTypes as $type=>$options)
 		{
@@ -204,6 +204,7 @@ class Tokenizer extends Token{
 			);
 		}
 
+		// adding each word as its token
 		foreach($cont as $word)
 		{
 			$word= strtolower($word);

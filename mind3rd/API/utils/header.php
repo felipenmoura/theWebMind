@@ -59,6 +59,9 @@
 			return true;
 		}
 
+		// cortex has a special treatment
+		
+		
 		echo " [ERROR] Class not found: ".$what."\n";
 		return false;
 	}

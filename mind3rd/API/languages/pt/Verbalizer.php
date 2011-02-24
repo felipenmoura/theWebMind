@@ -71,7 +71,8 @@ class Verbalizer {
 		'dará'								=> 'dar',
 		'darão'								=> 'dar',
 		'terem'								=> 'ter',
-		'terão'								=> 'ter'
+		'terão'								=> 'ter',
+		'amigo'								=> 'amigo'
 	);
 
 	/**

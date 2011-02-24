@@ -4,11 +4,6 @@
 	 * rules and patterns. Thanks for Edgar F. Codd for all he
 	 * created and wondered for the Relational Model
 	 *
-	 * firs: 
-	 *
-	 * foreach entity
-	 *	
-	 *
 	 * @author felipe
 	 */
 	class Normalizer {

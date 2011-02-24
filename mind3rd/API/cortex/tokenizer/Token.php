@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * The Token itself
+ * @author felipe
+ */
 class Token
 {
 	// Tokens to be used
@@ -54,6 +59,7 @@ class Token
 		{
 			self::$spine[]= Token::MT_ANY;
 			self::$string.= Token::MS_ANY;
+			echo $word."<<<<<< ";
 			return;
 		}
 		if($word==',')
