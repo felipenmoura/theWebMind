@@ -1,17 +1,14 @@
-//cada professor deve ter um ou muitos alunos.
+cada professor deve ter um ou vários alunos.
 sogra e sogro     tem um genro e nora.
-sogra e sogro tem nome:varchar(200, obrigatório).
-//	professor tem aluno
-//aluno tem foto:arquivo(xx)
-/*
+sogra, sogro, genro e nora tem nome:varchar(200, obrigatório), idade:int e
+sexo:char(1, {F=Feminino|M=Masculino}).
+
+aluno tem foto:arquivo(xx)
 
 
-//cada mãe pode ter um ou vários alunos.
-aluno tem pai, mãe, avós e papagaio.
-//aluno tem pai, mãe.
-//aluno tem tio, tia.
-aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da \"conceição\" machado", "hffd")
-pai tem \pilha.
-mãe tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).
-pai tem nome:varchar, idade:int e sexo:char(), cpf:int(obrigatório).
-*/
+cada mãe pode ter muitos alunos.
+aluno tem um pai e mãe.
+
+aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da \"conceição\" machado")
+pai usa \pilha.
+tanto mãe quanto pai tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).

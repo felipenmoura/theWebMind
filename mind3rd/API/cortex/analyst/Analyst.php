@@ -31,7 +31,7 @@ class Analyst {
 	public static function printWhatYouGet($detailed=true)
 	{
 		$props= 0;
-		echo "Entities: ".sizeof(self::$entities)."\n";
+		echo "ENTITIES: ".sizeof(self::$entities)."\n";
 		foreach(self::$entities as $entity)
 		{
 			if($detailed)
@@ -39,9 +39,10 @@ class Analyst {
 			foreach($entity->properties as $prop)
 			{
 				$props++;
-				echo "      ".$prop->name."\n";
+				echo "        ".$prop->name."\n";
 			}
 		}
+		echo "RELATIONS:\n";
 		foreach(self::$relations as $k=>$rel)
 		{
 			echo "      ".
@@ -52,6 +53,9 @@ class Analyst {
 		echo "Relations: ".sizeof(self::$relations)."\n";
 	}
 
+	/**
+	 * Applies normalization rules to the currently analized structure
+	 */
 	public static function normalizeIt()
 	{
 		Normalizer::normalize();
@@ -66,11 +70,25 @@ class Analyst {
 		self::$relations= Array();
 	}
 
+	/**
+	 * Adds an entity to the focused entities list
+	 * @param MindEntity $entity 
+	 */
 	public static function addToFocus(MindEntity &$entity)
 	{
 		self::$focused[]= $entity;
 	}
 	
+	/**
+	 * Adds a relation between all the focused entities specified in the
+	 * current expression and the passed $rel entity
+	 * 
+	 * @param MindEntity $rel
+	 * @param String $linkType
+	 * @param String $linkVerb
+	 * @param Mixed $min
+	 * @param Mixed $max 
+	 */
 	public static function addRelationToFocused(MindEntity &$rel, $linkType,
 									            $linkVerb, $min, $max)
 	{
@@ -103,6 +121,11 @@ class Analyst {
 		}
 	}
 	
+	/**
+	 * Adds the passed property to all the focused entities.
+	 * 
+	 * @param MindProperty $prop 
+	 */
 	public static function addPropertyToFocused(MindProperty &$prop)
 	{
 		// for each focused entity
@@ -110,6 +133,11 @@ class Analyst {
 			$focus->addProperty($prop);
 	}
 	
+	/**
+	 * Gets an Array of the names of all the focused entities on
+	 * the current expression.
+	 * @return Array
+	 */
 	public static function getFocusedNames()
 	{
 		$focused= Array();
@@ -252,6 +280,10 @@ class Analyst {
 		return self::$focused;
 	}
 
+	/**
+	 * Sweeps through all the matched expressions
+	 * @param Array $matches 
+	 */
 	public static function sweep($matches)
 	{
 		// let's clear the Analyst memory as it uses static properties

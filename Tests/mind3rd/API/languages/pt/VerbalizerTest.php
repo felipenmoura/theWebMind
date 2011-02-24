@@ -170,9 +170,6 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('poder', pt\Verbalizer::toInfinitive('pode'));
 	}
 
-	public function testLoadVerbs() {
-	}
-
 }
 
 ?>
