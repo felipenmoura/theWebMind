@@ -16,11 +16,8 @@ class Canonic{
 	public static function canonize($word)
 	{
 		$inflec= Mind::$currentProject['idiom']."\Inflect";
-		if(!$inflec::isSingular($word)) /* TODO: fix it*/
+		if(!$inflec::isSingular($word))
 			$word= $inflec::toSingular($word);
-		/*if(self::isFemale($word))			// demands more tests
-		// apparently, female substantives are brought to a wrong male form
-			$word= self::toMale($word);*/
 		return $word;
 	}
 
@@ -33,10 +30,6 @@ class Canonic{
 	{
 		$content= Mind::$content;
 		$newContent= Array();
-
-		// PAREI AQUI
-			//print_r(Mind::$content);
-			//echo "\ncanonic--------------------------\n";
 
 		Mind::$tokenizer= new Tokenizer();
 		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';

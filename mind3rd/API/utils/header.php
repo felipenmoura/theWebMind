@@ -11,15 +11,16 @@
 
 	Mind::autoloadRegisterPath(Array(
 			_MINDSRC_.'/mind3rd/API/external/',
-			_MINDSRC_.'/mind3rd/API/cortex/Lexer/',
 			_MINDSRC_.'/mind3rd/API/interfaces/',
 			_MINDSRC_.'/mind3rd/API/programs/',
 			_MINDSRC_.'/mind3rd/API/L10N/',
 			_MINDSRC_.'/mind3rd/API/classes/',
+			_MINDSRC_.'/mind3rd/API/cortex/Lexer/',
 			_MINDSRC_.'/mind3rd/API/cortex/tokenizer/',
 			_MINDSRC_.'/mind3rd/API/cortex/canonic/',
 			_MINDSRC_.'/mind3rd/API/cortex/syntaxer/',
 			_MINDSRC_.'/mind3rd/API/cortex/analyst/',
+			_MINDSRC_.'/mind3rd/API/cortex/Darwin/',
 			_MINDSRC_.'/mind3rd/API/languages/'
 		));
 

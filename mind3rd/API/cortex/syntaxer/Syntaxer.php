@@ -41,6 +41,21 @@ class Syntaxer {
 	 */
 	public function fetchComposedSubstantives()
 	{
+		echo Token::$string."\n";
+		while(preg_match('/SCS/', Token::$string, $matches, PREG_OFFSET_CAPTURE))
+		{
+			$matches= $matches[0];
+			array_splice(Token::$spine, $matches[1], 3, Token::MT_SUBST);
+			array_splice(Token::$words, $matches[1], 3,
+						 Token::$words[$matches[1]].
+						 '_'.
+						 Token::$words[$matches[1]+2]);
+			Token::$string= preg_replace('/SCS/', 'S', Token::$string, 1);
+		}
+		return true;
+		$words = Array();
+		$spine = Array();
+		$string= '';
 		// for each word
 		for($i=0, $j=sizeof(Token::$spine); $i<$j; $i++)
 		{
@@ -53,11 +68,22 @@ class Syntaxer {
 				&& Token::$spine[$i+2] == Token::MT_SUBST)
 			{
 				// rewrite the substantive
-				Token::$words[$i+2]= Token::$words[$i+2].
-									 PROPERTY_SEPARATOR.
-									 Token::$words[$i];
-			}
+				$words[]= Token::$words[$i].
+						  PROPERTY_SEPARATOR.
+						  Token::$words[$i+2];
+				$spine[]= Token::$spine[$i];
+				$string.= Token::$string[$i];
+				
+				//$i= $i+2;
+			}else{
+					$words[]= Token::$words[$i];
+					$spine[]= Token::$spine[$i];
+					$string.= Token::$string[$i];
+				 }
 		}
+		Token::$words = $words;
+		Token::$string= $string;
+		Token::$spine = $spine;
 	}
 	
 	/**

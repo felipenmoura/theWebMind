@@ -106,13 +106,13 @@
 			{
 				//TODO: Darwin::add($this->type);
 				Darwin::addDoubt($this->type, 'dataType');
-				echo "UNKNOWN TYPE...for a while";
+				echo "UNKNOWN TYPE ".$this->type."...for a while";
 				return false;
 			}else
 				$type= $tmpType;
 
 			// identifying the name
-			$this->name= substr($str, 0, $typeStart-1);
+			$this->name= Mind::$lexer->fixWordChars(substr($str, 0, $typeStart-1));
 
 			// identifying details
 			if(preg_match(PROP_DETAILS, $str, $details))
@@ -163,7 +163,9 @@
 				
 				// checking if it is unique
 				if(self::isUnique($details))
+				{
 					$this->unique= true;
+				}
 			}
 			return true;
 		}
