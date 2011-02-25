@@ -96,7 +96,7 @@ class Lexer
 	 */
 	public function fixWordChars($word)
 	{
-		$word= preg_replace('/\\\/', '', strtolower($word));
+		$word= preg_replace('/\\\|\,|\./', '', strtolower($word));
 
 		$word= $this->str_split_utf8($word);
 		$str= "";

@@ -269,13 +269,13 @@ class Analyst {
 		}
 		
 		// if there was a relation, we will return some details about it
-		if($relation)
-			return Array('min'=>$min,
-						 'max'=>$max,
-						 'linkVerb'=>$linkVerb,
-						 'linkType'=>$linkType,
-						 'focus'=>implode(', ', self::getFocusedNames()),
-						 'rel'=>self::$entities[$word]->name);
+		if($relation && isset(self::$entities[$word]))
+			return Array('min'		=>$min,
+						 'max'		=>$max,
+						 'linkVerb'	=>$linkVerb,
+						 'linkType'	=>$linkType,
+						 'focus'	=>implode(', ', self::getFocusedNames()),
+						 'rel'		=>self::$entities[$word]->name);
 		// otherwise, we return the focused entities
 		return self::$focused;
 	}
