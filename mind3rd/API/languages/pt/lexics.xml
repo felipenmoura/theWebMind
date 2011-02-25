@@ -15,7 +15,7 @@
 		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;|{}[]</symbols>
 	</validchars>
 	<replacements>
-		<from>áéíóúÁÉÍÓÚÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ</from>
-		<to  >aeiouAEIOUAaAaeEiIoOuUaAoOeEuUcC</to>
+		<from>áéíóúÁÉÍÓÚÀàÂâêÊîÎôÔûÛãÃõÕẽẼüÜçÇ-</from>
+		<to  >aeiouAEIOUAaAaeEiIoOuUaAoOeEuUcC_</to>
 	</replacements>
 </root>

@@ -1,4 +1,5 @@
-cada professor deve ter um ou vários alunos.
+comandante da tropa-militar tem armamentos.
+/*cada professor deve ter um ou vários alunos.
 
 sogra e sogro     tem um genro e nora.
 sogra, sogro, genro e nora tem nome:varchar(200, obrigatório), idade:int e
@@ -17,4 +18,4 @@ tanto mãe quanto pai tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=M
 professor também tem pai e mãe.
 aluno pode ter divérsos irmãos.
 Cada irmão pode ter filhos, e cada filho pode ter filho.
-A grade de cadeiras terá várias disciplinas.
+A grade de cadeiras terá várias disciplinas.*/

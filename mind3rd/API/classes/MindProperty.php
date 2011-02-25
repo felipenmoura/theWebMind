@@ -16,6 +16,7 @@
 		public $refTo= false;
 		public $refBy= Array();
 		public $key= false;
+		public $unique= false;
 
 		/**
 		 * Checks if the string sent indicates that it is about a property
@@ -52,6 +53,19 @@
 		public static function isRequired($expression)
 		{
 			$rx= "/".implode('|', Tokenizer::$qualifiers['notnull'])."/i";
+			return (preg_match($rx, $expression))? true: false;
+		}
+		
+		/**
+		 * Verifies on the passed string if it indicates that the current
+		 * property definition should be unique or not
+		 *
+		 * @param String $expression
+		 * @return boolean
+		 */
+		public static function isUnique($expression)
+		{
+			$rx= "/".implode('|', Tokenizer::$qualifiers['unique'])."/i";
 			return (preg_match($rx, $expression))? true: false;
 		}
 
@@ -146,6 +160,10 @@
 					}
 					$this->options= $options;
 				}
+				
+				// checking if it is unique
+				if(self::isUnique($details))
+					$this->unique= true;
 			}
 			return true;
 		}

@@ -15,7 +15,7 @@
 		<symbols>\/!@#$%*()_-+=,.'":>&amp;&lt;|{}[]</symbols>
 	</validchars>
 	<replacements>
-		<from></from>
-		<to  ></to>
+		<from>-</from>
+		<to  >_</to>
 	</replacements>
 </root>
