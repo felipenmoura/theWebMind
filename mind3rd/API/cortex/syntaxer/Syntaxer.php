@@ -41,7 +41,6 @@ class Syntaxer {
 	 */
 	public function fetchComposedSubstantives()
 	{
-		echo Token::$string."\n";
 		while(preg_match('/SCS/', Token::$string, $matches, PREG_OFFSET_CAPTURE))
 		{
 			$matches= $matches[0];
@@ -53,37 +52,6 @@ class Syntaxer {
 			Token::$string= preg_replace('/SCS/', 'S', Token::$string, 1);
 		}
 		return true;
-		$words = Array();
-		$spine = Array();
-		$string= '';
-		// for each word
-		for($i=0, $j=sizeof(Token::$spine); $i<$j; $i++)
-		{
-			// if it is a substantive and there is another substantive
-			// two positions after, with an OF token between them
-			if( Token::$spine[$i] == Token::MT_SUBST
-				&& isset(Token::$spine[$i+1])
-				&& isset(Token::$spine[$i+2])
-				&& Token::$spine[$i+1] == Token::MT_QOF
-				&& Token::$spine[$i+2] == Token::MT_SUBST)
-			{
-				// rewrite the substantive
-				$words[]= Token::$words[$i].
-						  PROPERTY_SEPARATOR.
-						  Token::$words[$i+2];
-				$spine[]= Token::$spine[$i];
-				$string.= Token::$string[$i];
-				
-				//$i= $i+2;
-			}else{
-					$words[]= Token::$words[$i];
-					$spine[]= Token::$spine[$i];
-					$string.= Token::$string[$i];
-				 }
-		}
-		Token::$words = $words;
-		Token::$string= $string;
-		Token::$spine = $spine;
 	}
 	
 	/**
