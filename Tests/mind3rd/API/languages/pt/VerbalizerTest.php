@@ -30,6 +30,11 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	/* NOTE: we wont be testing any first person verb flection
+	 * because such rules are commented on the main class as
+	 * mind3rd wont treat such sentences
+	 */
+	
 	public function testIsVerb() {
 		$this->assertTrue(pt\Verbalizer::isVerb('correr'));
 	}
@@ -49,37 +54,37 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(pt\Verbalizer::isVerb('sobrescreve'));
 	}
 	public function testIsVerb6() {
-		$this->assertTrue(pt\Verbalizer::isVerb('lemos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('lerão'));
 	}
 	public function testIsVerb7() {
-		$this->assertTrue(pt\Verbalizer::isVerb('correremos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('correm'));
 	}
 	public function testIsVerb8() {
 		$this->assertTrue(pt\Verbalizer::isVerb('ministrarão'));
 	}
 	public function testIsVerb9() {
-		$this->assertTrue(pt\Verbalizer::isVerb('tomamos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('tomarão'));
 	}
 	public function testIsVerb10() {
-		$this->assertTrue(pt\Verbalizer::isVerb('comemos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('comerá'));
 	}
 	public function testIsVerb11() {
-		$this->assertTrue(pt\Verbalizer::isVerb('beberemos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('bebe'));
 	}
 	public function testIsVerb12() {
-		$this->assertTrue(pt\Verbalizer::isVerb('tomo'));
-	}
-	public function testIsVerb13() {
-		$this->assertTrue(pt\Verbalizer::isVerb('como'));
-	}
-	public function testIsVerb14() {
 		$this->assertTrue(pt\Verbalizer::isVerb('toma'));
 	}
+	public function testIsVerb13() {
+		$this->assertTrue(pt\Verbalizer::isVerb('come'));
+	}
+	public function testIsVerb14() {
+		$this->assertTrue(pt\Verbalizer::isVerb('tomará'));
+	}
 	public function testIsVerb15() {
-		$this->assertTrue(pt\Verbalizer::isVerb('coma'));
+		$this->assertTrue(pt\Verbalizer::isVerb('comerá'));
 	}
 	public function testIsVerb17() {
-		$this->assertTrue(pt\Verbalizer::isVerb('levantaremos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('levantar'));
 	}
 	public function testIsVerb18() {
 		$this->assertFalse(pt\Verbalizer::isVerb('abajur'));
@@ -94,22 +99,22 @@ class VerbalizerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(pt\Verbalizer::isVerb('falhar'));
 	}
 	public function testIsVerb22() {
-		$this->assertTrue(pt\Verbalizer::isVerb('falhei'));
+		$this->assertTrue(pt\Verbalizer::isVerb('falharão'));
 	}
 	public function testIsVerb23() {
-		$this->assertTrue(pt\Verbalizer::isVerb('falharei'));
+		$this->assertTrue(pt\Verbalizer::isVerb('falhar'));
 	}
 	public function testIsVerb24() {
 		$this->assertTrue(pt\Verbalizer::isVerb('falhou'));
 	}
 	public function testIsVerb25() {
-		$this->assertTrue(pt\Verbalizer::isVerb('falhamos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('comenta'));
 	}
 	public function testIsVerb26() {
-		$this->assertTrue(pt\Verbalizer::isVerb('falharei'));
+		$this->assertTrue(pt\Verbalizer::isVerb('comentará'));
 	}
 	public function testIsVerb27() {
-		$this->assertTrue(pt\Verbalizer::isVerb('falharemos'));
+		$this->assertTrue(pt\Verbalizer::isVerb('comentarão'));
 	}
 	public function testIsVerb28() {
 		$this->assertTrue(pt\Verbalizer::isVerb('correu'));

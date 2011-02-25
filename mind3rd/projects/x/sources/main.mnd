@@ -1,9 +1,10 @@
+cada professor tem muitos alunos, sendo que todo aluno tem muitos professor.// e todo aluno pode ter um ou vários professores.
+
+/*
 comandante da tropa-militar tem armamentos.
-armamento tem número de série:int(20, único).
+armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
 
-filhos da mãezinha do coração tem netos do \peito do véio:int.
-
-/*cada professor deve ter um ou vários alunos.
+cada professor deve ter um ou vários alunos.
 
 sogra e sogro     tem um genro e nora.
 sogra, sogro, genro e nora tem nome:varchar(200, obrigatório), idade:int e
@@ -22,4 +23,5 @@ tanto mãe quanto pai tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=M
 professor também tem pai e mãe.
 aluno pode ter divérsos irmãos.
 Cada irmão pode ter filhos, e cada filho pode ter filho.
-A grade de cadeiras terá várias disciplinas.*/
+A grade de cadeiras terá várias disciplinas.
+*/

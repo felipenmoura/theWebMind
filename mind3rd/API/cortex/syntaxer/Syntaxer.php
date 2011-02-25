@@ -9,7 +9,7 @@
  *  V=Verb
  *  0,N=Quantifiers
  *  O=Or
- *  C=Complement(like "of", or "de")
+ *  C=Complement/Composite(like "of", or "de")
  *  A=Addition(like "," or "and"
  *
  * @author felipe
@@ -37,11 +37,14 @@ class Syntaxer {
 
 	/**
 	 * Fixes the composed substantives(defined by the use of
-	 * the "of" tokens)
+	 * the "of" tokens defined into the qualifiers.xml of the current idiom)
 	 */
 	public function fetchComposedSubstantives()
 	{
-		while(preg_match('/SCS/', Token::$string, $matches, PREG_OFFSET_CAPTURE))
+		while(preg_match(COMPOSED_SUBST,
+						 Token::$string,
+						 $matches,
+						 PREG_OFFSET_CAPTURE))
 		{
 			$matches= $matches[0];
 			array_splice(Token::$spine, $matches[1], 3, Token::MT_SUBST);
@@ -49,9 +52,8 @@ class Syntaxer {
 						 Token::$words[$matches[1]].
 						 '_'.
 						 Token::$words[$matches[1]+2]);
-			Token::$string= preg_replace('/SCS/', 'S', Token::$string, 1);
+			Token::$string= preg_replace(COMPOSED_SUBST, 'S', Token::$string, 1);
 		}
-		return true;
 	}
 	
 	/**
@@ -84,7 +86,6 @@ class Syntaxer {
 		$matches= $matches[0];
 
 		Analyst::sweep($matches);
-
-		return $this;
+		return $matches;
 	}
 }

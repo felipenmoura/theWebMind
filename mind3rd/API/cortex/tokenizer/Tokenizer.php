@@ -80,7 +80,8 @@ class Tokenizer extends Token{
 		self::$qualifiers['of']     = self::parseByComa($xml->of);
 		self::$qualifiers['be']     = self::parseByComa($xml->be);
 		self::$qualifiers['coma']   = self::parseByComa($xml->coma);
-		self::$qualifiers['unique']   = self::parseByComa($xml->unique);
+		self::$qualifiers['unique'] = self::parseByComa($xml->unique);
+		self::$qualifiers['brake']  = self::parseByComa($xml->brake);
 		return self::$qualifiers;
 	}
 

@@ -18,6 +18,7 @@
 	define('NEW_LINE',            "/\n/");
 	define('EXEC_STRING',         "exec:"); // equal(=) is also acceptable
 	define('VALID_SUBST_SYNTAX',  "S((( )?\,( )?S)?)+");
+	define('COMPOSED_SUBST',      "/SCS/");
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');

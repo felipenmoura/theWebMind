@@ -177,7 +177,5 @@ class AnalystPtTest extends PHPUnit_Framework_TestCase {
 								  'rel'=>'student',
 								  'focus'=>'teacher'));
 	}
-
 }
 
-?>

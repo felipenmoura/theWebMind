@@ -11,8 +11,19 @@
 		public static $tmpEntities= Array();
 		public static $tmpRelations= Array();
 
-		public static function normalize()
+		public static function fixOneByOneRel()
 		{
 			
+		}
+		
+		public static function fixNByNRel()
+		{
+			
+		}
+		
+		public static function normalize()
+		{
+			self::fixOneByOneRel();
+			self::fixNByNRel();
 		}
 	}
