@@ -65,9 +65,15 @@
 				}elseif($rel->min== 0 && $rel->opposite->min == 0)
 				{
 					// for 0:1 / 0:1 relations
-					//isItWorthMergin
+					if(Analyst::isItWorthMergin(self::$predicate))
+					{
+						self::mergeEntities(self::$focus, self::$predicate, $rel);
+					}else{
+							// TODO: fix entities in 1:1
+						 }
 				}else{
 						// for 0:1 / 1:1 relations
+						// TODO: fix entities in 1:1
 					 }
 			}while($rel= next(self::$oneByOne));
 		}

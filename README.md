@@ -19,6 +19,8 @@ Great! Now you're good to go
 
 * * *
 
+Examples and tests:
+-------------
 To perform some examples and tests, access in your browser
 the IDE demo
 	http://[yourMindDir]/docs/ide

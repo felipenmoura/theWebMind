@@ -18,6 +18,12 @@
 		public  $opposite		= null;
 		public  $treated		= false; //to be used by Normalizer
 
+		/**
+		 * Renames a relation, replacing it into the Analyst relations list
+		 * 
+		 * @param string $newName
+		 * @return MindRelation 
+		 */
 		public function rename($newName)
 		{
 			Analyst::$relations[$newName]= Analyst::$relations[$this->name];
@@ -26,11 +32,24 @@
 			return $this;
 		}
 		
+		/**
+		 * Specifies the relative entity
+		 * 
+		 * @param MindEntity $rel
+		 * @return MindRelation 
+		 */
 		public function setRel(MindEntity &$rel)
 		{
 			$this->rel= &$rel;
 			return $this;
 		}
+		
+		/**
+		 * Specifies the focused entity
+		 * 
+		 * @param MindEntity $focus
+		 * @return MindRelation 
+		 */
 		public function setFocus(MindEntity &$focus)
 		{
 			$this->focus= &$focus;
