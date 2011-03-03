@@ -11,6 +11,10 @@ class Analyst {
 	public static $relations= Array();
 	public static $focused	= Array();
 
+	/**
+	 * Removes an entity from the entities list
+	 * @param type $entity 
+	 */
 	public static function removeEntity(&$entity)
 	{
 		self::$entities[$entity]= false;

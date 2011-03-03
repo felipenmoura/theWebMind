@@ -47,9 +47,6 @@ abstract class Normal {
 		Analyst::unsetRelation($relation->opposite);
 		Analyst::unsetRelation($relation);
 		Normalizer::redirectRelations($rel, $focus);
-		//Analyst::removeEntity($rel->name);
-		//Analyst::unsetRelation($relation->opposite);
-		//Analyst::unsetRelation($relation);
 		return $focus;
 	}
 	

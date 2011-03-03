@@ -24,16 +24,17 @@
 			{
 				if(!$rel)
 					continue;
-				echo $rel->name." - from: ".$from->name." - focus: ".$rel->focus->name.' - rel: '.$rel->rel->name."\n";
 				if($rel->focus->name == $from->name)
 				{
-					echo "foco igual ao from";
 					$rel->setFocus($to);
-					$rel->rename($rel->focus->name.PROPERTY_SEPARATOR.$rel->rel->name);
+					$rel->rename($rel->rel->name.
+								 PROPERTY_SEPARATOR.
+								 $rel->focus->name);
 				}else{
-						echo "rel igual ao from";
 						$rel->setRel($to);
-						$rel->rename($rel->rel->name.PROPERTY_SEPARATOR.$rel->focus->name);
+						$rel->rename($rel->focus->name.
+									 PROPERTY_SEPARATOR.
+									 $rel->rel->name);
 					 }
 			}
 		}
@@ -51,20 +52,18 @@
 				
 				// defining the focus
 				self::setByRelevance($rel->focus, $rel->rel);
-				//$predicate= &Analyst::$relations[$focus[1]->name]; // less relevant
-				//$focus	  = &Analyst::$relations[$focus[0]->name]; // more relevant
 				
 				// let's check the minimun quantifiers
-				//echo $focus->name.'---'.$predicate->name;
 				if($rel->min== 1 && $rel->opposite->min == 1)
-				{ // for 1:1 / 1:1 relations
+				{
+					// for 1:1 / 1:1 relations
 					self::mergeEntities(self::$focus, self::$predicate, $rel);
-					//Analyst::unsetRelation($rel->opposite);
 				}elseif($rel->min== 0 && $rel->opposite->min == 0)
-				{ // for 0:1 / 0:1 relations
+				{
+					// for 0:1 / 0:1 relations
 					
 				}else{
-						
+						// for 0:1 / 1:1 relations
 					 }
 			}while($rel= next(self::$oneByOne));
 		}

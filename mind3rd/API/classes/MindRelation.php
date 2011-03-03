@@ -18,6 +18,14 @@
 		public  $opposite		= null;
 		public  $treated		= false; //to be used by Normalizer
 
+		public function rename($newName)
+		{
+			Analyst::$relations[$newName]= Analyst::$relations[$this->name];
+			Analyst::$relations[$this->name]= false;
+			$this->name= (string)$newName;
+			return $this;
+		}
+		
 		public function setRel(MindEntity &$rel)
 		{
 			$this->rel= $rel;
