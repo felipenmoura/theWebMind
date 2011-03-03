@@ -47,6 +47,7 @@ abstract class Normal {
 		Analyst::unsetRelation($relation->opposite);
 		Analyst::unsetRelation($relation);
 		Normalizer::redirectRelations($rel, $focus);
+		Analyst::removeEntity($rel->name);
 		return $focus;
 	}
 	
@@ -94,15 +95,9 @@ abstract class Normal {
 			else
 				$en2Rlv++;
 		if($en1Rlv > $en2Rlv)
-		{
-			self::$focus= $en1;
-			self::$predicate= $en2;
-		}
+			return Array($en1, $en2);
 		else
-		{
-			self::$focus= $en2;
-			self::$predicate= $en1;
-		}
+			return Array($en2, $en1);
 	}
 	
 	/**

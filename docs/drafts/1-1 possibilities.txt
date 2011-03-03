@@ -10,7 +10,6 @@
 			retorna a pontuação adiquirida
 	
 	vale a pena mesclar?()
-			se o minimo de ambas for 1, 3pts
 			pega demais pontuações(menos relevante)
 			vale a pena se tiver atingido 3 pontos
 

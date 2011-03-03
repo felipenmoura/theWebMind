@@ -12,10 +12,27 @@ class Analyst {
 	public static $focused	= Array();
 
 	/**
+	 * Returns true if the entity is worth mergin with another, or not.
+	 * It takes the relevance as parameter to determine wheter the entity
+	 * should be merged(stop existing) or not.
+	 * 
+	 * @global Mind $_MIND
+	 * @param MindEntity $en
+	 * @return boolean
+	 */
+	public static function isItWorthMergin(MindEntity $en)
+	{
+		GLOBAL $_MIND;
+		if(Normalizer::relevanceAmount($en) < $_MIND->conf['merging_amount_pts'])
+			return true;
+		return false;
+	}
+	
+	/**
 	 * Removes an entity from the entities list
 	 * @param type $entity 
 	 */
-	public static function removeEntity(&$entity)
+	public static function removeEntity($entity)
 	{
 		self::$entities[$entity]= false;
 		self::$entities= array_filter(self::$entities);
@@ -66,10 +83,10 @@ class Analyst {
 	{
 		$props= 0;
 		echo "ENTITIES: ".sizeof(self::$entities)."\n";
-		foreach(self::$entities as $entity)
+		foreach(self::$entities as $k=>$entity)
 		{
 			if($detailed)
-				echo "   (".$entity->relevance.")".$entity->name."\n";
+				echo "   (".$entity->relevance.")".$entity->name.'-'.$k."\n";
 			foreach($entity->properties as $prop)
 			{
 				$props++;

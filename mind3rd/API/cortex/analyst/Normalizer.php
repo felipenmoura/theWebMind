@@ -39,20 +39,24 @@
 			}
 		}
 		
+		/**
+		 * Fixes the 1:1 relationsm normalizing it
+		 */
 		public static function fixOneByOneRel()
 		{
 			if(sizeof(self::$oneByOne) == 0)
-				return;
+				return true;
 			reset(self::$oneByOne);
 			$rel= next(self::$oneByOne);
 			do
 			{
 				$rel= &Analyst::$relations[$rel->name];
-				//next(self::$oneByOne);
 				
 				// defining the focus
-				self::setByRelevance($rel->focus, $rel->rel);
-				
+				$entities= self::setByRelevance($rel->focus, $rel->rel);
+				self::$focus= $entities[0];
+				self::$predicate= $entities[1];
+						
 				// let's check the minimun quantifiers
 				if($rel->min== 1 && $rel->opposite->min == 1)
 				{
@@ -61,7 +65,7 @@
 				}elseif($rel->min== 0 && $rel->opposite->min == 0)
 				{
 					// for 0:1 / 0:1 relations
-					
+					//isItWorthMergin
 				}else{
 						// for 0:1 / 1:1 relations
 					 }

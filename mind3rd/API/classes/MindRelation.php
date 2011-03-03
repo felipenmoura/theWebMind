@@ -28,12 +28,12 @@
 		
 		public function setRel(MindEntity &$rel)
 		{
-			$this->rel= $rel;
+			$this->rel= &$rel;
 			return $this;
 		}
 		public function setFocus(MindEntity &$focus)
 		{
-			$this->focus= $focus;
+			$this->focus= &$focus;
 			return $this;
 		}
 		
