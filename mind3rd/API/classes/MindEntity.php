@@ -7,10 +7,10 @@
 	 */
 	class MindEntity {
 
-		public $name;
-		public $relevance= 0;
-		public $properties= Array();
-		public $relations= Array();
+		public  $name;
+		public  $relevance= 0;
+		public  $properties= Array();
+		public  $relations= Array();
 		private $refTo= Array();
 		private $refBy= Array();
 
@@ -47,6 +47,17 @@
 			$this->refTo[$ref->name]= &$ref;
 			return $this;
 		}
+		
+		/**
+		 * Removes a reference TO
+		 * @param type $refName
+		 * @return MindEntity 
+		 */
+		public function removeRefTo($refName)
+		{
+			unset($this->refTo[$refName]);
+			return $this;
+		}
 
 		/**
 		 * Specifies that another entity is pointing to this one
@@ -58,6 +69,17 @@
 			$this->refBy[$ref->name]= &$ref;
 			return $this;
 		}
+		
+		/**
+		 * Removes a reference BY
+		 * @param type $refName 
+		 * @return MindEntity
+		 */
+		public function removeRefBy($refName)
+		{
+			unset($this->refBy[$refName]);
+			return $this;
+		}
 
 		/**
 		 * Adds a reference to the current entity
@@ -67,12 +89,11 @@
 		 */
 		public function addRef(MindRelation &$rel)
 		{
-			$this->relations[]= &$rel;
+			$this->relations[$rel->name]= &$rel;
 			if($rel->focus->name == $this->name)
 			{
 				if($rel->max == QUANTIFIER_MAX_MAX)
 				{
-					//echo $rel->max;
 					$this->relevance++;
 					$this->addRefBy($rel->rel);
 				}else

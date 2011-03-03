@@ -11,6 +11,36 @@ class Analyst {
 	public static $relations= Array();
 	public static $focused	= Array();
 
+	public static function removeEntity(&$entity)
+	{
+		self::$entities[$entity]= false;
+		self::$entities= array_filter(self::$entities);
+		unset($entity);
+	}
+	
+	/**
+	 * Removes a relation between two entities, but it will NOT remove
+	 * the refBy or refTo properties of each entity.
+	 * It is most often, useful to be used for relations that may have
+	 * been represented twice, as the same idea.
+	 * It also decreases the relevance of the focused entity.
+	 * 
+	 * @param MindRelation $rel 
+	 */
+	public static function unsetRelation(MindRelation &$rel)
+	{
+		if($rel->focus)
+		{
+			$rel->focus->relations[$rel->name]= false;
+			$rel->focus->relevance--;
+		}
+		if($rel->rel)
+			$rel->rel->relations[$rel->name]= false;
+		self::$relations[$rel->name]= false;
+		$rel= false;
+		unset($rel);
+	}
+	
 	/**
 	 * Gets the whole interpreted context, with all the
 	 * analysed information
@@ -45,8 +75,12 @@ class Analyst {
 		echo "RELATIONS:\n";
 		foreach(self::$relations as $k=>$rel)
 		{
+			if(!$rel)
+				continue;
 			echo "      ".
-				 $k.': '.$rel->focus->name.' -> '.$rel->rel->name.
+				 $k.': '.
+				 $rel->rel->name.' -> '.
+				 $rel->focus->name.
 				 "\n";
 		}
 		echo "Properties: ".$props."\n";
@@ -59,6 +93,8 @@ class Analyst {
 	public static function normalizeIt()
 	{
 		Normalizer::normalize();
+		self::$relations= array_filter(self::$relations);
+		self::$entities= array_filter(self::$entities);
 	}
 
 	/**

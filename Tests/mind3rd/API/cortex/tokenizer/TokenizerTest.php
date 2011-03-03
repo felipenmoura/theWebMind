@@ -46,7 +46,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase {
 	public function testSweep1() {
 		$this->setIdiom('pt');
 		$ar= Array('cada','professor','dever', 'ter', 'um','ou','muitos','aluno','.');
-		$exp= Array(2, 2, 64, 1, 8, 16, 32, 2, -2);
+		$exp= Array(-4, 2, 64, 1, 8, 16, 32, 2, -2);
 		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
 	public function testSweep2() {
@@ -70,14 +70,14 @@ class TokenizerTest extends PHPUnit_Framework_TestCase {
 	public function testSweep5() {
 		$this->setIdiom('pt');
 		$ar= Array('cada','professor','dever', 'ter', 'muitos','aluno','.');
-		$exp= Array(2, 2, 64, 1, 32, 2, -2);
+		$exp= Array(-4, 2, 64, 1, 32, 2, -2);
 		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
 	
 	// here are the tests in english
 	public function testSweep6() {
 		$ar= Array('each','teacher','must', 'have', 'one','or','many','student','.');
-		$exp= Array(2, 2, 64, 1, 8, 16, 32, 2, -2);
+		$exp= Array(-4, 2, 64, 1, 8, 16, 32, 2, -2);
 		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
 	public function testSweep7() {
@@ -97,7 +97,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase {
 	}
 	public function testSweep10() {
 		$ar= Array('each','teacher','may', 'have', 'one','or','many','student','.');
-		$exp= Array(2, 2, Token::MT_QMAY, 1, 8, 16, 32, 2, -2);
+		$exp= Array(-4, 2, Token::MT_QMAY, 1, 8, 16, 32, 2, -2);
 		$this->assertEquals($this->object->sweep($ar), $exp);
 	}
 }

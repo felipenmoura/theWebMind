@@ -1,6 +1,27 @@
-cada professor tem muitos alunos e todo aluno pode ter um ou vários professores.
+pessoa tem 1 ou um registro e cada registro tem 1 ou uma pessoa.
+pessoa pode ter vários clientes, mentores e fornecedores.
+registro tem muitos endereços.
+
+pessoa tem nome:varchar(260), idade:int e sexo:char(1), sendo que registro terá
+código do cadastro:int e descrição:varchar(600).
 
 /*
+armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
+sogra e sogro     tem um genro e nora.
+
+professores tem muitos alunos.
+
+radio tem \pilha.
+
+sendo que cada registro tem uma pessoa.
+pessoa pode ter um registro.
+
+pessoa tem nome:varchar(256), idade:int e sexo:char().
+Registro tem número do registro:varchar(20) e código:int.
+
+//cada professor tem muitos alunos e todo aluno pode ter um ou vários professores.
+
+
 comandante da tropa-militar tem armamentos.
 armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
 

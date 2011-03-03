@@ -8,7 +8,7 @@
 -->
 <root>
 	<none>nada,nenhum,zero,0,nenhuma</none>
-	<one>um,uma,1,algum,alguma</one>
+	<one>um,uma,1,algum,alguma,único,única,unico,unica</one>
 	<many>uns,alguns,umas,algumas,muito,muita,muitos,vários,muitas,várias,diversos,diversas,n,m,x</many>
 	<or>ou,até,/</or>
 </root>

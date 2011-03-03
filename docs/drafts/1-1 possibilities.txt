@@ -1,0 +1,36 @@
+{
+	define a mais e a menos relevantes()
+			ter maior relevancia, 3pt
+			pega demais pontuações(entidade)
+
+	pega demais pontuações(entidade)
+			se a entidade tiver poucos campos, 1pt
+			se a entidade tiver apenas campos pequenos, 1pt
+			se a menos da metade dos campos da entidade for not null, 1pt
+			retorna a pontuação adiquirida
+	
+	vale a pena mesclar?()
+			se o minimo de ambas for 1, 3pts
+			pega demais pontuações(menos relevante)
+			vale a pena se tiver atingido 3 pontos
+
+	corrige entidades()
+			exclui relação entre menos relevante e mais relevante
+			adiciona chave da mais relevante na menos relevante como fk E pk para que sejam unicas
+
+	mescla entidades()
+			coloca todas as propriedades da entidade mais fraca, na mais forte
+			altera todas as relações entre a tabela mais fraca e demais tabelas, para que apontem para a mais forte
+}
+
+define a mais e a menos relevantes()
+
+se for 1:1 / 1:1
+	mescla entidades()
+se 0:1 / 0:1
+	se vale a pena mesclar
+		mescla entidades()
+	senao
+		corrige entidades()
+Se 0:1 / 1:1
+	corrige entidades()

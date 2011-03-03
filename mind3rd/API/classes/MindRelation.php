@@ -15,7 +15,20 @@
 		private $verb			= '';
 		private $focus			= null;
 		private $rel			= null;
+		public  $opposite		= null;
+		public  $treated		= false; //to be used by Normalizer
 
+		public function setRel(MindEntity &$rel)
+		{
+			$this->rel= $rel;
+			return $this;
+		}
+		public function setFocus(MindEntity &$focus)
+		{
+			$this->focus= $focus;
+			return $this;
+		}
+		
 		/**
 		 * Return properties from the current relation
 		 * These properties were set to private due to set limitations
