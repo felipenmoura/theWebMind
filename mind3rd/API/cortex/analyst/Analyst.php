@@ -20,7 +20,7 @@ class Analyst {
 	 * @param MindEntity $en
 	 * @return boolean
 	 */
-	public static function isItWorthMergin(MindEntity $en)
+	public static function isItWorthMerging(MindEntity $en)
 	{
 		GLOBAL $_MIND;
 		if(Normalizer::relevanceAmount($en) < $_MIND->conf['merging_amount_pts'])
@@ -86,7 +86,7 @@ class Analyst {
 		foreach(self::$entities as $k=>$entity)
 		{
 			if($detailed)
-				echo "   (".$entity->relevance.")".$entity->name.'-'.$k."\n";
+				echo "   (".$entity->relevance.")".$entity->name."\n";
 			foreach($entity->properties as $prop)
 			{
 				$props++;

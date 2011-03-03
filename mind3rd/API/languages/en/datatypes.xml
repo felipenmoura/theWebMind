@@ -11,6 +11,7 @@
 -->
 <root>
 	<varchar>string,characters,chars,varchar,description,desc,obs,observation</varchar>
+	<text>text,desc,description,obs,observation</text>
 	<char>char,character,c,letter,digit</char>
 	<int>int,integer,number</int>
 	<float>float,real,double,money,percentage,perc,precision</float>

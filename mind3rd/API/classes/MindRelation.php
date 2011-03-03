@@ -16,6 +16,7 @@
 		private $focus			= null;
 		private $rel			= null;
 		public  $opposite		= null;
+		public  $uniqueRef		= false;
 		public  $treated		= false; //to be used by Normalizer
 
 		/**

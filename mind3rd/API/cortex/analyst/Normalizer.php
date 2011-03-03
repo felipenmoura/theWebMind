@@ -40,7 +40,7 @@
 		}
 		
 		/**
-		 * Fixes the 1:1 relationsm normalizing it
+		 * Fixes the 1:1 relations, normalizing them
 		 */
 		public static function fixOneByOneRel()
 		{
@@ -65,15 +65,17 @@
 				}elseif($rel->min== 0 && $rel->opposite->min == 0)
 				{
 					// for 0:1 / 0:1 relations
-					if(Analyst::isItWorthMergin(self::$predicate))
-					{
+					if(Analyst::isItWorthMerging(self::$predicate))
 						self::mergeEntities(self::$focus, self::$predicate, $rel);
-					}else{
-							// TODO: fix entities in 1:1
-						 }
+					else
+						self::fixOneByOneRelation(self::$focus,
+												  self::$predicate,
+												  $rel);
 				}else{
 						// for 0:1 / 1:1 relations
-						// TODO: fix entities in 1:1
+						self::fixOneByOneRelation(self::$focus,
+												  self::$predicate,
+												  $rel);
 					 }
 			}while($rel= next(self::$oneByOne));
 		}

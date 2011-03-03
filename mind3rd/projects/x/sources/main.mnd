@@ -1,9 +1,9 @@
-pessoa tem 1 ou um registro e cada registro tem 1 ou uma pessoa.
+pessoa tem nenhum ou um registro e cada registro tem nenhuma ou uma pessoa.
 pessoa pode ter vários clientes, mentores e fornecedores.
 registro tem muitos endereços.
 
 pessoa tem nome:varchar(260), idade:int e sexo:char(1), sendo que registro terá
-código do cadastro:int e descrição:varchar(600).
+código do cadastro:int, observação:text, descrição:varchar(600).
 
 /*
 armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().

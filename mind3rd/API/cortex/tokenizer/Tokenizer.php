@@ -93,6 +93,7 @@ class Tokenizer extends Token{
 	public static function loadTypes($xml)
 	{
 		self::$dataTypes['varchar']  = self::parseByComa($xml->varchar);
+		self::$dataTypes['text']	 = self::parseByComa($xml->text);
 		self::$dataTypes['char']     = self::parseByComa($xml->char);
 		self::$dataTypes['int']      = self::parseByComa($xml->int);
 		self::$dataTypes['float']    = self::parseByComa($xml->float);

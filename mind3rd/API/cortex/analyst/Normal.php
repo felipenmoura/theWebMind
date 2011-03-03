@@ -51,6 +51,18 @@ abstract class Normal {
 		return $focus;
 	}
 	
+	public static function fixOneByOneRelation(MindEntity &$focus,
+											   MindEntity &$rel,
+											   MindRelation &$relation)
+	{
+		/*
+		 * excluir a relação entre a mais forte e a mais fraca
+		 * marcar a fk como pk
+		 */
+		//Analyst::unsetRelation(Analyst::$relations[$focus->rel.PROPERTY_SEPARATOR.$focus->name]);
+		//Analyst::$relations[$rel->name.PROPERTY_SEPARATOR.$focus->name]->uniqueRef= true;
+	}
+	
 	/**
 	 * Gets the pontuation amount for the relevance an entity may have.
 	 * It takes many directrizes to define how relevant an entity is.
