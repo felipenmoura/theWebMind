@@ -126,7 +126,6 @@
 		public static function setUpKeys()
 		{
 			GLOBAL $_MIND;
-			
 			foreach(Analyst::$entities as &$entity)
 			{
 				$pkPrefix= $_MIND->defaults['pk_prefix'];
@@ -176,14 +175,29 @@
 			}
 		}
 		
+		public static function reset()
+		{
+			self::$oneByOne = false;
+			self::$oneByOne = Array();
+			self::$nByN     = false;
+			self::$nByN     = Array();
+			self::$oneByN   = false;
+			self::$oneByN   = Array();
+			self::$focus    = false;
+			self::$focus    = Array();
+			self::$predicate= false;
+			self::$predicate= Array();
+		}
+		
 		/**
 		 * Normalizes the known structure
 		 */
 		public static function normalize()
 		{
+			self::reset();
 			self::separateByRelationQuantifiers(); // ok
 			self::fixOneByOneRel(); // ok
 			self::fixNByNRel(); // ok
-			self::setUpKeys();
+			self::setUpKeys(); // ok
 		}
 	}

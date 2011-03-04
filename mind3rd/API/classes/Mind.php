@@ -173,7 +173,7 @@
 			$this->about= parse_ini_file($path.ABOUT_INI);
 			$this->defaults= parse_ini_file($path.DEFAULTS_INI);
 			$this->conf= parse_ini_file($path.MIND_CONF);
-			include($path.L10N_DIR.$this->defaults['default_human_language'].'.php');
+			require_once($path.L10N_DIR.$this->defaults['default_human_language'].'.php');
 			Mind::$curLang= $this->defaults['default_human_languageName'];
 			Mind::$l10n= new $this->defaults['default_human_language']();
 			Mind::$langPath= $path.LANG_PATH;
