@@ -6,18 +6,125 @@
 	 */
 	class MindProperty {
 
-		public $definition= "";
-		public $name= false;
-		public $type= "text";
-		public $size= 0;
-		public $options= Array();
-		public $default= null;
-		public $required= false;
-		public $refTo= false;
-		public $refBy= Array();
-		public $key= false;
-		public $unique= false;
+		public  $definition= "";
+		private $name      = false;
+		private $type      = "text";
+		private $size      = 0;
+		private $options   = Array();
+		private $default   = null;
+		private $unique    = false;
+		private $required  = false;
+		public  $refTo     = false;
+		public  $refBy     = Array();
+		public  $key       = false;
 
+		/**
+		 * Return all the properties
+		 * @param string $what
+		 * @return mixed
+		 */
+		public function __get($what)
+		{
+			if(isset($this->$what))
+				return $this->$what;
+			return false;
+		}
+		
+		/**
+		 * Set name
+		 * @param string $val
+		 * @return MindProperty 
+		 */
+		public function setName($val)
+		{
+			$this->name= (string)$val;
+			return $this;
+		}
+		
+		/**
+		 * Set size
+		 * @param int/float $val
+		 * @return MindProperty 
+		 */
+		public function setSize($val)
+		{
+			$this->size= $val;
+			return $this;
+		}
+		
+		/**
+		 * Set Options
+		 * @param Array $val
+		 * @return MindProperty 
+		 */
+		public function setOptions($val)
+		{
+			$this->options= $val;
+			return $this;
+		}
+		
+		/**
+		 * Set type
+		 * @param string $val
+		 * @return MindProperty 
+		 */
+		public function setType($val)
+		{
+			$this->type= (string)$val;
+			$tmpType= self::isKnown($this->type);
+			if(!$tmpType)
+			{
+				//TODO: Darwin::add($this->type);
+				Darwin::addDoubt($this->type, 'dataType');
+				echo "UNKNOWN TYPE ".$this->type."...for a while";
+				return false;
+			}
+			return $this;
+		}
+		
+		/**
+		 * Set Default value
+		 * @param string $val
+		 * @return MindProperty 
+		 */
+		public function setDefault($val)
+		{
+			$this->default= (string)$val;
+			return $this;
+		}
+		
+		/**
+		 * Set as unique or not
+		 * @param boolean $val
+		 * @return MindProperty 
+		 */
+		public function setUnique($val)
+		{
+			$this->unique= $val? true: false;
+			return $this;
+		}
+		
+		/**
+		 * Set wheter the property is required(not null) or not
+		 * @param boolean $val
+		 * @return MindProperty 
+		 */
+		public function setRequired($val)
+		{
+			$this->required= $val? true: false;
+			return $this;
+		}
+		
+		/**
+		 * Set the property as a key
+		 * @return MindProperty 
+		 */
+		public function setAsKey()
+		{
+			$this->key= true;
+			return $this;
+		}
+		
 		/**
 		 * Checks if the string sent indicates that it is about a property
 		 * @param String $definition
@@ -100,19 +207,10 @@
 			$typeEnd= strpos($str, '(');
 			$typeEnd= $typeEnd? $typeEnd- $typeStart: strLen($str);
 			$type= substr($str, $typeStart, $typeEnd);
-			$this->type= $type;
-			$tmpType= self::isKnown($this->type);
-			if(!$tmpType)
-			{
-				//TODO: Darwin::add($this->type);
-				Darwin::addDoubt($this->type, 'dataType');
-				echo "UNKNOWN TYPE ".$this->type."...for a while";
-				return false;
-			}else
-				$type= $tmpType;
+			$this->setType($type);
 
 			// identifying the name
-			$this->name= Mind::$lexer->fixWordChars(substr($str, 0, $typeStart-1));
+			$this->setName(Mind::$lexer->fixWordChars(substr($str, 0, $typeStart-1)));
 
 			// identifying details
 			if(preg_match(PROP_DETAILS, $str, $details))
@@ -131,20 +229,20 @@
 						$default= preg_replace(PROP_DEFEXEC, "", $default);
 					}
 					
-					$this->default= $default;
+					$this->setDefault($default);
 				}
 
 				// identifying if it is required
 				if(self::isRequired($details))
-					$this->required= true;
+					$this->setRequired(true);
 
 				// identifying if it is a forced key
 				if(self::isKey($details))
-					$this->key= true;
+					$this->setAsKey();
 
 				// identifying its size
 				if(preg_match(PROP_SIZE, $details, $size))
-					$this->size= $size[0];
+					$this->setSize($size[0]);
 
 				// identifying the options
 				if(preg_match(PROP_OPTIONS, $details, $options))
@@ -158,13 +256,13 @@
 					{
 						$opt= explode('=', $opt, 2);
 					}
-					$this->options= $options;
+					$this->setOptions($options);
 				}
 				
 				// checking if it is unique
 				if(self::isUnique($details))
 				{
-					$this->unique= true;
+					$this->setUnique(true);
 				}
 			}
 			return true;
@@ -177,10 +275,12 @@
 		 *
 		 * @param String $definition
 		 */
-		public function MindProperty($definition)
+		public function MindProperty($definition=false)
 		{
-			$this->definition= $definition;
-			$this->parse();
-			//echo json_encode($this)."\n";
+			if($definition)
+			{
+				$this->definition= $definition;
+				$this->parse();
+			}
 		}
 	}

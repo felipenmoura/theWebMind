@@ -34,8 +34,9 @@ class Analyst {
 	 */
 	public static function removeEntity($entity)
 	{
-		self::$entities[$entity]= false;
-		self::$entities= array_filter(self::$entities);
+		unset(self::$entities[$entity]);
+		//self::$entities[$entity]= false;
+		//self::$entities= array_filter(self::$entities);
 		unset($entity);
 	}
 	
@@ -57,9 +58,7 @@ class Analyst {
 		}
 		if($rel->rel)
 			$rel->rel->relations[$rel->name]= false;
-		self::$relations[$rel->name]= false;
-		$rel= false;
-		unset($rel);
+		unset(self::$relations[$rel->name]);
 	}
 	
 	/**
@@ -114,6 +113,7 @@ class Analyst {
 	public static function normalizeIt()
 	{
 		Normalizer::normalize();
+		echo "passei por aqui!\n";
 		self::$relations= array_filter(self::$relations);
 		self::$entities= array_filter(self::$entities);
 	}
@@ -123,10 +123,19 @@ class Analyst {
 	 */
 	public static function reset()
 	{
-		self::$entities= Array();
+		self::$entities = false;
+		self::$relations= false;
+		self::$entities = Array();
 		self::$relations= Array();
+		self::clearFocused();
 	}
 
+	public static function clearFocused()
+	{
+		self::$focused  = false;
+		self::$focused  = Array();
+	}
+	
 	/**
 	 * Adds an entity to the focused entities list
 	 * @param MindEntity $entity 
@@ -144,7 +153,8 @@ class Analyst {
 	 * @param String $linkType
 	 * @param String $linkVerb
 	 * @param Mixed $min
-	 * @param Mixed $max 
+	 * @param Mixed $max
+	 * @return MindRelation
 	 */
 	public static function addRelationToFocused(MindEntity &$rel, $linkType,
 									            $linkVerb, $min, $max)
@@ -176,6 +186,7 @@ class Analyst {
 			// and let's use the relation name as index, as said before
 			self::$relations[$relationName]= $curRelation;
 		}
+		return $curRelation;
 	}
 	
 	/**
@@ -219,7 +230,7 @@ class Analyst {
 		// and follow the thoughts
 
 		// setting up
-		self::$focused= Array();
+		self::clearFocused();
 		$tmpProperties= Array();
 		$i            = 0;
 		$linkVerb     = null;
@@ -358,6 +369,7 @@ class Analyst {
 			// Analyst will store it on its own static structure
 			Analyst::analize($expression, $struct, $tokens);
 		}
+		self::clearFocused();
 		self::normalizeIt();
 	}
 }

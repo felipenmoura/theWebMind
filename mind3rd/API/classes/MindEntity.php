@@ -14,6 +14,11 @@
 		private $refTo= Array();
 		private $refBy= Array();
 
+		public function &getRefTo()
+		{
+			return $this->refTo;
+		}
+		
 		/**
 		 * Verifies if the definition describes an entity or not
 		 *
@@ -28,15 +33,30 @@
 		/**
 		 * Adds a property to the current entity
 		 *
+		 * @global $_MIND
 		 * @param MindProperty $property
 		 * @return MindEntity
 		 */
 		public function addProperty(MindProperty $property)
 		{
+			GLOBAL $_MIND;
+			if($property->key && $_MIND->defaults['add_pk_prefix_to_all_keys'])
+				$property->setName($_MIND->defaults['pk_prefix'].$property->name);
 			$this->properties[$property->name]= $property;
 			return $this;
 		}
 
+		/**
+		 * Verifies if the current entity has a specified property
+		 * 
+		 * @param string $propName
+		 * @return boolean
+		 */
+		public function hasProperty($propName)
+		{
+			return isset($this->properties[$propName]);
+		}
+		
 		/**
 		 * Defines another entity pointed/refered by this entity
 		 * @param MindEntity $ref

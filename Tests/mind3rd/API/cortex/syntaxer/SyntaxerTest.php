@@ -11,7 +11,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @var Syntaxer
 	 */
-	protected $object;
+	public $object;
 
 	/**
 	 * Sets up the fixture, for example, opens a network connection.
@@ -37,12 +37,15 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 		Tokenizer::loadModifiers(dirname(__FILE__) . '/../../../../../mind3rd/API/languages/'.$idiom.'/');
 		Mind::$tokenizer= new Tokenizer;
 		Mind::$lexer= new Lexer;
-		$this->object = new Syntaxer;
+		$this->object = new Syntaxer();
 	}
 	
 	public function testSweepWords1() {
+		$this->setIdiom();
 		Mind::$tokenizer->sweep(Array('child', 'of', 'heart', 'has', 'parent', 'of', 'family'));
+		
 		$this->object->sweep();
+		
 		$this->assertEquals(Tokenizer::$words,
 						   Array(
 								'child_heart',

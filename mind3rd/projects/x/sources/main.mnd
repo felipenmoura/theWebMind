@@ -1,10 +1,15 @@
-pessoa tem nenhum ou um registro e cada registro tem nenhuma ou uma pessoa.
+// relacionamentos n/n
+aluno tem vários professores e cada professor pode ter vários alunos.
+tanto aluno quanto professor tem nome:varchar e idade:int.
+
+/* // relacionamentos 1/1
+pessoa tem um ou um registro e cada registro tem um ou uma pessoa.
 pessoa pode ter vários clientes, mentores e fornecedores.
 registro tem muitos endereços.
 
 pessoa tem nome:varchar(260), idade:int e sexo:char(1), sendo que registro terá
 código do cadastro:int, observação:text, descrição:varchar(600).
-
+*/
 /*
 armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
 sogra e sogro     tem um genro e nora.

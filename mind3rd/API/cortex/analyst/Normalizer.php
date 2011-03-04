@@ -80,15 +80,94 @@
 			}while($rel= next(self::$oneByOne));
 		}
 		
+		/**
+		 * Fixes all the n:n relations
+		 */
 		public static function fixNByNRel()
 		{
-			
+			foreach(self::$nByN as &$rel)
+			{
+				// first of all, we will need a link table
+				$relName= $rel->focus->name.
+						  PROPERTY_SEPARATOR.
+						  $rel->rel->name;
+				$relOtherName=  $rel->rel->name.
+								PROPERTY_SEPARATOR.
+								$rel->focus->name;
+						
+				if(isset(Analyst::$entities[$relName]))
+					$linkTable= &Analyst::$entities[$relName];
+				elseif(isset(Analyst::$entities[$relOtherName]))
+						$linkTable= &Analyst::$entities[$relOtherName];
+					else
+					{
+						$linkTable= new MindEntity($relName);
+						Analyst::$entities[$linkTable->name]= $linkTable;
+					}
+				$linkEntity= &Analyst::$entities[$linkTable->name];
+				
+				$rel	 = &Analyst::$relations[$relName];
+				$otherRel= &Analyst::$relations[$relName];
+				
+				// then, let's relate it to both the entities
+				Analyst::addToFocus($rel->focus);
+				$relation= Analyst::addRelationToFocused( $linkEntity,
+														  $rel->linkType,
+														  $rel->linkVerb,
+														  0,
+														  'n');
+				$relation->uniqueRef= true;
+				// and in the end, we remove the old n/n relation
+				Analyst::unsetRelation($rel);
+				Analyst::clearFocused();
+			}
 		}
 		
+		public static function setUpKeys()
+		{
+			GLOBAL $_MIND;
+			// todo: botar as pks depois
+			foreach(Analyst::$entities as &$entity)
+			{
+				$propName= $_MIND->defaults['pk_prefix'].$entity->name;
+				if(!$entity->hasProperty($propName))
+				{
+					$pk= new MindProperty();
+					$pk ->setAsKey()
+					    ->setName($propName)
+					    ->setDefault(AUTOINCREMENT_DEFVAL)
+						->setRequired(true)
+						->setType('int');
+					$entity->addProperty($pk, true);
+				}else{
+					$entity->properties[$propName]->setAsKey();
+				}
+				
+				foreach($entity->relations as &$rel)
+				{
+					if(!$rel) continue;
+					if($rel->rel->name == $entity->name)
+					{
+						$propName= $_MIND->defaults['fk_prefix'].$rel->focus->name;
+						$fk= new MindProperty();
+						$fk ->setName($propName)
+							->setDefault(AUTOINCREMENT_DEFVAL)
+							->setRequired(true)
+							->setType('int');
+						$entity->addProperty($fk);
+					}
+				}
+			}
+		}
+		
+		/**
+		 * Normalizes the known structure
+		 */
 		public static function normalize()
 		{
 			self::separateByRelationQuantifiers(); // ok
-			self::fixOneByOneRel();
-			self::fixNByNRel();
+			self::fixOneByOneRel(); // ok
+			self::fixNByNRel(); // ok
+			self::setUpKeys();
 		}
 	}

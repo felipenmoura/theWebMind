@@ -25,7 +25,7 @@ abstract class Normal {
 		{
 			foreach($rel->properties as $prop)
 			{
-				$prop->name= $rel->name.PROPERTY_SEPARATOR.$prop->name;
+				$prop->setName($rel->name.PROPERTY_SEPARATOR.$prop->name);
 			}
 		}
 		$focus->properties= array_merge($focus->properties, $rel->properties);
