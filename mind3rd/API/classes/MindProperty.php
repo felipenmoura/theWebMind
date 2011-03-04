@@ -18,6 +18,11 @@
 		public  $refBy     = Array();
 		public  $key       = false;
 
+		public function setRefTo(MindEntity $entity)
+		{
+			$this->refTo= $entity;
+		}
+		
 		/**
 		 * Return all the properties
 		 * @param string $what

@@ -8,6 +8,7 @@
 	class MindEntity {
 
 		public  $name;
+		public  $pks= Array();
 		public  $relevance= 0;
 		public  $properties= Array();
 		public  $relations= Array();
@@ -40,9 +41,11 @@
 		public function addProperty(MindProperty $property)
 		{
 			GLOBAL $_MIND;
-			if($property->key && $_MIND->defaults['add_pk_prefix_to_all_keys'])
-				$property->setName($_MIND->defaults['pk_prefix'].$property->name);
+			//if($property->key && $_MIND->defaults['add_pk_prefix_to_all_keys'])
+			//	$property->setName($_MIND->defaults['pk_prefix'].$property->name);
 			$this->properties[$property->name]= $property;
+			if($property->key)
+				$this->pks[$property->name]= $property;
 			return $this;
 		}
 

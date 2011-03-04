@@ -126,36 +126,52 @@
 		public static function setUpKeys()
 		{
 			GLOBAL $_MIND;
-			// todo: botar as pks depois
+			
 			foreach(Analyst::$entities as &$entity)
 			{
-				$propName= $_MIND->defaults['pk_prefix'].$entity->name;
-				if(!$entity->hasProperty($propName))
-				{
-					$pk= new MindProperty();
-					$pk ->setAsKey()
-					    ->setName($propName)
-					    ->setDefault(AUTOINCREMENT_DEFVAL)
-						->setRequired(true)
-						->setType('int');
-					$entity->addProperty($pk, true);
-				}else{
-					$entity->properties[$propName]->setAsKey();
-				}
+				$pkPrefix= $_MIND->defaults['pk_prefix'];
+				$fkPrefix= $_MIND->defaults['fk_prefix'];
 				
+				// checking for foreign keys, first
 				foreach($entity->relations as &$rel)
 				{
 					if(!$rel) continue;
 					if($rel->rel->name == $entity->name)
 					{
-						$propName= $_MIND->defaults['fk_prefix'].$rel->focus->name;
-						$fk= new MindProperty();
-						$fk ->setName($propName)
+						$propName= $fkPrefix.$rel->focus->name;
+						if(!$entity->hasProperty($propName))
+						{
+							$fk= new MindProperty();
+							$fk ->setName($propName)
+								->setDefault(AUTOINCREMENT_DEFVAL)
+								->setRequired(true)
+								->setAsKey()
+								->setType('int')
+								->setRefTo($rel->focus);
+							$entity->addProperty($fk);
+						}else{
+								$entity ->properties[$propName]
+										->setRefTo($rel->focus);
+							 }
+					}
+				}
+				
+				// now we'll see the primary keys
+				if(sizeof($entity->properties) != sizeof($entity->pks))
+				{
+					$propName= $pkPrefix.$entity->name;
+					if(!$entity->hasProperty($propName))
+					{
+						$pk= new MindProperty();
+						$pk ->setAsKey()
+							->setName($propName)
 							->setDefault(AUTOINCREMENT_DEFVAL)
 							->setRequired(true)
 							->setType('int');
-						$entity->addProperty($fk);
-					}
+						$entity->addProperty($pk, true);
+					}else{
+							$entity->properties[$propName]->setAsKey();
+						 }
 				}
 			}
 		}

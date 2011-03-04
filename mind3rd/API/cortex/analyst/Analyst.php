@@ -113,7 +113,6 @@ class Analyst {
 	public static function normalizeIt()
 	{
 		Normalizer::normalize();
-		echo "passei por aqui!\n";
 		self::$relations= array_filter(self::$relations);
 		self::$entities= array_filter(self::$entities);
 	}
