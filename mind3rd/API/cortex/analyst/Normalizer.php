@@ -47,11 +47,16 @@
 			if(sizeof(self::$oneByOne) == 0)
 				return true;
 			reset(self::$oneByOne);
-			$rel= next(self::$oneByOne);
-			do
+			$rel= current(self::$oneByOne);
+			//do
+			//{
+			foreach(self::$oneByOne as &$rel)
 			{
 				$rel= &Analyst::$relations[$rel->name];
 				
+				if(is_null($rel) || is_null($rel->focus) || is_null($rel->rel))
+					continue;
+				echo $rel->name.' - '.$rel->focus->name.' - '.$rel->rel->name."\n";
 				// defining the focus
 				$entities= self::setByRelevance($rel->focus, $rel->rel);
 				self::$focus= $entities[0];
@@ -63,21 +68,24 @@
 					// for 1:1 / 1:1 relations
 					self::mergeEntities(self::$focus, self::$predicate, $rel);
 				}elseif($rel->min== 0 && $rel->opposite->min == 0)
-				{
-					// for 0:1 / 0:1 relations
-					if(Analyst::isItWorthMerging(self::$predicate))
-						self::mergeEntities(self::$focus, self::$predicate, $rel);
-					else
-						self::fixOneByOneRelation(self::$focus,
-												  self::$predicate,
-												  $rel);
-				}else{
-						// for 0:1 / 1:1 relations
-						self::fixOneByOneRelation(self::$focus,
-												  self::$predicate,
-												  $rel);
-					 }
-			}while($rel= next(self::$oneByOne));
+					{
+						// for 0:1 / 0:1 relations
+						if(Analyst::isItWorthMerging(self::$predicate))
+						{
+							self::mergeEntities(self::$focus, self::$predicate, $rel);
+						}else{
+								self::fixOneByOneRelation(self::$focus,
+														  self::$predicate,
+														  $rel);
+							 }
+					}else{
+							// for 0:1 / 1:1 relations
+							self::fixOneByOneRelation(self::$focus,
+													  self::$predicate,
+													  $rel);
+						 }
+			//}while($rel= next(self::$oneByOne));
+			}
 		}
 		
 		/**

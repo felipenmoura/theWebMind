@@ -1,53 +1,51 @@
-// relacionamentos n/n
-aluno tem vários professores e cada professor pode ter vários alunos.
-tanto aluno quanto professor tem nome:varchar e idade:int.
 
-/* // relacionamentos 1/1
-pessoa tem um ou um registro e cada registro tem um ou uma pessoa.
-pessoa pode ter vários clientes, mentores e fornecedores.
-registro tem muitos endereços.
+A universidade tem muitos alunos. Aluno tem nome:varchar, matrícula:int,
+cpf:int e identidade:int, endereço:varchar,
+telefone:int, data de nascimento:date, sexo:char, graduação:int.
+Cada aluno pode estar matriculado em vários cursos sendo que cada curso pode ter muitos alunos matriculados.
+Aluno também tem as disciplinas em que está matriculado, lembrando que cada disciplina terá diversos alunos inscritos.
 
-pessoa tem nome:varchar(260), idade:int e sexo:char(1), sendo que registro terá
-código do cadastro:int, observação:text, descrição:varchar(600).
-*/
+registro tem uma id.
+id tem um registro.
+id tem codigo:int e nro:int.
+registro tem data:date e descrição:text.
+
+registro2 tem uma id2.
+id2 tem um registro2.
+id2 tem codigo2:int e nro2:int.
+registro2 tem data2:date e descrição2:text.
+
+registro3 tem um ou uma id3.
+id3 tem nenhum ou um registro3.
+id3 tem codigo3:int e nro3:int.
+registro3 tem data3:date e descrição3:char(100).
+
+
 /*
-armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
-sogra e sogro     tem um genro e nora.
-
-professores tem muitos alunos.
-
-radio tem \pilha.
-
-sendo que cada registro tem uma pessoa.
-pessoa pode ter um registro.
-
-pessoa tem nome:varchar(256), idade:int e sexo:char().
-Registro tem número do registro:varchar(20) e código:int.
-
-//cada professor tem muitos alunos e todo aluno pode ter um ou vários professores.
-
-
-comandante da tropa-militar tem armamentos.
-armamento tem número de série:int(20, único), id:int(), peso do equipamento:int().
-
-cada professor deve ter um ou vários alunos.
-
-sogra e sogro     tem um genro e nora.
-sogra, sogro, genro e nora tem nome:varchar(200, obrigatório), idade:int e
-sexo:char(1, {F=Feminino|M=Masculino}).
-
-aluno tem foto:arquivo(xx)
-
-
-cada mãe pode ter muitos alunos.
-aluno tem um pai e mãe.
-
-aluno tem nome:caractere(128, obrigatório, não nulo, "josé's da \"conceição\" machado")
-pai usa \pilha.
-tanto mãe quanto pai tem nome:varchar, idade:int e sexo:char(1, {F=Feminino|M=Masculino}).
-
-professor também tem pai e mãe.
-aluno pode ter divérsos irmãos.
-Cada irmão pode ter filhos, e cada filho pode ter filho.
-A grade de cadeiras terá várias disciplinas.
+Algumas aplicações precisam se referenciar à cidade, estado e CEP do
+endereço do estudante. Cada estudante pode ser identificado pelo
+número de sua matrícula.
+Cada departamento é descrito por um nome, um código, um telefone.
+Tanto o nome como o código têm valores únicos para cada
+departamento. Cada curso tem um nome, uma descrição, um código,
+um número de horas de aula semestrais e um departamento
+responsável. O valor do código é único para cada curso.
+Cada disciplina tem um nome,um código,um número de horas-aula
+semanais, e uma ou mais disciplinas como pré-requisito. O valor do
+código e do nome é único para cada disciplina.
+Para cada disciplina de um curso podem ser abertas uma ou mais turmas.
+Cada turma é caracterizada por um código, o número do ano e do
+semestre em que ela se realiza, o professor responsável, e o(s)
+número(s) da(s) sala(s) que ela utiliza.
+A universidade emprega professores e funcionários técnicoadministrativos. O funcionário tem uma matrícula que o identifica
+dentro da universidade. Além disso devem ser guardados o nome,
+endereço, sexo, documentos pessoais, telefone(s) de contato, nome e
+data de nascimento dos seus dependentes, departamento ao qual está
+vinculado e data de admissão. Um professor pode ministrar várias
+disciplinas. Deve-se conhecer a capacitação do professor: congressos,
+cursos de pós-graduação, cursos de extensão e trabalhos publicados.
+Deve-se prover um relatório contendo a grade de avaliação dos alunos por
+turma contendo as suas notas. Deve-se prover também o histórico
+escolar contendo cada disciplina já cursada pelo aluno dentro de um
+curso (com o ano,/semestre em que  foi cursada e o resultado final).
 */

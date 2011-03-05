@@ -8,6 +8,8 @@
  */
 class Canonic{
 
+	public static $substantives= Array();
+	
 	/**
 	 * Takes a word to its canonic form(singular/male form)
 	 * @param string$word
@@ -28,24 +30,37 @@ class Canonic{
 	 */
 	public function sweep()
 	{
+		self::$substantives= false;
+		self::$substantives= Array();
 		$content= Mind::$content;
 		$newContent= Array();
 
 		Mind::$tokenizer= new Tokenizer();
 		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';
 		$verbalizer= Mind::$currentProject['idiom'].'\Verbalizer';
-
+		$posVerb= false;
+		
 		foreach($content as $word)
 		{
 			if($ignoreForms::shouldBeIgnored($word))
 				continue;
 			if(!Tokenizer::isQualifier($word) && !Tokenizer::isQuantifier($word))
 			{
-				if(strlen($word) > 1 && ($isVerb= $verbalizer::isVerb($word)))
+				if( strlen($word) > 1
+						&&
+					!isset(self::$substantives[$word])
+						&&
+					($isVerb= $verbalizer::isVerb($word))
+				  )
+				{
+					// is a verb
 					$word= $verbalizer::toInfinitive($word);
+				}
 				else{
+					// is a substantive
 					$word= explode(':', $word);
 					$word[0]= Canonic::canonize($word[0]);
+					self::$substantives[$word[0]]= true;
 					$word= implode(':', $word);
 				}
 			}

@@ -59,8 +59,8 @@ abstract class Normal {
 		 * excluir a relação entre a mais forte e a mais fraca
 		 * marcar a fk como pk
 		 */
-		//Analyst::unsetRelation(Analyst::$relations[$focus->rel.PROPERTY_SEPARATOR.$focus->name]);
-		//Analyst::$relations[$rel->name.PROPERTY_SEPARATOR.$focus->name]->uniqueRef= true;
+		Analyst::unsetRelation(Analyst::$relations[$rel->name.PROPERTY_SEPARATOR.$focus->name]);
+		Analyst::$relations[$focus->name.PROPERTY_SEPARATOR.$rel->name]->uniqueRef= true;
 	}
 	
 	/**

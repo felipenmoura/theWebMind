@@ -70,7 +70,6 @@ class Shell
       if (false === $command)
       {
         $this->output->writeln("\n");
-
         break;
       }
 
@@ -133,7 +132,6 @@ class Shell
   protected function getHeader()
   {
     return <<<EOF
-ZZZZZZZZZZZZZZZZZZZZZ
 Welcome to the <info>{$this->application->getName()}</info> shell (<comment>{$this->application->getVersion()}</comment>).
 
 At the prompt, type <comment>help</comment> for some help,

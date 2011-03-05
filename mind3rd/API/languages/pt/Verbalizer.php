@@ -38,7 +38,8 @@ class Verbalizer {
 		'/vo$/'								=> 'ver',
 		'/i$/'								=> 'er',
 		'/am$/'								=> 'ar',
-		'/ndo$/'								=> 'r',
+		'/ndo$/'							=> 'r',
+		'/(ado|ados|ada|adas)$/'			=> 'ar',
 		// these rules below are commented on theWebMind because
 		// we wont treat first person sentenses
 		/*'/o$/'								=> 'ar',

@@ -36,8 +36,9 @@ class Token
 	const MT_QOF     =1024;
 	const MS_QOF     = 'C';
 	const MT_QBE     =2048;
+	const MS_QBE     = 'B';
 	const MT_QBRAKE  =  -4;
-	const MS_QBRAKE  =  'B';
+	const MS_QBRAKE  =  'b';
 	const MT_ANY     =4096;
 	const MS_ANY     = '*';
 
@@ -130,6 +131,7 @@ class Token
 		if(Tokenizer::isQualifier('be', $word))
 		{
 			self::$spine[]= Token::MT_QBE;
+			self::$string.= Token::MS_QBE;
 			return;
 		}
 		if(Tokenizer::isQualifier('key', $word))

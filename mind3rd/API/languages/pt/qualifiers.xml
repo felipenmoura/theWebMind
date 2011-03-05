@@ -11,7 +11,7 @@
 	<may>poder</may>
 	<notnull>obrigatório,not null,notnull,não nulo,requerido,required,necessário</notnull>
 	<of>de,do,da,dos,das</of>
-	<be>é,são,será,serão</be>
+	<be>é,são,será,serão,está,estar,estão,estarão,estará</be>
 	<key>chave,key,pk,indice,índice</key>
 	<coma>e,quanto</coma>
 	<unique>unico,único,isolado,isolada,isoladamente</unique>
