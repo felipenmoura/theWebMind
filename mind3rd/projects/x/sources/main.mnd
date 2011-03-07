@@ -1,10 +1,21 @@
+aluno tem muitos professores.
+professores tem muitos alunos
+colegas tem muitos irmaos.
+irmãos tem vários colegas.
+irmao_colega tem data de criação:date;
+//aluno_professor tem data:date.
+//filho tem vários pais.
+//cada pai tem muitas filho.
 
+
+/*
 A universidade tem muitos alunos. Aluno tem nome:varchar, matrícula:int,
 cpf:int e identidade:int, endereço:varchar,
 telefone:int, data de nascimento:date, sexo:char, graduação:int.
 Cada aluno pode estar matriculado em vários cursos sendo que cada curso pode ter muitos alunos matriculados.
 Aluno também tem as disciplinas em que está matriculado, lembrando que cada disciplina terá diversos alunos inscritos.
-
+*/
+/*
 registro tem uma id.
 id tem um registro.
 id tem codigo:int e nro:int.
@@ -19,7 +30,7 @@ registro3 tem um ou uma id3.
 id3 tem nenhum ou um registro3.
 id3 tem codigo3:int e nro3:int.
 registro3 tem data3:date e descrição3:char(100).
-
+*/
 
 /*
 Algumas aplicações precisam se referenciar à cidade, estado e CEP do

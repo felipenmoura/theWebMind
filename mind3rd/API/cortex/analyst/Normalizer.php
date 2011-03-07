@@ -88,6 +88,42 @@
 			}
 		}
 		
+		public static function &createNByNEntity(MindRelation &$rel)
+		{
+			$linkTable= false;
+			$relName= $rel->focus->name.
+					  PROPERTY_SEPARATOR.
+					  $rel->rel->name;
+			$relOtherName=  $rel->rel->name.
+							PROPERTY_SEPARATOR.
+							$rel->focus->name;
+			if(isset(Analyst::$entities[$relName]))
+				$linkTable= &Analyst::$entities[$relName];
+			if(isset(Analyst::$entities[$relOtherName]))
+				$linkTable= &Analyst::$entities[$relOtherName];
+			if(!$linkTable)
+			{
+				$linkTable= new MindEntity($relName);
+				Analyst::$entities[$linkTable->name]= $linkTable;
+			}
+			return Analyst::$entities[$linkTable->name];
+		}
+		
+		public static function createNbyNRelations( MindEntity &$left,
+													MindEntity &$center,
+													MindEntity &$right,
+													MindRelation &$rel)
+		{
+			Analyst::addToFocus($left);
+			Analyst::addToFocus($right);
+			$relations= Analyst::addRelationToFocused( $center,
+													  $rel->linkType,
+													  $rel->linkVerb,
+													  0,
+													  'n',
+													  true);
+		}
+		
 		/**
 		 * Fixes all the n:n relations
 		 */
@@ -95,45 +131,81 @@
 		{
 			foreach(self::$nByN as &$rel)
 			{
-				// first of all, we will need a link table
-				$relName= $rel->focus->name.
-						  PROPERTY_SEPARATOR.
-						  $rel->rel->name;
-				$relOtherName=  $rel->rel->name.
-								PROPERTY_SEPARATOR.
-								$rel->focus->name;
-						
-				if(isset(Analyst::$entities[$relName]))
-					$linkTable= &Analyst::$entities[$relName];
-				elseif(isset(Analyst::$entities[$relOtherName]))
-						$linkTable= &Analyst::$entities[$relOtherName];
-					else
-					{
-						$linkTable= new MindEntity($relName);
-						Analyst::$entities[$linkTable->name]= $linkTable;
-					}
-				$linkEntity= &Analyst::$entities[$linkTable->name];
-				
-				$rel	 = &Analyst::$relations[$relName];
-				$otherRel= &Analyst::$relations[$relName];
-				
-				// then, let's relate it to both the entities
-				Analyst::addToFocus($rel->focus);
-				$relation= Analyst::addRelationToFocused( $linkEntity,
-														  $rel->linkType,
-														  $rel->linkVerb,
-														  0,
-														  'n');
-				$relation->uniqueRef= true;
-				// and in the end, we remove the old n/n relation
+				if(!$rel->treated)
+				{
+					$entity= self::createNByNEntity($rel);
+					$rel->opposite->treated= true;
+					self::createNbyNRelations($rel->focus,
+											  $entity,
+											  $rel->rel,
+											  $rel);
+				}
 				Analyst::unsetRelation($rel);
 				Analyst::clearFocused();
+			}
+		}
+		
+		public static function addFks()
+		{
+			GLOBAL $_MIND;
+			$fkPrefix= $_MIND->defaults['fk_prefix'];
+			foreach(Analyst::$relations as &$relation)
+			{
+				$propName= $fkPrefix.$relation->focus->name;
+				$entity= &$relation->rel;
+				if(!$entity->hasProperty($propName))
+				{
+					$fk= new MindProperty();
+					$fk ->setName($propName)
+						->setRequired(true)
+						//->setAsKey()
+						->setType('int')
+						->setRefTo($relation->focus);
+					if($relation->uniqueRef)
+						$fk->setAsKey();
+					$entity->addProperty($fk);
+				}else{
+						$entity ->properties[$propName]
+								->setRefTo($relation->focus);
+					 }
+			}
+		}
+		
+		public static function addPks()
+		{
+			GLOBAL $_MIND;
+			$pkPrefix= $_MIND->defaults['pk_prefix'];
+			foreach(Analyst::$entities as &$entity)
+			{
+				if(sizeof($entity->properties) != sizeof($entity->pks))
+				{
+					$propName= $pkPrefix.$entity->name;
+					if(!$entity->hasProperty($propName))
+					{
+						$pk= new MindProperty();
+						$pk ->setAsKey()
+							->setName($propName)
+							->setDefault(AUTOINCREMENT_DEFVAL)
+							->setRequired(true)
+							->setType('int');
+						$entity->addProperty($pk, true);
+					}else{
+							$entity->properties[$propName]->setAsKey();
+						 }
+				}
 			}
 		}
 		
 		public static function setUpKeys()
 		{
 			GLOBAL $_MIND;
+			Analyst::$entities= array_filter(Analyst::$entities);
+			Analyst::$relations= array_filter(Analyst::$relations);
+			
+			self::addFks();
+			self::addPks();
+			
+			return;
 			foreach(Analyst::$entities as &$entity)
 			{
 				$pkPrefix= $_MIND->defaults['pk_prefix'];
@@ -142,7 +214,7 @@
 				// checking for foreign keys, first
 				foreach($entity->relations as &$rel)
 				{
-					if(!$rel) continue;
+					if(!$rel || $rel->treatedKeys) continue;
 					if($rel->rel->name == $entity->name)
 					{
 						$propName= $fkPrefix.$rel->focus->name;
@@ -152,7 +224,7 @@
 							$fk ->setName($propName)
 								->setDefault(AUTOINCREMENT_DEFVAL)
 								->setRequired(true)
-								->setAsKey()
+								//->setAsKey()
 								->setType('int')
 								->setRefTo($rel->focus);
 							$entity->addProperty($fk);
@@ -160,6 +232,7 @@
 								$entity ->properties[$propName]
 										->setRefTo($rel->focus);
 							 }
+					$rel->treatedKeys= true;
 					}
 				}
 				

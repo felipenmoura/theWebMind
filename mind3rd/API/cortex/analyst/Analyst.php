@@ -85,7 +85,10 @@ class Analyst {
 		foreach(self::$entities as $k=>$entity)
 		{
 			if($detailed)
-				echo "   (".$entity->relevance.")".$entity->name."\n";
+			{
+				echo "   (".$entity->relevance.")".$entity->name;
+				echo "[".$k."]\n";
+			}
 			foreach($entity->properties as $prop)
 			{
 				$props++;
@@ -153,13 +156,15 @@ class Analyst {
 	 * @param String $linkVerb
 	 * @param Mixed $min
 	 * @param Mixed $max
-	 * @return MindRelation
+	 * @return MindRelationCollection
 	 */
-	public static function addRelationToFocused(MindEntity &$rel, $linkType,
-									            $linkVerb, $min, $max)
+	public static function &addRelationToFocused(MindEntity &$rel, $linkType,
+									            $linkVerb, $min, $max,
+												$uniqueRef=false)
 	{
+		$arRet= Array();
 		// for each focused entity
-		foreach(self::$focused as $focus)
+		foreach(self::$focused as &$focus)
 		{
 			/*
 			 * we will use this relationName as index on an
@@ -181,11 +186,13 @@ class Analyst {
 			// now, both entities will POINT to the same relation
 			$focus->addRef($curRelation);
 			$rel->addRef($curRelation);
-
+			$curRelation->uniqueRef= $uniqueRef;
+			//echo $curRelation->name.' - '.$rel->name.'->'.$focus->name."\n";
 			// and let's use the relation name as index, as said before
 			self::$relations[$relationName]= $curRelation;
+			$arRet[]= &$curRelation;
 		}
-		return $curRelation;
+		return $arRet;
 	}
 	
 	/**
