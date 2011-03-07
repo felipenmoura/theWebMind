@@ -48,15 +48,13 @@
 				return true;
 			reset(self::$oneByOne);
 			$rel= current(self::$oneByOne);
-			//do
-			//{
+			
 			foreach(self::$oneByOne as &$rel)
 			{
 				$rel= &Analyst::$relations[$rel->name];
 				
 				if(is_null($rel) || is_null($rel->focus) || is_null($rel->rel))
 					continue;
-				echo $rel->name.' - '.$rel->focus->name.' - '.$rel->rel->name."\n";
 				// defining the focus
 				$entities= self::setByRelevance($rel->focus, $rel->rel);
 				self::$focus= $entities[0];
@@ -84,10 +82,16 @@
 													  self::$predicate,
 													  $rel);
 						 }
-			//}while($rel= next(self::$oneByOne));
 			}
 		}
 		
+		/**
+		 * Creates the entity to be used as a link between other two
+		 * entities due to an N:N relation
+		 * 
+		 * @param MindRelation $rel
+		 * @return MindEntity
+		 */
 		public static function &createNByNEntity(MindRelation &$rel)
 		{
 			$linkTable= false;
@@ -109,6 +113,18 @@
 			return Analyst::$entities[$linkTable->name];
 		}
 		
+		/**
+		 * Create all the relations needed to fix n:n relations.
+		 * It takes the $left and $right entities and set the
+		 * $center to reffer to it. The $rel parameter is used
+		 * to identifies characteristics from an original
+		 * relation, like linkVerb or linkType.
+		 * 
+		 * @param MindEntity $left
+		 * @param MindEntity $center
+		 * @param MindEntity $right
+		 * @param MindRelation $rel 
+		 */
 		public static function createNbyNRelations( MindEntity &$left,
 													MindEntity &$center,
 													MindEntity &$right,
@@ -145,6 +161,12 @@
 			}
 		}
 		
+		/**
+		 * Adds all the foreign keys to all the entities that
+		 * may need it.
+		 * 
+		 * @global type $_MIND 
+		 */
 		public static function addFks()
 		{
 			GLOBAL $_MIND;
@@ -171,6 +193,10 @@
 			}
 		}
 		
+		/**
+		 * Adds all the primary keys the entities will need.
+		 * @global type $_MIND 
+		 */
 		public static function addPks()
 		{
 			GLOBAL $_MIND;
@@ -196,6 +222,11 @@
 			}
 		}
 		
+		/**
+		 * Will set the primary and foreign keys to entities.
+		 * 
+		 * @global Mind $_MIND 
+		 */
 		public static function setUpKeys()
 		{
 			GLOBAL $_MIND;
@@ -204,58 +235,12 @@
 			
 			self::addFks();
 			self::addPks();
-			
-			return;
-			foreach(Analyst::$entities as &$entity)
-			{
-				$pkPrefix= $_MIND->defaults['pk_prefix'];
-				$fkPrefix= $_MIND->defaults['fk_prefix'];
-				
-				// checking for foreign keys, first
-				foreach($entity->relations as &$rel)
-				{
-					if(!$rel || $rel->treatedKeys) continue;
-					if($rel->rel->name == $entity->name)
-					{
-						$propName= $fkPrefix.$rel->focus->name;
-						if(!$entity->hasProperty($propName))
-						{
-							$fk= new MindProperty();
-							$fk ->setName($propName)
-								->setDefault(AUTOINCREMENT_DEFVAL)
-								->setRequired(true)
-								//->setAsKey()
-								->setType('int')
-								->setRefTo($rel->focus);
-							$entity->addProperty($fk);
-						}else{
-								$entity ->properties[$propName]
-										->setRefTo($rel->focus);
-							 }
-					$rel->treatedKeys= true;
-					}
-				}
-				
-				// now we'll see the primary keys
-				if(sizeof($entity->properties) != sizeof($entity->pks))
-				{
-					$propName= $pkPrefix.$entity->name;
-					if(!$entity->hasProperty($propName))
-					{
-						$pk= new MindProperty();
-						$pk ->setAsKey()
-							->setName($propName)
-							->setDefault(AUTOINCREMENT_DEFVAL)
-							->setRequired(true)
-							->setType('int');
-						$entity->addProperty($pk, true);
-					}else{
-							$entity->properties[$propName]->setAsKey();
-						 }
-				}
-			}
 		}
 		
+		/**
+		 * Clears static properties setting them to their default value.
+		 * Quite useful when used through a command line single session.
+		 */
 		public static function reset()
 		{
 			self::$oneByOne = false;
@@ -271,14 +256,34 @@
 		}
 		
 		/**
-		 * Normalizes the known structure
+		 * Normalizes the known structure.
+		 * It will apply the n:n and 1:1 rules, plus setting the
+		 * foreign and primary keys to all the entities.
+		 * Please, notice that there are rules to be followed here,
+		 * such as:
+		 *    1:1 to 1:1 relations will always merge entities
+		 *    0:1 to 0:1 relations will always try to identify the less
+		 *               important and set it to point to the other entity
+		 *               setting its foreign key as a primary key
+		 *    0:1 to 1:1 will decide if it should wether merge or fix the
+		 *               relation. It will decide it using the following
+		 *               parameters of decision:
+		 *               - number of properties: as many, less mergeable
+		 *               - number of relations:  as less reffered,
+		 *                                       more mergeable
+		 *               - big properties:       as many big properties,
+		 *                                       less mergeable
+		 *    n:n        relations will generate an extra entity, altough,
+		 *               if the entity with that name already exists, it 
+		 *               takes the existing one.
+		 *               If the antity ONLY has keys, no pk will be added.
 		 */
 		public static function normalize()
 		{
 			self::reset();
-			self::separateByRelationQuantifiers(); // ok
-			self::fixOneByOneRel(); // ok
-			self::fixNByNRel(); // ok
-			self::setUpKeys(); // ok
+			self::separateByRelationQuantifiers();
+			self::fixOneByOneRel();
+			self::fixNByNRel();
+			self::setUpKeys();
 		}
 	}

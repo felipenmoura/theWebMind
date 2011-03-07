@@ -82,6 +82,7 @@ abstract class Normal {
 		// if the entity has many big fields
 		if(self::hasBigProperties($entity) > $_MIND->conf['big_fields_in_entity'])
 			$pts++;
+		// if it has many relations
 		if(sizeof($entity->relations) >= $_MIND->conf['relations_length'])
 			$pts++;
 		return $pts;

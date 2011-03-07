@@ -35,8 +35,6 @@ class Analyst {
 	public static function removeEntity($entity)
 	{
 		unset(self::$entities[$entity]);
-		//self::$entities[$entity]= false;
-		//self::$entities= array_filter(self::$entities);
 		unset($entity);
 	}
 	
@@ -86,8 +84,8 @@ class Analyst {
 		{
 			if($detailed)
 			{
-				echo "   (".$entity->relevance.")".$entity->name;
-				echo "[".$k."]\n";
+				echo "   (".$entity->relevance.")".$entity->name."\n";
+				//echo "[".$k."]\n";
 			}
 			foreach($entity->properties as $prop)
 			{
@@ -187,7 +185,7 @@ class Analyst {
 			$focus->addRef($curRelation);
 			$rel->addRef($curRelation);
 			$curRelation->uniqueRef= $uniqueRef;
-			//echo $curRelation->name.' - '.$rel->name.'->'.$focus->name."\n";
+			
 			// and let's use the relation name as index, as said before
 			self::$relations[$relationName]= $curRelation;
 			$arRet[]= &$curRelation;
@@ -231,7 +229,7 @@ class Analyst {
 	 * @return Boolean True if everything went ok, false when any error occurred
 	 */
     public static function analize($expression, $structure, Array $structureKeys){
-		// I'm gonna try to put it in stepByStep style to
+		// I'm gonna try to put it in stepByStep style, to
 		// get it easier for me and for you to understand
 		// and follow the thoughts
 
@@ -314,9 +312,9 @@ class Analyst {
 
 							/*
 							 * here, if it is an entity and the focused
-							 * entity has already been selected, it means
-							 * it is the second entity on the instruction, so,
-							 * it is a relation between entities
+							 * entities have already been selected(post verb),
+							 * it means it is the second entity on the
+							 * instruction, so, it is a relation between entities
 							 */
 							
 							self::addRelationToFocused(self::$entities[$word],
@@ -326,7 +324,7 @@ class Analyst {
 									                   $max);
 						 }
 				}else{
-					// ok, after that, this is just easy, now :)
+					// ok, after that, this is just easy :)
 					// let's store all the properties to a temporary array
 					$tmpProperties[]= new MindProperty($word);
 				}
