@@ -1,9 +1,21 @@
 <?php
 /**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Lexer, within the Cortex/Lexer packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
  * This class sweeps the passed words and validates if
  * its content matches with the valid chars
  * 
- * @author felipe
+ * @package Cortex
+ * @subpackage Lexer
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 class Lexer
 {
@@ -16,7 +28,10 @@ class Lexer
 	private $glue= '';
 
 	/**
-	 * Thanks to saeedco (no more information found about him!)
+	 * Splits a string using utf8 format.
+	 * 
+	 * Thanks to saeedco (no more information found about him!) I had to
+	 * change only a few things on this method.
 	 * Source: http://br2.php.net/manual/en/function.str-split.php#83331
 	 * Idioms it is supposed to work properly
 	 * English
@@ -28,8 +43,10 @@ class Lexer
 	 * Russian
 	 * Persian
 	 * Portuguese
+	 * 
+	 * Of course, if you find any problem, report it to us :)
 	 *
-	 * @param String $str
+	 * @param String $str The string to be splitted.
 	 * @return array
 	 */
 	private function str_split_utf8($str) {
@@ -67,7 +84,11 @@ class Lexer
 	}
 
 	/**
-	 * Validates the sent char
+	 * Validates the sent char.
+	 * 
+	 * Verifies wether the passed char is a valid char for
+	 * that idiom or not.
+	 * 
 	 * @param char $letter
 	 * @return boolean
 	 */
@@ -88,7 +109,9 @@ class Lexer
 	}
 
 	/**
-	 * Parses the string encoding and return a valid name
+	 * Prepares names for their use.
+	 * 
+	 * Parses the string encoding and returns a valid name
 	 * to be used on databases or restricted names
 	 * 
 	 * @param String $word
@@ -96,7 +119,7 @@ class Lexer
 	 */
 	public function fixWordChars($word)
 	{
-		$word= preg_replace('/\\\|\,|\./', '', strtolower($word));
+		$word= preg_replace(FIX_PROP_NAME, '', strtolower($word));
 
 		$word= $this->str_split_utf8($word);
 		$str= "";
@@ -108,8 +131,12 @@ class Lexer
 	}
 
 	/**
-	 * Returns the fixed char to the sent char
-	 * @param string $char
+	 * Fixes the passed string replacing special chars.
+	 * 
+	 * This method takes each special char and replaces it with
+	 * the respective char specified in the choosen idiom.
+	 * 
+	 * @param string $str
 	 * @return string
 	 */
 	public function translateChars($str)
@@ -120,6 +147,8 @@ class Lexer
 	}
 
 	/**
+	 * Sweeps through the content and apply the lexer rules.
+	 * 
 	 * Performs a sweep over the sent content and replace any
 	 * special char, also removing any invalid char.
 	 * @param string $content
@@ -166,7 +195,6 @@ class Lexer
 						$letter= $this->tmpPeriod;
 				}
 
-				//$fixed.= $this->translateChars($letter);
 				$fixed.= $letter;
 			}
 		}
@@ -200,7 +228,6 @@ class Lexer
 
 	/**
 	 * The constructor
-	 * @global Mind $_MIND
 	 */
 	public function __construct()
 	{

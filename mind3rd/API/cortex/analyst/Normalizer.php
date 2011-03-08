@@ -1,10 +1,27 @@
 <?php
 	/**
-	 * Will normalize the data and entities structure applying
-	 * rules and patterns. Thanks for Edgar F. Codd for all he
-	 * created and wondered for the Relational Model
+	 * This file is part of TheWebMind 3rd generation.
+	 * 
+	 * Normalizer components, within the Cortex/Analyst packages.<br/>
+	 * Notice that, these packages are being used only for documentation,
+	 * not to organize the classes.
+	 * 
+	 * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+	 * @license licenses/mind3rd.license
+	 */
+
+	/**
+	 * Normalizes the data structure.
+	 * 
+	 * Will normalize the data and entities structure
+	 * applying rules and patterns. Thanks for
+	 * Edgar F. Codd for all he created and wondered
+	 * for the Relational Model
 	 *
-	 * @author felipe
+	 * @package Cortex
+	 * @subpackage Analyst
+	 * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+	 * @filesource
 	 */
 	class Normalizer extends Normal{
 
@@ -12,11 +29,13 @@
 		public static $tmpRelations	= Array();
 		
 		/**
-		 * Redirects all the relations that point to, or are pointed by the
-		 * $from entity, to the $to entity
+		 * Redirects all the relations between entities.
 		 * 
-		 * @param MindEntity $from
-		 * @param MindEntity $to 
+		 * Redirects all the relations that point to, or are pointed by the
+		 * $from entity, to the $to entity.
+		 * 
+		 * @param MindEntity $from Entity which will lose its references
+		 * @param MindEntity $to Entity which will be reffered instead
 		 */
 		public static function redirectRelations(MindEntity &$from, MindEntity &$to)
 		{
@@ -86,8 +105,10 @@
 		}
 		
 		/**
-		 * Creates the entity to be used as a link between other two
-		 * entities due to an N:N relation
+		 * Creates an extra entity to link multiple relations.
+		 * 
+		 * Creates the entity to be used as a link between the
+		 * other two entities due to an N:N relation
 		 * 
 		 * @param MindRelation $rel
 		 * @return MindEntity
@@ -115,6 +136,7 @@
 		
 		/**
 		 * Create all the relations needed to fix n:n relations.
+		 * 
 		 * It takes the $left and $right entities and set the
 		 * $center to reffer to it. The $rel parameter is used
 		 * to identifies characteristics from an original
@@ -164,8 +186,6 @@
 		/**
 		 * Adds all the foreign keys to all the entities that
 		 * may need it.
-		 * 
-		 * @global type $_MIND 
 		 */
 		public static function addFks()
 		{
@@ -195,7 +215,6 @@
 		
 		/**
 		 * Adds all the primary keys the entities will need.
-		 * @global type $_MIND 
 		 */
 		public static function addPks()
 		{
@@ -224,8 +243,6 @@
 		
 		/**
 		 * Will set the primary and foreign keys to entities.
-		 * 
-		 * @global Mind $_MIND 
 		 */
 		public static function setUpKeys()
 		{
@@ -257,10 +274,11 @@
 		
 		/**
 		 * Normalizes the known structure.
+		 * 
 		 * It will apply the n:n and 1:1 rules, plus setting the
 		 * foreign and primary keys to all the entities.
 		 * Please, notice that there are rules to be followed here,
-		 * such as:
+		 * such as:<pre>
 		 *    1:1 to 1:1 relations will always merge entities
 		 *    0:1 to 0:1 relations will always try to identify the less
 		 *               important and set it to point to the other entity
@@ -277,6 +295,7 @@
 		 *               if the entity with that name already exists, it 
 		 *               takes the existing one.
 		 *               If the antity ONLY has keys, no pk will be added.
+		 * </pre>
 		 */
 		public static function normalize()
 		{

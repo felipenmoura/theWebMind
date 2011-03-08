@@ -19,6 +19,7 @@
 	define('EXEC_STRING',         "exec:"); // equal(=) is also acceptable
 	define('VALID_SUBST_SYNTAX',  "S((( )?\,( )?S)?)+");
 	define('COMPOSED_SUBST',      "/SCS/");
+	define('FIX_PROP_NAME',       "/\\\|\,|\./");
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');

@@ -1,18 +1,30 @@
 <?php
 /**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Canonic, within the Cortex/Canonic packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
  * This class will take the content to be used, and take
  * it to its canonical form.
  * It extends the Inflect class, from the selected language
  *
- * @author felipe
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Cortex
+ * @subpackage Canonic
  */
 class Canonic{
 
 	public static $substantives= Array();
 	
 	/**
-	 * Takes a word to its canonic form(singular/male form)
-	 * @param string$word
+	 * Takes a word to its canonic form(singular/male form).
+	 * @param string $word
 	 * @return string
 	 */
 	public static function canonize($word)
@@ -24,8 +36,9 @@ class Canonic{
 	}
 
 	/**
-	 * Brings all the words in the Array to their canonical form
-	 * @param array $content
+	 * Sweeps all the content and take all the substantives
+	 * to their canonical form.
+	 * 
 	 * @return Array
 	 */
 	public function sweep()

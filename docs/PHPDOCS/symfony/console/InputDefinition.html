@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class InputDefinition</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class InputDefinition</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A InputDefinition represents a set of valid command line arguments and options.</p>
+<p class="description"><p>A InputDefinition represents a set of valid command line arguments and options.
+ Usage:
+     $definition = new InputDefinition(array(       new InputArgument('name', InputArgument::REQUIRED),       new InputOption('foo', 'f', InputOption::PARAMETER_REQUIRED),     ));</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Fabien Potencier &lt;<a href="mailto:fabien.potencier@symfony-project.com">fabien.potencier@symfony-project.com</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Input---InputDefinition.php.html">/Input/InputDefinition.php</a> (line <span class="field"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a28">28</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$arguments" title="details" class="var-name">$arguments</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$hasAnArrayArgument" title="details" class="var-name">$hasAnArrayArgument</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$hasOptional" title="details" class="var-name">$hasOptional</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$options" title="details" class="var-name">$options</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$requiredCount" title="details" class="var-name">$requiredCount</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$shortcuts" title="details" class="var-name">$shortcuts</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">InputDefinition</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$definition</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addArgument" title="details" class="method-name">addArgument</a>
+											(<span class="var-type"><a href="../../symfony/console/InputArgument.html">InputArgument</a></span>&nbsp;<span class="var-name">$argument</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addArguments" title="details" class="method-name">addArguments</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addOption" title="details" class="method-name">addOption</a>
+											(<span class="var-type"><a href="../../symfony/console/InputOption.html">InputOption</a></span>&nbsp;<span class="var-name">$option</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addOptions" title="details" class="method-name">addOptions</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#asText" title="details" class="method-name">asText</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string|DOMDocument</span>
+										<a href="#asXml" title="details" class="method-name">asXml</a>
+											([<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$asDom</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/InputArgument.html">InputArgument</a></span>
+										<a href="#getArgument" title="details" class="method-name">getArgument</a>
+											(<span class="var-type">string|integer</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#getArgumentCount" title="details" class="method-name">getArgumentCount</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getArgumentDefaults" title="details" class="method-name">getArgumentDefaults</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#getArgumentRequiredCount" title="details" class="method-name">getArgumentRequiredCount</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getArguments" title="details" class="method-name">getArguments</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/InputOption.html">InputOption</a></span>
+										<a href="#getOption" title="details" class="method-name">getOption</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getOptionDefaults" title="details" class="method-name">getOptionDefaults</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../symfony/console/InputOption.html">InputOption</a></span>
+										<a href="#getOptionForShortcut" title="details" class="method-name">getOptionForShortcut</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$shortcut</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getOptions" title="details" class="method-name">getOptions</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getSynopsis" title="details" class="method-name">getSynopsis</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Boolean</span>
+										<a href="#hasArgument" title="details" class="method-name">hasArgument</a>
+											(<span class="var-type">string|integer</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Boolean</span>
+										<a href="#hasOption" title="details" class="method-name">hasOption</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Boolean</span>
+										<a href="#hasShortcut" title="details" class="method-name">hasShortcut</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setArguments" title="details" class="method-name">setArguments</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setDefinition" title="details" class="method-name">setDefinition</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$definition</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setOptions" title="details" class="method-name">setOptions</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#shortcutToName" title="details" class="method-name">shortcutToName</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$shortcut</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$arguments" id="$arguments"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$arguments</span>
+						(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a30">30</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$hasAnArrayArgument" id="$hasAnArrayArgument"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$hasAnArrayArgument</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a32">32</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$hasOptional" id="$hasOptional"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$hasOptional</span>
+						(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a33">33</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$options" id="$options"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$options</span>
+						(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a34">34</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$requiredCount" id="$requiredCount"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$requiredCount</span>
+						(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a31">31</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$shortcuts" id="$shortcuts"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$shortcuts</span>
+						(line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a35">35</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a42">42</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor.</p>
+<p class="description"><p>Constructor.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">InputDefinition</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$definition</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$definition</span><span class="var-description">: An array of InputArgument and InputOption instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddArgument" id="addArgument"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addArgument</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a101">101</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add an InputArgument object.</p>
+<p class="description"><p>Add an InputArgument object.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addArgument
+		</span>
+					(<span class="var-type"><a href="../../symfony/console/InputArgument.html">InputArgument</a></span>&nbsp;<span class="var-name">$argument</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/InputArgument.html">InputArgument</a></span>
+				<span class="var-name">$argument</span><span class="var-description">: An InputArgument object</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddArguments" id="addArguments"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addArguments</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a85">85</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add an array of InputArgument objects.</p>
+<p class="description"><p>Add an array of InputArgument objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addArguments
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$arguments</span><span class="var-description">: An array of InputArgument objects</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddOption" id="addOption"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addOption</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a244">244</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add an InputOption object.</p>
+<p class="description"><p>Add an InputOption object.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addOption
+		</span>
+					(<span class="var-type"><a href="../../symfony/console/InputOption.html">InputOption</a></span>&nbsp;<span class="var-name">$option</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../symfony/console/InputOption.html">InputOption</a></span>
+				<span class="var-name">$option</span><span class="var-description">: An InputOption object</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddOptions" id="addOptions"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addOptions</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a231">231</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add an array of InputOption objects.</p>
+<p class="description"><p>Add an array of InputOption objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addOptions
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: An array of InputOption objects</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodasText" id="asText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">asText</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a388">388</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a textual representation of the InputDefinition.</p>
+<p class="description"><p>Returns a textual representation of the InputDefinition.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A string representing the InputDefinition</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			asText
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodasXml" id="asXml"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">asXml</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a456">456</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an XML representation of the InputDefinition.</p>
+<p class="description"><p>Returns an XML representation of the InputDefinition.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An XML string representing the InputDefinition</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string|DOMDocument</span>
+		<span class="method-name">
+			asXml
+		</span>
+					([<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$asDom</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Boolean</span>
+				<span class="var-name">$asDom</span><span class="var-description">: Whether to return a DOM or an XML string</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetArgument" id="getArgument"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getArgument</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a142">142</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an InputArgument by name or by position.</p>
+<p class="description"><p>Returns an InputArgument by name or by position.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An InputArgument object</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/InputArgument.html">InputArgument</a></span>
+		<span class="method-name">
+			getArgument
+		</span>
+					(<span class="var-type">string|integer</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|integer</span>
+				<span class="var-name">$name</span><span class="var-description">: The InputArgument name or position</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetArgumentCount" id="getArgumentCount"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getArgumentCount</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a183">183</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the number of InputArguments.</p>
+<p class="description"><p>Returns the number of InputArguments.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The number of InputArguments</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			getArgumentCount
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetArgumentDefaults" id="getArgumentDefaults"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getArgumentDefaults</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a203">203</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the default values.</p>
+<p class="description"><p>Gets the default values.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of default values</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getArgumentDefaults
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetArgumentRequiredCount" id="getArgumentRequiredCount"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getArgumentRequiredCount</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a193">193</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the number of required InputArguments.</p>
+<p class="description"><p>Returns the number of required InputArguments.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The number of required InputArguments</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			getArgumentRequiredCount
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetArguments" id="getArguments"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getArguments</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a173">173</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the array of InputArgument objects.</p>
+<p class="description"><p>Gets the array of InputArgument objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of InputArgument objects</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getArguments
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetOption" id="getOption"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getOption</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a269">269</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an InputOption by name.</p>
+<p class="description"><p>Returns an InputOption by name.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A InputOption object</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/InputOption.html">InputOption</a></span>
+		<span class="method-name">
+			getOption
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The InputOption name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetOptionDefaults" id="getOptionDefaults"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getOptionDefaults</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a328">328</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets an array of default values.</p>
+<p class="description"><p>Gets an array of default values.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of all default values</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getOptionDefaults
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetOptionForShortcut" id="getOptionForShortcut"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getOptionForShortcut</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a318">318</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets an InputOption by shortcut.</p>
+<p class="description"><p>Gets an InputOption by shortcut.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An InputOption object</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../symfony/console/InputOption.html">InputOption</a></span>
+		<span class="method-name">
+			getOptionForShortcut
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$shortcut</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$shortcut</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetOptions" id="getOptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getOptions</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a296">296</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the array of InputOption objects.</p>
+<p class="description"><p>Gets the array of InputOption objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of InputOption objects</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getOptions
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSynopsis" id="getSynopsis"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSynopsis</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a361">361</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the synopsis.</p>
+<p class="description"><p>Gets the synopsis.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The synopsis</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getSynopsis
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodhasArgument" id="hasArgument"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasArgument</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a161">161</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if an InputArgument object exists by name or position.</p>
+<p class="description"><p>Returns true if an InputArgument object exists by name or position.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the InputArgument object exists, false otherwise</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Boolean</span>
+		<span class="method-name">
+			hasArgument
+		</span>
+					(<span class="var-type">string|integer</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|integer</span>
+				<span class="var-name">$name</span><span class="var-description">: The InputArgument name or position</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhasOption" id="hasOption"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasOption</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a286">286</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if an InputOption object exists by name.</p>
+<p class="description"><p>Returns true if an InputOption object exists by name.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the InputOption object exists, false otherwise</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Boolean</span>
+		<span class="method-name">
+			hasOption
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The InputOption name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhasShortcut" id="hasShortcut"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasShortcut</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a308">308</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if an InputOption object exists by shortcut.</p>
+<p class="description"><p>Returns true if an InputOption object exists by shortcut.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the InputOption object exists, false otherwise</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Boolean</span>
+		<span class="method-name">
+			hasShortcut
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: The InputOption shortcut</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetArguments" id="setArguments"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setArguments</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a72">72</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the InputArgument objects.</p>
+<p class="description"><p>Sets the InputArgument objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setArguments
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$arguments</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$arguments</span><span class="var-description">: An array of InputArgument objects</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetDefinition" id="setDefinition"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setDefinition</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a47">47</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setDefinition
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$definition</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$definition</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetOptions" id="setOptions"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setOptions</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a219">219</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the InputOption objects.</p>
+<p class="description"><p>Sets the InputOption objects.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setOptions
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: An array of InputOption objects</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodshortcutToName" id="shortcutToName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">shortcutToName</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_InputInputDefinition.php.html#a346">346</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the InputOption name given a shortcut.</p>
+<p class="description"><p>Returns the InputOption name given a shortcut.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The InputOption name</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			shortcutToName
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$shortcut</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$shortcut</span><span class="var-description">: The shortcut</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 07 Mar 2011 19:39:46 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

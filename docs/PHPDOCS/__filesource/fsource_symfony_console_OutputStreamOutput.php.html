@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for StreamOutput.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file StreamOutput.php</h1>
+<p>Documentation is available at <a href="../symfony/console/_Output---StreamOutput.php.html">StreamOutput.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a3"></a>namespace&nbsp;<span class="src-id">Symfony</span>\<span class="src-id">Component</span>\<span class="src-id">Console</span>\<span class="src-id"><a href="../symfony/console/Output.html">Output</a></span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a4"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-comm">/*</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-comm">&nbsp;*&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;symfony&nbsp;framework.</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-comm">&nbsp;*&nbsp;(c)&nbsp;Fabien&nbsp;Potencier&nbsp;&lt;fabien.potencier@symfony-project.com&gt;</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-comm">&nbsp;*&nbsp;This&nbsp;source&nbsp;file&nbsp;is&nbsp;subject&nbsp;to&nbsp;the&nbsp;MIT&nbsp;license&nbsp;that&nbsp;is&nbsp;bundled</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-comm">&nbsp;*&nbsp;with&nbsp;this&nbsp;source&nbsp;code&nbsp;in&nbsp;the&nbsp;file&nbsp;LICENSE.</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-comm">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a13"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;StreamOutput&nbsp;writes&nbsp;the&nbsp;output&nbsp;to&nbsp;a&nbsp;given&nbsp;stream.</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*&nbsp;Usage:</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*&nbsp;$output&nbsp;=&nbsp;new&nbsp;StreamOutput(fopen('php://stdout',&nbsp;'w'));</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*&nbsp;As&nbsp;`StreamOutput`&nbsp;can&nbsp;use&nbsp;any&nbsp;stream,&nbsp;you&nbsp;can&nbsp;also&nbsp;use&nbsp;a&nbsp;file:</span></div></li>
+<li><div class="src-line"><a name="a22"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a23"></a><span class="src-doc">&nbsp;*&nbsp;$output&nbsp;=&nbsp;new&nbsp;StreamOutput(fopen('/path/to/output.log',&nbsp;'a',&nbsp;false));</span></div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;symfony</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@subpackage</span><span class="src-doc">&nbsp;console</span></div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fabien&nbsp;Potencier&nbsp;&lt;fabien.potencier@symfony-project.com&gt;</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a29"></a><span class="src-key">class&nbsp;</span><a href="../symfony/console/StreamOutput.html">StreamOutput</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../symfony/console/Output.html">Output</a></div></li>
+<li><div class="src-line"><a name="a30"></a><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><a href="../symfony/console/StreamOutput.html#var$stream">$stream</a><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a34"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Constructor.</span></div></li>
+<li><div class="src-line"><a name="a35"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a36"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">mixed&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-var">$stream&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;A&nbsp;stream&nbsp;resource</span></div></li>
+<li><div class="src-line"><a name="a37"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">integer&nbsp;</span><span class="src-doc-var">$verbosity&nbsp;</span><span class="src-doc">The&nbsp;verbosity&nbsp;level&nbsp;(self::VERBOSITY_QUIET,&nbsp;self::VERBOSITY_NORMAL,&nbsp;self::VERBOSITY_VERBOSE)</span></div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">Boolean&nbsp;</span><span class="src-doc-var">$decorated&nbsp;</span><span class="src-doc">Whether&nbsp;to&nbsp;decorate&nbsp;messages&nbsp;or&nbsp;not&nbsp;(null&nbsp;for&nbsp;auto-guessing)</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a40"></a>&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../symfony/console/StreamOutput.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$stream</span><span class="src-sym">,&nbsp;</span><span class="src-var">$verbosity&nbsp;</span>=&nbsp;<span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">VERBOSITY_NORMAL</span><span class="src-sym">,&nbsp;</span><span class="src-var">$decorated&nbsp;</span>=&nbsp;<span class="src-id">null</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a41"></a>&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-sym">!</span><a href="http://www.php.net/is_resource">is_resource</a><span class="src-sym">(</span><span class="src-var">$stream</span><span class="src-sym">)&nbsp;</span>||&nbsp;<span class="src-str">'stream'&nbsp;</span>!==&nbsp;<a href="http://www.php.net/get_resource_type">get_resource_type</a><span class="src-sym">(</span><span class="src-var">$stream</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span class="src-key">new&nbsp;</span>\<span class="src-id">InvalidArgumentException</span><span class="src-sym">(</span><span class="src-str">'The&nbsp;StreamOutput&nbsp;class&nbsp;needs&nbsp;a&nbsp;stream&nbsp;as&nbsp;its&nbsp;first&nbsp;argument.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a46"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a47"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../symfony/console/StreamOutput.html#var$stream">stream</a>&nbsp;=&nbsp;<span class="src-var">$stream</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a48"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-id">null&nbsp;</span>===&nbsp;<span class="src-var">$decorated</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$decorated&nbsp;</span>=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../symfony/console/StreamOutput.html#methodhasColorSupport">hasColorSupport</a><span class="src-sym">(</span><span class="src-var">$decorated</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">parent</span><span class="src-sym">::</span><a href="../symfony/console/Output.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$verbosity</span><span class="src-sym">,&nbsp;</span><span class="src-var">$decorated</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a55"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a56"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a57"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a58"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Gets&nbsp;the&nbsp;stream&nbsp;attached&nbsp;to&nbsp;this&nbsp;StreamOutput&nbsp;instance.</span></div></li>
+<li><div class="src-line"><a name="a59"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a60"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">resource&nbsp;</span><span class="src-doc">A&nbsp;stream&nbsp;resource</span></div></li>
+<li><div class="src-line"><a name="a61"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../symfony/console/StreamOutput.html#methodgetStream">getStream</a><span class="src-sym">(</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../symfony/console/StreamOutput.html#var$stream">stream</a><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a65"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a66"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a67"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a68"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Writes&nbsp;a&nbsp;message&nbsp;to&nbsp;the&nbsp;output.</span></div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$message&nbsp;</span><span class="src-doc">A&nbsp;message&nbsp;to&nbsp;write&nbsp;to&nbsp;the&nbsp;output</span></div></li>
+<li><div class="src-line"><a name="a71"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">Boolean&nbsp;</span><span class="src-doc-var">$newline&nbsp;</span><span class="src-doc">Whether&nbsp;to&nbsp;add&nbsp;a&nbsp;newline&nbsp;or&nbsp;not</span></div></li>
+<li><div class="src-line"><a name="a72"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a73"></a>&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../symfony/console/StreamOutput.html#methoddoWrite">doWrite</a><span class="src-sym">(</span><span class="src-var">$message</span><span class="src-sym">,&nbsp;</span><span class="src-var">$newline</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a74"></a>&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a75"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-id">false&nbsp;</span>===&nbsp;<span class="src-sym">@</span><a href="http://www.php.net/fwrite">fwrite</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../symfony/console/StreamOutput.html#var$stream">stream</a><span class="src-sym">,&nbsp;</span><span class="src-var">$message</span>.<span class="src-sym">(</span><span class="src-var">$newline&nbsp;</span>?&nbsp;<span class="src-id">PHP_EOL&nbsp;</span>:&nbsp;<span class="src-str">''</span><span class="src-sym">)))</span></div></li>
+<li><div class="src-line"><a name="a76"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a77"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;@codeCoverageIgnoreStart</span></div></li>
+<li><div class="src-line"><a name="a78"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;should&nbsp;never&nbsp;happen</span></div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span class="src-key">new&nbsp;</span>\<span class="src-id">RuntimeException</span><span class="src-sym">(</span><span class="src-str">'Unable&nbsp;to&nbsp;write&nbsp;output.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a80"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;@codeCoverageIgnoreEnd</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a82"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/flush">flush</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a84"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a85"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a86"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;stream&nbsp;supports&nbsp;colorization.</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Colorization&nbsp;is&nbsp;disabled&nbsp;if&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;stream:</span></div></li>
+<li><div class="src-line"><a name="a90"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a91"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;-&nbsp;&nbsp;windows&nbsp;without&nbsp;ansicon</span></div></li>
+<li><div class="src-line"><a name="a92"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;-&nbsp;&nbsp;non&nbsp;tty&nbsp;consoles</span></div></li>
+<li><div class="src-line"><a name="a93"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a94"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">Boolean&nbsp;</span><span class="src-doc">true&nbsp;if&nbsp;the&nbsp;stream&nbsp;supports&nbsp;colorization,&nbsp;false&nbsp;otherwise</span></div></li>
+<li><div class="src-line"><a name="a95"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a96"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../symfony/console/StreamOutput.html#methodhasColorSupport">hasColorSupport</a><span class="src-sym">(</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a97"></a>&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a98"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;@codeCoverageIgnoreStart</span></div></li>
+<li><div class="src-line"><a name="a99"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-id">DIRECTORY_SEPARATOR&nbsp;</span>==&nbsp;<span class="src-str">'\\'</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a100"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a101"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false&nbsp;</span>!==&nbsp;<a href="http://www.php.net/getenv">getenv</a><span class="src-sym">(</span><span class="src-str">'ANSICON'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a102"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a103"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">else</span></div></li>
+<li><div class="src-line"><a name="a104"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a105"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><a href="http://www.php.net/function_exists">function_exists</a><span class="src-sym">(</span><span class="src-str">'posix_isatty'</span><span class="src-sym">)&nbsp;</span>&amp;&amp;&nbsp;<span class="src-sym">@</span><a href="http://www.php.net/posix_isatty">posix_isatty</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../symfony/console/StreamOutput.html#var$stream">stream</a><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a106"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a107"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;@codeCoverageIgnoreEnd</span></div></li>
+<li><div class="src-line"><a name="a108"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a109"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 07 Mar 2011 19:39:51 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

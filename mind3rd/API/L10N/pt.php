@@ -31,28 +31,28 @@ class pt {
 	public function __construct()
 	{
 		//header('Content-type: text/html; charset=iso-8859-1');
-		$this->messages['programRequired']			= Mind::message("API: You must send the program name, to execute", '[Fail]', false);
-		$this->messages['loginRequired']			= Mind::message("Auth: Both login and password are required", '[Fail]', false);
-		$this->messages['passwordRequired']			= "I need a password for this user, please: ";
-		$this->messages['autenticated']				= Mind::message("\nMain: %s autenticated", "[OK]", false);//"\n[OK] %s autenticated\n";
-		$this->messages['not_allowed']				= Mind::message("\nMain: You have not autenticated your credentials yet", '[Fail]', false);
-		$this->messages['not_allowed_tip']			= "Try calling the command\n    auth < login >\nA password will be required.\n";
-		$this->messages['no_such_file']				= Mind::message("\nMain: No such command '%s'", "[Fail]", false);
-		$this->messages['auth_fail']				= Mind::message("\nAuth: Wrong user or password", "[Fail]", false);
-		$this->messages['bye']						= "Logging out...\n";
-		$this->messages['invalidCreateParams']		= Mind::message("Main: Invalid parameters", "[Fail]", false);
-		$this->messages['invalidOption']			= Mind::message("Invalid option '%s'", '[Fail]', false);
-		$this->messages['projectAlreadyExists']		= Mind::message("There is, already, another project with the same name", '[Fail]', false);
-		$this->messages['projectCreated']			= Mind::message("Created project '%s'", '[Ok]', false);
-		$this->messages['userCreated']				= Mind::message("Created user '%s'", '[Ok]', false);
-		$this->messages['noProject']				= Mind::message("Project '%s' doesn't exist or you have no access", '[Fail]', false);
-		$this->messages['projectOpened']			= Mind::message("Project '%s' opened", '[Ok]', false);
-		$this->messages['currentProjectRequired']	= Mind::message("You must open a project first", '[Fail]', false);
-		$this->messages['currentProjectRequiredTip']= "You can use the command\n  use project <projectName>\n";
+		$this->messages['programRequired']			= Mind::message("API: Você precisa passar o nome do programa a ser executado.", '[Fail]', false);
+		$this->messages['loginRequired']			= Mind::message("Auth: Tanto login quanto senha são obrigatórios.", '[Fail]', false);
+		$this->messages['passwordRequired']			= "Precisarei do password para este usuário, por favor: ";
+		$this->messages['autenticated']				= Mind::message("\nMain: %s autenticado", "[OK]", false);//"\n[OK] %s autenticated\n";
+		$this->messages['not_allowed']				= Mind::message("\nMain: Você ainda não autenticou suas credenciais.", '[Fail]', false);
+		$this->messages['not_allowed_tip']			= "Tente executar o comando\n    auth < login >\nUma senha será solicitada.\n";
+		$this->messages['no_such_file']				= Mind::message("\nMain: Não conheço tal comando: '%s'", "[Fail]", false);
+		$this->messages['auth_fail']				= Mind::message("\nAuth: Usuário ou senha inválidos", "[Fail]", false);
+		$this->messages['bye']						= "Saindo, até logo...\n";
+		$this->messages['invalidCreateParams']		= Mind::message("Main: Parâmetros inválidos", "[Fail]", false);
+		$this->messages['invalidOption']			= Mind::message("Opção inválida '%s'", '[Fail]', false);
+		$this->messages['projectAlreadyExists']		= Mind::message("Lamento mas já existe um projeto de mesmo nome.", '[Fail]', false);
+		$this->messages['projectCreated']			= Mind::message("Projeto '%s' criado.", '[Ok]', false);
+		$this->messages['userCreated']				= Mind::message("Usuário '%s' criado", '[Ok]', false);
+		$this->messages['noProject']				= Mind::message("Projeto '%s' não existe ou você não tem acesso ao mesmo.", '[Fail]', false);
+		$this->messages['projectOpened']			= Mind::message("Acessando projeto '%s'", '[Ok]', false);
+		$this->messages['currentProjectRequired']	= Mind::message("Primeiro você precisará abrir um projeto.", '[Fail]', false);
+		$this->messages['currentProjectRequiredTip']= "Tente com o comando\n  use project <projectName>\n";
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
-   Invalid HTTP requisition.
-   You *must* send some POST data acoording your request, and also a variable "program" by post, with the name of the program you want to run.
+   Requisição HTTP inválida.
+   Você *deve* enviar alguma informação via POST juntamente com o parâmetro "program" com o nome do programa que deseja rodar e seus parâmetros.
 MESSAGE;
 	}
 }

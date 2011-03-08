@@ -1,8 +1,18 @@
 <?php
 /**
- * Geneic methods to be used by the Normalizer
- *
- * @author felipe
+ * This file is part of theWebMind 3rd generation.
+ * Under Cortex/Analyst structure
+ * 
+ * @filesource
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ */
+/**
+ * Generic methods to be used by the Normalizer.
+ * 
+ * @abstract Normal
+ * @package Cortex
+ * @subpackage Analyst
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 abstract class Normal {
 	
@@ -14,9 +24,9 @@ abstract class Normal {
 	
 	/**
 	 * Merges all the poperties from the $rel into the $focus
-	 * @global Mind $_MIND
-	 * @param MindEntity $focus
-	 * @param MindEntity $rel 
+	 * 
+	 * @param MindEntity $focus The entity that will receive the other's properties
+	 * @param MindEntity $rel The entity which will lose its properties
 	 */
 	public static function mergeProperties(MindEntity &$focus, MindEntity &$rel)
 	{
@@ -32,11 +42,13 @@ abstract class Normal {
 	}
 	
 	/**
-	 * Merges the $rel entity into the $focus entity, mergin
+	 * Merges the passed entities.
+	 * 
+	 * Merges the $rel entity into the $focus entity, merging
 	 * the properties and relations
 	 * 
-	 * @param MindEntity $focus
-	 * @param MindEntity $rel
+	 * @param MindEntity $focus The main entity
+	 * @param MindEntity $rel The weaker entity
 	 * @return MindEntity 
 	 */
 	public static function mergeEntities(MindEntity &$focus,
@@ -51,6 +63,15 @@ abstract class Normal {
 		return $focus;
 	}
 	
+	/**
+	 * Fixes 1:1 relations.
+	 * It will fix the relations between the passed entities, as they
+	 * will not be merged.
+	 * 
+	 * @param MindEntity $focus The pointed entity
+	 * @param MindEntity $rel The weaker entity
+	 * @param MindRelation $relation The relation between
+	 */
 	public static function fixOneByOneRelation(MindEntity &$focus,
 											   MindEntity &$rel,
 											   MindRelation &$relation)
@@ -59,18 +80,23 @@ abstract class Normal {
 		 * excluir a relação entre a mais forte e a mais fraca
 		 * marcar a fk como pk
 		 */
-		Analyst::unsetRelation(Analyst::$relations[$rel->name.PROPERTY_SEPARATOR.$focus->name]);
-		Analyst::$relations[$focus->name.PROPERTY_SEPARATOR.$rel->name]->uniqueRef= true;
+		Analyst::unsetRelation( Analyst::$relations[$rel->name.
+								PROPERTY_SEPARATOR.
+								$focus->name]);
+		Analyst::$relations[$focus->name.
+							PROPERTY_SEPARATOR.
+							$rel->name]->uniqueRef= true;
 	}
 	
 	/**
+	 * Gets the relevance amount for the passed entity.
+	 * 
 	 * Gets the pontuation amount for the relevance an entity may have.
 	 * It takes many directrizes to define how relevant an entity is.
 	 * New parameters for such decision can be added here.
 	 * 
-	 * @global Mind $_MIND
-	 * @param MindEntity $entity
-	 * @return int 
+	 * @param MindEntity $entity The entity to be analysed
+	 * @return int The relevance the entity has
 	 */
 	public static function relevanceAmount(MindEntity $entity)
 	{
@@ -89,6 +115,7 @@ abstract class Normal {
 	}
 	
 	/**
+	 * Sets the most and less relevant entities.
 	 * Returns an array with the most relevant entity in the first position
 	 * and the other entity in the second position
 	 * 
@@ -114,12 +141,14 @@ abstract class Normal {
 	}
 	
 	/**
-	 * Verifies if the entity has properties classified as big
+	 * Verifies wether the entity has big properties or not.
+	 * 
+	 * Verifies if the entity has properties classified as big.<br/>
 	 * If yes, returns the number of big properties found, or
-	 * false(0) if nog big property has been found
+	 * false(0) if no big property has been found
 	 * 
 	 * @param MindEntity $entity
-	 * @return mixed
+	 * @return boolean|int The number of big properties, or false when none
 	 */
 	public static function hasBigProperties(MindEntity $entity)
 	{
@@ -133,8 +162,11 @@ abstract class Normal {
 	}
 	
 	/**
+	 * Organizes the relations by its cardinalities.
+	 * 
 	 * Organizes the relations between entities to each group,
 	 * separating by n:n, 1:1 or 1:n
+	 * 
 	 */
 	public static function separateByRelationQuantifiers()
 	{

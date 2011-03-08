@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class FormatterHelper</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class FormatterHelper</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The Formatter class provides helpers to format messages.</p>
+<p class="description"><p>The Formatter class provides helpers to format messages.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Fabien Potencier &lt;<a href="mailto:fabien.potencier@symfony-project.com">fabien.potencier@symfony-project.com</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Helper---FormatterHelper.php.html">/Helper/FormatterHelper.php</a> (line <span class="field"><a href="../../__filesource/fsource_symfony_console_HelperFormatterHelper.php.html#a21">21</a></span>)
+		</p>
+		
+				
+		<pre><a href="../../symfony/console/Helper.html">Helper</a>
+   |
+   --FormatterHelper</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																				
+												<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#formatBlock" title="details" class="method-name">formatBlock</a>
+											(<span class="var-type">string|array</span>&nbsp;<span class="var-name">$messages</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$large</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#formatSection" title="details" class="method-name">formatSection</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$section</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span> = <span class="var-default">'info'</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getName" title="details" class="method-name">getName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#strlen" title="details" class="method-name">strlen</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$string</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../symfony/console/Helper.html">Helper</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../symfony/console/Helper.html#var$helperSet">Helper::$helperSet</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodformatBlock" id="formatBlock"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">formatBlock</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_HelperFormatterHelper.php.html#a44">44</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Formats a message as a block of text.</p>
+<p class="description"><p>Formats a message as a block of text.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The formatter message</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			formatBlock
+		</span>
+					(<span class="var-type">string|array</span>&nbsp;<span class="var-name">$messages</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">Boolean</span>&nbsp;<span class="var-name">$large</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|array</span>
+				<span class="var-name">$messages</span><span class="var-description">: The message to write in the block</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$style</span><span class="var-description">: The style to apply to the whole block</span>			</li>
+					<li>
+				<span class="var-type">Boolean</span>
+				<span class="var-name">$large</span><span class="var-description">: Whether to return a large block</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodformatSection" id="formatSection"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">formatSection</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_HelperFormatterHelper.php.html#a30">30</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Formats a message within a section.</p>
+<p class="description"><p>Formats a message within a section.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			formatSection
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$section</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span> = <span class="var-default">'info'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$section</span><span class="var-description">: The section name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$message</span><span class="var-description">: The message</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$style</span><span class="var-description">: The style to apply to the section</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getName</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_HelperFormatterHelper.php.html#a85">85</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the helper's canonical name</p>
+<p class="description"><p>Returns the helper's canonical name</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodstrlen" id="strlen"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">strlen</span> (line <span class="line-number"><a href="../../__filesource/fsource_symfony_console_HelperFormatterHelper.php.html#a77">77</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			strlen
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$string</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$string</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../symfony/console/Helper.html">Helper</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../symfony/console/Helper.html#methodgetHelperSet">Helper::getHelperSet()</a></span><br>
+													<span class="method-name"><a href="../../symfony/console/Helper.html#methodsetHelperSet">Helper::setHelperSet()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 07 Mar 2011 19:39:40 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

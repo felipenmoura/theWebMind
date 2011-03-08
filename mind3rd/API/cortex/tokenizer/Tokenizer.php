@@ -1,10 +1,22 @@
 <?php
 /**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Tokenizer, within the Cortex/Tokenizer packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
  * This class will apply the most important tokens to be used.
  * It also builds the main structure to compare it to avaliable
  * sintatics. This structure is called SPINE
  *
- * @author felipe
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Cortex
+ * @subpackage Tokenizer
  */
 class Tokenizer extends Token{
 
@@ -16,7 +28,7 @@ class Tokenizer extends Token{
 	public static $dataTypes= Array();
 
 	/**
-	 * Parses a string into an array, splited by comas
+	 * Parses a string into an array, splited by comas.
 	 * @param Mixed $str
 	 * @return Array The string splited by comas, ignoring a space after each coma
 	 */
@@ -62,6 +74,7 @@ class Tokenizer extends Token{
 	}
 
 	/**
+	 * Loads the qualifiers into the class properties.
 	 * This method loads and builds the structure required
 	 * to use and identify the qualifiers, from a passed XML
 	 *
@@ -86,7 +99,7 @@ class Tokenizer extends Token{
 	}
 
 	/**
-	 * Loads the possible types to be accepted
+	 * Loads the possible types to be accepted.
 	 * @param SimpleXML $xml
 	 * @return Array The parsed avaliable types
 	 */
@@ -105,6 +118,8 @@ class Tokenizer extends Token{
 	}
 
 	/**
+	 * Identifies if the passed word is a quantifier.
+	 * 
 	 * This method verifies whether the passed word is
 	 * a valid quantifier in the passed list of quantifiers
 	 * or if it is a quantifier, in case a list is not sent
@@ -127,6 +142,8 @@ class Tokenizer extends Token{
 	}
 
 	/**
+	 * Verifies if the passed word is a qualifier.
+	 * 
 	 * This method verifies whether the passed word is
 	 * a valid quantifier in the passed list of qualifiers
 	 * or if it is a qualifier, in case a list is not sent
@@ -154,8 +171,6 @@ class Tokenizer extends Token{
 	 */
 	public static function loadModifiers($modifiersSrc= false)
 	{
-		/*if(self::$quantifiers) // it is already loaded
-			return true;*/
 		if(!$modifiersSrc && !file_exists('sintatics.list'))
 		{
 			self::loadSintatics(fopen(Mind::$langPath.Mind::$currentProject['idiom'].
@@ -185,6 +200,8 @@ class Tokenizer extends Token{
 	}
 
 	/**
+	 * Sweeps the content.
+	 * 
 	 * This method runs through all the words within Mind::$content
 	 * and perform all verifications
 	 *

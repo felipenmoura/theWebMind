@@ -1,8 +1,19 @@
 <?php
-
 /**
- * The Token itself
- * @author felipe
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Token, within the Cortex/Tokenizer packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
+ * The Token itself.
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Cortex
+ * @subpackage Tokenizer
  */
 class Token
 {
@@ -46,6 +57,12 @@ class Token
 	public static $words= Array();
 	public static $string= '';
 
+	/**
+	 * Identifies the word type and adds it to the structure.
+	 * As the identified type, the word represents an assumed token.
+	 * @param string $word
+	 * @return string 
+	 */
 	public function add($word)
 	{
 		$ignoreForms= Mind::$currentProject['idiom'].'\IgnoreForms';

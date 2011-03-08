@@ -1,8 +1,21 @@
 <?php
 /**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Syntaxer, within the Cortex/Syntaxer packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
+ * Identifies and organizes the valid syntaxes on the content.
+ * 
  * This class will work with the tokenized strucure and
  * the original code, due to identify patterns and apply
- * any needed rules
+ * any needed rules.
+ * <pre>
  * Legend:
  *  Q=May have, Must have
  *  S=Substantive
@@ -11,16 +24,17 @@
  *  O=Or
  *  C=Complement/Composite(like "of", or "de")
  *  A=Addition(like "," or "and"
- *
- * @author felipe
+ *</pre>
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Cortex
+ * @subpackage Syntaxer
  */
 class Syntaxer {
 
 	public static $sintatics= Array();
 
 	/**
-	 * Loads the file which has the list of avaliable sintaxes
-	 * @static loadSintaticList
+	 * Loads the file which has the list of avaliable sintaxes.
 	 */
 	public static function loadSintaticList()
 	{
@@ -36,6 +50,8 @@ class Syntaxer {
 	}
 
 	/**
+	 * Fetches the identified composed substantives.
+	 * 
 	 * Fixes the composed substantives(defined by the use of
 	 * the "of" tokens defined into the qualifiers.xml of the current idiom)
 	 */
@@ -57,8 +73,7 @@ class Syntaxer {
 	}
 	
 	/**
-	 * Sweeps the content to apply the rules and identify patterns
-	 * @name sweep
+	 * Sweeps the content to apply the rules and identify patterns.
 	 */
 	public function sweep()
 	{

@@ -1,9 +1,22 @@
 <?php
 /**
- * This class is responsable to the analisys of the system
+ * This file is part of theWebMind 3rd generation.
+ * 
+ * Analyst components, within the Cortex/Analyst packages.<br/>
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ * @filesource
+ */
+/**
+ * This class is responsible for the analysis of the system
  * preparing the relations and apply the first rules
  *
- * @author felipe
+ * @package Cortex
+ * @subpackage Analyst
+ * @author  Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 class Analyst {
 
@@ -16,8 +29,7 @@ class Analyst {
 	 * It takes the relevance as parameter to determine wheter the entity
 	 * should be merged(stop existing) or not.
 	 * 
-	 * @global Mind $_MIND
-	 * @param MindEntity $en
+	 * @param MindEntity $en The entity to be analyzed
 	 * @return boolean
 	 */
 	public static function isItWorthMerging(MindEntity $en)
@@ -29,8 +41,8 @@ class Analyst {
 	}
 	
 	/**
-	 * Removes an entity from the entities list
-	 * @param type $entity 
+	 * Removes an entity from the entities list.
+	 * @param type $entity The entity to be removed
 	 */
 	public static function removeEntity($entity)
 	{
@@ -39,13 +51,13 @@ class Analyst {
 	}
 	
 	/**
-	 * Removes a relation between two entities, but it will NOT remove
-	 * the refBy or refTo properties of each entity.
+	 * Removes a relation between two entities.
+	 * But it will NOT remove the refBy or refTo properties of each entity.
 	 * It is most often, useful to be used for relations that may have
 	 * been represented twice, as the same idea.
 	 * It also decreases the relevance of the focused entity.
 	 * 
-	 * @param MindRelation $rel 
+	 * @param MindRelation &$rel The relation  which will be droped
 	 */
 	public static function unsetRelation(MindRelation &$rel)
 	{
@@ -61,8 +73,8 @@ class Analyst {
 	
 	/**
 	 * Gets the whole interpreted context, with all the
-	 * analysed information
-	 * @return Array
+	 * analyzed information
+	 * @return Array An array with both entities and relations
 	 */
 	public static function getUniverse()
 	{
@@ -73,8 +85,9 @@ class Analyst {
 	}
 
 	/**
-	 * Prints out the analysed content
-	 * @param boolean $detailed
+	 * Prints out the analyzed content
+	 * @param boolean $detailed Pass true if it should show detailed
+	 * information about the entities and properties.
 	 */
 	public static function printWhatYouGet($detailed=true)
 	{
@@ -109,7 +122,9 @@ class Analyst {
 	}
 
 	/**
-	 * Applies normalization rules to the currently analized structure
+	 * Applies normalization rules to the currently analized structure.
+	 * This method uses the Normalizer methods and properties to apply
+	 * the required rules.
 	 */
 	public static function normalizeIt()
 	{
@@ -119,7 +134,7 @@ class Analyst {
 	}
 
 	/**
-	 * Reset the properties of the analyst itself
+	 * Reset the properties of the analyst itself.
 	 */
 	public static function reset()
 	{
@@ -130,6 +145,9 @@ class Analyst {
 		self::clearFocused();
 	}
 
+	/**
+	 * Clears the current focused entities.
+	 */
 	public static function clearFocused()
 	{
 		self::$focused  = false;
@@ -137,8 +155,8 @@ class Analyst {
 	}
 	
 	/**
-	 * Adds an entity to the focused entities list
-	 * @param MindEntity $entity 
+	 * Adds an entity to the focused entities list.
+	 * @param MindEntity &$entity The entity to be added to focus
 	 */
 	public static function addToFocus(MindEntity &$entity)
 	{
@@ -146,15 +164,18 @@ class Analyst {
 	}
 	
 	/**
+	 * Adds a relation to the focused list.
+	 * 
 	 * Adds a relation between all the focused entities specified in the
 	 * current expression and the passed $rel entity
 	 * 
-	 * @param MindEntity $rel
-	 * @param String $linkType
-	 * @param String $linkVerb
-	 * @param Mixed $min
-	 * @param Mixed $max
-	 * @return MindRelationCollection
+	 * @param MindEntity &$rel The entity to be added
+	 * @param String $linkType The type of like(action, possibility or must)
+	 * @param String $linkVerb The verb used to identify the relation
+	 * @param Mixed $min The minimun quantifier
+	 * @param Mixed $max The maximun quantifier
+	 * @param boolean [$uniqueRef] If it should be an unique referation
+	 * @return MindRelationCollection An array of all the created relations
 	 */
 	public static function &addRelationToFocused(MindEntity &$rel, $linkType,
 									            $linkVerb, $min, $max,
@@ -196,7 +217,7 @@ class Analyst {
 	/**
 	 * Adds the passed property to all the focused entities.
 	 * 
-	 * @param MindProperty $prop 
+	 * @param MindProperty &$prop The property to be added to the focused entities.
 	 */
 	public static function addPropertyToFocused(MindProperty &$prop)
 	{
@@ -206,6 +227,8 @@ class Analyst {
 	}
 	
 	/**
+	 * Returns an array with the names of all entities.
+	 * 
 	 * Gets an Array of the names of all the focused entities on
 	 * the current expression.
 	 * @return Array
@@ -219,6 +242,8 @@ class Analyst {
 	}
 	
 	/**
+	 * Analyzes the project.
+	 * 
 	 * This method receives each expression and analizes
 	 * the best way to act and to store the understood
 	 * structure
@@ -353,7 +378,7 @@ class Analyst {
 	}
 
 	/**
-	 * Sweeps through all the matched expressions
+	 * Sweeps through all the matched expressions.
 	 * @param Array $matches 
 	 */
 	public static function sweep($matches)
@@ -361,7 +386,7 @@ class Analyst {
 		// let's clear the Analyst memory as it uses static properties
 		self::reset();
 
-		// now we gotta analyse each valid expression
+		// now we gotta analyze each valid expression
 		foreach($matches as $found)
 		{
 			$len= strlen($found[0]);
