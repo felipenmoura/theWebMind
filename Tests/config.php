@@ -15,6 +15,7 @@
 	require_once dirname(__FILE__) . '/../mind3rd/API/classes/MindProperty.php';
 
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/analyst/Normal.php';
+	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/analyst/Analysis.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/analyst/Normalizer.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/analyst/Analyst.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/tokenizer/Token.php';
