@@ -93,24 +93,51 @@ class Analyst extends Analysis {
 		{
 			if($detailed)
 			{
-				echo "   (".$entity->relevance.")".$entity->name."\n";
+				echo "  ".$entity->name.
+					 "\n";
 				//echo "[".$k."]\n";
 			}
 			foreach($entity->properties as $prop)
 			{
+				$details= false;
+				$details= Array();
+				if($prop->size)
+					$details[]= $prop->size;
+				if($prop->uinque)
+					$details[]= "unique";
+				if($prop->key)
+					$details[]= "key";
+				if($prop->required)
+					$details[]= "not null";
+				if(!is_null($prop->default) && trim($prop->default) != '')
+					$details[]= ($prop->default!= AUTOINCREMENT_DEFVAL)?
+									'"'.$prop->default.'"':
+									"AUTO_INCREMENT";
+				if(sizeof($prop->options) > 0)
+				{
+					$details[]= "{".implode("|", array_keys($prop->default))."}";
+				}	
+				
 				$props++;
-				echo "        ".$prop->name."\n";
+				echo "    ".$prop->name.
+					 ":".$prop->type.
+					 "(".
+						implode(", ", $details).
+					 ")".
+					 ($prop->refTo? " => ".$prop->refTo->name: "").
+					 "\n";
 			}
 		}
-		echo "RELATIONS:\n";
+		echo "RELATIONS:".sizeof(self::$relations)."\n";
 		foreach(self::$relations as $k=>$rel)
 		{
 			if(!$rel)
 				continue;
-			echo "      ".
+			echo "  ".
 				 $k.': '.
 				 $rel->rel->name.' -> '.
 				 $rel->focus->name.
+				 ($rel->uniqueRef? "[pk]": "").
 				 "\n";
 		}
 		echo "Properties: ".$props."\n";

@@ -222,7 +222,9 @@
 			$pkPrefix= $_MIND->defaults['pk_prefix'];
 			foreach(Analyst::$entities as &$entity)
 			{
-				if(sizeof($entity->properties) != sizeof($entity->pks))
+				if( sizeof($entity->properties) == 0
+						||
+					sizeof($entity->properties) != sizeof($entity->pks))
 				{
 					$propName= $pkPrefix.$entity->name;
 					if(!$entity->hasProperty($propName))
