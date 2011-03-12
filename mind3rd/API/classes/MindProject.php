@@ -7,6 +7,7 @@
 class MindProject extends VersionManager{
 	
 	public static $sourceContent= Array();
+	public static $currentSource= null;
 	
     /**
 	 * Returns true if the project already exists,
@@ -93,7 +94,7 @@ class MindProject extends VersionManager{
 	
 	public static function import($src)
 	{
-		self::$sourceContent[]= $src;
+		self::$sourceContent[$src]= $src;
 		$extraFiles[]= preg_match_all(IMPORT_SOURCE, $src, $matches);
 		$matches= $matches[0];
 		foreach($matches as &$import)
@@ -113,6 +114,7 @@ class MindProject extends VersionManager{
 	public static function setUp()
 	{
 		self::$sourceContent= false;
+		self::$currentSource= null;
 		self::$sourceContent= Array();
 		Analyst::reset();
 				
@@ -124,8 +126,9 @@ class MindProject extends VersionManager{
 	{
 		self::setUp();
 
-		foreach(self::$sourceContent as $content)
+		foreach(self::$sourceContent as $k=>&$content)
 		{
+			$currentSource= $k;
 			// search for special/unknown characters
 			if(!Mind::$lexer->sweep($content))
 				return false;
