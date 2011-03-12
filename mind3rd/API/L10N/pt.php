@@ -49,6 +49,7 @@ class pt {
 		$this->messages['projectOpened']			= Mind::message("Acessando projeto '%s'", '[Ok]', false);
 		$this->messages['currentProjectRequired']	= Mind::message("Primeiro você precisará abrir um projeto.", '[Fail]', false);
 		$this->messages['currentProjectRequiredTip']= "Tente com o comando\n  use project <projectName>\n";
+		$this->messages['sourceFileNotFound']	    = Mind::message("O arquivo fonte '%s' não foi encontrado para o projeto atual.", '[Fail]', false);
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Requisição HTTP inválida.

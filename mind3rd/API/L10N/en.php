@@ -41,6 +41,7 @@ class En {
 		$this->messages['noProject']				= Mind::message("Project '%s' doesn't exist or you have no access", '[Fail]', false);
 		$this->messages['projectOpened']			= Mind::message("Project '%s' opened", '[Ok]', false);
 		$this->messages['currentProjectRequired']	= Mind::message("You must open a project first", '[Fail]', false);
+		$this->messages['sourceFileNotFound']	    = Mind::message("The source '%s' was not found for the current project.", '[Fail]', false);
 		$this->messages['currentProjectRequiredTip']= "You can use the command\n  use project <projectName>\n";
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE

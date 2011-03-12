@@ -20,6 +20,7 @@
 	define('VALID_SUBST_SYNTAX',  "S((( )?\,( )?S)?)+");
 	define('COMPOSED_SUBST',      "/SCS/");
 	define('FIX_PROP_NAME',       "/\\\|\,|\./");
+	define('IMPORT_SOURCE',       "/@import [a-z0-9_\-\/\\\]+/i");
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');

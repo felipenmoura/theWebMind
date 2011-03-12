@@ -62,48 +62,7 @@ EOT
 				return false;
 			}
 
-			$startingTime= microtime();
-			$startingTime= explode(' ', $startingTime);
-			$startingTime= $startingTime[1] + $startingTime[0];
-
-			Mind::$lexer= new Lexer();
-
-			$srcs= Mind::$currentProject['sources'];
-			$main= file_get_contents($srcs.'/main.mnd');
-
-			// search for special/unknown characters
-			if(!Mind::$lexer->sweep($main))
-				return false;
-			// keep substantives and verbs on their canonical form
-			if(!Mind::$canonic->sweep())
-				return false;
-			// mark specific tokens
-			if(!Mind::$tokenizer->sweep())
-				return false;
-			// prepares the model to be used to process data
-			// it transforms the original text into the mind code
-			// itself
-			if(!Mind::$syntaxer->sweep())
-				return false;
-
-			if($this->autoCommit)
-			{
-				MindProject::commit();
-			}
-
-			$endingTime= microtime();
-			$endingTime= explode(' ', $endingTime);
-			$endingTime= $endingTime[1] + $endingTime[0];
-
-			// do NOT print it if you have MANY entities, the webbrowser freezes
-			//print_r(Analyst::getUniverse());
-			echo Analyst::printWhatYouGet();
-			echo "Time: ".
-					number_format(((float)$endingTime) - ((float)$startingTime), 4).
-				 "s\n";
-			$memory= ((memory_get_usage() / 1024)/1024);
-			$memory= number_format($memory, 2);
-			echo $memory."MBs\n";
+			MindProject::analyze();
 			return $this;
 		}
 

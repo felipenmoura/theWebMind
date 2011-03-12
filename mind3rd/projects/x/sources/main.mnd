@@ -1,26 +1,22 @@
-A universidade tem muitos alunos. Aluno tem nome:varchar, matrícula:int,
+cada igreja tem um padre.
+cada padre tem uma igreja.
+padre tem nome:varchar.
+
+@import drafts/draft1.
+
+igreja tem nome:varchar.
+
+@import drafts/draft2
+
+igreja tem data:data.
+
+
+/*A universidade tem muitos alunos. Aluno tem nome:varchar, matrícula:int,
 cpf:int e identidade:int, endereço:varchar,
 telefone:int, data de nascimento:date, sexo:char, graduação:int.
 Cada aluno pode estar matriculado em vários cursos sendo que cada curso pode ter muitos alunos matriculados.
 Aluno também tem as disciplinas em que está matriculado, lembrando que cada disciplina terá diversos alunos inscritos.
-
-/*
-registro tem uma id.
-id tem um registro.
-id tem codigo:int e nro:int.
-registro tem data:date e descrição:text.
-
-registro2 tem uma id2.
-id2 tem um registro2.
-id2 tem codigo2:int e nro2:int.
-registro2 tem data2:date e descrição2:text.
-
-registro3 tem um ou uma id3.
-id3 tem nenhum ou um registro3.
-id3 tem codigo3:int e nro3:int.
-registro3 tem data3:date e descrição3:char(100).
 */
-
 /*
 Algumas aplicações precisam se referenciar à cidade, estado e CEP do
 endereço do estudante. Cada estudante pode ser identificado pelo

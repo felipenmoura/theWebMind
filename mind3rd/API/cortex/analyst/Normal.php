@@ -33,10 +33,14 @@ abstract class Normal {
 		GLOBAL $_MIND;
 		if($_MIND->conf['use_prefix_on_merged_entities'])
 		{
+			$propList= Array();
 			foreach($rel->properties as $prop)
 			{
-				$prop->setName($rel->name.PROPERTY_SEPARATOR.$prop->name);
+				$name= $rel->name.PROPERTY_SEPARATOR.$prop->name;
+				$propList[$name]= $prop;
+				$propList[$name]->setName($name);
 			}
+			$rel->properties= $propList;
 		}
 		$focus->properties= array_merge($focus->properties, $rel->properties);
 	}

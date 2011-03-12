@@ -207,7 +207,7 @@ class Lexer
 
 		// but content between parentheses should be left with
 		// normal spaces, instead of the space token
-		// restoring the inition format for attribute details
+		// restoring the initial format for attribute details
 		$fixed= str_replace($this->tmpSpace, " ", $fixed);
 		$fixed= str_replace($this->tmpComa, ",", $fixed);
 		$fixed= str_replace($this->tmpPeriod, ".", $fixed);
@@ -217,7 +217,7 @@ class Lexer
 		$fixed= preg_replace(MULTILINE_COMMENT, '', $fixed);
 
 		$exploded= explode($this->tokens[' '], $fixed);
-
+		
 		$fixed= array_filter($exploded);
 
 		Mind::$content= $fixed;

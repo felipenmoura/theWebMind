@@ -175,7 +175,7 @@ class Analyst extends Analysis {
 	public static function sweep($matches)
 	{
 		// let's clear the Analyst memory as it uses static properties
-		self::reset();
+		//self::reset();
 
 		// now we gotta analyze each valid expression
 		foreach($matches as $found)
