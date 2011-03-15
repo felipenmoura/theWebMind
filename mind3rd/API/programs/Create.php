@@ -115,6 +115,7 @@ EOT
 					}
 
 					Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
+					chmod($this->projectfile, 0777);
 
 					$db= new MindDB();
 					$qr_newProj= "INSERT into project

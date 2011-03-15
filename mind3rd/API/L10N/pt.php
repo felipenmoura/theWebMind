@@ -40,6 +40,7 @@ class pt {
 		$this->messages['no_such_file']				= Mind::message("\nMain: Não conheço tal comando: '%s'", "[Fail]", false);
 		$this->messages['auth_fail']				= Mind::message("\nAuth: Usuário ou senha inválidos", "[Fail]", false);
 		$this->messages['bye']						= "Saindo, até logo...\n";
+		$this->messages['thinking']				    = "Por favor aguarde, enquanto eu penso...\n";
 		$this->messages['invalidCreateParams']		= Mind::message("Main: Parâmetros inválidos", "[Fail]", false);
 		$this->messages['invalidOption']			= Mind::message("Opção inválida '%s'", '[Fail]', false);
 		$this->messages['projectAlreadyExists']		= Mind::message("Lamento mas já existe um projeto de mesmo nome.", '[Fail]', false);
@@ -49,7 +50,9 @@ class pt {
 		$this->messages['projectOpened']			= Mind::message("Acessando projeto '%s'", '[Ok]', false);
 		$this->messages['currentProjectRequired']	= Mind::message("Primeiro você precisará abrir um projeto.", '[Fail]', false);
 		$this->messages['currentProjectRequiredTip']= "Tente com o comando\n  use project <projectName>\n";
+		$this->messages['analyseFirst']             = "Você precisará analisar o projeto, primeiro. O projeto ainda não foi analizado. Execute o comando 'analyze'.\n";
 		$this->messages['sourceFileNotFound']	    = Mind::message("O arquivo fonte '%s' não foi encontrado para o projeto atual.", '[Fail]', false);
+		$this->messages['permissionDenied']	        = Mind::message("Permissão negada pra acessar, criar, alterar ou excluir um arquivo.\nPor favor, libere acesso ao sistema para o diretório raíz do Mind.\n", '[Fail]', false);
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Requisição HTTP inválida.

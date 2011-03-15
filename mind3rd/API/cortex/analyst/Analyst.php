@@ -75,8 +75,8 @@ class Analyst extends Analysis {
 	public static function getUniverse()
 	{
 		return Array(
-						'entities'=>self::$entities,
-						'relations'=>self::$relations
+						'entities'=>&self::$entities,
+						'relations'=>&self::$relations
 					);
 	}
 
@@ -84,64 +84,81 @@ class Analyst extends Analysis {
 	 * Prints out the analyzed content
 	 * @param boolean $detailed Pass true if it should show detailed
 	 * information about the entities and properties.
+	 * @param boolean $showEntities=true
+	 * @param boolean $showRelations=true
 	 */
-	public static function printWhatYouGet($detailed=true)
+	public static function printWhatYouGet($detailed=true,
+										   $showEntities=true,
+										   $showRelations=true)
 	{
 		$props= 0;
-		echo "ENTITIES: ".sizeof(self::$entities)."\n";
-		foreach(self::$entities as $k=>$entity)
+		if($showEntities)
 		{
-			if($detailed)
+			echo "ENTITIES: ".sizeof(self::$entities)."\n";
+			foreach(self::$entities as $k=>$entity)
 			{
-				echo "  ".$entity->name.
-					 "\n";
-				//echo "[".$k."]\n";
-			}
-			foreach($entity->properties as $prop)
-			{
-				$details= false;
-				$details= Array();
-				if($prop->size)
-					$details[]= $prop->size;
-				if($prop->uinque)
-					$details[]= "unique";
-				if($prop->key)
-					$details[]= "key";
-				if($prop->required)
-					$details[]= "not null";
-				if(!is_null($prop->default) && trim($prop->default) != '')
-					$details[]= ($prop->default!= AUTOINCREMENT_DEFVAL)?
-									'"'.$prop->default.'"':
-									"AUTO_INCREMENT";
-				if(sizeof($prop->options) > 0)
+				if(!$detailed)
 				{
-					$details[]= "{".implode("|", array_keys($prop->default))."}";
-				}	
-				
-				$props++;
-				echo "    ".$prop->name.
-					 ":".$prop->type.
-					 "(".
-						implode(", ", $details).
-					 ")".
-					 ($prop->refTo? " => ".$prop->refTo->name: "").
-					 "\n";
+					echo "  ".$entity->name.
+						 "\n";
+				}else{
+						echo "  ".$entity->name.
+							 "\n";
+						foreach($entity->properties as $prop)
+						{
+							$details= false;
+							$details= Array();
+							if($prop->size)
+								$details[]= $prop->size;
+							if($prop->uinque)
+								$details[]= "unique";
+							if($prop->key)
+								$details[]= "key";
+							if($prop->required)
+								$details[]= "not null";
+							if(!is_null($prop->default) && trim($prop->default) != '')
+								$details[]= ($prop->default!= AUTOINCREMENT_DEFVAL)?
+												'"'.$prop->default.'"':
+												"AUTO_INCREMENT";
+							if(sizeof($prop->options) > 0)
+							{
+								$opts= "{".implode("|", array_keys($prop->default))."}";
+								$details[]= $opts;
+							}	
+
+							$props++;
+							echo "    ".$prop->name.
+								 ":".$prop->type.
+								 "(".
+									implode(", ", $details).
+								 ")".
+								 ($prop->refTo? " => ".$prop->refTo->name: "").
+								 "\n";
+						}
+					}
 			}
+			if($detailed)
+				echo "PROPERTIES: ".$props."\n";
 		}
-		echo "RELATIONS:".sizeof(self::$relations)."\n";
-		foreach(self::$relations as $k=>$rel)
+		if($showRelations)
 		{
-			if(!$rel)
-				continue;
-			echo "  ".
-				 $k.': '.
-				 $rel->rel->name.' -> '.
-				 $rel->focus->name.
-				 ($rel->uniqueRef? "[pk]": "").
-				 "\n";
+			echo "RELATIONS:".sizeof(self::$relations)."\n";
+			foreach(self::$relations as $k=>$rel)
+			{
+				if(!$rel)
+					continue;
+				echo "    ".$rel->name;
+				if($detailed)
+				{
+					echo ': '.
+						 $rel->rel->name.' -> '.
+						 $rel->focus->name.
+						 ($rel->uniqueRef? "[pk]": "").
+						 "\n";
+				}
+			}
+			echo "Relations: ".sizeof(self::$relations)."\n";
 		}
-		echo "Properties: ".$props."\n";
-		echo "Relations: ".sizeof(self::$relations)."\n";
 	}
 
 	/**

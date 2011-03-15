@@ -33,6 +33,7 @@ class En {
 		$this->messages['no_such_file']				= Mind::message("\nMain: No such command '%s'", "[Fail]", false);
 		$this->messages['auth_fail']				= Mind::message("\nAuth: Wrong user or password", "[Fail]", false);
 		$this->messages['bye']						= "Logging out...\n";
+		$this->messages['thinking']				    = "Please wait while I'm thinking...\n";
 		$this->messages['invalidCreateParams']		= Mind::message("Main: Invalid parameters", "[Fail]", false);
 		$this->messages['invalidOption']			= Mind::message("Invalid option '%s'", '[Fail]', false);
 		$this->messages['projectAlreadyExists']		= Mind::message("There is, already, another project with the same name", '[Fail]', false);
@@ -43,6 +44,8 @@ class En {
 		$this->messages['currentProjectRequired']	= Mind::message("You must open a project first", '[Fail]', false);
 		$this->messages['sourceFileNotFound']	    = Mind::message("The source '%s' was not found for the current project.", '[Fail]', false);
 		$this->messages['currentProjectRequiredTip']= "You can use the command\n  use project <projectName>\n";
+		$this->messages['analyseFirst']             = "You will need to analyze the project. It has not been analyzed yet.Execute the 'analyze' command.\n";
+		$this->messages['permissionDenied']	        = Mind::message("Permission denied to change/create/delete files.\nPlease, allow the system to change files in mind's root directory", '[Fail]', false);;
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Invalid HTTP requisition.

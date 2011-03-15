@@ -78,6 +78,30 @@ EOT
 								$this->printMatrix($userList);
 							 }
 					break;
+				case 'entities':
+						$entities= Analyst::getUniverse();
+						$entities= $entities['entities'];
+						if(sizeof($entities) >0)
+							if($this->detailed)
+								Analyst::printWhatYouGet(true, true, false);
+							else
+							echo "  ".implode("\n  ", array_keys($entities));
+						else
+							echo "  No entities to show";
+						echo "\n";
+					break;
+				case 'relations':
+						$relations= Analyst::getUniverse();
+						$relations= $relations['relations'];
+						if(sizeof($relations) >0)
+							if($this->detailed)
+								Analyst::printWhatYouGet(true, false, true);
+							else
+							echo "  ".implode("\n  ", array_keys($relations));
+						else
+							echo "  No relations to show";
+						echo "\n";
+					break;
 				default:
 					Mind::write('invalidOption', true, $this->whatToShow);
 					return false;

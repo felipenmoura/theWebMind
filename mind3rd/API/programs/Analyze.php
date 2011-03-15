@@ -38,6 +38,7 @@ EOT
 				return false;
 			$this->nameSpace= $input->getArgument('namespace');
 			$this->autoCommit= $input->getOption('commit');
+			Mind::write('thinking');
 			$this->runAction();
 		}
 

@@ -75,7 +75,26 @@ class MindProject extends VersionManager{
 		Mind::$currentProject= $p;
 		Mind::$curLang= Mind::$currentProject['idiom'];
 		Mind::$content= '';
-		//Mind::$
+		
+		// loading entities and relations from cache
+		$path= Mind::$currentProject['path']."/temp/";
+		$entities= $path."entities~";
+		$relations= $path."relations~";
+		if(file_exists($entities) && $f= fopen($entities, 'r'))
+		{
+			while (($buffer = fgets($f, 51200)) !== false)
+			{
+				if($tmpObj= @unserialize($buffer))
+					Analyst::$entities[$tmpObj->name]= $tmpObj;
+			}
+			$f= fopen($relations, 'r');
+			while (($buffer = fgets($f, 51200)) !== false)
+			{
+				if($tmpObj= @unserialize($buffer))
+					Analyst::$relations[$tmpObj->name]= $tmpObj;
+			}
+		}
+		
 		Mind::write('projectOpened', true, $p['name']);
 		return true;
 	}
@@ -113,6 +132,7 @@ class MindProject extends VersionManager{
 	
 	public static function setUp()
 	{
+		parent::setUp();
 		self::$sourceContent= false;
 		self::$currentSource= null;
 		self::$sourceContent= Array();
@@ -160,6 +180,8 @@ class MindProject extends VersionManager{
 			 "s\n";
 		$memory= ((memory_get_usage() / 1024)/1024);
 		$memory= number_format($memory, 2);
-		echo $memory."MBs\n";
+		echo "Memory: ".$memory."MBs\n";
+		
+		self::cleanUp();
 	}
 }
