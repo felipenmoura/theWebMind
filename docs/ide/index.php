@@ -1,7 +1,5 @@
 <script src='scripts/jquery.js'></script>
 <body>
-	<pre><div id='result' style='white-space:pre;'></div></pre>
-	<br/>
 	<input type='button' value='autenticate' onclick="autenticate()"/>
 	<input type='button' value='run test' onclick="runTest()"/>
 	<input type='button' value='run info' onclick="runInfo()"/>
@@ -10,9 +8,16 @@
 	<input type='button' value='analyze project x' onclick="analyzeX()"/>
 	<input type='button' value='analyze project y' onclick="analyzeY()"/>
 	<input type='button' value='logoff' onclick="logoff()"/>
+	<pre><div id='result' style='white-space:pre;'></div></pre>
 </body>
 <script>
+	function setLoading()
+	{
+		document.getElementById('result').innerHTML= "<img src='gif-loading.gif' />";
+	}
+	
 	function autenticate(){
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -28,6 +33,7 @@
 	}
 	function runTest()
 	{
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -42,6 +48,7 @@
 	}
 	function runInfo()
 	{
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -56,6 +63,7 @@
 	
 	function showProjects()
 	{
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -72,6 +80,7 @@
 
 	function showUsers()
 	{
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -88,7 +97,7 @@
 	
 	function analyzeX()
 	{
-	
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -98,7 +107,6 @@
 				name:'x'
 			},
 			success: function(ret){
-				document.getElementById('result').innerHTML= "";
 				$.ajax({
 							type:'POST',
 							url:'http://localhost/mind/',
@@ -115,7 +123,7 @@
 
 	function analyzeY()
 	{
-	
+		setLoading();	
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',
@@ -125,7 +133,6 @@
 				name:'y'
 			},
 			success: function(ret){
-				document.getElementById('result').innerHTML= "";
 				$.ajax({
 							type:'POST',
 							url:'http://localhost/mind/',
@@ -142,6 +149,7 @@
 
 	function logoff()
 	{
+		setLoading();
 		$.ajax({
 			type:'POST',
 			url:'http://localhost/mind/',

@@ -131,6 +131,8 @@
 				$linkTable= new MindEntity($relName);
 				Analyst::$entities[$linkTable->name]= $linkTable;
 			}
+			Analyst::$entities[$linkTable->name]->linkTable= Array($rel->focus->name,
+																   $rel->rel->name);
 			return Analyst::$entities[$linkTable->name];
 		}
 		
@@ -191,25 +193,90 @@
 		{
 			GLOBAL $_MIND;
 			$fkPrefix= $_MIND->defaults['fk_prefix'];
+			$pkPrefix= $_MIND->defaults['pk_prefix'];
 			foreach(Analyst::$relations as &$relation)
 			{
-				$propName= $fkPrefix.$relation->focus->name;
-				$entity= &$relation->rel;
-				if(!$entity->hasProperty($propName))
+				$pointed= $relation->focus;
+				
+				foreach($pointed->pks as &$pk)
 				{
-					$fk= new MindProperty();
-					$fk ->setName($propName)
-						->setRequired(true)
-						//->setAsKey()
-						->setType('int')
-						->setRefTo($relation->focus);
-					if($relation->uniqueRef)
-						$fk->setAsKey();
-					$entity->addProperty($fk);
-				}else{
-						$entity ->properties[$propName]
-								->setRefTo($relation->focus);
-					 }
+					$propName= $fkPrefix.preg_replace("/^".$pkPrefix."/",
+													  '',
+													  $pk->name);
+					$entity= &$relation->rel;
+					
+					if($entity->linkTable)
+					{
+						$pkToRemove= $pkPrefix.$entity->name;
+						if($entity->hasProperty($pkToRemove))
+							$entity->removeProperty($pkToRemove);
+						$refTo= $entity->getRefTo();
+						
+						if(
+							(
+								!in_array($pointed->name, $entity->linkTable)
+								&&
+								$relation->max == QUANTIFIER_MAX_MAX
+							)
+						  )
+						{
+							$p= new MindProperty();
+							$p ->setName($_MIND->defaults['counter_col'])
+								->setRequired(true)
+								->setType('int')
+								->comment= Mind::$l10n->getMessage('additionalCounterCol');
+							$entity->addProperty($p);
+						}
+					}elseif($pointed->linkTable &&
+							$relation->max == QUANTIFIER_MAX_MIN)
+					{
+						echo $pointed->name." - ".$entity->name."\n";
+					}
+					/*if($pointed->linkTable)
+					{
+						if($relation->max == QUANTIFIER_MAX_MIN)
+						{
+							echo $pointed->name." <<< ".$entity->name."\n";
+							
+							$fkToRemove= $fkPrefix.$pointed->name;
+							echo $fkToRemove."\n";
+							if($entity->hasProperty($fkToRemove))
+								$entity->removeProperty($fkToRemove);
+						}
+						$refTo= $pointed->getRefTo();
+						
+						if(!in_array($pointed->name, $pointed->linkTable) &&
+							$relation->max == QUANTIFIER_MAX_MAX)
+						{
+							
+							$p= new MindProperty();
+							$p ->setName($_MIND->defaults['counter_col'])
+								->setRequired(true)
+								->setType('int')
+								->comment= Mind::$l10n->getMessage('additionalCounterCol');
+							$pointed->addProperty($p);
+						}
+						
+					}*/
+					
+					if(!$entity->hasProperty($propName))
+					{
+						$fk= new MindProperty();
+						$fk ->setName($propName)
+							->setRequired(true)
+							//->setAsKey()
+							->setType('int')
+							->setRefTo($relation->focus, $pk);
+						if($relation->uniqueRef)
+							$fk->setAsKey();
+						$entity->addProperty($fk);
+					}else{
+							$entity ->properties[$propName]
+									->setRefTo($relation->focus, $pk);
+							if($relation->uniqueRef)
+								$entity ->properties[$propName]->setAsKey();
+						 }
+				}
 			}
 		}
 		
@@ -222,7 +289,7 @@
 			$pkPrefix= $_MIND->defaults['pk_prefix'];
 			foreach(Analyst::$entities as &$entity)
 			{
-				if( sizeof($entity->properties) == 0
+				if( sizeof($entity->pks) == 0
 						||
 					sizeof($entity->properties) != sizeof($entity->pks))
 				{
@@ -235,7 +302,7 @@
 							->setDefault(AUTOINCREMENT_DEFVAL)
 							->setRequired(true)
 							->setType('int');
-						$entity->addProperty($pk, true);
+						$entity->addProperty($pk);
 					}else{
 							$entity->properties[$propName]->setAsKey();
 						 }
@@ -252,8 +319,8 @@
 			Analyst::$entities= array_filter(Analyst::$entities);
 			Analyst::$relations= array_filter(Analyst::$relations);
 			
-			self::addFks();
 			self::addPks();
+			self::addFks();
 		}
 		
 		/**

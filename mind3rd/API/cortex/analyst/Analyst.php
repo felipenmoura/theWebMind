@@ -63,7 +63,13 @@ class Analyst extends Analysis {
 			$rel->focus->relevance--;
 		}
 		if($rel->rel)
+		{
+			$rel->focus->removeRefTo($rel->rel->name);
+			$rel->focus->removeRefBy($rel->rel->name);
+			$rel->rel->removeRefTo($rel->focus->name);
+			$rel->rel->removeRefBy($rel->focus->name);
 			$rel->rel->relations[$rel->name]= false;
+		}
 		unset(self::$relations[$rel->name]);
 	}
 	
@@ -132,8 +138,13 @@ class Analyst extends Analysis {
 								 "(".
 									implode(", ", $details).
 								 ")".
-								 ($prop->refTo? " => ".$prop->refTo->name: "").
-								 "\n";
+								 ($prop->refTo? " => ". $prop->refTo[0]->name.
+														".".
+														$prop->refTo[1]->name
+											: "");
+							if($prop->comment)
+								echo "// ".$prop->comment;
+							echo "\n";
 						}
 					}
 			}

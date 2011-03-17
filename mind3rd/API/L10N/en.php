@@ -46,7 +46,8 @@ class En {
 		$this->messages['currentProjectRequiredTip']= "You can use the command\n  use project <projectName>\n";
 		$this->messages['analyseFirst']             = "You will need to analyze the project. It has not been analyzed yet.Execute the 'analyze' command.\n";
 		$this->messages['permissionDenied']	        = Mind::message("Permission denied to change/create/delete files.\nPlease, allow the system to change files in mind's root directory", '[Fail]', false);;
-
+		$this->messages['additionalCounterCol']     = "This field was automatically added to allow an insertion of a new tuple using repeated values for the other keys.";
+		
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Invalid HTTP requisition.
    You *must* send some POST data acoording your request, and also a variable "program" by post, with the name of the program you want to run.

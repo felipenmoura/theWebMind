@@ -12,12 +12,17 @@
 		public  $relevance= 0;
 		public  $properties= Array();
 		public  $relations= Array();
+		public  $linkTable= false;
 		private $refTo= Array();
 		private $refBy= Array();
 
 		public function &getRefTo()
 		{
 			return $this->refTo;
+		}
+		public function &getRefBy()
+		{
+			return $this->refBy;
 		}
 		
 		/**
@@ -58,6 +63,18 @@
 		public function hasProperty($propName)
 		{
 			return isset($this->properties[$propName]);
+		}
+		
+		/**
+		 * Removes a property from the current entity
+		 * 
+		 * @param string $propName
+		 * @return boolean
+		 */
+		public function removeProperty($propName)
+		{
+			if(isset($this->properties[$propName]))
+				unset($this->properties[$propName]);
 		}
 		
 		/**

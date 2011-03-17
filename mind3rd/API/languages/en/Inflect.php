@@ -38,7 +38,10 @@ class Inflect implements \inflection
 	static $singular = array(
 		'/rs$/'				=> 'r',
 		'/ies$/'			=> 'y',
+		'/sses$/'		    => 'ss', // for classes, for example
+		'/ses$/'		    => 'se', // for cases, for example
 		'/shes$/'			=> 'sh',
+		'/ss$/'				=> 'ss',
 		'/s$/'				=> ''
 	);
 	/*

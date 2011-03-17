@@ -9,35 +9,12 @@
 	require(_MINDSRC_.'/mind3rd/API/utils/header.php');
 	include(_MINDSRC_.'/mind3rd/API/utils/constants.php');
 	
-	$app= new Symfony\Component\Console\Application('mind');
-	$app->addCommands(Array(
-		new RunTest(),
-		new Quit(),
-		new Auth(),
-		new Clear(),
-		new Info(),
-		new Create(),
-		new Show(),
-		new Analyze(),
-		new SetUse()
-	));
-
-	// setting the general helperSet
-	$helperSet= false;
-	$helperSet= ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
-    $app->setHelperSet($helperSet);
-	
-	if(isset($_SERVER['argv']))
-	{
-		$params= $_SERVER['argv'];
-		array_shift($params);
-	}
-
 	// Instantiating the main Mind class
+	/**
+	 * @global Mind $_MIND  This variable contains many information about the proect, the system and also have some methods an attributes to deal with such data
+	 */
 	$_MIND= new Mind();
 
-	/* let's load the plugins, if they are allowed */
-	Mind::$triggers= array_keys($app->getCommands());
 	if($_MIND->defaults['plugins']==1)
 	{
 		require(_MINDSRC_.'/mind3rd/API/interfaces/plugin.php');
@@ -52,6 +29,23 @@
 		}
 		$d->close();
 	}
+	
+	
+	define('SYSTEM_NAME', 'mind');
+	
+	
+	$app= new Symfony\Component\Console\Application(SYSTEM_NAME);
+	$app->addCommands(Array(
+		new RunTest(),
+		new Quit(),
+		new Auth(),
+		new Clear(),
+		new Info(),
+		new Create(),
+		new Show(),
+		new Analyze(),
+		new SetUse()
+	));
 	
 	if($_REQ['env']=='shell')
             include('shell.php');

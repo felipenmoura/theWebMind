@@ -7,7 +7,6 @@
 	 * the program you want to execute, and the parameters you want
 	 * to pass
 	 */
-
 	header('Content-type: text/html; charset=utf-8');
 	if(!isset($_REQ))
 	{

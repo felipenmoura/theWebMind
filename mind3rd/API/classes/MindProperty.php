@@ -17,10 +17,11 @@
 		public  $refTo     = false;
 		public  $refBy     = Array();
 		public  $key       = false;
+		public  $comment    = false;
 
-		public function setRefTo(MindEntity $entity)
+		public function setRefTo(MindEntity $entity, MindProperty $prop)
 		{
-			$this->refTo= $entity;
+			$this->refTo= Array($entity, $prop);
 		}
 		
 		/**

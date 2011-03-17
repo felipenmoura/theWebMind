@@ -8,10 +8,6 @@
 	 * mind, in your console
 	 */
 
-	/**
-	 * @var _MIND
-	 * @global mixed $_GLOBALS['_MIND'] This variable contains many information about the proect, the system and also have some methods an attributes to deal with such data
-	 */
 	$_MIND= Array();
 	$_MIND['env']= 'shell';
 

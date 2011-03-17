@@ -64,6 +64,7 @@ class MindProject extends VersionManager{
 	 */
 	public static function openProject($p)
 	{
+		GLOBAL $_REQ;
 		$_SESSION['currentProject']= $p['pk_project'];
 		$_SESSION['currentProjectName']= $p['name'];
 		$_SESSION['currentProjectDir']= Mind::$projectsDir.$p['name'];
@@ -80,18 +81,21 @@ class MindProject extends VersionManager{
 		$path= Mind::$currentProject['path']."/temp/";
 		$entities= $path."entities~";
 		$relations= $path."relations~";
-		if(file_exists($entities) && $f= fopen($entities, 'r'))
+		if($_REQ['env']=='shell')
 		{
-			while (($buffer = fgets($f, 51200)) !== false)
+			if(file_exists($entities) && $f= fopen($entities, 'r'))
 			{
-				if($tmpObj= @unserialize($buffer))
-					Analyst::$entities[$tmpObj->name]= $tmpObj;
-			}
-			$f= fopen($relations, 'r');
-			while (($buffer = fgets($f, 51200)) !== false)
-			{
-				if($tmpObj= @unserialize($buffer))
-					Analyst::$relations[$tmpObj->name]= $tmpObj;
+				while (($buffer = fgets($f, 51200)) !== false)
+				{
+					if($tmpObj= @unserialize($buffer))
+						Analyst::$entities[$tmpObj->name]= $tmpObj;
+				}
+				$f= fopen($relations, 'r');
+				while (($buffer = fgets($f, 51200)) !== false)
+				{
+					if($tmpObj= @unserialize($buffer))
+						Analyst::$relations[$tmpObj->name]= $tmpObj;
+				}
 			}
 		}
 		
@@ -175,6 +179,7 @@ class MindProject extends VersionManager{
 		// do NOT print it if you have MANY entities, the webbrowser freezes
 		//print_r(Analyst::getUniverse());
 		echo Analyst::printWhatYouGet();
+		echo "--------------------\n";
 		echo "Time: ".
 				MindTimer::getElapsedTime().
 			 "s\n";
