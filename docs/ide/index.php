@@ -13,7 +13,7 @@
 <script>
 	function setLoading()
 	{
-		document.getElementById('result').innerHTML= "<img src='gif-loading.gif' />";
+		document.getElementById('result').innerHTML= "&nbsp;&nbsp;<img src='loading_animation.gif' /><br/>Loading...";
 	}
 	
 	function autenticate(){

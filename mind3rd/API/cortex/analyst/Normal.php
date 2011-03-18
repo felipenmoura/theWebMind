@@ -178,7 +178,6 @@ abstract class Normal {
 		while($rel= current(Analyst::$relations))
 		{
 			next(Analyst::$relations);
-			
 			$relName	 =  $rel->name;
 			$relOtherName=  $rel->rel->name.
 							PROPERTY_SEPARATOR.
@@ -207,7 +206,14 @@ abstract class Normal {
 					Analyst::unsetRelation($otherRel);
 				}
 			}else{
-					self::$oneByN[]= &Analyst::$relations[$rel->name];
+					if($rel->max == 1)
+					{
+						$tmpFocus= $rel->focus;
+						$rel->setFocus($rel->rel);
+						$rel->setRel($tmpFocus);
+						self::$oneByN[]= &Analyst::$relations[$rel->name];
+					}else
+						self::$oneByN[]= &Analyst::$relations[$rel->name];
 				 }
 		}
 	}

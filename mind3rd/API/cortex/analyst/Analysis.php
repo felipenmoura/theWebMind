@@ -219,7 +219,6 @@ abstract class Analysis {
 							 * it means it is the second entity on the
 							 * instruction, so, it is a relation between entities
 							 */
-							
 							self::addRelationToFocused(self::$entities[$word],
 									                   $linkType,
 									                   $linkVerb,

@@ -16,13 +16,36 @@
 		private $refTo= Array();
 		private $refBy= Array();
 
+		/**
+		 * Gets the array of entities which are referred by this entity.
+		 * @return Array
+		 */
 		public function &getRefTo()
 		{
 			return $this->refTo;
 		}
+		
+		/**
+		 * Gets the array of the entities which point to this entity.
+		 * @return Array
+		 */
 		public function &getRefBy()
 		{
 			return $this->refBy;
+		}
+		
+		/**
+		 * Verifies if the entity has a hardKey, or only weakKeys.
+		 * @return boolean
+		 */
+		public function hasHardKey()
+		{
+			foreach($this->pks as &$pk)
+			{
+				if($pk->key === true)
+					return true;
+			}
+			return false;
 		}
 		
 		/**
@@ -46,8 +69,6 @@
 		public function addProperty(MindProperty $property)
 		{
 			GLOBAL $_MIND;
-			//if($property->key && $_MIND->defaults['add_pk_prefix_to_all_keys'])
-			//	$property->setName($_MIND->defaults['pk_prefix'].$property->name);
 			$this->properties[$property->name]= $property;
 			if($property->key)
 				$this->pks[$property->name]= $property;

@@ -17,11 +17,18 @@
 		public  $refTo     = false;
 		public  $refBy     = Array();
 		public  $key       = false;
-		public  $comment    = false;
+		public  $comment   = false;
 
+		/**
+		 * Sets the entity and property the current property is referred to.
+		 * @param MindEntity $entity
+		 * @param MindProperty $prop 
+		 * @return MindProperty
+		 */
 		public function setRefTo(MindEntity $entity, MindProperty $prop)
 		{
 			$this->refTo= Array($entity, $prop);
+			return $this;
 		}
 		
 		/**
@@ -82,7 +89,6 @@
 			{
 				//TODO: Darwin::add($this->type);
 				Darwin::addDoubt($this->type, 'dataType');
-				echo "UNKNOWN TYPE ".$this->type."...for a while";
 				return false;
 			}
 			return $this;
@@ -131,6 +137,16 @@
 			return $this;
 		}
 		
+		/**
+		 * Set the property as a weak key
+		 * @return MindProperty 
+		 */
+		public function setAsWeakKey()
+		{
+			$this->key= 'weak';
+			return $this;
+		}
+				
 		/**
 		 * Checks if the string sent indicates that it is about a property
 		 * @param String $definition

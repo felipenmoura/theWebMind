@@ -1,15 +1,21 @@
+professor tem muitos aluno e todo aluno pode ter vários professores.
+aluno_professor tem muitas aulas.
+aulas tem vários aluno-professor.
+aula tem data:data().
+
+/*
 cada igreja tem um padre.
 cada padre tem uma igreja.
 padre tem nome:varchar.
 
-@import drafts/draft1.
+@ import drafts/draft1.
 
 igreja tem nome:varchar.
 
-@import drafts/draft2
+@ import drafts/draft2
 
 igreja tem data:data.
-
+*/
 
 /*A universidade tem muitos alunos. Aluno tem nome:varchar, matrícula:int,
 cpf:int e identidade:int, endereço:varchar,

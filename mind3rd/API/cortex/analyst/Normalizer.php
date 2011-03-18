@@ -27,6 +27,7 @@
 
 		public static $tmpEntities	= Array();
 		public static $tmpRelations	= Array();
+		public static $linkedTables	= Array();
 		
 		/**
 		 * Redirects all the relations between entities.
@@ -200,77 +201,58 @@
 				
 				foreach($pointed->pks as &$pk)
 				{
-					$propName= $fkPrefix.preg_replace("/^".$pkPrefix."/",
+					if($pk->key !== true)
+						continue;
+					$tmpName= $pk->name;
+					$propName= $fkPrefix.preg_replace("/^".$pkPrefix."|".$fkPrefix."/",
 													  '',
-													  $pk->name);
+													  $tmpName);
 					$entity= &$relation->rel;
 					
-					if($entity->linkTable)
+					// we will mark the linkTables
+					if($pointed->linkTable)
 					{
-						$pkToRemove= $pkPrefix.$entity->name;
-						if($entity->hasProperty($pkToRemove))
-							$entity->removeProperty($pkToRemove);
-						$refTo= $entity->getRefTo();
-						
-						if(
-							(
-								!in_array($pointed->name, $entity->linkTable)
-								&&
-								$relation->max == QUANTIFIER_MAX_MAX
-							)
-						  )
+						self::$linkedTables[$pointed->name]= &$pointed;
+					}elseif($entity->linkTable)
 						{
-							$p= new MindProperty();
-							$p ->setName($_MIND->defaults['counter_col'])
-								->setRequired(true)
-								->setType('int')
-								->comment= Mind::$l10n->getMessage('additionalCounterCol');
-							$entity->addProperty($p);
+							self::$linkedTables[$entity->name]= &$entity;
 						}
-					}elseif($pointed->linkTable &&
-							$relation->max == QUANTIFIER_MAX_MIN)
-					{
-						echo $pointed->name." - ".$entity->name."\n";
-					}
-					/*if($pointed->linkTable)
-					{
-						if($relation->max == QUANTIFIER_MAX_MIN)
-						{
-							echo $pointed->name." <<< ".$entity->name."\n";
-							
-							$fkToRemove= $fkPrefix.$pointed->name;
-							echo $fkToRemove."\n";
-							if($entity->hasProperty($fkToRemove))
-								$entity->removeProperty($fkToRemove);
-						}
-						$refTo= $pointed->getRefTo();
-						
-						if(!in_array($pointed->name, $pointed->linkTable) &&
-							$relation->max == QUANTIFIER_MAX_MAX)
-						{
-							
-							$p= new MindProperty();
-							$p ->setName($_MIND->defaults['counter_col'])
-								->setRequired(true)
-								->setType('int')
-								->comment= Mind::$l10n->getMessage('additionalCounterCol');
-							$pointed->addProperty($p);
-						}
-						
-					}*/
 					
+					// we've got to treat the repeated properties
+					if($entity->hasProperty($propName)
+						&&
+					   $entity->properties[$propName]->refTo)
+					{
+						$propName= $fkPrefix.$pointed->name.
+											PROPERTY_SEPARATOR.
+											$pk->name;
+					}
+					
+					// if there ain't not property with that name already
 					if(!$entity->hasProperty($propName))
 					{
+						// let's create it
 						$fk= new MindProperty();
 						$fk ->setName($propName)
 							->setRequired(true)
-							//->setAsKey()
 							->setType('int')
 							->setRefTo($relation->focus, $pk);
 						if($relation->uniqueRef)
-							$fk->setAsKey();
+						{
+							if(!$entity->linkTable||
+							   ($entity->linkTable && $entity->hasHardKey())
+								||
+							   ($entity->linkTable && sizeof($entity->getRefBy())==0)
+							  )
+							{
+								$fk->setAsWeakKey();
+							}else{
+									$fk->setAsKey();
+								 }
+						}
 						$entity->addProperty($fk);
 					}else{
+							// otherwise, we simply use/change the existing one
 							$entity ->properties[$propName]
 									->setRefTo($relation->focus, $pk);
 							if($relation->uniqueRef)
@@ -290,8 +272,8 @@
 			foreach(Analyst::$entities as &$entity)
 			{
 				if( sizeof($entity->pks) == 0
-						||
-					sizeof($entity->properties) != sizeof($entity->pks))
+						&&
+					(!$entity->linkTable || sizeof($entity->getRefBy())>0 ))
 				{
 					$propName= $pkPrefix.$entity->name;
 					if(!$entity->hasProperty($propName))
@@ -311,6 +293,13 @@
 		}
 		
 		/**
+		 * This method is calledto execute any needed adjust.
+		 */
+		public static function fixOneByNRel()
+		{
+		}
+		
+		/**
 		 * Will set the primary and foreign keys to entities.
 		 */
 		public static function setUpKeys()
@@ -319,8 +308,8 @@
 			Analyst::$entities= array_filter(Analyst::$entities);
 			Analyst::$relations= array_filter(Analyst::$relations);
 			
-			self::addPks();
-			self::addFks();
+			self::addPks(); // OK
+			self::addFks(); // OK
 		}
 		
 		/**
@@ -329,16 +318,18 @@
 		 */
 		public static function reset()
 		{
-			self::$oneByOne = false;
-			self::$oneByOne = Array();
-			self::$nByN     = false;
-			self::$nByN     = Array();
-			self::$oneByN   = false;
-			self::$oneByN   = Array();
-			self::$focus    = false;
-			self::$focus    = Array();
-			self::$predicate= false;
-			self::$predicate= Array();
+			self::$oneByOne    = false;
+			self::$oneByOne    = Array();
+			self::$nByN        = false;
+			self::$nByN        = Array();
+			self::$oneByN      = false;
+			self::$oneByN      = Array();
+			self::$focus       = false;
+			self::$focus       = Array();
+			self::$predicate   = false;
+			self::$predicate   = Array();
+			self::$linkedTables= false;
+			self::$linkedTables= Array();
 		}
 		
 		/**
@@ -372,6 +363,7 @@
 			self::separateByRelationQuantifiers();
 			self::fixOneByOneRel();
 			self::fixNByNRel();
+			self::fixOneByNRel();
 			self::setUpKeys();
 		}
 	}
