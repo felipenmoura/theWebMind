@@ -20,7 +20,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'auth',
 				login:"admin",
@@ -36,7 +36,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'test',
 				unit: true
@@ -51,7 +51,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program: 'info'
 			},
@@ -66,7 +66,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'show',
 				what:'projects',
@@ -83,7 +83,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'show',
 				what:'users',
@@ -100,7 +100,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'use',
 				what:'project',
@@ -109,7 +109,7 @@
 			success: function(ret){
 				$.ajax({
 							type:'POST',
-							url:'http://localhost/mind/',
+							url:'../../',
 							data:{
 								program:'analyze'
 							},
@@ -126,7 +126,7 @@
 		setLoading();	
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'use',
 				what:'project',
@@ -135,7 +135,7 @@
 			success: function(ret){
 				$.ajax({
 							type:'POST',
-							url:'http://localhost/mind/',
+							url:'../../',
 							data:{
 								program:'analyze'
 							},
@@ -152,7 +152,7 @@
 		setLoading();
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/mind/',
+			url:'../../',
 			data:{
 				program:'exit'
 			},
