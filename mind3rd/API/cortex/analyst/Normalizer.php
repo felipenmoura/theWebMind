@@ -73,6 +73,13 @@
 			{
 				$rel= &Analyst::$relations[$rel->name];
 				
+				if($rel->focus === $rel->rel)
+				{
+					// self referred (1)
+					$rel->focus->addAutoPk(true);
+					continue;
+				}
+				
 				if(is_null($rel) || is_null($rel->focus) || is_null($rel->rel))
 					continue;
 				// defining the focus
@@ -279,9 +286,10 @@
 						// let's create it
 						$fk= new MindProperty();
 						$fk ->setName($propName)
-							->setRequired(true)
 							->setType('int')
 							->setRefTo($relation->focus, $pk);
+						if(!$entity->selfRef)
+							$fk->setRequired(true);
 						if($relation->uniqueRef)
 						{
 							if(!$entity->linkTable||
