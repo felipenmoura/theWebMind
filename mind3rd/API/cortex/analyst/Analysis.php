@@ -53,7 +53,7 @@ abstract class Analysis {
 	 */
 	public static function addToFocus(MindEntity &$entity)
 	{
-		self::$focused[]= $entity;
+		self::$focused[$entity->name]= $entity;
 	}
 	
 	/**
@@ -74,37 +74,46 @@ abstract class Analysis {
 									            $linkVerb, $min, $max,
 												$uniqueRef=false)
 	{
-		$arRet= Array();
 		// for each focused entity
 		foreach(self::$focused as &$focus)
 		{
-			/*
-			 * we will use this relationName as index on an
-			 * indexed array to speed up the search for
-			 * relations in the future
-			 */
-			$relationName= $focus->name."_".$rel->name;
-
-			// let's create the relation itself
-			$curRelation= new MindRelation($relationName);
-
-			$curRelation->setLinkType($linkType)
-						->setMin($min)
-						->setMax($max)
-						->setUsedVerb($linkVerb)
-						->setEntities(
-								self::$entities[$focus->name],
-								self::$entities[$rel->name]);
-			// now, both entities will POINT to the same relation
-			$focus->addRef($curRelation);
-			$rel->addRef($curRelation);
-			$curRelation->uniqueRef= $uniqueRef;
-			
-			// and let's use the relation name as index, as said before
-			self::$relations[$relationName]= $curRelation;
+			$curRelation= self::addRelationBetween($focus, $rel, $linkType, $linkVerb, $min, $max);
 			$arRet[]= &$curRelation;
 		}
 		return $arRet;
+	}
+	
+	public static function &addRelationBetween (MindEntity $focus,
+												MindEntity &$rel, $linkType,
+									            $linkVerb, $min, $max,
+												$uniqueRef=false)
+	{
+		$arRet= Array();
+		/*
+		 * we will use this relationName as index on an
+		 * indexed array to speed up the search for
+		 * relations in the future
+		 */
+		$relationName= $focus->name."_".$rel->name;
+
+		// let's create the relation itself
+		$curRelation= new MindRelation($relationName);
+
+		$curRelation->setLinkType($linkType)
+					->setMin($min)
+					->setMax($max)
+					->setUsedVerb($linkVerb)
+					->setEntities(
+							self::$entities[$focus->name],
+							self::$entities[$rel->name]);
+		// now, both entities will POINT to the same relation
+		$focus->addRef($curRelation);
+		$rel->addRef($curRelation);
+		$curRelation->uniqueRef= $uniqueRef;
+
+		// and let's use the relation name as index, as said before
+		self::$relations[$relationName]= $curRelation;
+		return $curRelation;
 	}
 	
 	/**
@@ -153,7 +162,7 @@ abstract class Analysis {
 			$word= $expression[$i];
 			$i++;
 			// storing the current used verb
-			if($token==Tokenizer::MT_VERB)
+			if($token==Tokenizer::MT_VERB || $token==Tokenizer::MT_QBE)
 			{
 				$linkVerb= $word;
 				$posVerb= true;
@@ -213,6 +222,13 @@ abstract class Analysis {
 							if(is_null($max))
 								$max= 'n';
 
+							if(in_array($word, array_keys(self::$focused)))
+							{
+								/*if($max != QUANTIFIER_MAX_MAX)
+									continue;*/
+								self::$entities[$word]->setSelfReferred($max);
+								//continue;
+							}
 							/*
 							 * here, if it is an entity and the focused
 							 * entities have already been selected(post verb),

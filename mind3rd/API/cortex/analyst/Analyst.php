@@ -116,7 +116,7 @@ class Analyst extends Analysis {
 							$details= Array();
 							if($prop->size)
 								$details[]= $prop->size;
-							if($prop->uinque)
+							if($prop->unique)
 								$details[]= "unique";
 							if($prop->key)
 								$details[]= "key";

@@ -35,4 +35,4 @@
 	define('QUANTIFIER_MAX_MAX',  'n');
 	define('QUANTIFIER_MAX_MIN',   1);
 	define('PROPERTY_SEPARATOR',  "_");
-	define('AUTOINCREMENT_DEFVAL', -101234567890);
+	define('AUTOINCREMENT_DEFVAL', 0123);

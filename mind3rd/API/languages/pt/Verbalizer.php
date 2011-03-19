@@ -39,10 +39,10 @@ class Verbalizer {
 		'/i$/'								=> 'er',
 		'/am$/'								=> 'ar',
 		'/ndo$/'							=> 'r',
-		'/(ado|ados|ada|adas)$/'			=> 'ar',
 		// these rules below are commented on theWebMind because
 		// we wont treat first person sentenses
 		/*'/o$/'								=> 'ar',
+		'/(ado|ados|ada|adas)$/'			=> 'ar',
 		'/(.+)o$/'							=> '$1er',
 		'/remos$/'							=> 'r',
 		'/emos$/'							=> 'er',

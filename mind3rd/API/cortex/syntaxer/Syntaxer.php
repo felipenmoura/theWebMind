@@ -96,7 +96,6 @@ class Syntaxer {
 					   Token::$string,
 					   $matches,
 					   PREG_OFFSET_CAPTURE);
-
 		// as we know it's only one block, we can use it straightly
 		$matches= $matches[0];
 

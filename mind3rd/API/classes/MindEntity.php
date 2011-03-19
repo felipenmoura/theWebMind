@@ -15,7 +15,38 @@
 		public  $linkTable= false;
 		private $refTo= Array();
 		private $refBy= Array();
+		public  $selfRef= false;
 
+		public function addAutoPk($unique=false)
+		{
+			GLOBAL $_MIND;
+			$pkPrefix= $_MIND->defaults['pk_prefix'];
+			$propName= $pkPrefix.$this->name;
+			
+			$pk= new MindProperty();
+			$pk ->setAsKey()
+				->setName($propName)
+				->setDefault(AUTOINCREMENT_DEFVAL)
+				->setRequired(true)
+				->setType('int')
+				->setUnique($unique);
+			$this->addProperty($pk);
+			return $this;
+		}
+		
+		/**
+		 * Sets the entity as a self referred entity.
+		 * It uses the $how to know if it is a multiple or a single reference.
+		 * 
+		 * @param mixed $how 0, 1 or n
+		 * @return MindEntity 
+		 */
+		public function setSelfReferred($how)
+		{
+			$this->selfRef= $how;
+			return $this;
+		}
+		
 		/**
 		 * Gets the array of entities which are referred by this entity.
 		 * @return Array

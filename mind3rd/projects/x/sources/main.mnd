@@ -1,8 +1,11 @@
+chefe é um empregados.
+
+/*
 professor tem muitos aluno e todo aluno pode ter vários professores.
 aluno_professor tem muitas aulas.
 aulas tem vários aluno-professor.
 aula tem data:data().
-
+*/
 /*
 cada igreja tem um padre.
 cada padre tem uma igreja.

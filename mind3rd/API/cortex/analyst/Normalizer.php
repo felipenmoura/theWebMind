@@ -170,16 +170,54 @@
 		 */
 		public static function fixNByNRel()
 		{
+			GLOBAL $_MIND;
 			foreach(self::$nByN as &$rel)
 			{
 				if(!$rel->treated)
 				{
-					$entity= self::createNByNEntity($rel);
-					$rel->opposite->treated= true;
-					self::createNbyNRelations($rel->focus,
-											  $entity,
-											  $rel->rel,
-											  $rel);
+					if($rel->focus === $rel->rel)
+					{
+						// it is self referred (n)
+						$inflect= Mind::$currentProject['idiom']."\Inflect";
+						$name= $inflect::toPlural($rel->rel->name);
+						$name.= PROPERTY_SEPARATOR.$rel->rel->name;
+
+						if(!isset(Analyst::$entities[$name]))
+						{
+							$tmpEnt= new MindEntity($name);
+							Analyst::$entities[$tmpEnt->name]= $tmpEnt;
+							Analyst::$entities[$tmpEnt->name]->linkTable= true;
+						}
+						$rel->setRel(Analyst::$entities[$name]);
+						
+						Analyst::addRelationBetween($rel->focus,
+													$rel->rel,
+													'action',
+													$rel->linkVerb,
+													0,
+													'n',
+													true);
+						
+						$rel->focus->addAutoPk(true);
+						$pkName= $_MIND->defaults['pk_prefix'].
+								 $rel->focus->name;
+						$fakeFk= new MindProperty();
+						$fakeFk ->setAsKey()
+								->setName($pkName)
+								->setRequired(true)
+								->setType('int')
+								->setRefTo($rel->focus,
+										   $rel->focus->pks[$pkName]);
+						$rel->rel->addProperty($fakeFk);
+						
+					}else{
+							$entity= self::createNByNEntity($rel);
+							$rel->opposite->treated= true;
+							self::createNbyNRelations($rel->focus,
+													  $entity,
+													  $rel->rel,
+													  $rel);
+						}
 				}
 				Analyst::unsetRelation($rel);
 				Analyst::clearFocused();
@@ -198,8 +236,15 @@
 			foreach(Analyst::$relations as &$relation)
 			{
 				$pointed= $relation->focus;
-				
-				foreach($pointed->pks as &$pk)
+				$defaultPkName= $pkPrefix.$pointed->name;
+				if($pointed->hasProperty($defaultPkName)
+					&&
+				   $pointed->pks[$defaultPkName]->default==AUTOINCREMENT_DEFVAL)
+					$pks= Array($pointed->pks[$defaultPkName]);
+				else
+					$pks= &$pointed->pks;
+						
+				foreach($pks as &$pk)
 				{
 					if($pk->key !== true)
 						continue;
@@ -224,8 +269,8 @@
 					   $entity->properties[$propName]->refTo)
 					{
 						$propName= $fkPrefix.$pointed->name.
-											PROPERTY_SEPARATOR.
-											$pk->name;
+											 PROPERTY_SEPARATOR.
+											 $pk->name;
 					}
 					
 					// if there ain't not property with that name already
