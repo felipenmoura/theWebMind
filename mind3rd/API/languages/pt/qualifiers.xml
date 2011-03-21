@@ -9,7 +9,7 @@
 <root>
 	<must>precisa,dever,precisar,demandar,necessitar</must>
 	<may>poder</may>
-	<notnull>obrigatório,not null,notnull,não nulo,requerido,required,necessário</notnull>
+	<notnull>obrigatório,obrigatorio,not null,notnull,não nulo,requerido,required,necessário</notnull>
 	<of>de,do,da,dos,das</of>
 	<be>é,são,será,serão,está,estar,estão,estarão,estará</be>
 	<key>chave,key,pk,indice,índice</key>

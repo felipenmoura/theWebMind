@@ -247,8 +247,9 @@
 				if($pointed->hasProperty($defaultPkName)
 					&&
 				   $pointed->pks[$defaultPkName]->default==AUTOINCREMENT_DEFVAL)
+				{
 					$pks= Array($pointed->pks[$defaultPkName]);
-				else
+				}else
 					$pks= &$pointed->pks;
 						
 				foreach($pks as &$pk)

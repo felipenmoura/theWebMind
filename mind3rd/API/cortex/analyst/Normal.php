@@ -53,6 +53,7 @@ abstract class Normal {
 	 * 
 	 * @param MindEntity $focus The main entity
 	 * @param MindEntity $rel The weaker entity
+	 * @param MindRelation $relation The relation between entities
 	 * @return MindEntity 
 	 */
 	public static function mergeEntities(MindEntity &$focus,
@@ -205,10 +206,10 @@ abstract class Normal {
 					// need to be re-specified as n:1
 					Analyst::unsetRelation($otherRel);
 				}
-			}else{
+			}else{ // if the relation has not an opposite relation definition
 					if($rel->max == 1)
 					{
-						$tmpFocus= $rel->focus;
+						$tmpFocus= &$rel->focus;
 						$rel->setFocus($rel->rel);
 						$rel->setRel($tmpFocus);
 						self::$oneByN[]= &Analyst::$relations[$rel->name];

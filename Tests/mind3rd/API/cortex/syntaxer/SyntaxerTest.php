@@ -165,7 +165,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									  'has',
 									  'name of origin:varchar(250)',
 									  ',',
-									  'age:int'));
+									  'age:int()'));
 		$this->object->sweep();
 		$this->assertEquals(Tokenizer::$words,
 						   Array(
@@ -175,7 +175,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									'has',
     								'name of origin:varchar(250)',
 									',',
-									'age:int'
+									'age:int()'
 						   )
 						 );
 	}
@@ -186,7 +186,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									  'has',
 									  'name of origin:varchar(250)',
 									  ',',
-									  'age:int'));
+									  'age:int()'));
 		$this->object->sweep();
 		$this->assertEquals(Tokenizer::$words,
 						   Array(
@@ -196,7 +196,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									'has',
     								'name of origin:varchar(250)',
 									',',
-									'age:int'
+									'age:int()'
 						   )
 						 );
 	}
@@ -205,7 +205,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									  'has',
 									  'name of origin:varchar(250)',
 									  ',',
-									  'age:int'));
+									  'age:int()'));
 		$this->object->sweep();
 		$this->assertEquals(Tokenizer::$words,
 						   Array(
@@ -213,7 +213,7 @@ class SyntaxerTest extends PHPUnit_Framework_TestCase {
 									'has',
     								'name of origin:varchar(250)',
 									',',
-									'age:int'
+									'age:int()'
 						   )
 						 );
 	}

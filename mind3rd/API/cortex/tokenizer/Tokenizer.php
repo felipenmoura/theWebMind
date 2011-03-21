@@ -218,12 +218,12 @@ class Tokenizer extends Token{
 		foreach(self::$dataTypes as $type=>$options)
 		{
 			$cont= preg_replace(
-				"/\:".implode('(\(| )|\:', $options)."(\(| )/",
+				"/\:".implode('((\(|[\., \n]))?+|\:', $options)."(\(| )/i",
 				':'.$type.'(',
 				$cont
 			);
 		}
-
+		
 		// adding each word as its token
 		for($i=0, $j=sizeof($cont); $i<$j; $i++)
 		{

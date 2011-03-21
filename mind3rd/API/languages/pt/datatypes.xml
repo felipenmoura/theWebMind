@@ -10,7 +10,7 @@
 		stored
 -->
 <root>
-	<varchar>string,characteres,varchar,descrição,desc,obs</varchar>
+	<varchar>string,characteres,varchar,desc,obs</varchar>
 	<text>text,texto,obs,observação,desc,descrição</text>
 	<char>char,caracter,caractere,letra,digito</char>
 	<int>int,integer,inteiro,dígito,número</int>

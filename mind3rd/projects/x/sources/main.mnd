@@ -1,4 +1,18 @@
-chefe é um empregados.
+pessoa tem nome:string, idade:inteiro(obrigatório, chave).
+
+/*
+a locadora de carros tem muitos carros.
+cada carro tem placa:string, quilometragem:int, cor:string.
+cada fabricante tem muitos modelos e cada carro tem um modelo.
+locadora de carros tem muitos vendedores, sendo que vendedor tem nome:varchar e idade:int.
+locadora de carros tem nome:varchar.
+
+cada locação tem um carro, cliente e vendedor.
+a locação também tem a data:data e observação:varchar.
+cada cliente tem nome:varchar e cpf:int(obrigatório, chave).
+
+o fabricante tem nome:string e logomarca:imagem.
+*/
 
 /*
 professor tem muitos aluno e todo aluno pode ter vários professores.

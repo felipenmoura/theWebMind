@@ -83,7 +83,7 @@ abstract class Analysis {
 		return $arRet;
 	}
 	
-	public static function &addRelationBetween (MindEntity $focus,
+	public static function &addRelationBetween (MindEntity &$focus,
 												MindEntity &$rel, $linkType,
 									            $linkVerb, $min, $max,
 												$uniqueRef=false)
@@ -95,7 +95,7 @@ abstract class Analysis {
 		 * relations in the future
 		 */
 		$relationName= $focus->name."_".$rel->name;
-
+		
 		// let's create the relation itself
 		$curRelation= new MindRelation($relationName);
 
@@ -106,7 +106,8 @@ abstract class Analysis {
 					->setEntities(
 							self::$entities[$focus->name],
 							self::$entities[$rel->name]);
-		// now, both entities will POINT to the same relation
+		
+// now, both entities will POINT to the same relation
 		$focus->addRef($curRelation);
 		$rel->addRef($curRelation);
 		$curRelation->uniqueRef= $uniqueRef;
