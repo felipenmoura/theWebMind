@@ -218,7 +218,7 @@ class Tokenizer extends Token{
 		foreach(self::$dataTypes as $type=>$options)
 		{
 			$cont= preg_replace(
-				"/\:".implode('((\(|[\., \n]))?+|\:', $options)."(\(| )/i",
+				"/\:".implode(PROP_FIX, $options)."(\(| )/i",
 				':'.$type.'(',
 				$cont
 			);

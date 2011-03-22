@@ -44,4 +44,3 @@ abstract class UnixSetup extends Setup{
 		self::createDatabase();
 	}
 }
-?>

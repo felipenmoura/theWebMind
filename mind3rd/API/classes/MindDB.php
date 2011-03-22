@@ -43,7 +43,7 @@ class MindDB {
 
     public function  __construct()
 	{
-		if(!$db = sqlite_open(_MINDSRC_.'/mind3rd/SQLite/mind'))
+		if(!$db = sqlite_open(_MINDSRC_.SQLITE))
 		{
 			Mind::message('Database', '[Fail]');
 			return false;

@@ -158,6 +158,7 @@ class Analyst extends Analysis {
 			{
 				if(!$rel)
 					continue;
+				
 				echo "    ".$rel->name;
 				if($detailed)
 				{

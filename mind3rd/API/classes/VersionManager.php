@@ -7,9 +7,16 @@
 	class VersionManager {
 		public static function commit()
 		{
-			// TODO: commiting a project should save the current
-			// situation of the current project
-			echo "COMMITING";
+			/*
+			 * selecionar todas as tabelas e propriedades q nao esteam marcadas como drop
+			 * ver diferenças entre cada tabela
+			 * ver tabelas q ficaram sobrando na lista recem analisada(novas)
+			 * ver tabelas q ficaram sobrando na lista antiga(para dropar)
+			 * insere novas
+			 * marca antigas como dropped
+			 */
+			$project= new DAO\ProjectFactory(Mind::$currentProject);
+			
 		}
 		
 		public static function setUp()

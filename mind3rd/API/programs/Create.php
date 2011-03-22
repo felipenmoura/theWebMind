@@ -94,6 +94,7 @@ EOT
 
 	private function action()
 	{
+		GLOBAL $_MIND;
 		switch($this->what)
 		{
 			case 'project':
@@ -115,6 +116,7 @@ EOT
 					}
 
 					Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
+					
 					chmod($this->projectfile, 0777);
 
 					$db= new MindDB();
@@ -144,9 +146,55 @@ EOT
 											".$_SESSION['pk_user']."
 										 )";
 					$db->execute($qr_userProj);
+					
+					//Mind::$currentProject[''];
+					$iniSource= Mind::$projectsDir.$this->argName.'/mind.ini';
+					$cP= $_MIND->defaults;
+					
+					$qr_vsProj= "INSERT into version
+										 (
+											version,
+											tag,
+											obs,
+											originalcode,
+											machine_lang,
+											framework,
+											database,
+											fk_project,
+											fk_user
+										 )
+										 values
+										 (
+											'0',
+											'Project Started',
+											'',
+											'',
+											'".$cP['default_machine_language']."',
+											'',
+											'".$cP['default_dbms']."',
+											".$key.",
+											".$_SESSION['pk_user']."
+										 )";
+
+					$db->execute($qr_vsProj);
 					$db->execute("COMMIT");
 
 					Mind::write('projectCreated', true, $this->argName);
+					
+					$ini= file_get_contents($iniSource);
+					$ini= str_replace('<idiom>',
+									  $cP['default_human_language'],
+									  $ini);
+					$ini= str_replace('<technology>',
+									  $cP['default_machine_language'],
+									  $ini);
+					$ini= str_replace('<dbms>',
+									  $cP['default_dbms'],
+									  $ini);
+					file_put_contents(Mind::$projectsDir.
+											$this->argName.
+											'/mind.ini',
+									  $ini);
 					
 					Mind::openProject(Array('pk_project'=>$key,
 											 'name'=>$this->argName));

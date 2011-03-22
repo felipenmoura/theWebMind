@@ -149,36 +149,40 @@ class MindProject extends VersionManager{
 	public static function analyze($autoCommit=false)
 	{
 		self::setUp();
-
+		$init= false;
+		
 		foreach(self::$sourceContent as $k=>&$content)
 		{
 			$currentSource= $k;
 			// search for special/unknown characters
 			if(!Mind::$lexer->sweep($content))
-				return false;
+				continue;
 			// keep substantives and verbs on their canonical form
 			if(!Mind::$canonic->sweep())
-				return false;
+				continue;
 			// mark specific tokens
 			if(!Mind::$tokenizer->sweep())
-				return false;
+				continue;
 			// prepares the model to be used to process data
 			// it transforms the original text into the mind code
 			// itself
 			if(!Mind::$syntaxer->sweep())
-				return false;
+				continue;
 
 			if($autoCommit)
 			{
 				MindProject::commit();
 			}
+			if(sizeof(Analyst::$entities) > 0)
+				$init= true;
 		}
 		
 		MindTimer::end();
 
-		// do NOT print it if you have MANY entities, the webbrowser freezes
-		//print_r(Analyst::getUniverse());
-		echo Analyst::printWhatYouGet();
+		if($init)
+			echo Analyst::printWhatYouGet();
+		else
+			echo "    Nothing to show\n";
 		echo "--------------------\n";
 		echo "Time: ".
 				MindTimer::getElapsedTime().

@@ -73,6 +73,9 @@
 			{
 				$rel= &Analyst::$relations[$rel->name];
 				
+				if(is_null($rel) || is_null($rel->focus) || is_null($rel->rel))
+					continue;
+				
 				if($rel->focus === $rel->rel)
 				{
 					// self referred (1)
@@ -80,8 +83,6 @@
 					continue;
 				}
 				
-				if(is_null($rel) || is_null($rel->focus) || is_null($rel->rel))
-					continue;
 				// defining the focus
 				$entities= self::setByRelevance($rel->focus, $rel->rel);
 				self::$focus= $entities[0];

@@ -21,6 +21,7 @@
 	define('COMPOSED_SUBST',      "/SCS/");
 	define('FIX_PROP_NAME',       "/\\\|\,|\./");
 	define('IMPORT_SOURCE',       "/@import [a-z0-9_\-\/\\\]+/i");
+	define('PROP_FIX',            "((\(|[\., \n]))?+|\:");
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');
@@ -30,9 +31,13 @@
 	define('MIND_CONF',           '/mind3rd/env/mind.ini');
 	define('L10N_DIR',            '/mind3rd/API/L10N/');
 	define('LANG_PATH',           '/mind3rd/API/languages/');
+	define('SQLITE',              '/mind3rd/SQLite/mind');
 
 	// other constants
 	define('QUANTIFIER_MAX_MAX',  'n');
 	define('QUANTIFIER_MAX_MIN',   1);
 	define('PROPERTY_SEPARATOR',  "_");
 	define('AUTOINCREMENT_DEFVAL', 0123);
+	define('COMMIT_STATUS_OK'  ,   0);
+	define('COMMIT_STATUS_CHANGED',1);
+	define('COMMIT_STATUS_DROP',   2);

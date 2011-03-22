@@ -48,9 +48,11 @@ EOT
 			if(!parent::HTTPExecute())
 				return false;
 			if(isset($_REQ['data']['namespace']))
-			$this->nameSpace= $_REQ['data']['namespace'];
+				$this->nameSpace= $_REQ['data']['namespace'];
 			if(isset($_REQ['data']['commit']))
+			{
 				$this->autoCommit= $_REQ['data']['commit'];
+			}
 			$this->runAction();
 		}
 
@@ -62,8 +64,7 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
-
-			MindProject::analyze();
+			MindProject::analyze($this->autoCommit? true: false);
 			return $this;
 		}
 

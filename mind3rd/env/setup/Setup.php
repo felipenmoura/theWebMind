@@ -10,7 +10,7 @@ abstract class Setup {
 		if($db = new SQLiteDatabase('mind3rd/SQLite/mind'))
 		{
 			$DDL= file_get_contents('mind3rd/SQLite/ddl.sql');
-			if(!@$db->queryExec($DDL))
+			if(!$db->queryExec($DDL))
 			{
 				echo " <[INFO] Database already exists...it wont be touched>\n";
 			}

@@ -68,8 +68,8 @@ CREATE TABLE object
 	name varchar(256)  ,
 	version int4  ,
 	locked int4  default 0,
-	info varchar(2048)  ,
-	fk_version integer  ,
+	info varchar(2048),
+	fk_version integer,
 	PRIMARY KEY(pk_object),
 	FOREIGN KEY (fk_version) REFERENCES version(pk_version)
 );
@@ -87,7 +87,7 @@ CREATE TABLE component
 
 
 	/* DDL: table property */
-CREATE TABLE property
+/*CREATE TABLE property
 (
 	pk_property integer unique not null,
 	name varchar(255) not null ,
@@ -97,9 +97,10 @@ CREATE TABLE property
 	PRIMARY KEY(pk_property),
 	FOREIGN KEY (fk_component) REFERENCES component(pk_component)
 );
-
+*/
 
 	/* DDL: table property_pointer */
+/*
 CREATE TABLE property_pointer
 (
 	pk_property_pointer integer unique not null,
@@ -107,4 +108,34 @@ CREATE TABLE property_pointer
 	fk_property integer  ,
 	PRIMARY KEY(pk_property_pointer),
 	FOREIGN KEY (fk_property) REFERENCES property(pk_property)
+);
+*/
+
+	/* DDL: creating the entities to deal with tables and relations */
+CREATE TABLE entity
+(
+	pk_entity integer,
+	status integer default 0, /* 0=ok 1=changed 2=dropped */
+	name varchar(80),
+	varsion integer default 1,
+	fk_version integer,
+	FOREIGN KEY (fk_version) REFERENCES version(pk_version)
+);
+
+CREATE TABLE property
+(
+	pk_property integer,
+	name varchar(80),
+	type varchar(16),
+	size float,
+	options varchar(1024), /* insert the json value */
+	default_value text,
+	unique_value boolean,
+	required boolean,
+	comment text,
+	status integer default 0, /* 0=ok 1=changed 2=dropped */
+	fk_entity integer,
+	ref_to_property integer,
+	FOREIGN KEY (fk_entity) REFERENCES entity(pk_entity),
+	FOREIGN KEY (ref_to_property) REFERENCES property(pk_property)
 );

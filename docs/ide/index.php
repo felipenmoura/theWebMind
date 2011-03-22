@@ -111,7 +111,8 @@
 							type:'POST',
 							url:'../../',
 							data:{
-								program:'analyze'
+								program:'analyze',
+								commit:true
 							},
 							success: function(ret){
 								document.getElementById('result').innerHTML= ret;
