@@ -18,7 +18,7 @@ namespace pt;
 /**
  * This class should inflect words for different idioms
  * changing its genre and number
- * IN THIS CASE: pt-BR
+ * IN THIS CASE: pt
  * @name Inflect
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @package cortex.analyst
