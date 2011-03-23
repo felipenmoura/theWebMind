@@ -8,7 +8,8 @@
 		public static function commit()
 		{
 			/*
-			 * selecionar todas as tabelas e propriedades q nao esteam marcadas como drop
+			 * OK atualizar a versaopegando(pegando a chave da nova versão)
+			 * selecionar todas as tabelas e propriedades q nao estejam marcadas como drop
 			 * ver diferenças entre cada tabela
 			 * ver tabelas q ficaram sobrando na lista recem analisada(novas)
 			 * ver tabelas q ficaram sobrando na lista antiga(para dropar)

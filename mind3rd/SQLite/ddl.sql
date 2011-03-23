@@ -114,17 +114,18 @@ CREATE TABLE property_pointer
 	/* DDL: creating the entities to deal with tables and relations */
 CREATE TABLE entity
 (
-	pk_entity integer,
+	pk_entity integer not null unique,
 	status integer default 0, /* 0=ok 1=changed 2=dropped */
 	name varchar(80),
-	varsion integer default 1,
+	version integer default 1,
 	fk_version integer,
-	FOREIGN KEY (fk_version) REFERENCES version(pk_version)
+	FOREIGN KEY (fk_version) REFERENCES version(pk_version),
+	PRIMARY KEY(pk_entity)
 );
 
 CREATE TABLE property
 (
-	pk_property integer,
+	pk_property integer not null unique,
 	name varchar(80),
 	type varchar(16),
 	size float,
@@ -135,7 +136,7 @@ CREATE TABLE property
 	comment text,
 	status integer default 0, /* 0=ok 1=changed 2=dropped */
 	fk_entity integer,
-	ref_to_property integer,
+	ref_to_property varchar(255), /* format: table.attribute */
 	FOREIGN KEY (fk_entity) REFERENCES entity(pk_entity),
-	FOREIGN KEY (ref_to_property) REFERENCES property(pk_property)
+	PRIMARY KEY(pk_property)
 );
