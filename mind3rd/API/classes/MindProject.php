@@ -81,7 +81,7 @@ class MindProject extends VersionManager{
 		$path= Mind::$currentProject['path']."/temp/";
 		$entities= $path."entities~";
 		$relations= $path."relations~";
-		if($_REQ['env']=='shell')
+		/*if($_REQ['env']=='shell')
 		{
 			if(file_exists($entities) && $f= fopen($entities, 'r'))
 			{
@@ -97,7 +97,11 @@ class MindProject extends VersionManager{
 						Analyst::$relations[$tmpObj->name]= $tmpObj;
 				}
 			}
-		}
+		}*/
+		
+		$pF= new DAO\ProjectFactory(Mind::$currentProject);
+		Mind::$currentProject['version']= $pF->data['version'];
+		Mind::$currentProject['pk_version']= $pF->data['pk_version'];
 		
 		Mind::write('projectOpened', true, $p['name']);
 		return true;

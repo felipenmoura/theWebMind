@@ -17,7 +17,9 @@
 			 * marca antigas como dropped
 			 */
 			$project= new DAO\ProjectFactory(Mind::$currentProject);
-			
+			$project->commit();
+			Mind::$currentProject['pk_version']= $project->versionId;
+			Mind::$currentProject['version']= $project->data['version'];
 		}
 		
 		public static function setUp()
