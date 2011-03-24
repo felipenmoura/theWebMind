@@ -292,6 +292,8 @@
 							->setRefTo($relation->focus, $pk);
 						if(!$entity->selfRef)
 							$fk->setRequired(true);
+						if($relation->linkType == 'must')
+							$fk->setRequired (true);
 						if($relation->uniqueRef)
 						{
 							if(!$entity->linkTable||

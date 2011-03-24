@@ -1,14 +1,20 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
  */
-
 namespace DAO;
 /**
- * Description of Project
+ * Deals with the SQLite to retrieve or interact with project's information.
+ * It deals a lot with version control of the current project.
  *
+ * @package VCS
+ * @subpackage DAO
  * @author felipe
  */
 class Project{
@@ -19,6 +25,14 @@ class Project{
 	public $originalCode= '';
 	public $framework= '';
 	
+	/**
+	 * Gets the list of entities in the current version of the analyzed project.
+	 * It returns an array with all the entity's name, id and version.
+	 * 
+	 * @param integer $vs
+	 * @return Array An array with all the entities for the project in the curret
+	 * or passed(if passed) version.
+	 */
 	public function getCurrentEntities($vs=false)
 	{
 		$qr= "SELECT entity.name as name,
@@ -36,6 +50,15 @@ class Project{
 		return $entities;
 	}
 	
+	/**
+	 * Inserts the passed property into the SQLite database.
+	 * It inserts the passed property as a property of the table with the
+	 * id equals to the passed $enKey.
+	 * 
+	 * @param \MindProperty $prop
+	 * @param integer $enKey
+	 * @return boolean True if everything went ok, an error otherwise
+	 */
 	public function insertProperty(\MindProperty $prop, $enKey)
 	{
 		$refs= "";
@@ -69,9 +92,17 @@ class Project{
 					".$enKey.",
 					'".$refs."'
 				)";
-		$this->db->execute($qr);
+		return $this->db->execute($qr);
 	}
 
+	/**
+	 * Get all the properties of the passed entity.
+	 * It returns an associative array(with the property name in each index) of
+	 * all the properties the passed entity has.
+	 * 
+	 * @param array $entity
+	 * @return Array 
+	 */
 	public function getProperties(Array $entity)
 	{
 		$qr= "select pk_property,
@@ -97,6 +128,14 @@ class Project{
 		return $ret;
 	}
 	
+	/**
+	 * Marks an entity as changed from the last version.
+	 * It updates the entity's status to changed, in the previous version, 
+	 * the new version will have it with the OK flag.
+	 * 
+	 * @param array $en
+	 * @return boolean True in case of success, otherwise, generates an error
+	 */
 	public function markAsChanged(Array $en)
 	{
 		$qr= "UPDATE entity
@@ -105,6 +144,14 @@ class Project{
 		return $this->db->execute($qr);
 	}
 	
+	/**
+	 * Marks an entity as dropped from the last version.
+	 * The next version has not the passed entity, so, it will be marked
+	 * as dropped, in the previous version.
+	 * 
+	 * @param array $en
+	 * @return boolean True in case of success, otherwise, generates an error
+	 */
 	public function markAsDopped(Array $en)
 	{
 		$qr= "UPDATE entity
@@ -113,6 +160,12 @@ class Project{
 		return $this->db->execute($qr);
 	}
 	
+	/**
+	 * Inserts a new version into the SQLite database.
+	 * It also starts the versonId variable to the next version.
+	 * 
+	 * @return boolean True in case of success, otherwise, generates an error
+	 */
 	public function addNewVersion()
 	{
 		$this->data['version']++;
@@ -149,6 +202,16 @@ class Project{
 		return false;
 	}
 	
+	/**
+	 * Inserts an entity into the SQLite database.
+	 * Adds an entity into the database, marking it with the passed status
+	 * and version.
+	 * 
+	 * @param \MindEntity $entity
+	 * @param integer $vs
+	 * @param integer $status
+	 * @return integer the inserted entity id(the primary key, itself)
+	 */
 	public function insertEntity(\MindEntity $entity,
 								 $vs=1,
 								 $status=\COMMIT_STATUS_OK)
@@ -177,6 +240,9 @@ class Project{
 		return $enKey;
 	}
 	
+	/**
+	 * The constructor.
+	 */
 	public function __construct()
 	{
 		$this->db= new \MindDB();

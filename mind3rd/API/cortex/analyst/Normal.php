@@ -82,8 +82,8 @@ abstract class Normal {
 											   MindRelation &$relation)
 	{
 		/*
-		 * excluir a relação entre a mais forte e a mais fraca
-		 * marcar a fk como pk
+		 * removes the relation between the stronger to the weaker
+		 * marks the weaker fks as pks
 		 */
 		Analyst::unsetRelation( Analyst::$relations[$rel->name.
 								PROPERTY_SEPARATOR.

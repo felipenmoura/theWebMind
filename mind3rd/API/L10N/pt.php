@@ -54,6 +54,8 @@ class pt {
 		$this->messages['sourceFileNotFound']	    = Mind::message("O arquivo fonte '%s' não foi encontrado para o projeto atual.", '[Fail]', false);
 		$this->messages['permissionDenied']	        = Mind::message("Permissão negada pra acessar, criar, alterar ou excluir um arquivo.\nPor favor, libere acesso ao sistema para o diretório raíz do Mind.\n", '[Fail]', false);
 		$this->messages['additionalCounterCol']     = "Campo adicionado automaticamente, a ser usado como diferencial para cada tupla, a fim de possibilizar um novo registro utilizando as mesmas demais chaves.";
+		$this->messages['commitChanged']            = Mind::message("VCS: Consignado para versão %s", '[Ok]', false);
+		$this->messages['commitUnchanged']          = Mind::message("VCS: Nada a consignar. Ainda na versão %s", '[Ok]', false);
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Requisição HTTP inválida.

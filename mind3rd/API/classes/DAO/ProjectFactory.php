@@ -1,12 +1,18 @@
 <?php
-
-/*
- * This file is part of theWebMind Project.
- * It offers features to deal with the project table into the database
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
  */
 namespace DAO;
 /**
- * TableFactory: will work with the DAO\Table class
+ * ProjectFactory: will work with the DAO\Project class.
+ * This class will deal with the SQLite database to check for Project's
+ * changes.
  *
  * @package VCS
  * @subpackage DAO
@@ -14,6 +20,13 @@ namespace DAO;
  */
 class ProjectFactory extends Project{
 	
+	/**
+	 * Returns if the entity from the SQLite is the same as the entity in the Memory
+	 * 
+	 * @param array $entity1
+	 * @param \MindEntity $entity2
+	 * @return boolean 
+	 */
 	public function areDifferent(Array $entity1, \MindEntity $entity2)
 	{
 		$props= $this->getProperties($entity1);
@@ -55,6 +68,15 @@ class ProjectFactory extends Project{
 		return false;
 	}
 	
+	/**
+	 * Saves the current entities
+	 * 
+	 * It will persist the current entities into the SQLite database.
+	 * This will also verifies the changes in the previous version and
+	 * make the necessary changes.
+	 * 
+	 * @param Array &$currentEntities 
+	 */
 	public function saveEntities(&$currentEntities)
 	{
 		$enKey= null;
@@ -86,21 +108,25 @@ class ProjectFactory extends Project{
 		foreach($currentEntities as $en)
 		{
 			$commited= true;
-			echo "DROPPING ".$en['name']."\n";
 			$this->markAsDopped($en);
 		}
 		
 		if($commited)
-			echo "VCS: Commited to version ".$this->data['version']."\n";
+			\Mind::write('commitChanged', true, $this->data['version']);
 		else
 		{
 			$this->data['version']--;
-			echo "VCS: Nothing to commit...still in version ".
-				  $this->data['version']."\n";
+			\Mind::write('commitUnchanged', true, $this->data['version']);
 		}
 		$this->changed= $commited;
 	}
 	
+	/**
+	 * Gets the data from the current version.
+	 * 
+	 * @param integer $vs
+	 * @return Array The current version id, version and the project's creator
+	 */
 	public function getCurrentVersion($vs= false)
 	{
 		$qr_newProj= "SELECT pk_version,
@@ -121,6 +147,12 @@ class ProjectFactory extends Project{
 		return $data;
 	}
 	
+	/**
+	 * Commits the current data to the SQLite database.
+	 * It will commit the analyzed structure to the databse into a 
+	 * new version of the current project, or return a message
+	 * of "unchanged"
+	 */
 	public function commit()
 	{
 		$this->changed= false;
@@ -141,6 +173,12 @@ class ProjectFactory extends Project{
 			$this->db->execute("COMMIT");
 	}
 	
+	/**
+	 * The DAO\ProjectFactory constructor
+	 * It calls the DAO\Project's constructor
+	 * @param array $projectData
+	 * @param integer $vs 
+	 */
 	public function __construct(Array $projectData, $vs=false)
 	{
 		parent::__construct();
