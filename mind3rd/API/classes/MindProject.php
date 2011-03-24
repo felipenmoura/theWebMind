@@ -150,7 +150,7 @@ class MindProject extends VersionManager{
 		Mind::$lexer= new Lexer();
 		self::loadSources();
 	}
-	public static function analyze($autoCommit=false)
+	public static function analyze($autoCommit=false, $echo=true)
 	{
 		self::setUp();
 		$init= false;
@@ -183,18 +183,20 @@ class MindProject extends VersionManager{
 		
 		MindTimer::end();
 
-		if($init)
-			echo Analyst::printWhatYouGet();
-		else
-			echo "    Nothing to show\n";
-		echo "--------------------\n";
-		echo "Time: ".
-				MindTimer::getElapsedTime().
-			 "s\n";
-		$memory= ((memory_get_usage() / 1024)/1024);
-		$memory= number_format($memory, 2);
-		echo "Memory: ".$memory."MBs\n";
-		
+		if($echo)
+		{
+			if($init)
+				echo Analyst::printWhatYouGet();
+			else
+				echo "    Nothing to show\n";
+			echo "--------------------\n";
+			echo "Time: ".
+					MindTimer::getElapsedTime().
+				 "s\n";
+			$memory= ((memory_get_usage() / 1024)/1024);
+			$memory= number_format($memory, 2);
+			echo "Memory: ".$memory."MBs\n";
+		}
 		self::cleanUp();
 	}
 }

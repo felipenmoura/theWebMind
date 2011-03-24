@@ -40,6 +40,7 @@
 		new Quit(),
 		new Auth(),
 		new Clear(),
+		new Commit(),
 		new Info(),
 		new Create(),
 		new Show(),

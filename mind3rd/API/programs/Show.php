@@ -21,6 +21,7 @@
 EOT
 					);
 		}
+		
 		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
 		{
 			if(!parent::execute($input, $output))
