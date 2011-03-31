@@ -58,13 +58,6 @@ EOT
 		if(!parent::verifyCredentials())
 			return false;
 		
-		//$query= new DQB\QueryFactory(Mind::$currentProject['database_drive']);
-		DQB\QueryFactory::setUp(Mind::$currentProject['database_drive']);
-		$query= "DQB\QueryFactory";
-		$p= new DAO\ProjectFactory(Mind::$currentProject);
-		$param= ($this->table=='*')? false: $this->table;
-		$entities= $p->getEntity($param);
-		
 		switch($this->query)
 		{
 			case 'create':
@@ -92,16 +85,12 @@ EOT
 				$this->query= 'update';
 				break;
 		}
-			
-		foreach($entities as $entity)
-		{
-			$entity['properties']= $p->getProperties($entity);
-			
-			$query::build($this->query, $entity);
-		}
 		
-		DQB\QueryFactory::$showHeader= true;
-		DQB\QueryFactory::showQueries();
+		\DQB\QueryFactory::setUp(Mind::$currentProject['database_drive']);
+		\DQB\QueryFactory::buildQuery($this->table, $this->query);
+		
+		\DQB\QueryFactory::$showHeader= true;
+		\DQB\QueryFactory::showQueries();
 		return $this;
 	}
 

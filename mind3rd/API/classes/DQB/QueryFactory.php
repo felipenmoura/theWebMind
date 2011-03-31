@@ -16,11 +16,12 @@ namespace DQB;
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @package DQB
  */
-class QueryFactory {
+class QueryFactory extends TableSort{
 	
 	public static $queries   = Array();
 	public static $dbms      = Array();
 	public static $showHeader= true;
+	public static $mustSort  = false;
 	
 	public static function showQueries($decorated=true, $raw= false)
 	{
@@ -73,6 +74,29 @@ class QueryFactory {
 		{
 			// TODO: put it into the L10N
 			echo "Database Driver not found.";
+		}
+		self::$mustSort= self::getQueryString('mustSort');
+	}
+	
+	public static function sortTables()
+	{
+		self::sort(self::$queries['createTable']);
+	}
+	
+	public static function buildQuery($table='*',
+									  $queryCommand='createTable')
+	{
+		$p= new \DAO\ProjectFactory(\Mind::$currentProject);
+		$param= ($table=='*')? false: $table;
+		$entities= $p->getEntity($param);
+		foreach($entities as $entity)
+		{
+			$entity['properties']= $p->getProperties($entity);
+			\DQB\QueryFactory::build($queryCommand, $entity);
+		}
+		if(self::$mustSort)
+		{
+			self::sortTables();
 		}
 	}
 	

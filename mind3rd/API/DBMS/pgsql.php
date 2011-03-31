@@ -107,6 +107,11 @@ class pgsql implements DBMS{
 ";
 	}
 	
+	public function mustSort()
+	{
+		return false;
+	}
+	
 	public function getModel($keyword)
 	{
 		if(method_exists($this, $keyword))

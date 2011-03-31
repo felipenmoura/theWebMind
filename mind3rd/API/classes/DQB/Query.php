@@ -190,6 +190,7 @@ class Query {
 		}
 		
 		$this->query= $query;
+		$this->table= $table;
 		return $query;
 	}
 	
