@@ -294,7 +294,7 @@
 							$fk->setRequired(true);
 						if($relation->linkType == 'must')
 							$fk->setRequired (true);
-						if($relation->uniqueRef)
+						if($relation->uniqueRef || $entity->linkTable)
 						{
 							if(!$entity->linkTable||
 							   ($entity->linkTable && $entity->hasHardKey())

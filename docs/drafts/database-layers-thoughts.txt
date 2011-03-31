@@ -1,0 +1,3 @@
+DAO   - the abstrction layer which access the internal database to record the current structure
+DBAL  - DataBase Abstraction Layer: Will deal with the real database(the external) to create or change it
+DQB   - Database Query Builder: creates the queries to each BDMS, to be used dealing with the external database

@@ -128,7 +128,7 @@ class Analyst extends Analysis {
 												"AUTO_INCREMENT";
 							if(sizeof($prop->options) > 0)
 							{
-								$opts= "{".implode("|", array_keys($prop->default))."}";
+								$opts= "{".implode("|", array_keys($prop->options))."}";
 								$details[]= $opts;
 							}	
 

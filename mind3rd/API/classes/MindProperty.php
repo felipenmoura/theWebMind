@@ -221,6 +221,8 @@
 		 */
 		private function parse()
 		{
+			GLOBAL $_MIND;
+			
 			$str= $this->definition;
 			$one= 1;
 
@@ -265,6 +267,11 @@
 				// identifying its size
 				if(preg_match(PROP_SIZE, $details, $size))
 					$this->setSize($size[0]);
+				else{
+					if($this->type == 'varchar' || $this->type == 'char')
+						$this->setSize($_MIND->
+										defaults['default_character_length']);
+				}
 
 				// identifying the options
 				if(preg_match(PROP_OPTIONS, $details, $options))

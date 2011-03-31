@@ -45,7 +45,8 @@
 		new Create(),
 		new Show(),
 		new Analyze(),
-		new SetUse()
+		new SetUse(),
+		new dqb()
 	));
 	
 	if($_REQ['env']=='shell')

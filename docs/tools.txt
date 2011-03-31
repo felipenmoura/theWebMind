@@ -1,7 +1,7 @@
-Diagrama de sequência
+Sequence diagram
 	http://www.websequencediagrams.com/
-Diagrama ER
-	http://thewebmind.org/
+ER Diagram
+	http://thewebmind.org/ (second version)
 MindMap
 	http://www.mindmeister.com/
 Class Diagram

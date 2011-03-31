@@ -130,6 +130,7 @@ CREATE TABLE property
 	type varchar(16),
 	size float,
 	options varchar(1024), /* insert the json value */
+	is_pk boolean,
 	default_value text,
 	unique_value boolean,
 	required boolean,

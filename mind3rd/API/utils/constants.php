@@ -11,7 +11,7 @@
 	define('PROP_OPTIONS',        "/\{(.+?)\}/");
 	define('PROP_OPTIONS_CLEAR',  "/^\{|\}$/");
 	define('PROP_DEFEXEC',        "/(^(\"=)|(\"exec\:))|(\"$)/i");
-	define('PROP_SIZE',           "/\d+(\.?\d+)/");
+	define('PROP_SIZE',           "/\d+(\.?\d+)?/");
 	define('COMA_SEPARATOR',      "/\s/");
 	define('SINGLE_COMMENT',      "/\/\/.+\n/");
 	define('MULTILINE_COMMENT',   "/\/\*.+?\*\//");

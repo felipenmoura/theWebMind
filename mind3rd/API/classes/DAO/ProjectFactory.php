@@ -148,6 +148,20 @@ class ProjectFactory extends Project{
 	}
 	
 	/**
+	 * This method will get the passed entity attributes.
+	 * 
+	 * @param mixed $entity you can pass either the pk or the name of the entity
+	 * @return the query return itself
+	 */
+	public function getEntity($entity)
+	{
+		if(\is_string($entity))
+			return $this->getCurrentEntities(false, $entity);
+		else
+			return $this->getCurrentEntities(false, false, $entity);
+	}
+	
+	/**
 	 * Commits the current data to the SQLite database.
 	 * It will commit the analyzed structure to the databse into a 
 	 * new version of the current project, or return a message

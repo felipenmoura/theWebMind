@@ -28,5 +28,5 @@
 			exit;
 		}
 		// if not installing, it should be redirected to mind3rd/API/shell.php
-		include('location:./mind3rd/API/shell.php');
+		header('location:./mind3rd/API/shell.php');
 	}

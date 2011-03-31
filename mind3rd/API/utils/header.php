@@ -21,7 +21,8 @@
 			_MINDSRC_.'/mind3rd/API/cortex/syntaxer/',
 			_MINDSRC_.'/mind3rd/API/cortex/analyst/',
 			_MINDSRC_.'/mind3rd/API/cortex/Darwin/',
-			_MINDSRC_.'/mind3rd/API/languages/'
+			_MINDSRC_.'/mind3rd/API/languages/',
+			_MINDSRC_.'/mind3rd/API/DBMS/'
 		));
 
 	function __autoload($what)

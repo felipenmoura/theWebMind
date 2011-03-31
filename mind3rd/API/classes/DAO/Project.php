@@ -33,7 +33,7 @@ class Project{
 	 * @return Array An array with all the entities for the project in the curret
 	 * or passed(if passed) version.
 	 */
-	public function getCurrentEntities($vs=false)
+	public function getCurrentEntities($vs=false, $name=false, $pk=false)
 	{
 		$qr= "SELECT entity.name as name,
 					 pk_entity,
@@ -43,8 +43,13 @@ class Project{
 			   where fk_project = ".\Mind::$currentProject['pk_project']."
 				 and fk_version= pk_version
 				 and status = ".\COMMIT_STATUS_OK;
+		
 		if($vs)
 			$qr.= " and fk_version = ".$vs."";
+		if($name)
+			$qr.= " and entity.name = '".$name."'";
+		if($pk)
+			$qr.= " and pk_entity = ".$pk."";
 		
 		$entities= $this->db->query($qr);
 		return $entities;
@@ -63,13 +68,16 @@ class Project{
 	{
 		$refs= "";
 		if($prop->refTo)
+		{
 			$refs= $prop->refTo[0]->name.".".$prop->refTo[1]->name;
+		}
 		$qr= "INSERT into property
 				(
 					name,
 					type,
 					size,
 					options,
+					is_pk,
 					default_value,
 					unique_value,
 					required,
@@ -84,6 +92,7 @@ class Project{
 					'".$prop->type."',
 					'".$prop->size."',
 					'".JSON_encode($prop->options)."',
+					'".(($prop->key)? 1: 0)."',
 					'".$prop->default."',
 					'".$prop->unique."',
 					'".$prop->required."',
@@ -110,6 +119,7 @@ class Project{
 					 type,
 					 size,
 					 options,
+					 is_pk,
 					 default_value,
 					 unique_value,
 					 required,
@@ -232,7 +242,7 @@ class Project{
 				)";
 		$entities= $this->db->execute($qr);
 		$enKey= $this->db->lastInsertedId;
-
+		
 		foreach($entity->properties as &$prop)
 		{
 			$this->insertProperty($prop, $enKey);
