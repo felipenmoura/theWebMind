@@ -22,6 +22,7 @@
 	define('FIX_PROP_NAME',       "/\\\|\,|\./");
 	define('IMPORT_SOURCE',       "/@import [a-z0-9_\-\/\\\]+/i");
 	define('PROP_FIX',            "((\(|[\., \n]))?+|\:");
+	define('BETWEEN_QUOTES',      "/^(\\\)\"|(\\\)\"$/");
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');
@@ -37,7 +38,7 @@
 	define('QUANTIFIER_MAX_MAX',  'n');
 	define('QUANTIFIER_MAX_MIN',   1);
 	define('PROPERTY_SEPARATOR',  "_");
-	define('AUTOINCREMENT_DEFVAL', 0123);
+	define('AUTOINCREMENT_DEFVAL', 'AUTO');
 	define('COMMIT_STATUS_OK'  ,   0);
 	define('COMMIT_STATUS_CHANGED',1);
 	define('COMMIT_STATUS_DROP',   2);

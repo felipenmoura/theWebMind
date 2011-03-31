@@ -54,11 +54,18 @@ class Query {
 		// parsing te default value
 		if(!empty($prop['default_value']))
 		{
-			$default= QueryFactory::getQueryString('createDefault');
-				
-			$details[]= preg_replace(self::PROP_DEFAULT,
-									 $prop['default_value'],
-									 $default);
+			if(\AUTOINCREMENT_DEFVAL == $prop['default_value'])
+			{
+				$details[]= QueryFactory::getQueryString('createAutoIncrement');
+				$prop['default_value']= false;
+			}else{
+					$default= QueryFactory::getQueryString('createDefault');
+					$def= \addslashes($prop['default_value']);
+					$def= preg_replace(\BETWEEN_QUOTES, "'", trim($def));
+					$details[]= preg_replace(self::PROP_DEFAULT,
+											 $def,
+											 $default);
+				 }
 		}
 		
 		// checking the not null attribute
@@ -110,7 +117,6 @@ class Query {
 			if($prop['default_value'] == \AUTOINCREMENT_DEFVAL)
 			{
 				$prop['type']= QueryFactory::getQueryString('autoIncrementType');
-				$prop['default_value']= false;
 			}
 			
 			if($prop['size'])
@@ -124,7 +130,7 @@ class Query {
 			
 			$propQuery= preg_replace(self::PROP_TYPE, $prop['type'], $propQuery);
 			
-			$tmpQuery.= $propQuery."\n    ";
+			$tmpQuery.= trim($propQuery).",\n    ";
 		}
 		
 		$query= preg_replace(self::PROPS, trim($tmpQuery), $query);
