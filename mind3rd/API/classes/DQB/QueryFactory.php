@@ -18,8 +18,32 @@ namespace DQB;
  */
 class QueryFactory {
 	
-	public static $queries= Array();
-	public static $dbms= Array();
+	public static $queries   = Array();
+	public static $dbms      = Array();
+	public static $showHeader= true;
+	
+	public static function showQueries($decorated=true, $raw= false)
+	{
+		$closingQueries= Array();
+		$outpt= "";
+		if(self::$showHeader)
+			$outpt= self::getQueryString('getHeader');
+		foreach(self::$queries as $qrs)
+		{
+			foreach($qrs as $qr)
+			{
+				$outpt.= $qr->query;
+				$closingQueries= array_merge($qr->closingQuery, $closingQueries);
+			}
+		}
+		$outpt.= implode("\n    ", $closingQueries);
+		if(!$decorated)
+			$outpt= strip_tags($outpt);
+		if($raw)
+			echo htmlentities($outpt);
+		else
+			echo $outpt;
+	}
 	
 	public static function addQuery($command, Array $table, $template)
 	{

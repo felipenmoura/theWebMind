@@ -64,7 +64,7 @@ EOT
 		$p= new DAO\ProjectFactory(Mind::$currentProject);
 		$param= ($this->table=='*')? false: $this->table;
 		$entities= $p->getEntity($param);
-		//print_r($entities);
+		
 		switch($this->query)
 		{
 			case 'create':
@@ -100,13 +100,8 @@ EOT
 			$query::build($this->query, $entity);
 		}
 		
-		foreach($query::$queries as $qrs)
-		{
-			foreach($qrs as $qr)
-			{
-				echo $qr;
-			}
-		}
+		DQB\QueryFactory::$showHeader= true;
+		DQB\QueryFactory::showQueries();
 		return $this;
 	}
 

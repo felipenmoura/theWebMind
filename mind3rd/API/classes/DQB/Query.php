@@ -18,18 +18,22 @@ namespace DQB;
  */
 class Query {
 	
-	const TABLE_NAME  = '/<tablename(\/)?>/';
-	const PROPS       = '/<properties(\/)?>/';
-	const PROPS_NAME  = '/<propertienames(\/)?>/';
-	const PROP_NAME   = '/<propertyname(\/)?>/';
-	const PROP_TYPE   = '/<propertytype(\/)?>/';
-	const PROP_SIZE   = '/<propertysize(\/)?>/';
-	const PROP_DETAILS= '/<propertydetails(\/)?>/';
-	const PROP_DEFAULT= '/<defaultvalue(\/)?>/';
-	const PROP_OPTIONS= '/<options(\/)?>/';
-	const PRIMARY_KEYS= '/<primarykeys(\/)?>/';
+	const TABLE_NAME     = '/<tablename(\/)?>/';
+	const PROPS          = '/<properties(\/)?>/';
+	const PROPS_NAME     = '/<propertienames(\/)?>/';
+	const PROP_NAME      = '/<propertyname(\/)?>/';
+	const PROP_TYPE      = '/<propertytype(\/)?>/';
+	const PROP_SIZE      = '/<propertysize(\/)?>/';
+	const PROP_DETAILS   = '/<propertydetails(\/)?>/';
+	const PROP_DEFAULT   = '/<defaultvalue(\/)?>/';
+	const PROP_OPTIONS   = '/<options(\/)?>/';
+	const PRIMARY_KEYS   = '/<primarykeys(\/)?>/';
+	const CONSTRAINT_NAME= '/<constraintname(\/)?>/';
+	const REF_TAB_NAME   = '/<referencetablename(\/)?>/';
+	const REF_COL_NAME   = '/<referencecolumnname(\/)?>/';
 	const FK_NAME= '/<fkname(\/)?>/';
 	public $query= "";
+	public $closingQuery= Array();
 	private $pks= Array(); // temporary variable
 	private $fks= Array(); // temporary variable
 	
@@ -39,6 +43,8 @@ class Query {
 		$this->pks= Array();
 		$this->fks= false;
 		$this->fks= Array();
+		$this->closingQuery= false;
+		$this->closingQuery= Array();
 	}
 	
 	private function parseDetails(Array $prop, $table)
@@ -137,6 +143,27 @@ class Query {
 		$query= preg_replace(self::PRIMARY_KEYS, trim($tmpQuery), $query);
 	}
 	
+	private function createForeignKeys(&$query, $table)
+	{
+		$tmplt= QueryFactory::getQueryString('createFk');
+		foreach($this->fks as $fk)
+		{
+			$constraintName= str_replace('.', '_', $fk['ref_to_property']);
+			$constraintName= "fk_".$table['name'].'_'.$constraintName;
+			$tb= explode('.', $fk['ref_to_property']);
+			$col= $tb[1];
+			$tb= $tb[0];
+			$tmpQuery= preg_replace(self::TABLE_NAME, $table['name'], $tmplt);
+			$tmpQuery= preg_replace(self::CONSTRAINT_NAME, $constraintName, $tmpQuery);
+			$tmpQuery= preg_replace(self::PROP_NAME, $fk['name'], $tmpQuery);
+			$tmpQuery= preg_replace(self::REF_TAB_NAME, $tb, $tmpQuery);
+			$tmpQuery= preg_replace(self::REF_COL_NAME, $col, $tmpQuery);
+			
+			$this->closingQuery[]= $tmpQuery;
+		}
+	}
+
+
 	public function __construct($command, Array $table, $template)
 	{
 		$query= '';
@@ -145,11 +172,14 @@ class Query {
 		switch($command)
 		{
 			case 'createTable':
-				$query= preg_replace(self::TABLE_NAME, $table['name'], $template);
+				$query= preg_replace(self::TABLE_NAME,
+									 $table['name'],
+									 $template);
 
 				//if(preg_match(self::PROPS, $template))
 				self::createProperties($query, $table);
 				self::createPrimaryKeys($query, $table);
+				self::createForeignKeys($query, $table);
 				break;
 		}
 		
@@ -159,7 +189,7 @@ class Query {
 	
 	public function __toString()
 	{
-		return htmlentities($this->query);
+		return $this->query;
 	}
 	
 }
