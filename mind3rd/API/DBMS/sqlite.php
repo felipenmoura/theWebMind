@@ -94,7 +94,7 @@ class sqlite implements DBMS{
 	public function createTable()
 	{
 		return "
-<keyword>CREATE </keyword><object>TABLE</object> <tablename>
+<keyword>CREATE </keyword><object>TABLE</object> <element class='mindTableName'><tablename></element>
 (
     <properties>
     <primarykeys>

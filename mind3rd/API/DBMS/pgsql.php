@@ -19,7 +19,12 @@ class pgsql implements DBMS{
 	
 	public function createDefault()
 	{
-		return "DEFAULT <defaultvalue>";
+		return "<object>DEFAULT</object> <value><defaultvalue></value>";
+	}
+	
+	public function createReferences()
+	{
+		return "";
 	}
 	
 	public function property()
@@ -29,12 +34,12 @@ class pgsql implements DBMS{
 	
 	public function createOptionsCheck()
 	{
-		return "CHECK (<options>)";
+		return "<object>CHECK</object> (<options>)";
 	}
 	
 	public function notNullDefinition()
 	{
-		return "NOT NULL";
+		return "<object>NOT NULL</object>";
 	}
 	
 	public function autoIncrementType()
@@ -44,7 +49,7 @@ class pgsql implements DBMS{
 	
 	public function createUnique()
 	{
-		return "UNIQUE";
+		return "<object>UNIQUE</object>";
 	}
 	
 	public function getHeader()
@@ -69,9 +74,9 @@ class pgsql implements DBMS{
 	public function createFK()
 	{
 		return "
-<keyword>ALTER </keyword><object>TABLE</object> <tablename>
+<keyword>ALTER </keyword><object>TABLE</object> <element><tablename></element>
   <keyword>ADD</keyword> <object>CONSTRAINT</object> <constraintname>
-  <object>FOREIGN KEY (<propertyname>)</object> <keyword>REFERENCES </keyword>
+  <object>FOREIGN KEY</object> (<element><propertyname></element>) <keyword>REFERENCES </keyword>
 <referencetablename>(<referencecolumnname>);
 ";
 	}
@@ -79,7 +84,7 @@ class pgsql implements DBMS{
 	public function createPrimaryKeys()
 	{
 		return "
-    <object>CONSTRAINT</object> <fkname> <object>PRIMARY KEY</object> (<propertienames>)
+    <object>CONSTRAINT</object> <element><fkname></element> <object>PRIMARY KEY</object> (<element><propertienames></element>)
 ";
 	}
 	
@@ -99,7 +104,7 @@ class pgsql implements DBMS{
 	public function createTable()
 	{
 		return "
-<keyword>CREATE </keyword><object>TABLE</object> <tablename>
+<keyword>CREATE </keyword><object>TABLE</object> <element class='mindTableName'><tablename></element>
 (
     <properties>
     <primarykeys>

@@ -14,7 +14,12 @@ class mysql implements DBMS{
 	
 	public function createDefault()
 	{
-		return "DEFAULT <defaultvalue>";
+		return "<object>DEFAULT</object> <value><defaultvalue></value>";
+	}
+
+	public function createReferences()
+	{
+		return "";
 	}
 	
 	public function property()
@@ -29,7 +34,7 @@ class mysql implements DBMS{
 	
 	public function notNullDefinition()
 	{
-		return "NOT NULL";
+		return "<object>NOT NULL</object>";
 	}
 	
 	public function autoIncrementType()
@@ -39,7 +44,7 @@ class mysql implements DBMS{
 	
 	public function createUnique()
 	{
-		return "UNIQUE";
+		return "<object>UNIQUE</object>";
 	}
 	
 	public function getHeader()
@@ -74,7 +79,7 @@ class mysql implements DBMS{
 	public function createPrimaryKeys()
 	{
 		return "
-    <object>CONSTRAINT</object> <fkname> <object>PRIMARY KEY</object> (<propertienames>)
+    <object>CONSTRAINT</object> <element><fkname></element> <object>PRIMARY KEY</object> (<element><propertienames></element>)
 ";
 	}
 	
@@ -88,13 +93,13 @@ class mysql implements DBMS{
 	
 	public function createAutoIncrement()
 	{
-		return "AUTO_INCREMENT";
+		return "<object>AUTO_INCREMENT</object>";
 	}
 	
 	public function createTable()
 	{
 		return "
-<keyword>CREATE </keyword><object>TABLE</object> <tablename>
+<keyword>CREATE </keyword><object>TABLE</object> <element class='mindTableName'><tablename></element>
 (
     <properties>
     <primarykeys>

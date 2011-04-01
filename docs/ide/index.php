@@ -31,6 +31,10 @@
 				font-style:italic;
 				color: green;
 			}
+			.mindTableName
+			{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
