@@ -31,6 +31,7 @@ class Query {
 	const CONSTRAINT_NAME= '/<constraintname(\/)?>/';
 	const REF_TAB_NAME   = '/<referencetablename(\/)?>/';
 	const REF_COL_NAME   = '/<referencecolumnname(\/)?>/';
+	const REFERENCES   = '/<references(\/)?>/';
 	const FK_NAME= '/<fkname(\/)?>/';
 	public $query= "";
 	public $closingQuery= Array();
@@ -72,8 +73,20 @@ class Query {
 		if($prop['required'])
 			$details[]= QueryFactory::getQueryString('notNullDefinition');
 		
+		if($prop['ref_to_property'] && QueryFactory::$mustSort)
+		{
+			$tb= explode('.', $prop['ref_to_property']);
+			$col= $tb[1];
+			$tb= $tb[0];
+			$reference= QueryFactory::getQueryString('createReferences');
+			$reference= preg_replace(self::REF_TAB_NAME, $tb, $reference);
+			$reference= preg_replace(self::REF_COL_NAME, $col, $reference);
+			$details[]= $reference;
+		}
+			
 		// 
-		$prop['options']= JSON_decode($prop['options']);
+		if($prop['options'])
+			$prop['options']= JSON_decode($prop['options']);
 		if(sizeof($prop['options'])>0)
 		{
 			$optionsTplt= QueryFactory::getQueryString('createOptionsCheck');
@@ -90,7 +103,7 @@ class Query {
 														   $options),
 									 $optionsTplt);
 		}
-		//print_r($prop);
+		
 		if($prop['unique_value'])
 		{
 			$details[]= QueryFactory::getQueryString('createUnique');
@@ -120,15 +133,17 @@ class Query {
 			}
 			
 			if($prop['size'])
-				$propQuery= preg_replace(self::PROP_SIZE, "(".$prop['size'].")", $propQuery);
+				$propQuery= preg_replace(self::PROP_SIZE, "(<value>".$prop['size']."</value>)", $propQuery);
 			else
 				$propQuery= preg_replace(self::PROP_SIZE, "", $propQuery);
 			$propQuery= preg_replace(self::PROP_NAME, $prop['name'], $propQuery);
+			
 			$propQuery= preg_replace(self::PROP_DETAILS,
 									 $this->parseDetails($prop, $table),
 									 $propQuery);
 			
 			$propQuery= preg_replace(self::PROP_TYPE, $prop['type'], $propQuery);
+			$propQuery= preg_replace(self::REFERENCES, '', $propQuery);
 			
 			$tmpQuery.= trim($propQuery).",\n    ";
 		}

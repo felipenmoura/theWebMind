@@ -14,12 +14,17 @@ class sqlite implements DBMS{
 	
 	public function createDefault()
 	{
-		return "DEFAULT <defaultvalue>";
+		return "<object>DEFAULT</object> <value><defaultvalue></value>";
+	}
+	
+	public function createReferences()
+	{
+		return "<object>REFERENCES</object> <element><referencetablename></element>(<element><referencecolumnname></element>)";
 	}
 	
 	public function property()
 	{
-		return "<property><propertyname></property> <propertytype><propertysize> <propertydetails>";
+		return "<property><propertyname></property> <propertytype><propertysize> <propertydetails> <references>";
 	}
 	
 	public function createOptionsCheck()
@@ -29,7 +34,7 @@ class sqlite implements DBMS{
 	
 	public function notNullDefinition()
 	{
-		return "NOT NULL";
+		return "<object>NOT NULL</object>";
 	}
 	
 	public function autoIncrementType()
@@ -39,7 +44,7 @@ class sqlite implements DBMS{
 	
 	public function createUnique()
 	{
-		return "UNIQUE";
+		return "<object>UNIQUE</object>";
 	}
 	
 	public function getHeader()
@@ -69,7 +74,7 @@ class sqlite implements DBMS{
 	public function createPrimaryKeys()
 	{
 		return "
-    <object>CONSTRAINT</object> <fkname> <object>PRIMARY KEY</object> (<propertienames>)
+    <object>CONSTRAINT</object> <element><fkname></element> <object>PRIMARY KEY</object> (<element><propertienames></element>)
 ";
 	}
 	
@@ -83,7 +88,7 @@ class sqlite implements DBMS{
 	
 	public function createAutoIncrement()
 	{
-		return "AUTO_INCREMENT";
+		return "<object>AUTO_INCREMENT</object>";
 	}
 	
 	public function createTable()

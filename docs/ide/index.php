@@ -13,6 +13,15 @@
 				font-weight:bold;
 				color: blue;
 			}
+			value
+			{
+				color: #c00;
+				font-style:italic;
+			}
+			element
+			{
+				font-style:italic;
+			}
 			object
 			{
 				color: blue;
@@ -34,7 +43,7 @@
 		<input type='button' value='commit project demo_en' onclick="commit()"/>
 		<input type='button' value='show queries' onclick="showQueries()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
-		<pre><div id='result' style='border:dashed 1px #777;'></div></pre>
+		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
 	</body>
 	<script>
 		function setLoading()

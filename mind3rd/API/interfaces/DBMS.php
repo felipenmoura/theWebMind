@@ -7,6 +7,13 @@
 
 /**
  * Description of DBMS
+ * Possible tags for markup:
+ *   object
+ *   element
+ *   value
+ *   property
+ *   keyword
+ *   comment
  *
  * @author felipe
  */
