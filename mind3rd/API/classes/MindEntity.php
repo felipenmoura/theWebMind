@@ -17,6 +17,12 @@
 		private $refBy= Array();
 		public  $selfRef= false;
 
+		/**
+		 * Creates a default primary key to the entity.
+		 * 
+		 * @param boolean $unique
+		 * @return MindEntity 
+		 */
 		public function addAutoPk($unique=false)
 		{
 			GLOBAL $_MIND;
@@ -142,7 +148,7 @@
 		
 		/**
 		 * Removes a reference TO
-		 * @param type $refName
+		 * @param string $refName
 		 * @return MindEntity 
 		 */
 		public function removeRefTo($refName)
@@ -164,7 +170,7 @@
 		
 		/**
 		 * Removes a reference BY
-		 * @param type $refName 
+		 * @param string $refName 
 		 * @return MindEntity
 		 */
 		public function removeRefBy($refName)

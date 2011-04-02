@@ -38,7 +38,7 @@ class Analyst extends Analysis {
 	
 	/**
 	 * Removes an entity from the entities list.
-	 * @param type $entity The entity to be removed
+	 * @param string $entity The entity to be removed
 	 */
 	public static function removeEntity($entity)
 	{

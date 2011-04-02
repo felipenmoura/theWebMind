@@ -81,23 +81,6 @@ class MindProject extends VersionManager{
 		$path= Mind::$currentProject['path']."/temp/";
 		$entities= $path."entities~";
 		$relations= $path."relations~";
-		/*if($_REQ['env']=='shell')
-		{
-			if(file_exists($entities) && $f= fopen($entities, 'r'))
-			{
-				while (($buffer = fgets($f, 51200)) !== false)
-				{
-					if($tmpObj= @unserialize($buffer))
-						Analyst::$entities[$tmpObj->name]= $tmpObj;
-				}
-				$f= fopen($relations, 'r');
-				while (($buffer = fgets($f, 51200)) !== false)
-				{
-					if($tmpObj= @unserialize($buffer))
-						Analyst::$relations[$tmpObj->name]= $tmpObj;
-				}
-			}
-		}*/
 		
 		$pF= new DAO\ProjectFactory(Mind::$currentProject);
 		Mind::$currentProject['version']= $pF->data['version'];
@@ -150,6 +133,13 @@ class MindProject extends VersionManager{
 		Mind::$lexer= new Lexer();
 		self::loadSources();
 	}
+	
+	/**
+	 * Analyzes the current project.
+	 * 
+	 * @param boolean $autoCommit
+	 * @param boolean $echo 
+	 */
 	public static function analyze($autoCommit=false, $echo=true)
 	{
 		self::setUp();

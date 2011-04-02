@@ -75,7 +75,7 @@ class ProjectFactory extends Project{
 	 * This will also verifies the changes in the previous version and
 	 * make the necessary changes.
 	 * 
-	 * @param Array &$currentEntities 
+	 * @param Array $currentEntities 
 	 */
 	public function saveEntities(&$currentEntities)
 	{
@@ -151,7 +151,7 @@ class ProjectFactory extends Project{
 	 * This method will get the passed entity attributes.
 	 * 
 	 * @param mixed $entity you can pass either the pk or the name of the entity
-	 * @return the query return itself
+	 * @return Array the query return itself
 	 */
 	public function getEntity($entity)
 	{
