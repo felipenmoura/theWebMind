@@ -22,7 +22,7 @@ mind3rd/API/temp/*
 ##
 ## Development meta files
 ##
-*.*~
+*.*~*
 .project
 .DS_Store
 ./nbproject
