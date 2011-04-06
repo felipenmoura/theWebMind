@@ -23,27 +23,64 @@ class QueryFactory extends TableSort{
 	public static $showHeader= true;
 	public static $mustSort  = false;
 	
-	public static function showQueries($decorated=true, $raw= false)
+	public static function getCompleteQuery($decorated=true, $raw= false, $format='string')
 	{
 		$closingQueries= Array();
-		$outpt= "";
+		$outpt= ($format=='string')? "": Array();
 		if(self::$showHeader)
-			$outpt= self::getQueryString('getHeader');
+		{
+			$qr= self::getQueryString('getHeader');
+			if(!$decorated)
+				$qr= strip_tags($qr);
+			if($raw)
+				$qr= htmlentities($qr);
+			if($format=='string')
+				$outpt.= $qr;
+			else
+				$outpt[]= $qr;
+		}
+		
 		foreach(self::$queries as $qrs)
 		{
 			foreach($qrs as $qr)
 			{
-				$outpt.= $qr->query;
-				$closingQueries= array_merge($qr->closingQuery, $closingQueries);
+				if($format=='string')
+					$outpt.= ($decorated)? $qr->query: strip_tags($qr->query);
+				else
+					$outpt[]= ($decorated)? $qr->query: strip_tags($qr->query);
+				
+				$cq= $qr->closingQuery;
+				if(!$decorated)
+				{
+					$cq= array_map(function($arPos){
+						return strip_tags($arPos);
+					}, $cq);
+				}
+				if($raw)
+				{
+					$cq= array_map(function($arPos){
+						return htmlentities($arPos);
+					}, $cq);
+				}
+				$closingQueries= array_merge($cq, $closingQueries);
 			}
 		}
-		$outpt.= implode("\n    ", $closingQueries);
-		if(!$decorated)
-			$outpt= strip_tags($outpt);
-		if($raw)
-			echo htmlentities($outpt);
+		
+		if($format=='string')
+		{
+			$outpt.= implode("\n    ", $closingQueries);
+		}else
+			$outpt= array_merge($outpt, $closingQueries);
+		if($raw && $format=='string')
+			return htmlentities($outpt);
 		else
-			echo $outpt;
+			return $outpt;
+	}
+	
+	public static function showQueries($decorated=true, $raw= false)
+	{
+		$qr= self::getCompleteQuery($decorated, $raw);
+		echo $qr;
 	}
 	
 	public static function addQuery($command, Array $table, $template)
@@ -98,6 +135,7 @@ class QueryFactory extends TableSort{
 		{
 			self::sortTables();
 		}
+		return self::$queries;
 	}
 	
 	public function __construct($dbDriver)

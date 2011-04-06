@@ -54,7 +54,7 @@ EOT
 
 	private function action()
 	{
-		GLOBAL $_MIND;
+		GLOBAL $_MIND, $_REQ;
 		if(!parent::verifyCredentials())
 			return false;
 		
@@ -86,11 +86,8 @@ EOT
 				break;
 		}
 		
-		\DQB\QueryFactory::setUp(Mind::$currentProject['database_drive']);
-		\DQB\QueryFactory::buildQuery($this->table, $this->query);
-		
-		\DQB\QueryFactory::$showHeader= true;
-		\DQB\QueryFactory::showQueries();
+		$qrs= \MindProject::showSQL(($this->table=='*'), $this->table, $this->query);
+		echo $qrs;
 		return $this;
 	}
 

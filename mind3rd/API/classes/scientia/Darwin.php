@@ -1,4 +1,5 @@
 <?php
+	namespace scientia;
 	/**
 	 * Description of Darwin
 	 *

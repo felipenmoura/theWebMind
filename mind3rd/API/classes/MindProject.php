@@ -9,6 +9,43 @@ class MindProject extends VersionManager{
 	public static $sourceContent= Array();
 	public static $currentSource= null;
 	
+	/**
+	 * Uses the QueryFactory to return the sql to create all the database.
+	 * 
+	 * @static
+	 * @param boolean $header shows the header, or not
+	 * @return string The entire SQL command to create the database.
+	 */
+	public static function showSQL($header= true, $table='*', $command='createTable')
+	{
+		GLOBAL $_REQ;
+		\DQB\QueryFactory::$showHeader= $header;
+		\DQB\QueryFactory::setUp(Mind::$currentProject['database_drive']);
+		\DQB\QueryFactory::buildQuery($table, $command);
+		$qrs= \DQB\QueryFactory::getCompleteQuery($_REQ['env']=='http', false, 'string');
+		return $qrs;
+	}
+	
+	/**
+	 * Uses the QueryFactory to return the sql to create all the database.
+	 * 
+	 * This method returns an array with all the sql statements, instead
+	 * of a long string.
+	 * 
+	 * @static
+	 * @param boolean $header shows the header, or not
+	 * @return string An array with the query commands to create the database.
+	 */
+	public static function getSQL($header= false)
+	{
+		GLOBAL $_REQ;
+		\DQB\QueryFactory::$showHeader= $header;
+		\DQB\QueryFactory::setUp(Mind::$currentProject['database_drive']);
+		\DQB\QueryFactory::buildQuery();
+		$qrs= \DQB\QueryFactory::getCompleteQuery($_REQ['env']=='http', false, 'array');
+		return $qrs;
+	}
+	
     /**
 	 * Returns true if the project already exists,
 	 * false, otherwise

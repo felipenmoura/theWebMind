@@ -46,6 +46,7 @@
 		<input type='button' value='analyze project demo_en' onclick="analyzeX()"/>
 		<input type='button' value='commit project demo_en' onclick="commit()"/>
 		<input type='button' value='show queries' onclick="showQueries()"/>
+		<input type='button' value='generate db' onclick="genDB()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
 		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
 	</body>
@@ -222,6 +223,22 @@
 							program:'dqb',
 							query: 'create',
 							table: '*'
+						},
+						success: function(retQ){
+							document.getElementById('result').innerHTML= retQ;
+						}
+					});
+		}
+		
+		function genDB()
+		{
+			setLoading();
+			$.ajax({
+						type:'POST',
+						url:'../../',
+						data:{
+							program:'generate',
+							what: 'db'
 						},
 						success: function(retQ){
 							document.getElementById('result').innerHTML= retQ;

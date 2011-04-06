@@ -25,6 +25,12 @@
 		public static $canonic;
 		public static $syntaxer;
 		public static $tokenizer;
+		/**
+		 *
+		 * @var theos\Gosh $gosh the "creator" class
+		 */
+		public static $gosh;
+		public static $darwin;
 		public static $langPath= "";
 		public static $content= "";
 		public static $originalContent= "";
@@ -181,5 +187,8 @@
 
 			$langPath= $path.LANG_PATH;
 			set_include_path(get_include_path() . PATH_SEPARATOR . $langPath);
+			
+			Mind::$gosh= new theos\Gosh();
+			Mind::$darwin= new scientia\Darwin();
 		}
 	}
