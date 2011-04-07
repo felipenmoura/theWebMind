@@ -4,7 +4,7 @@
  *
  * @author felipe
  */
-class pt {
+class pt implements l10n{
 	private $messages= Array();
 
 	public $name= 'pt';
@@ -56,6 +56,9 @@ class pt {
 		$this->messages['additionalCounterCol']     = "Campo adicionado automaticamente, a ser usado como diferencial para cada tupla, a fim de possibilizar um novo registro utilizando as mesmas demais chaves.";
 		$this->messages['commitChanged']            = Mind::message("VCS: Consignado para versão %s", '[Ok]', false);
 		$this->messages['commitUnchanged']          = Mind::message("VCS: Nada a consignar. Ainda na versão %s", '[Ok]', false);
+		$this->messages['theosDBQrFail']            = Mind::message("Theos: Ocorreu um problema durante a execução da query abaixo:\n", '[Fail]', false);
+		$this->messages['theosDBQrFailAbort']       = Mind::message("Theos: Todas as queries serão abortadas", '[Fail]', false);
+		$this->messages['theosDBQrOk']              = Mind::message("Theos: Base de dados gerada com sucesso", '[Ok]', false);
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Requisição HTTP inválida.

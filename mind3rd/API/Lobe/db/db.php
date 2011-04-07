@@ -4,15 +4,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-namespace theos;
+namespace Lobe\DB;
 /**
  * Description of DBGen
  *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
-class DBGen{
+class db extends \Lobe\Neuron implements \neuron{
 	
 	private $dbData= false;
+	
+	public function __construct(Array $data)
+	{
+		$projectData= \Mind::$currentProject;
+		$this->generateDatabase($projectData);
+	}
 	
 	public function generateDatabase(Array $projectData)
 	{
@@ -38,14 +44,14 @@ class DBGen{
 			
 			if($exec === false)
 			{
-				Mind::write('theosDBQrFail');
+				\Mind::write('theosDBQrFail');
 				echo $qr."\n";
-				Mind::write('theosDBQrFailAbort');
+				\Mind::write('theosDBQrFailAbort');
 				return false;
 			}
 		}
 		$this->dbal->commit();
-		Mind::write('theosDBQrOk');
+		\Mind::write('theosDBQrOk');
 		return true;
 	}
 }

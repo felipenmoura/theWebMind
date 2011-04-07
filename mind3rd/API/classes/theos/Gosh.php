@@ -13,12 +13,17 @@ namespace theos;
 class Gosh {
 	public $bdGen= null;
 	
-	public function generate()
+	public function generate($data)
 	{
-		$this->dbGen->generateDatabase(\Mind::$currentProject);
+		//$this->dbGen->generateDatabase(\Mind::$currentProject);
+		$program = strtolower(array_shift($data));
+		$program = 'Lobe\\'.$program.'\\'.$program;
+		if(\class_exists($program))
+			new $program($data);
+		else
+			throw new \MindException("Invalid lobe program: ".$program);
 	}
 	
-	public function __construct() {
-		$this->dbGen= new DBGen;
+	public function __construct(){
 	}
 }

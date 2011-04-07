@@ -76,7 +76,7 @@ class sqlite implements DBMS{
 	public function createPrimaryKeys()
 	{
 		return "
-    <object>CONSTRAINT</object> <element><fkname></element> <object>PRIMARY KEY</object> (<element><propertienames></element>)
+    <object>CONSTRAINT</object> <element><fkname></element> <object>PRIMARY KEY</object> (<element><propertiesnames></element>)
 ";
 	}
 	
@@ -84,7 +84,7 @@ class sqlite implements DBMS{
 	{
 		return "
 <keyword>ALTER</keyword> <object>TABLE</object> <tablename>
-  <keyword>ADD</keyword> <object>PRIMARY KEY</object> (<propertienames>);
+  <keyword>ADD</keyword> <object>PRIMARY KEY</object> (<propertiesnames>);
 ";
 	}
 	

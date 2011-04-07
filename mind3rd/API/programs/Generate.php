@@ -12,20 +12,28 @@
 	 */
 	class Generate extends MindCommand implements program
 	{
-		private $nameSpace= false;
-		public  $autoCommit= false;
+		public $what;
+		public $param;
+		public $detail;
+		public $optional;
+		public $extra;
 
 		public function configure()
 		{
 			$this->setName('generate')
 				 ->setDescription('Commits the analyzed content to a new version')
 				 ->setRestrict(true)
-				 ->setDefinition(Array(
-					new InputArgument('what', InputArgument::REQUIRED, 'What to create')))
 				 ->setHelp(<<<EOT
 	This command will increase the current version and also will persist the currently analyzed structure into the system's knowledge base.
 EOT
-					);
+					)
+				 ->setDefinition(Array(
+					 new InputArgument('what', InputArgument::REQUIRED, 'What to create'),
+					 new InputArgument('param', InputArgument::OPTIONAL, 'A param for that command'),
+					 new InputArgument('detail', InputArgument::OPTIONAL, 'A detail for that command'),
+					 new InputArgument('optional', InputArgument::OPTIONAL, 'An optional argument'),
+					 new InputArgument('extra', InputArgument::OPTIONAL, 'Extra data to pass'),
+				  ));
 		}
 		
 		public function execute(Console\Input\InputInterface $input,
@@ -33,6 +41,11 @@ EOT
 		{
 			if(!parent::execute($input, $output))
 				return false;
+			$this->what= $input->getArgument('what');
+			$this->param= $input->getArgument('param');
+			$this->detail= $input->getArgument('detail');
+			$this->optional= $input->getArgument('optional');
+			$this->extra= $input->getArgument('extra');
 			Mind::write('thinking');
 			$this->runAction();
 		}
@@ -42,6 +55,11 @@ EOT
 			GLOBAL $_REQ;
 			if(!parent::HTTPExecute())
 				return false;
+			$this->what    = $_REQ['data']['what'];
+			$this->param  = (isset($_REQ['data']['param']))? $_REQ['data']['param']: false;
+			$this->detail  = (isset($_REQ['data']['detail']))? $_REQ['data']['detail']: false;
+			$this->optional= (isset($_REQ['data']['optional']))? $_REQ['data']['optional']: false;
+			$this->extra   = (isset($_REQ['data']['extra']))? $_REQ['data']['extra']: false;
 			$this->runAction();
 		}
 
@@ -53,7 +71,13 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
-			Mind::$gosh->generate();
+			Mind::$gosh->generate(Array(
+									$this->what,
+									$this->param,
+									$this->detail,
+									$this->optional,
+									$this->extra
+								  ));
 			return $this;
 		}
 

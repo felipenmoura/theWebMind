@@ -1,7 +1,7 @@
 <?php
 	require_once dirname(__FILE__) . '/../mind3rd/API/classes/Mind.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/classes/MindSpeaker.php';
-	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/Darwin/Darwin.php';
+	require_once dirname(__FILE__) . '/../mind3rd/API/classes/scientia/Darwin.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/Lexer/Lexer.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/canonic/Canonic.php';
 	require_once dirname(__FILE__) . '/../mind3rd/API/cortex/syntaxer/Syntaxer.php';

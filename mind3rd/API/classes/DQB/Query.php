@@ -20,7 +20,7 @@ class Query {
 	
 	const TABLE_NAME     = '/<tablename(\/)?>/';
 	const PROPS          = '/<properties(\/)?>/';
-	const PROPS_NAME     = '/<propertienames(\/)?>/';
+	const PROPS_NAME     = '/<propertiesnames(\/)?>/';
 	const PROP_NAME      = '/<propertyname(\/)?>/';
 	const PROP_TYPE      = '/<propertytype(\/)?>/';
 	const PROP_SIZE      = '/<propertysize(\/)?>/';

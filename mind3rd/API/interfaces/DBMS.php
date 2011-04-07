@@ -15,6 +15,20 @@
  *   property
  *   keyword
  *   comment
+ * 
+ * Possible tags for template's usage:
+ *   defaultvalue
+ *   propertyname
+ *   propertytype
+ *   propertysize
+ *   propertydetails
+ *   options
+ *   tablename
+ *   constraintname
+ *   referencetablename
+ *   referencecolumnname
+ *   fkname
+ *   propertiesnames
  *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @package DBMS

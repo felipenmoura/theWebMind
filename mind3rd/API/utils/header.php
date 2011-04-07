@@ -22,6 +22,7 @@
 			_MINDSRC_.'/mind3rd/API/cortex/analyst/',
 			_MINDSRC_.'/mind3rd/API/languages/',
 			_MINDSRC_.'/mind3rd/API/DBMS/',
+			_MINDSRC_.'/mind3rd/API/Lobe/',
 			_MINDSRC_.'/mind3rd/API/'
 		));
 
