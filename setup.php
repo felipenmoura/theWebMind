@@ -25,7 +25,10 @@
     echo "<p><img src='ide/images/".((Setup::$sqliteDir)? 'o':'f').".png' /> Write permissions in '".getcwd()."/mind3rd/SQLite/' to the user '".trim(shell_exec('whoami'))."'<br/>";
     echo "<p><img src='ide/images/".((Setup::$apiDir)? 'o':'f').".png' /> Write permissions in '".getcwd()."/mind3rd/API/' to the user '".trim(shell_exec('whoami'))."'<br/>";
     
-    
+    if(Setup::getSO() == 'WIN')
+    {
+        ///////////////
+    }
     
     echo "<input type='button'
                  value='Verify again'
