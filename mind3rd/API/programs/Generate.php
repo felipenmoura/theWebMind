@@ -71,13 +71,14 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
-			Mind::$gosh->generate(Array(
+			if($exec= Mind::$gosh->generate(Array(
 									$this->what,
 									$this->param,
 									$this->detail,
 									$this->optional,
 									$this->extra
-								  ));
+								  )))
+                return false;
 			return $this;
 		}
 

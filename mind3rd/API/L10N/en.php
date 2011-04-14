@@ -49,9 +49,10 @@ class En implements l10n{
 		$this->messages['additionalCounterCol']     = "This field was automatically added to allow an insertion of a new tuple using repeated values for the other keys.";
 		$this->messages['commitChanged']            = Mind::message("VCS: Commited to version %s", '[Ok]', false);
 		$this->messages['commitUnchanged']          = Mind::message("VCS: Nothing to commit. Still in version %s", '[Ok]', false);
-		$this->messages['theosDBQrFail']            = Mind::message("Theos: A problem occurred in the following query\n", '[Fail]', false);
+		$this->messages['theosDBQrFail']            = Mind::message("Theos: A problem occurred in the following query", '[Fail]', false);
 		$this->messages['theosDBQrFailAbort']       = Mind::message("Theos: All the queries will be aborted", '[Fail]', false);
 		$this->messages['theosDBQrOk']              = Mind::message("Theos: Database created successfuly", '[Ok]', false);
+		$this->messages['dbDriverNotFound']         = Mind::message("Theos: Database Driver not found", '[Fail]', false);
 		
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Invalid HTTP requisition.

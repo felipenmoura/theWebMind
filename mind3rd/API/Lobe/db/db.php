@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-namespace Lobe\DB;
+namespace Lobe\db;
 /**
  * Description of DBGen
  *
@@ -34,21 +34,24 @@ class db extends \Lobe\Neuron implements \neuron{
 		$this->dbal= new \MindDBAL($ar);
 		\DQB\QueryFactory::$showHeader= false;
 		\DQB\QueryFactory::setUp($ar['driver']);
-		\DQB\QueryFactory::buildQuery('*');
+		\DQB\QueryFactory::buildQuery();
 		$qrs= \DQB\QueryFactory::getCompleteQuery(false, true, 'array');
-		
+		$qrs= \DQB\QueryFactory::buildRawQuery();
+        
 		$this->dbal->begin();
-		foreach($qrs as $qr)
+        $dealer= new resources\DBDealer($this->dbal);
+        
+		foreach($qrs['createTable'] as $tbName=>$qrObject)
 		{
-			$exec = $this->dbal->execute($qr);
-			
-			if($exec === false)
-			{
-				\Mind::write('theosDBQrFail');
-				echo $qr."\n";
-				\Mind::write('theosDBQrFailAbort');
-				return false;
-			}
+            //foreach($qrType as $qr)
+            //{
+                //print_r($qr);
+                if(!$dealer->createTable($qrObject))
+                {
+                    return false;
+                }
+                
+            //}
 		}
 		$this->dbal->commit();
 		\Mind::write('theosDBQrOk');

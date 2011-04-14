@@ -200,7 +200,20 @@ class pgsql implements DBMS{
 	{
 		return false;
 	}
-	
+
+    public function getAttributes($tableName)
+    {
+        "select * from information_schema.columns where table_name='father'";
+        "select * from information_schema.referential_constraints";
+        // for not null or check
+        "select * from information_schema.check_constraints where substring(constraint_schema, 0,3) <> 'pg' and constraint_schema <> 'information_schema'";
+    }
+    
+    public function getAllTables()
+    {
+        return "select table_catalog||'.'||table_name as table_name from information_schema.tables where table_type = 'BASE TABLE' and substring(table_schema, 0,3) <> 'pg' and table_schema <> 'information_schema';";
+    }
+    
 	/**
 	 * Method which will return the required string.
 	 * This method is generic and may be kept just as it is. Although, if

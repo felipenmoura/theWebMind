@@ -12,7 +12,7 @@ namespace theos;
  */
 final class ProjectFileManager {
 
-    private static function filterURI($uri, $allowSlashes=false)
+    private static function filterURI($uri, $allowSlashes=true)
     {
         $uri= \urlencode(\utf8_encode($uri));
         if($allowSlashes)
@@ -26,9 +26,9 @@ final class ProjectFileManager {
         return $uri;
     }
     
-    private static function mountURI($uri= '', $allowSlashes= false)
+    private static function mountURI($uri= '', $allowSlashes= true)
     {
-        $tmpURI = \Mind::$currentProject['path']."/";
+        $tmpURI = '';//\Mind::$currentProject['path']."/";
         $tmpURI.= self::filterURI($uri, $allowSlashes);
         return $tmpURI;
     }
@@ -43,15 +43,48 @@ final class ProjectFileManager {
         if(file_exists($uri))
             return true;
         if(!file_exists(dirname($uri)))
+        {
             self::fixDirectory(dirname($uri));
-        mkdir(filterURI($uri));
-        \chmod($uri, 0777);
+        }
+        mkdir(self::filterURI($uri));
+        chmod($uri, 0777);
     }
     
-    public static function createFile($uri)
+    public static function appendDataToFile($file, $data)
     {
+        if(file_exists($file))
+            return \file_put_contents ($file, $data, \FILE_APPEND);
+        return false;
+    }
+    
+    private static function setInnerURI($uri)
+    {
+        return \Mind::$currentProject['path']."/".$uri;
+    }
+    
+    public static function writeToFile($file, $data)
+    {
+        $file= self::setInnerURI($file);
+        if(file_exists($file))
+            return \file_put_contents ($file, $data);
+        return false;
+    }
+    
+    public static function createFile($uri, $type='general')
+    {
+        $uri= self::setInnerURI($uri);
         self::fixDirectory(dirname($uri));
         $uri= self::mountURI($uri, true);
-        return fopen($uri, 'wb+');
+        if($type=='general')
+            return fopen($uri, 'wb+');
+        else{
+                if(file_exists($uri))
+                    return @\simplexml_load_file($uri);
+                $h= fopen($uri, 'wb+');
+                $content= '<?xml version="1.0" ?><root></root>';
+                fwrite($h, $content);
+                fclose($h);
+                return @\simplexml_load_file($uri);
+            }
     }
 }

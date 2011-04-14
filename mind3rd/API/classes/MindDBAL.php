@@ -73,7 +73,29 @@ class MindDBAL {
 	{
 		return $this->conn->exec($qr);
 	}
-	
+
+    public function query($qr)
+    {
+        return $this->conn->query($qr);
+    }
+    
+    public function getTables()
+    {
+        $qr= \DQB\QueryFactory::getAllTables();
+        $tables= Array();
+        foreach($this->query($qr) as $table)
+        {
+            $tables[]= $table['table_name'];
+        }
+        return $tables;
+    }
+    
+    public function getErrorMessage()
+    {
+        $details= $this->conn->errorInfo();
+        return "Database error message:\n[".$details[0]."-".$details[1]."] ".$details[2]."\n";
+    }
+    
 	public function __construct($dsn=false)
 	{
 		if($dsn)

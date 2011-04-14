@@ -83,23 +83,33 @@ class QueryFactory extends TableSort{
 		echo $qr;
 	}
 	
-	public static function addQuery($command, Array $table, $template)
+	public static function addQuery($command, Array $table, $template, $raw= false)
 	{
 		if(!isset(self::$queries[$command]))
 			self::$queries[$command]= Array();
 		self::$queries[$command][$table['name']]= new Query($command, $table, $template);
-		return self::$queries[$command][$table['name']]->query;
+        
+        $ret= self::$queries[$command][$table['name']]->query;
+        if($raw)
+        {
+            self::$queries[$command][$table['name']]->query= strip_tags($ret);
+            $ret= strip_tags($ret);
+        }
+		return $ret;
 	}
 	
-	public static function getQueryString($command)
+	public static function getQueryString($command, $raw= false)
 	{
-		return self::$dbms->getModel($command);
+		$ret= self::$dbms->getModel($command);
+        if($raw)
+            $ret= strip_tags($ret);
+        return $ret;
 	}
 	
-	public static function build($command, Array $table)
+	public static function build($command, Array $table, $raw= false)
 	{
 		$template= self::$dbms->getModel($command);
-		return self::addQuery($command, $table, $template);
+		return self::addQuery($command, $table, $template, $raw);
 	}
 	
 	public static function setUp($dbDriver)
@@ -109,8 +119,7 @@ class QueryFactory extends TableSort{
 		self::$dbms= @new $dbDriver();
 		if(!self::$dbms)
 		{
-			// TODO: put it into the L10N
-			echo "Database Driver not found.";
+            \Mind::write('dbDriverNotFound');
 		}
 		self::$mustSort= self::getQueryString('mustSort');
 	}
@@ -120,8 +129,15 @@ class QueryFactory extends TableSort{
 		self::sort(self::$queries['createTable']);
 	}
 	
+    public static function buildRawQuery($table='*',
+									     $queryCommand='createTable')
+    {
+        return self::buildQuery($table='*', $queryCommand='createTable', true);
+    }
+    
 	public static function buildQuery($table='*',
-									  $queryCommand='createTable')
+									  $queryCommand='createTable',
+                                      $raw=false)
 	{
 		$p= new \DAO\ProjectFactory(\Mind::$currentProject);
 		$param= ($table=='*')? false: $table;
@@ -129,7 +145,7 @@ class QueryFactory extends TableSort{
 		foreach($entities as $entity)
 		{
 			$entity['properties']= $p->getProperties($entity);
-			\DQB\QueryFactory::build($queryCommand, $entity);
+			\DQB\QueryFactory::build($queryCommand, $entity, $raw);
 		}
 		if(self::$mustSort)
 		{
@@ -137,6 +153,11 @@ class QueryFactory extends TableSort{
 		}
 		return self::$queries;
 	}
+    
+    public static function getAllTables()
+    {
+        return self::$dbms->getModel('getAllTables');
+    }
 	
 	public function __construct($dbDriver)
 	{

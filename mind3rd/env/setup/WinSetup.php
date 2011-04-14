@@ -1,5 +1,6 @@
 <?php
-require('Setup.php');
+if(!class_exists('Setup'))
+    require('Setup.php');
 /**
  * This class is responsable for the setup/installation
  * of the system, on Windows
@@ -52,9 +53,10 @@ abstract class WinSetup extends Setup{
 	 * or http.
 	 * It uses an inherited method, createDatabase
 	 */
-    public function install(){
+    public static function install(){
+        parent::__construct();
 		if(self::createExecFile())
-                    return self::createDatabase();
-                return false;
+            return self::createDatabase();
+        return false;
 	}
 }

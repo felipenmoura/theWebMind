@@ -1,20 +1,33 @@
 <?php
-require('Setup.php');
+if(!class_exists('Setup'))
+    require('Setup.php');
 /**
  * This class is responsable for the setup/installation
  * of the system on Unix based OSs
  *
  * @author felipe
  */
-abstract class UnixSetup extends Setup{
+class UnixSetup extends Setup{
 	public static $header = '#!/usr/bin/env php';
 	public static $content= '';
 
 	/**
 	 * Creates the mind file, at bin directory
 	 */
-	public function createExecFile()
+	public static function createExecFile()
 	{
+        /*
+        $uriToAdd= getcwd()."/";
+        //echo $uriToAdd."<br/>";
+        ///usr/local/bin:/usr/bin:/bin
+        //echo shell_exec('echo $PATH');
+        echo "<br/>";
+        echo getenv('PATH').PATH_SEPARATOR.$uriToAdd;
+        echo "<br/>";
+        echo shell_exec('expert PATH=$PATH'.PATH_SEPARATOR.$uriToAdd);
+        echo shell_exec('echo $PATH');
+        echo "<br/>";
+        */
 		self::$content= '<?php
 	$_REQ= Array();
 	$_REQ["env"]= "shell";
@@ -32,6 +45,7 @@ abstract class UnixSetup extends Setup{
 						"/bin/mind;");
 		echo "  setting permissions...\n";
 		echo shell_exec("sudo chmod 777 /bin/mind");
+        return true;
 	}
 
 	/**
@@ -39,8 +53,10 @@ abstract class UnixSetup extends Setup{
 	 * or http.
 	 * It uses an inherited method, createDatabase
 	 */
-    public function install(){
-		self::createExecFile();
-		self::createDatabase();
+    public static function install(){
+        parent::init();
+		if(self::createExecFile())
+            return self::createDatabase();
+        return false;
 	}
 }

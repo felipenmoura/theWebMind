@@ -59,6 +59,8 @@ class pt implements l10n{
 		$this->messages['theosDBQrFail']            = Mind::message("Theos: Ocorreu um problema durante a execução da query abaixo:\n", '[Fail]', false);
 		$this->messages['theosDBQrFailAbort']       = Mind::message("Theos: Todas as queries serão abortadas", '[Fail]', false);
 		$this->messages['theosDBQrOk']              = Mind::message("Theos: Base de dados gerada com sucesso", '[Ok]', false);
+		$this->messages['theosDBQrOk']              = Mind::message("Theos: Base de dados gerada com sucesso", '[Ok]', false);
+		$this->messages['dbDriverNotFound']         = Mind::message("Theos: Database Driver não encontrado", '[Fail]', false);
 
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Requisição HTTP inválida.

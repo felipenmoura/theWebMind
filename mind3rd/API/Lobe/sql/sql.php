@@ -21,6 +21,6 @@ class sql extends \Lobe\Neuron implements \neuron{
 		$qrs= \DQB\QueryFactory::getCompleteQuery(false, true, 'string');
 		
 		$file= \theos\ProjectFileManager::createFile('docs/create.sql');
-		\fwrite($file, $qrs);
+		return \fwrite($file, $qrs) !== false;
 	}
 }
