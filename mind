@@ -21,9 +21,12 @@
 			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
 			{
 				require('mind3rd/env/setup/UnixSetup.php');
+                                $_MIND['sys']= 'unix';
 				UnixSetup::install();
 			}else{
-					WinSetup::install();
+                                    require('mind3rd/env/setup/WinSetup.php');
+                                    $_MIND['sys']= 'win';
+                                    WinSetup::install();
 				 }
 			exit;
 		}

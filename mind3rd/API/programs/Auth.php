@@ -67,20 +67,20 @@ EOT
 
 		private function action()
 		{
-			if($db = new SQLiteDatabase(_MINDSRC_.'/mind3rd/SQLite/mind'))
+			if($db = new SQLite3(_MINDSRC_.'/mind3rd/SQLite/mind'))
 			{
 				$result= $db->query("SELECT * FROM user where login='".$this->login.
 									"' AND pwd='".sha1($this->pwd)."' AND status= 'A'");
-				$row= false;
-				while ($result->valid())
+				$row= $result->fetchArray();
+				/*while()
 				{
-					$row = $result->current();
+					$row = $result->current();*/
 					$_SESSION['auth']= JSON_encode($row);
 					$_SESSION['pk_user']= $row['pk_user'];
 					$_SESSION['status']= $row['status'];
 					$_SESSION['login']= $row['login'];
-					break;
-				}
+					/*break;
+				}*/
 				if(!$row)
 				{
 					Mind::write('auth_fail', true);

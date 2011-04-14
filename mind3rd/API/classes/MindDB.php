@@ -20,9 +20,9 @@ class MindDB {
 	 */
 	public function query($qr)
 	{
-		$ret= sqlite_query($this->db, $qr);
+		$ret= $this->db->query($qr);
 		$ar_ret= Array();
-		while($tuple= sqlite_fetch_array($ret, SQLITE_ASSOC))
+		while($tuple= $ret->fetchArray(SQLITE3_ASSOC))
 		{
 			$ar_ret[]= $tuple;
 		}
@@ -36,14 +36,14 @@ class MindDB {
 	 */
 	public function execute($command)
 	{
-		$ret= sqlite_exec($this->db, $command);
-		$this->lastInsertedId= sqlite_last_insert_rowid($this->db);
+		$ret= $this->db->exec($command);
+		$this->lastInsertedId= $this->db->lastInsertRowId();
 		return $this->lastInsertedId;
 	}
 
     public function  __construct()
 	{
-		if(!$db = sqlite_open(_MINDSRC_.SQLITE))
+		if(!$db = new SQLite3(_MINDSRC_.SQLITE))
 		{
 			Mind::message('Database', '[Fail]');
 			return false;

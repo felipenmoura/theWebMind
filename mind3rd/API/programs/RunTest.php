@@ -106,7 +106,7 @@ EOT
 		}
 		private function runStep2()
 		{
-			if(!$db = new SQLiteDatabase(_MINDSRC_.'/mind3rd/SQLite/mind'))
+			if(!$db = new SQLite3(_MINDSRC_.SQLITE))
 			{
 				Mind::message('Database', '[Fail]');
 				return false;

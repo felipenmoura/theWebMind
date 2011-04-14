@@ -16,19 +16,35 @@ abstract class WinSetup extends Setup{
 	 */
 	public function createExecFile()
 	{
-		// inspired on Doctrine bat for windows
-		self::$content= <<<BAT
-   @echo off
-
-if "%PHPBIN%" == "" set PHPBIN=@php_bin@
-if not exist "%PHPBIN%" if "%PHP_PEAR_PHP_BIN%" neq "" goto USE_PEAR_PATH
-GOTO RUN
-:USE_PEAR_PATH
-set PHPBIN=%PHP_PEAR_PHP_BIN%
-:RUN
-"%PHPBIN%" "@bin_dir@\mind" %*
-BAT;
-		// TODO: any good soul to help with it?
+            $runDir= str_replace('cmd.exe', '', getenv('COMSPEC'));
+            $phpBin= '';
+            
+            while(!file_exists($phpBin) || basename($phpBin)!='php.exe')
+            {
+                $command= "   [PROMPT] Please type the PHP bin file";
+                if(file_exists('c:/wamp'))
+                    $command.="
+   eg: \"c:/wamp/bin/php/php5.3.4/php.exe\":\n        ";
+                else
+                    echo $command.= "
+   eg: \"c:/php/php.exe\":\n        ";
+                echo $command;
+                $fp = fopen('php://stdin', 'r');
+                $phpBin = trim(fgets($fp, 1024));
+            }
+            @shell_exec("copy /y NUL ".$runDir."mind.bat >NUL");
+            @shell_exec("copy /y NUL ".$runDir."mind3rd.php >NUL");
+            
+            
+            $content= $phpBin.' '.$runDir.'mind3rd.php';
+            @shell_exec('echo '.$content.' > '.$runDir.'mind.bat');
+            
+            $cwd= str_replace('\\', '/', getcwd());
+            
+            $phpContent= '$_REQ= Array(); $_REQ["env"]= "shell"; define("_MINDSRC_", "'.$cwd.'"); require("'.$cwd.'/mind3rd/API/utils.php"); ';
+            @shell_exec('echo ^<?php '.$phpContent.' > '.$runDir.'mind3rd.php');
+            
+            return true;
 	}
 
 	/**
@@ -37,8 +53,8 @@ BAT;
 	 * It uses an inherited method, createDatabase
 	 */
     public function install(){
-		self::createExecFile();
-		self::createDatabase();
+		if(self::createExecFile())
+                    return self::createDatabase();
+                return false;
 	}
 }
-?>
