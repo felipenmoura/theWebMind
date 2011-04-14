@@ -1,8 +1,20 @@
 <?php
 /**
- * Generic instructions to install the system
+ * This file is part of thewebmind.org project.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ */
+/**
+ * Generic instructions to install the system.
  *
- * @author felipe
+ * This class provides a bunch of methods to interact with the user's OS and
+ * install the application and its database.
+ * 
+ * NOTE: There are no nacionalization for this class, which only show messages
+ * in english.
+ * 
+ * @abstract
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 abstract class Setup {
     
@@ -14,6 +26,11 @@ abstract class Setup {
     public static $sqliteDir       = false;
     public static $apiDir          = false;
     
+    /**
+     * Returns WIN for Windows or unix for any ther OS.
+     * 
+     * @return string
+     */
     public static function getSO()
     {
         if(strtoupper(substr(PHP_OS, 0, 3)) == 'WIN')
@@ -28,6 +45,12 @@ abstract class Setup {
         else return false;
     }
     
+    /**
+     * Performs the installation itself.
+     * 
+     * This method will install the application calling the install method
+     * from the class developed to each specific Operational System.
+     */
     public static function install()
     {
         if (self::getSO() !== 'WIN')
@@ -42,6 +65,15 @@ abstract class Setup {
              }
     }
     
+    /**
+     * Verifies the system requirements.
+     * 
+     * This method sets its own static properties to true or false according
+     * to each requirement, returning true if the minimum requirement has been
+     * reached or false in other case.
+     * 
+     * @return boolean Whether all the minimum requirements are ok or not.
+     */
     public static function checkRequirements()
     {
         $phpVs= explode('-', phpversion());
@@ -97,12 +129,21 @@ abstract class Setup {
         return self::$installationOk= $phpVsOk && $sqliteOk && $projectsDir && $sqliteDir && $apiDir;
     }
     
+    /**
+     * Creates the SQLite DataBase.
+     * 
+     * This method will create the SQLite database the system will use to work.
+     * This method also inserts the admin user, as default, with password admin.
+     * 
+     * @return type 
+     */
     public static function createDatabase(){
         GLOBAL $_MIND;
-		echo "  creating database...\n";
+        echo "  creating database...\n";
         $sqlite= class_exists('SQLite3')? 'SQLite3': 'SQLiteDatabase';
         $sqliteDDLFile= 'mind3rd/SQLite/ddl.sql';
         $sqliteBaseFile= 'mind3rd/SQLite/mind';
+        
         if(file_exists($sqliteBaseFile))
         {
             echo "  <[warning] Database already exists! It till NOT be touched>\n";
@@ -115,8 +156,8 @@ abstract class Setup {
                     $DDL= file_get_contents($sqliteDDLFile);
                     if(!$db->exec($DDL))
                     {
-                                    echo " <[ERROR] Failed creating the SQLite database!>\n";
-                                    return false;
+                        echo " <[ERROR] Failed creating the SQLite database!>\n";
+                        return false;
                     }
                     echo "  adding the main user...\n";
                     $db->exec("INSERT into user(
@@ -139,12 +180,12 @@ abstract class Setup {
                 }else{
                     echo " <[ERROR] SQLite Database could not be created. ".
                          " Is your server working properly with SQLite?>\n";
-                                echo "   TIP: Remember that, the php.ini for phpcli may be 
-                                              different from the php.ini for your http server\n";
+                    echo "   TIP: Remember that, the php.ini for phpcli may be 
+                                  different from the php.ini for your http server\n";
                     exit;
                 }
              }
-		echo "  Finished\n";
+             echo "  Finished\n";
 	}
     
     public static function init()
