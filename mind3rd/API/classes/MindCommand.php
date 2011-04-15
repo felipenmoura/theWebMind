@@ -11,9 +11,100 @@
  */
 class MindCommand extends Symfony\Component\Console\Command\Command
 {
-	private $restrict= true;
-	private $fileName= null;
+	private $restrict           = true;
+	private $fileName           = null;
+	private $requiredArguments  = Array();
+	private $optionalArguments  = Array();
+	private $requiredOptions    = Array();
+	private $optionalOptions    = Array();
+	private $commandFlags       = Array();
 
+    public function init()
+    {
+        //$this->configure();
+        parent::__construct();
+    }
+    
+    public function configure()
+	{
+        $this->setName($this->commandName);
+        
+        $definition= Array();
+        $definition= array_merge($this->requiredArguments,
+                                 $this->requiredOptions,
+                                 $this->optionalArguments,
+                                 $this->optionalOptions,
+                                 $this->commandFlags);
+        
+        $this->setDefinition($definition);
+    }
+    
+    public function addRequiredArgument($argName, $agDescription='')
+    {
+        $this->requiredArguments[]= new InputArgument($argName,
+                                                      InputArgument::REQUIRED,
+                                                      $agDescription);
+        return $this;
+    }
+    public function addOptionalArgument($argName, $agDescription='')
+    {
+        $this->optionalArguments[]= new InputArgument($argName,
+                                                      InputArgument::OPTIONAL,
+                                                      $agDescription);
+        return $this;
+    }
+    public function addRequiredOption($name, $shortCut=null, $description='', $default=null)
+    {
+        $this->requiredOptions[]= new InputOption($name,
+                                                  $shortCut,
+                                                  InputOption::PARAMETER_REQUIRED,
+                                                  $description,
+                                                  $default);
+        return $this;
+    }
+    public function addOptionalOption($name, $shortCut=null, $description='', $default=null)
+    {
+        $this->optionalOptions[]= new InputOption($name,
+                                                  $shortCut,
+                                                  InputOption::PARAMETER_OPTIONAL,
+                                                  $description,
+                                                  $default);
+        return $this;
+    }
+    
+    public function addFlag($name, $shortCut=null, $description='')
+    {
+        $this->commandFlags[]= new InputOption($name,
+                                                  $shortCut,
+                                                  InputOption::PARAMETER_NONE,
+                                                  $description);
+        return $this;
+    }
+    
+    public function setCommandName($commandName)
+    {
+        $this->commandName= $commandName;
+        return $this;
+    }
+    
+    public function description($description)
+    {
+        $this->description= $description;
+        return $this;
+    }
+    
+    public function help($helpContent)
+    {
+        $this->helpContent= $helpContent;
+        return $this;
+    }
+    
+    public function setAction($action)
+    {
+        $this->commandAction= $action;
+        return $this;
+    }
+    
 	/**
 	 * Specifies the name of the file, included with the program
 	 * @param String $fName
@@ -24,7 +115,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 		$this->fileName= $fName;
 		return $this;
 	}
-
+    
 	/**
 	 * Gets the name of the file which the program is refered to
 	 * @method getFileName
@@ -106,12 +197,15 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	public function execute(Console\Input\InputInterface $input,
 							Console\Output\OutputInterface $output)
 	{
-		$this->runPlugins('before');
-		return $this->verifyCredentials();
-	}
-
-	public function  __() {
-		$this->runPlugins('after');
+		if(!$this->verifyCredentials())
+           return false;
+        
+        foreach($input->getArguments() as $k=>$arg)
+        {
+            $this->$k= $arg;
+        }
+        
+        $this->runAction();
 	}
 
 	/**
@@ -125,8 +219,15 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 		GLOBAL $_REQ;
 		if($_REQ['env'] =='http')
 		{
-			$this->runPlugins('before');
-			return $this->verifyCredentials();
+			if(!$this->verifyCredentials())
+               return false;
+            
+            foreach($_REQ['data'] as $k=>$arg)
+            {
+                $this->$k= $arg;
+            }
+            
+            $this->runAction();
 		}
 	}
 
@@ -180,6 +281,19 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	 * each program::runAction command blocks
 	 */
 	public function runAction(){
-		$this->runPlugins('after');
+        $this->runPlugins('before');
+        
+        // yea, I know it looks crazy!
+        if(is_string($this->commandAction))
+            $this->{$this->commandAction}();
+        else
+            call_user_func($this->commandAction, $this);
+        
+        $this->runPlugins('after');
 	}
+    
+    public function __set($what, $value)
+    {
+        $this->$what= $value;
+    }
 }

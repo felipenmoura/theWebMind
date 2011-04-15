@@ -50,6 +50,7 @@
 		<input type='button' value='generate docs' onclick="genDocs()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
 		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
+		<input type='button' value='run example' onclick="exampleModel()"/>
 	</body>
 	<script>
 		function setLoading()
@@ -270,6 +271,22 @@
 				url:'../../',
 				data:{
 					program:'exit'
+				},
+				success: function(ret){
+					document.getElementById('result').innerHTML= ret
+				}
+			});
+		}
+        
+		function exampleModel()
+		{
+			setLoading();
+			$.ajax({
+				type:'POST',
+				url:'../../',
+				data:{
+					program:'modeloteste',
+                    firstArgument: 'Y'
 				},
 				success: function(ret){
 					document.getElementById('result').innerHTML= ret

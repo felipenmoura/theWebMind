@@ -12,7 +12,7 @@
 	$_MIND['env']= 'shell';
 
 	// checks if it has received any argument
-	if(sizeOf($_SERVER['argv'])>0)
+	if(sizeOf($_SERVER['argv'])>0 && isset($_SERVER['argv'][1]))
 	{
 		// installation should create the required SQLite database and a shortcut command
 		if($_SERVER['argv'][1] == 'install')
@@ -30,6 +30,9 @@
 				 }
 			exit;
 		}
-		// if not installing, it should be redirected to mind3rd/API/shell.php
-		header('location:./mind3rd/API/shell.php');
 	}
+	// if not installing, it should be redirected to mind3rd/API/shell.php
+    $_REQ= Array();
+    $_REQ["env"]= "shell";
+    define("_MINDSRC_", dirname($_SERVER['PHP_SELF']));
+    include(_MINDSRC_.'/mind3rd/API/utils.php');

@@ -47,7 +47,8 @@
 		new Analyze(),
 		new SetUse(),
 		new dqb(),
-		new Generate()
+		new Generate(),
+        new modeloTeste()
 	));
 	
 	if($_REQ['env']=='shell')
