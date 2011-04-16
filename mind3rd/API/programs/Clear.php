@@ -5,34 +5,20 @@
 	
 	class Clear extends MindCommand implements program
 	{
-		public function configure()
+		public function __construct()
 		{
-			$this->setName('clear')
+			$this->setCommandName('clear')
 				 ->setDescription('Clears the console')
-				 ->setDefinition(array())
+                 ->setRestrict(false)
+                 ->setAction('action')
 				 ->setHelp(<<<EOT
 			Clears the console
 EOT
 					);
+            $this->init();
 		}
-		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
+		public function action()
 		{
 			system('clear');
-		}
-
-		public function HTTPExecute()
-		{
-		}
-
-		private function action()
-		{
-			return $this;
-		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
 		}
 	}

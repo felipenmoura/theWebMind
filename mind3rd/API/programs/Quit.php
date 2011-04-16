@@ -5,38 +5,24 @@
 	
 	class Quit extends MindCommand implements program
 	{
-		public function configure()
+		public function __construct()
 		{
-			$this->setName('exit')
+			$this->setCommandName('exit')
 				 ->setDescription('Finishes the application')
-				 ->setDefinition(Array())
+				 ->setAction('action')
+                 ->setRestrict(false)
 				 ->setFileName('Quit')
 				 ->setHelp(<<<EOT
 			Finishes the application, leaving the console;
 EOT
 					);
-		}
-		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
-		{
-			$this->runAction();
-			exit;
+            $this->init();
 		}
 
-		public function HTTPExecute()
+		public function action()
 		{
-			$this->runAction();
-		}
-
-		private function action()
-		{
-			session_destroy();
+			@session_destroy();
 			Mind::write('bye');
-			return $this;
-		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			return $ret;
+            exit;
 		}
 	}

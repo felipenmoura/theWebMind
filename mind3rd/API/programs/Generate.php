@@ -12,58 +12,46 @@
 	 */
 	class Generate extends MindCommand implements program
 	{
-		public $what;
+		public $lobe;
 		public $param;
 		public $detail;
 		public $optional;
 		public $extra;
 
-		public function configure()
+		public function __construct()
 		{
-			$this->setName('generate')
-				 ->setDescription('Commits the analyzed content to a new version')
+            $dir= \theos\ProjectFileManager::getLobesDir();
+            $d = dir($dir);
+            $options= Array();
+            while (false !== ($entry = $d->read())) {
+                if(is_dir($dir.$entry) && substr($entry, 0, 1) != '.')
+                    $options[]= "     >".$entry."\n";
+            }
+            $d->close();
+            
+            $help= <<<EOT
+    will generate an output.
+    This program uses one(or more) of the Lobe classes to generate different
+    data, structure or output.
+EOT;
+            $help.= "\n    Currently installed Lobes:\n".implode("", $options);
+            
+			$this->setCommandName('generate')
+				 ->setDescription('Generates different outputs')
 				 ->setRestrict(true)
-				 ->setHelp(<<<EOT
-	This command will increase the current version and also will persist the currently analyzed structure into the system's knowledge base.
-EOT
-					)
-				 ->setDefinition(Array(
-					 new InputArgument('what', InputArgument::REQUIRED, 'What to create'),
-					 new InputArgument('param', InputArgument::OPTIONAL, 'A param for that command'),
-					 new InputArgument('detail', InputArgument::OPTIONAL, 'A detail for that command'),
-					 new InputArgument('optional', InputArgument::OPTIONAL, 'An optional argument'),
-					 new InputArgument('extra', InputArgument::OPTIONAL, 'Extra data to pass'),
-				  ));
-		}
-		
-		public function execute(Console\Input\InputInterface $input,
-								Console\Output\OutputInterface $output)
-		{
-			if(!parent::execute($input, $output))
-				return false;
-			$this->what= $input->getArgument('what');
-			$this->param= $input->getArgument('param');
-			$this->detail= $input->getArgument('detail');
-			$this->optional= $input->getArgument('optional');
-			$this->extra= $input->getArgument('extra');
-			Mind::write('thinking');
-			$this->runAction();
+                 ->setAction('action')
+				 ->setHelp($help);
+            
+            $this->addRequiredArgument('lobe', 'Lobe to be used');
+            $this->addOptionalArgument('param', 'A param for that command');
+            $this->addOptionalArgument('detail', 'A detail for that command');
+            $this->addOptionalArgument('optional', 'An optional argument');
+            $this->addOptionalArgument('extra', 'Extra data to be passed');
+            
+            $this->init();
 		}
 
-		public function HTTPExecute()
-		{
-			GLOBAL $_REQ;
-			if(!parent::HTTPExecute())
-				return false;
-			$this->what    = $_REQ['data']['what'];
-			$this->param  = (isset($_REQ['data']['param']))? $_REQ['data']['param']: false;
-			$this->detail  = (isset($_REQ['data']['detail']))? $_REQ['data']['detail']: false;
-			$this->optional= (isset($_REQ['data']['optional']))? $_REQ['data']['optional']: false;
-			$this->extra   = (isset($_REQ['data']['extra']))? $_REQ['data']['extra']: false;
-			$this->runAction();
-		}
-
-		private function action()
+		public function action()
 		{
 			if(!isset($_SESSION['currentProject']))
 			{
@@ -71,8 +59,9 @@ EOT
 				Mind::write('currentProjectRequiredTip');
 				return false;
 			}
+            Mind::write('thinking');
 			if($exec= Mind::$gosh->generate(Array(
-									$this->what,
+									$this->lobe,
 									$this->param,
 									$this->detail,
 									$this->optional,
@@ -80,12 +69,5 @@ EOT
 								  )))
                 return false;
 			return $this;
-		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
 		}
 	}

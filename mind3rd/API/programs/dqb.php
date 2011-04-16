@@ -10,54 +10,38 @@
  */
 class DQB extends MindCommand implements program
 {
-    public function configure()
+    public $query=null;
+    public $table=null;
+    
+    public function __construct()
 	{
 		$this
-				->setName('dqb')
+				->setCommandName('dqb')
 				->setDescription('Performs some tests on theWebMind')
 				->setRestrict(true)
-				->setDefinition(array(
-					new InputArgument('query',
-									  InputArgument::REQUIRED,
-									  'Options: create, drop, alter, insert, delete, select and update'),
-					new InputArgument('table',
-									  InputArgument::REQUIRED,
-									  "Which table will have its query built. Use * to see them all."),
-				))
+                ->setAction('action')
 				->setHelp(<<<EOT
 		This program will create the needed query to the selected database.
 		Notice that it will NOT execute then, only return them as a string.
 EOT
 				);
-	}
-	public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
-	{
-		if(!parent::execute($input, $output))
-			return false;
-		$this->query= $input->getArgument('query');
-		$this->table= $input->getArgument('table');
-		$this->runAction();
+        
+        //$this->addRequiredArgument('query', 'Options: create, drop, alter, insert, delete, select and update');
+        $this->addRequiredArgument('table', 'Which table will have its query built. Use * to see them all.');
+        
+        $this->init();
 	}
 
-	public function HTTPExecute()
-	{
-		GLOBAL $_REQ;
-		if(!parent::HTTPExecute())
-			return false;
-		if(isset($_REQ['data']['query']) && isset($_REQ['data']['table']))
-		{
-			$this->query= $_REQ['data']['query'];
-			$this->table= $_REQ['data']['table'];
-		}
-		$this->runAction();
-	}
-
-	private function action()
+	public function action()
 	{
 		GLOBAL $_MIND, $_REQ;
 		if(!parent::verifyCredentials())
 			return false;
 		
+        // for now, only the create has been developed
+        // even if the following options are already described there are not
+        // plans to build them so soon.
+        $this->query= 'c';
 		switch($this->query)
 		{
 			case 'create':
@@ -89,12 +73,5 @@ EOT
 		$qrs= \MindProject::showSQL(($this->table=='*'), $this->table, $this->query);
 		echo $qrs;
 		return $this;
-	}
-
-	public function runAction()
-	{
-		$ret= $this->action();
-		parent::runAction();
-		return $ret;
 	}
 }

@@ -12,6 +12,11 @@ namespace theos;
  */
 final class ProjectFileManager {
 
+    public static function getLobesDir()
+    {
+        return _MINDSRC_."/mind3rd/API/Lobe/";
+    }
+    
     private static function filterURI($uri, $allowSlashes=true)
     {
         $uri= \urlencode(\utf8_encode($uri));

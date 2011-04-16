@@ -12,75 +12,27 @@
 	 */
 	class Auth extends MindCommand implements program
 	{
-		public function configure()
+        public $login= null;
+        public $pwd= null;
+        
+		public function action()
 		{
-			$this->setName('auth')
-				 ->setDescription('Autenticate a user')
-				 ->setRestrict(false)
-				 ->setDefinition(Array(
-				 	new InputArgument('login', InputArgument::REQUIRED, 'Login to access'),
-					new InputArgument('pwd', InputArgument::OPTIONAL, 'The user password')
-				 ))
-				 ->setHelp(<<<EOT
-	Sets the user with a password.
-	It is required to autenticate, to run most of the commands
-EOT
-					);
-		}
-		public function execute(Console\Input\InputInterface $input,
-								Console\Output\OutputInterface $output)
-		{
-			if(!parent::execute($input, $output))
-				return false;
-			if(!$pw= $input->getArgument('pwd'))
-			{
-				Mind::write('passwordRequired', true);
-				$pw= Mind::readPassword(true);
-			}
-
-			$this->login= $input->getArgument('login');
-			$this->pwd= $pw;
-			if($this->runAction())
-				Mind::write('autenticated', true, $input->getArgument('login'));
-		}
-
-		public function HTTPExecute()
-		{
-			if(!parent::HTTPExecute())
-				return false;
-			GLOBAL $_REQ;
-			if(!isset($_REQ['data']))
-			{
-				Mind::write('loginRequired');
-				return false;
-			}elseif(!isset($_REQ['data']['pwd']) || !isset($_REQ['data']['login']))
-				{
-					Mind::write('loginRequired');
-					return false;
-				}
-			$this->pwd=   $_REQ['data']['pwd'];
-			$this->login= $_REQ['data']['pwd'];
-			
-			if($this->runAction())
-				Mind::write('autenticated', true, $_REQ['data']['login']);
-		}
-
-		private function action()
-		{
+            if(!$this->pwd)
+                $this->pwd= $this->prompt('pwd',
+                                          Mind::write('passwordRequired', false),
+                                          true);
+            
 			if($db = new SQLite3(_MINDSRC_.'/mind3rd/SQLite/mind'))
 			{
 				$result= $db->query("SELECT * FROM user where login='".$this->login.
 									"' AND pwd='".sha1($this->pwd)."' AND status= 'A'");
 				$row= $result->fetchArray();
-				/*while()
-				{
-					$row = $result->current();*/
-					$_SESSION['auth']= JSON_encode($row);
-					$_SESSION['pk_user']= $row['pk_user'];
-					$_SESSION['status']= $row['status'];
-					$_SESSION['login']= $row['login'];
-					/*break;
-				}*/
+                
+                $_SESSION['auth']= JSON_encode($row);
+                $_SESSION['pk_user']= $row['pk_user'];
+                $_SESSION['status']= $row['status'];
+                $_SESSION['login']= $row['login'];
+                    
 				if(!$row)
 				{
 					Mind::write('auth_fail', true);
@@ -89,13 +41,25 @@ EOT
 			}else{
 					 die('Database not found!');
 				 }
+            Mind::write('autenticated', true, $this->login);
 			return $this;
 		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
-		}
+        
+        public function __construct()
+        {
+            
+			$this->setCommandName('auth')
+				 ->setDescription('Autenticate a user')
+				 ->setRestrict(false)
+                 ->setAction('action')
+				 ->setHelp(<<<EOT
+	Sets the user with a password.
+	It is required to autenticate, to run most of the commands
+EOT
+					);
+            $this->addRequiredArgument('login', 'Login to access');
+            $this->addOptionalArgument('pwd', 'The password may optionaly be passed');
+            
+            $this->init();
+        }
 	}

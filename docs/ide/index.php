@@ -80,8 +80,7 @@
 				type:'POST',
 				url:'../../',
 				data:{
-					program:'test',
-					unit: true
+					program:'test'
 				},
 				success: function(ret){
 					document.getElementById('result').innerHTML= ret
@@ -146,7 +145,7 @@
 				data:{
 					program:'use',
 					what:'project',
-					name:'demo_en'
+					projectName:'demo_en'
 				},
 				success: function(ret){
 					$.ajax({
@@ -240,7 +239,7 @@
 						url:'../../',
 						data:{
 							program:'generate',
-							what: 'db'
+							lobe: 'db'
 						},
 						success: function(retQ){
 							document.getElementById('result').innerHTML= retQ;

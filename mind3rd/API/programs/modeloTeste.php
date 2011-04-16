@@ -23,6 +23,13 @@
             // in this example, we will simply show a message using one argument
             echo "   This command has just been executed!\n";
             echo "   With argument: ".$this->firstArgument."\n\n";
+            $this->prompt('name', "What's your name?");
+            echo "Hello ".$this->answers['name']."\n";
+            $this->prompt('pwd', 'Say a magic word!', true);
+            $this->prompt('genre', "\nwhat is your genre?",
+                          Array('F'=>'Female',
+                                'M'=>'Male'));
+            echo "\nOW, ok :)\n\n";
         }
         
         public function __construct()
@@ -45,7 +52,7 @@
                  ->setDescription("This is a model command, only")
                  ->setRestrict(false)
                  ->setHelp("A longer text, explaining the command")
-                 ->setAction('executableFunction');
+                 ->setAction('executableFunction'); // in this case, the method MUST be public
             */
             
             /**

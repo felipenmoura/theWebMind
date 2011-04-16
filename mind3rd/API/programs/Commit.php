@@ -15,35 +15,20 @@
 		private $nameSpace= false;
 		public  $autoCommit= false;
 
-		public function configure()
+		public function __construct()
 		{
-			$this->setName('commit')
+			$this->setCommandName('commit')
 				 ->setDescription('Commits the analyzed content to a new version')
 				 ->setRestrict(true)
+                 ->setAction('action')
 				 ->setHelp(<<<EOT
 	This command will increase the current version and also will persist the currently analyzed structure into the system's knowledge base.
 EOT
 					);
-		}
-		
-		public function execute(Console\Input\InputInterface $input,
-								Console\Output\OutputInterface $output)
-		{
-			if(!parent::execute($input, $output))
-				return false;
-			Mind::write('thinking');
-			$this->runAction();
+            $this->init();
 		}
 
-		public function HTTPExecute()
-		{
-			GLOBAL $_REQ;
-			if(!parent::HTTPExecute())
-				return false;
-			$this->runAction();
-		}
-
-		private function action()
+		public function action()
 		{
 			if(!isset($_SESSION['currentProject']))
 			{
@@ -53,12 +38,5 @@ EOT
 			}
 			MindProject::analyze(true, false);
 			return $this;
-		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
 		}
 	}

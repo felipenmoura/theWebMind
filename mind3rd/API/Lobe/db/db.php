@@ -43,15 +43,10 @@ class db extends \Lobe\Neuron implements \neuron{
         
 		foreach($qrs['createTable'] as $tbName=>$qrObject)
 		{
-            //foreach($qrType as $qr)
-            //{
-                //print_r($qr);
-                if(!$dealer->createTable($qrObject))
-                {
-                    return false;
-                }
-                
-            //}
+            if(!$dealer->createTable($qrObject))
+            {
+                return false;
+            }
 		}
 		$this->dbal->commit();
 		\Mind::write('theosDBQrOk');

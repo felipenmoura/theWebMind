@@ -18,15 +18,16 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	private $requiredOptions    = Array();
 	private $optionalOptions    = Array();
 	private $commandFlags       = Array();
-
+	public  $answers            = Array();
+    
     public function init()
     {
-        //$this->configure();
         parent::__construct();
     }
     
     public function configure()
 	{
+        $this->setDefinition(Array());
         $this->setName($this->commandName);
         
         $definition= Array();
@@ -37,6 +38,78 @@ class MindCommand extends Symfony\Component\Console\Command\Command
                                  $this->commandFlags);
         
         $this->setDefinition($definition);
+    }
+    
+    public function prompt($name, $question, $mode=false)
+    {
+		GLOBAL $_REQ;
+        $secret= false;
+        $options= false;
+        
+        if($mode)
+        {
+            if(is_array($mode))
+            {
+                $options= $mode;
+            }else
+                $secret= true;
+        }
+        
+        $answer= null;
+		if($_REQ['env'] !='http')
+        {
+            do
+            {
+                echo $question."\n";
+                if($options)
+                {
+                    echo "(";
+                    $optionLegend= Array();
+                    foreach($options as $optVal=>$optLabel)
+                    {
+                        $optionLegend[]= $optVal."=".$optLabel;
+                    }
+                    echo trim(implode(" |", $optionLegend));
+                    echo ")\n";
+                }
+                if(!$secret)
+                {
+                    $fp = fopen('php://stdin', 'r');
+                    $answer = trim(fgets($fp, 1024));
+                        
+                    if($options &&
+                       !in_array(strtolower($answer),
+                                 array_map('strtolower', array_keys($options))))
+                    {
+                        Mind::write('invalidOptionValue', true, $answer, $name);
+                        $answer= false;
+                    }
+                    
+                }else{
+                        $answer= $this->readPassword('*');
+                     }
+            }while(!$answer);
+        }else{
+                if(isset($_POST[$name]))
+                {
+                    $answer= $_POST[$name];
+                    
+                    if($options &&
+                       !in_array(strtolower($answer),
+                                  array_map('strtolower', $options)))
+                    {
+                        Mind::write('invalidOptionValue', true, $answer, $name);
+                       $answer= false;
+                    }
+                }
+                if(!$answer)
+                {
+                    Mind::write('missingParameter', true, $name);
+                    exit;
+                }
+             }
+        $this->answers[$name]= trim($answer);
+        return $this->answers[$name];
     }
     
     public function addRequiredArgument($argName, $agDescription='')
@@ -75,9 +148,9 @@ class MindCommand extends Symfony\Component\Console\Command\Command
     public function addFlag($name, $shortCut=null, $description='')
     {
         $this->commandFlags[]= new InputOption($name,
-                                                  $shortCut,
-                                                  InputOption::PARAMETER_NONE,
-                                                  $description);
+                                               $shortCut,
+                                               InputOption::PARAMETER_NONE,
+                                               $description);
         return $this;
     }
     
@@ -203,6 +276,10 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         foreach($input->getArguments() as $k=>$arg)
         {
             $this->$k= $arg;
+        }
+        foreach($input->getOptions() as $k=>$opt)
+        {
+            $this->$k= $opt;
         }
         
         $this->runAction();

@@ -8,93 +8,47 @@
     
 	class RunTest extends MindCommand implements program
 	{
-		public function configure()
+        public $unit=false;
+        
+		public function __construct()
 		{
-			$this
-					->setName('test')
-					->setDescription('Performs some tests on theWebMind')
-					->setRestrict(false)
-					 ->setDefinition(Array(
-						 new InputOption('unit', '-u', InputOption::PARAMETER_NONE, 'Execute unit tests, also')
-					 ))
-					->setFileName('RunTest')
-					->setHelp(<<<EOT
-			Executes specific tests and report their results, about the system itself
+			$this->setCommandName('test')
+                 ->setDescription('Performs some tests on theWebMind')
+                 ->setRestrict(false)
+                 ->setAction('action')
+                 ->setFileName('RunTest')
+                 ->setHelp(<<<EOT
+            Executes specific tests and report their results, about the system itself
 EOT
 					);
+            
+            $this->addFlag('unit', '-u', 'Also execute unit tests');
+            
+            $this->init();
 		}
 
-		private function action()
+		public function action()
 		{
 			GLOBAL $_MIND;
+            ob_start();
 			$this->runStep1();
+            ob_flush();
 			$this->runStep2();
+            ob_flush();
 			$this->runStep3();
-			if($this->unitTestsAlso)
+            ob_flush();
+            
+			if($this->unit)
 			{
-				if(file_exists(_MINDSRC_."/Tests/bundle.list"))
-				{
-					if(!isset($_MIND->conf['phpunit-src']))
-					{
-						// TODO: put it into speaker classes, to use l10n messages
-						echo "    You must specify where to find phpUnit classes\n";
-						echo "    You can configure it on mind3rd/env/mind.ini ini file\n";
-						echo "    changing the phpunit-src ini property\n";
-						return false;
-					}
-					// TODO: it doesn't work yet
-					/*
-					$unitTestsFolder= _MINDSRC_."/Tests/";
-					$unitTestsList= file_get_contents($unitTestsFolder."bundle.list");
-					$unitTestsList= explode("\n", $unitTestsList);
-
-					foreach($unitTestsList as $unitTests)
-					{
-						$unitTests= explode(' ', $unitTests);
-						echo "Applying Unit tests to ".$unitTests[1]."\n";
-						//include_once $unitTestsFolder.$unitTests[0];
-						echo shell_exec("phpunit ".$unitTestsFolder.$unitTests[0]);
-						break;
-					}
-					*/
-				}else
-				{
-					// TODO: send it to the speaker
-					echo "[Error] Unit Tests not fount in [root]/Tests\n";
-					return false;
-				}
+                if(!isset($_MIND->conf['phpunit-src']))
+                {
+                    \Mind::write('phpunitNotFound');
+                    return false;
+                }
+                \Mind::write('runnintPHPUnit');
+                ob_flush();
+                echo shell_exec($_MIND->conf['phpunit-src']." "._MINDSRC_."/Tests/");
 			}
-		}
-		
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
-		}
-
-		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
-		{
-			if(!parent::execute($input, $output))
-				return false;
-
-			$this->unitTestsAlso= $input->getOption('unit')? true: false;
-
-			return $this->runAction();
-		}
-		
-		public function HTTPExecute()
-		{
-			GLOBAL $_REQ;
-			if(!parent::HTTPExecute())
-				return false;
-
-			$this->unitTestsAlso= (isset($_REQ['data'])
-									&&
-								   isset($_REQ['data']['unit']))?
-									   true: false;
-			
-			return $this->runAction();
 		}
 
 		private function runStep1()
@@ -121,9 +75,5 @@ EOT
 			else
 				$stat= '[OK]';
 			Mind::message('Read & Write permissions', $stat);
-		}
-
-		public function  __construct($name = null) {
-			parent::__construct($name);
 		}
 	}

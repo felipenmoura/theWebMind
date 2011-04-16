@@ -18,81 +18,31 @@
 class Create extends MindCommand implements program
 {
 	public $what= null;
-	public $argname= false;
+	public $argName= false;
 	public $info= "";
 	private $userType= null;
 
-	public function configure()
+	public function __construct()
 	{
-		$this->setName('create')
+		$this->setCommandName('create')
 			 ->setDescription('Create structures, such as project or user')
 			 ->setRestrict(true)
-			 ->setDefinition(Array(
-				 new InputArgument('what', InputArgument::REQUIRED, 'What to create'),
-				 new InputArgument('name', InputArgument::REQUIRED, 'The refered name'),
-				 new InputOption('info', '-i', InputOption::PARAMETER_OPTIONAL, 'Add extra information about the project')
-			 ))
+             ->setAction('action')
 			 ->setHelp(<<<EOT
     You can create a new project by typing "create project name"
     You can create your users typing "create user name" and then, adding the user to any specific group.
     You need to be a super user to perform these actions
 EOT
 					);
+        
+        $this->addRequiredArgument('what', 'What to create');
+        $this->addRequiredArgument('argName', 'The refered name');
+        $this->addOptionalOption('into', '-i', 'Add extra information about what is being created');
+        
+        $this->init();
 	}
 
-	public function execute(Console\Input\InputInterface $input,
-								Console\Output\OutputInterface $output)
-	{
-		if(!parent::execute($input, $output))
-			return false;
-		$this->what= $input->getArgument('what');
-		$this->argName= $input->getArgument('name');
-
-		if($this->what == 'user')
-		{
-			$this->info= $input->getOption('info');
-			echo "login: ";
-			$this->login= trim(fgets(fopen("php://stdin", "r")));
-			echo "pwd: ";
-			$this->pwd= Mind::readPassword(true);
-			echo "\n";
-			while($this->userType!='N' && $this->userType!='A')
-			{
-				echo "Type (use A for admin, or N for normal): ";
-				$this->userType= strtoupper(trim(fgets(fopen("php://stdin", "r"))));
-			}
-		}
-		$this->runAction();
-	}
-
-	public function HTTPExecute()
-	{
-		if(!parent::HTTPExecute())
-		{
-			return false;
-		}
-		$this->what= $_REQ['data']['what'];
-		$this->argName= $_REQ['data']['name'];
-		if(isset($_REQ['data']['info']))
-			$this->info= $_REQ['data']['info'];
-		if($this->what == 'user')
-		{
-			if(!isset($_REQ['data']['login'])
-				||
-			   !isset($_REQ['data']['pwd'])
-				||
-			   !isset($_REQ['data']['userType']))
-			{
-				return false;
-			}
-			$this->login= $_REQ['data']['login'];
-			$this->pwd= $_REQ['data']['pwd'];
-			$this->userType= $_REQ['data']['userType'];
-		}
-		$this->runAction();
-	}
-
-	private function action()
+	public function action()
 	{
 		GLOBAL $_MIND;
 		switch($this->what)
@@ -114,10 +64,6 @@ EOT
 						echo "I had no rights to write in the mind3rd/projects directory!\n";
 						return false;
 					}
-
-					Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
-					
-					chmod($this->projectfile, 0777);
 
 					$db= new MindDB();
 					$qr_newProj= "INSERT into project
@@ -147,7 +93,6 @@ EOT
 										 )";
 					$db->execute($qr_userProj);
 					
-					//Mind::$currentProject[''];
 					$iniSource= Mind::$projectsDir.$this->argName.'/mind.ini';
 					$cP= $_MIND->defaults;
 					
@@ -179,6 +124,9 @@ EOT
 					$db->execute($qr_vsProj);
 					$db->execute("COMMIT");
 
+					Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
+					chmod($this->projectfile, 0777);
+                    
 					Mind::write('projectCreated', true, $this->argName);
 					
 					$ini= file_get_contents($iniSource);
@@ -195,14 +143,19 @@ EOT
 											$this->argName.
 											'/mind.ini',
 									  $ini);
-					
+                    
 					Mind::openProject(Array('pk_project'=>$key,
 											 'name'=>$this->argName));
-
-					echo "\n";
 				break;
 			case 'user':
 					$db= new MindDB();
+                    $this->prompt('name', "What is the new user's name?");
+                    $this->prompt('pwd',  "What will be the password?", true);
+                    $this->prompt('type',
+                                  "\nWill this user be an administrator?",
+                                  Array('Y'=>'Yes',
+                                        'N'=>'No'));
+                    
 					$qr_newUser= "INSERT into user
 										 (
 											name,
@@ -213,11 +166,14 @@ EOT
 										 )
 										 values
 										 (
+											'".$this->answers['name']."',
 											'".addslashes($this->argName)."',
-											'".$this->login."',
-											'".sha1($this->pwd)."',
+											'".sha1($this->answers['pwd'])."',
 											'A',
-											'".$this->userType."'
+											'".(strtoupper(
+                                                    substr($this->answers['type'],
+                                                            0,
+                                                            1))=='Y'? 'A': 'N')."'
 										 )";
 					$db->execute($qr_newUser);
 					Mind::write('userCreated', true, $this->argName);
@@ -228,12 +184,5 @@ EOT
 				return false;
 				break;
 		}
-	}
-
-	public function runAction()
-	{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
 	}
 }

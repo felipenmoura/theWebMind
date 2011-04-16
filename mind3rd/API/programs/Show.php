@@ -5,56 +5,32 @@
 
 	class Show extends MindCommand implements program
 	{
-		private $whatToShow= null;
+		public $what= null;
+        public $detailed= false;
+        public $extra= '';
 
-		public function configure()
+		public function __construct()
 		{
-			$this->setName('show')
+			$this->setCommandName('show')
 				 ->setDescription('Show many different kind of data')
-				 ->setDefinition(array(
-						new InputArgument('what', InputArgument::REQUIRED, 'What to show'),
-						new InputOption('detailed', '-d', InputOption::PARAMETER_NONE, 'Show detailed data'),
-						new InputArgument('extra', InputArgument::OPTIONAL, 'Extra information to be used'),
-					))
+                 ->setAction('action')
 				 ->setHelp(<<<EOT
     You can use this command to see lists or details of a sort of components
 EOT
 					);
-		}
-		
-		public function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
-		{
-			if(!parent::execute($input, $output))
-				return false;
-			$this->whatToShow= $input->getArgument('what');
-			//echo $input->getOption('detailed')."\n";
-			$this->detailed= $input->getOption('detailed');
-			$this->extra= $input->getArgument('extra');
-			$this->runAction();
+            
+            $this->addRequiredArgument('what', 'What to how');
+            $this->addOptionalArgument('extra', 'Extra information to be used');
+            $this->addFlag('detailed', '-d', 'Show detailed data');
+            
+            $this->init();
 		}
 
-		public function HTTPExecute()
-		{
-			if(!parent::HTTPExecute())
-				return false;
-			GLOBAL $_REQ;
-			$this->whatToShow= $_REQ['data']['what'];
-			if(isset($_REQ['data']['detailed']) && $_REQ['data']['detailed'])
-				$this->detailed= 1;
-			else
-				$this->detailed= false;
-			if(isset($_REQ['data']['extra']))
-				$this->extra= $_REQ['data']['extra'];
-			else
-				$this->extra= false;
-			$this->runAction();
-		}
-
-		private function action()
+		public function action()
 		{
 			GLOBAL $_REQ;
 			GLOBAL $_MIND;
-			switch($this->whatToShow)
+			switch($this->what)
 			{
 				case 'projects':
 						$projs= $this->loadProjectList();
@@ -153,20 +129,12 @@ EOT
 						}
 						break;
 				default:
-					Mind::write('invalidOption', true, $this->whatToShow);
+					Mind::write('invalidOption', true, $this->what);
 					return false;
 					break;
 			}
 			return $this;
 		}
-
-		public function runAction()
-		{
-			$ret= $this->action();
-			parent::runAction();
-			return $ret;
-		}
-
 		private function loadProjectList()
 		{
 			$db= new MindDB();
