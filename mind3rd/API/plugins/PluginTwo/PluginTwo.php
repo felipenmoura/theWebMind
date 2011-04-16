@@ -17,7 +17,7 @@
 
 		// change this flag to true and execute the test program
 		// to see this plugin running
-		public $active= true;
+		public $active= false;
 
 		public function run()
 		{

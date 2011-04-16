@@ -65,6 +65,11 @@ abstract class Setup {
              }
     }
     
+    public static function databaseAlreadyExists()
+    {
+        return file_exists('mind3rd/SQLite/mind');
+    }
+    
     /**
      * Verifies the system requirements.
      * 

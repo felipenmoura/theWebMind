@@ -39,6 +39,7 @@
              */
             $this->setCommandName('modeloteste')
                  ->setDescription("This is a model command, only")
+                 //->setFileName('modeloTeste') // use this if your class has NOT the same name as its file
                  ->setRestrict(false)
                  ->setHelp("A longer text, explaining the command")
                  ->setAction(function($class){

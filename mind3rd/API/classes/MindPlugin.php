@@ -4,7 +4,7 @@
 	 *
 	 * @author felipe
 	 */
-	class MindPlugin
+	abstract class MindPlugin
 	{
 		public $trigger= null;
 		public $event= 'after';
@@ -32,12 +32,16 @@
 		 */
 		static function addPlugin(&$plugin)
 		{
-			if(in_array($plugin->trigger, Mind::$triggers))
-			{
+            //echo $plugin->name." - ".$plugin->trigger."\n\n";
+            
+            //print_r(Mind::$triggers);
+			//if(in_array($plugin->trigger, Mind::$triggers))
+			//{
 				if(!isset(Mind::$pluginList[$plugin->trigger]))
 					Mind::$pluginList[$plugin->trigger]= Array( 'before'=>Array(),
 																'after'=>Array());
 				Mind::$pluginList[$plugin->trigger][$plugin->event][]= $plugin;
-			}
+			//}
+            //print_r(Mind::$pluginList);
 		}
 	}

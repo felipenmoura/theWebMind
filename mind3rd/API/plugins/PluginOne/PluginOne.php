@@ -10,6 +10,9 @@
 	 */
 	class PluginOne extends MindPlugin implements plugin
 	{
+        /**
+         * These are the properties you will have to set
+         */
 		public $name= "Plugin One";
 		public $version= "0.1";
 		public $description = "This is a demo plugin, disabled by default";
@@ -18,7 +21,7 @@
 		// change this flag to true and execute the test program
 		// to see this plugin running
 		public $active= true;
-
+        
 		public function run()
 		{
 			echo "EXECUTING THE PLUGIN ONE!!!\n";
@@ -26,7 +29,7 @@
 
 		public function __construct()
 		{
-			$this->setTrigger('test');
-			$this->setEvent('before');
+			$this->setTrigger('info');
+			$this->setEvent('after');
 		}
 	}

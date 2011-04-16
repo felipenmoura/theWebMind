@@ -358,9 +358,10 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	 * each program::runAction command blocks
 	 */
 	public function runAction(){
+        
         $this->runPlugins('before');
         
-        // yea, I know it looks crazy!
+        // yea, I know it looks a bit crazy!
         if(is_string($this->commandAction))
             $this->{$this->commandAction}();
         else

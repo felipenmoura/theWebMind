@@ -42,6 +42,15 @@ EOT
         $this->init();
 	}
 
+    public function projectExists($projectName)
+    {
+        $db= new MindDB();
+        $data= $db->query("SELECT count(1) as count
+                             from project
+                            where name='".$projectName."'");
+        return $data[0]['count'];
+    }
+    
 	public function action()
 	{
 		GLOBAL $_MIND;
@@ -53,7 +62,7 @@ EOT
 					$this->projectFileName= urlencode($this->argName);
 					$this->projectfile= Mind::$projectsDir.$this->projectFileName;
 
-					if(file_exists($this->projectfile))
+					if($this->projectExists($this->argName))
 					{
 						Mind::write('projectAlreadyExists', true, $this->argName);
 						return false;
@@ -124,25 +133,28 @@ EOT
 					$db->execute($qr_vsProj);
 					$db->execute("COMMIT");
 
-					Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
-					chmod($this->projectfile, 0777);
-                    
-					Mind::write('projectCreated', true, $this->argName);
-					
-					$ini= file_get_contents($iniSource);
-					$ini= str_replace('<idiom>',
-									  $cP['default_human_language'],
-									  $ini);
-					$ini= str_replace('<technology>',
-									  $cP['default_machine_language'],
-									  $ini);
-					$ini= str_replace('<dbms>',
-									  $cP['default_dbms'],
-									  $ini);
-					file_put_contents(Mind::$projectsDir.
-											$this->argName.
-											'/mind.ini',
-									  $ini);
+                    if(!file_exists($this->projectfile) && !file_exists($iniSource))
+                    {
+                        Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
+                        chmod($this->projectfile, 0777);
+
+                        Mind::write('projectCreated', true, $this->argName);
+
+                        $ini= file_get_contents($iniSource);
+                        $ini= str_replace('<idiom>',
+                                          $cP['default_human_language'],
+                                          $ini);
+                        $ini= str_replace('<technology>',
+                                          $cP['default_machine_language'],
+                                          $ini);
+                        $ini= str_replace('<dbms>',
+                                          $cP['default_dbms'],
+                                          $ini);
+                        file_put_contents(Mind::$projectsDir.
+                                                $this->argName.
+                                                '/mind.ini',
+                                          $ini);
+                    }
                     
 					Mind::openProject(Array('pk_project'=>$key,
 											 'name'=>$this->argName));

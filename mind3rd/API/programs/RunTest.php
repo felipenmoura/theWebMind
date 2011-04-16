@@ -49,6 +49,8 @@ EOT
                 ob_flush();
                 echo shell_exec($_MIND->conf['phpunit-src']." "._MINDSRC_."/Tests/");
 			}
+            ob_end_flush();
+            return true;
 		}
 
 		private function runStep1()

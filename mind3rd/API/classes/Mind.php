@@ -144,8 +144,8 @@
 		}
 
 		/**
-		 * Loads data from the passed project
-		 * Alias for MindProject::openProject
+		 * Loads data from the passed project.
+		 * Alias for MindProject::openProject.
 		 *
 		 * @param AssocArray $p
 		 * @return boolean

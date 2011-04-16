@@ -21,11 +21,13 @@
     
     echo "<p><img src='docs/ide/images/".((Setup::$phpVsOk)? 'o':'f').".png' /> PHP 5.3+<br/>";
     echo "<p><img src='docs/ide/images/".((Setup::$sqliteOk)? 'o':'f').".png' /> SQLite3 support<br/>";
-    echo "<p><img src='docs/ide/images/".((Setup::$readLlineOk)? 'o':'w').".png' /> ReadLine";
+    
+    /*
     if(!Setup::$readLlineOk)
     {
         if(Setup::getSO() != 'WIN')
         {
+            echo "<p><img src='docs/ide/images/".((Setup::$readLlineOk)? 'o':'w').".png' /> ReadLine";
             $tip=  "If you will not use the application through command line, but only via HTTP<br/>";
             $tip.= "this lib is not required. Once the application is installed you can access it using the HTTP protocol";
             echo "<div style='background-color:yellow;border:solid 1px brown'>$tip</div>";
@@ -33,10 +35,17 @@
             echo "<br/>Sorry. Windows does not support the readline library to be used through command line.";
             echo "<br/>Although, you can use it via HTTP in your browser.";
         }
-    }
+    }*/
     echo "<p><img src='docs/ide/images/".((Setup::$projectsDir)? 'o':'w').".png' /> Write permissions in '".getcwd()."/mind3rd/projects/' to the user '".trim(shell_exec('whoami'))."'<br/>";
     echo "<p><img src='docs/ide/images/".((Setup::$sqliteDir)? 'o':'f').".png' /> Write permissions in '".getcwd()."/mind3rd/SQLite/' to the user '".trim(shell_exec('whoami'))."'<br/>";
     echo "<p><img src='docs/ide/images/".((Setup::$apiDir)? 'o':'f').".png' /> Write permissions in '".getcwd()."/mind3rd/API/' to the user '".trim(shell_exec('whoami'))."'<br/>";
+    
+    if(Setup::databaseAlreadyExists())
+    {
+        echo "<p><img src='docs/ide/images/w.png' /> Database already exists! It will *NOT* be replaced or even touched.<br/>
+              If you are trying to reinstall the system, consider removing the file <br/><i>mind3rd/SQLite/mind</i>(the database itself...all the old projects will be lost, them) and then
+              try to re-installing the application.<br/><br/>";
+    }
     
     echo "<input type='button'
                  value='Verify again'
@@ -47,3 +56,16 @@
                      value='Install'
                      onclick='self.location.href=self.location.href+\"?setupGo=true\"' />";
     }
+    echo "<hr/>";
+    if(Setup::getSO() == 'WIN')
+    {
+        echo "NOTE: In windows, the system works only via HTTP, not accepting commands from 
+              command line/console.";
+    }else{
+            echo "NOTE: Installing using this interface, you will be able to access the system
+                  only via HTTP or, using command line straight from the directory where
+                  the system is and then, running <i>mind</i>.
+                  If you want to use the program simply typing <i>mind</i> from any directory in your console, 
+                  you can perform this installation from your console typing, in the mind3rd's directory:<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>sudo php mind install</i>";
+         }
