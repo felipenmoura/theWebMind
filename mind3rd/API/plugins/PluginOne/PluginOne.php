@@ -29,7 +29,7 @@
 
 		public function __construct()
 		{
-			$this->setTrigger('info');
-			$this->setEvent('after');
+			$this->setTrigger('test');
+			$this->setEvent('before');
 		}
 	}

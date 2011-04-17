@@ -67,7 +67,7 @@ EOT
 						Mind::write('projectAlreadyExists', true, $this->argName);
 						return false;
 					}
-					if(!@mkdir($this->projectfile))
+					if(!file_exists($this->projectfile) && !@mkdir($this->projectfile))
 					{
 						Mind::message("Couldn create the project", "[Fail]");
 						echo "I had no rights to write in the mind3rd/projects directory!\n";
@@ -131,14 +131,11 @@ EOT
 										 )";
 
 					$db->execute($qr_vsProj);
-					$db->execute("COMMIT");
 
-                    if(!file_exists($this->projectfile) && !file_exists($iniSource))
+                    if(!file_exists($iniSource))
                     {
                         Mind::copyDir(Mind::$modelsDir.'mind/', $this->projectfile);
                         chmod($this->projectfile, 0777);
-
-                        Mind::write('projectCreated', true, $this->argName);
 
                         $ini= file_get_contents($iniSource);
                         $ini= str_replace('<idiom>',
@@ -155,6 +152,9 @@ EOT
                                                 '/mind.ini',
                                           $ini);
                     }
+                    
+                    Mind::write('projectCreated', true, $this->argName);
+					$db->execute("COMMIT");
                     
 					Mind::openProject(Array('pk_project'=>$key,
 											 'name'=>$this->argName));

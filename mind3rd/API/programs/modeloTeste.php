@@ -62,7 +62,9 @@
              * Your class will receive a property for each parameter, which can be accessed
              * by its argument name(in this example, 'firstArgument'.
              */
-            $this->addRequiredArgument('firstArgument', 'first, and required argument');
+            $this->addRequiredArgument('firstArgument',
+                                       'first, and required argument',
+                                       Array('X', 'Y', 'Z'));
             //$this->addOptionalArgument('secondArgument', 'This is the second and optional argument');
             //$this->addRequiredOption('user', '-u', 'The user who will be passed for any reason', 'root');
             //$this->addOptionalOption('detailed', '-d', 'Should perform its action detailed?', null);

@@ -19,8 +19,15 @@
 EOT
 					);
             
-            $this->addRequiredArgument('what', 'What to how');
-            $this->addOptionalArgument('extra', 'Extra information to be used');
+            $this->addRequiredArgument('what',
+                                       'What to show',
+                                        Array('projects',
+                                               'users',
+                                               'entities',
+                                               'relations',
+                                               'version',
+                                               'plugins'));
+            $this->addOptionalArgument('extra', 'Any extra information to be used');
             $this->addFlag('detailed', '-d', 'Show detailed data');
             
             $this->init();
@@ -128,6 +135,9 @@ EOT
 							echo "Current version: ".Mind::$currentProject['version']."\n";
 						}
 						break;
+                case 'plugins':
+                    MindPlugin::listPlugins($_REQ['env']!='http');
+                    break;
 				default:
 					Mind::write('invalidOption', true, $this->what);
 					return false;

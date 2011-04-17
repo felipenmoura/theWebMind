@@ -63,7 +63,7 @@ class pt implements l10n{
 		$this->messages['dbDriverNotFound']         = Mind::message("Theos: Database Driver não encontrado", '[Fail]', false);
 		$this->messages['missingParameter']         = Mind::message("API: Argumento faltando: %s", '[Fail]', false);
 		$this->messages['done']                     = Mind::message("API: Pronto\n", '[Ok]', false);
-		$this->messages['invalidOptionValue']       = Mind::message("API: %s não é uma opção válida para %s", '[Fail]', false);
+		$this->messages['invalidOptionValue']       = Mind::message("API: '%s' não é uma opção válida para '%s'", '[Fail]', false);
 		$this->messages['runnintPHPUnit']           = "Aguarde...executando testes unitários...\n";
 		$this->messages['phpunitNotFound']          = "Especifique onde encontram-se as classes do PHPUnit\n".
                                                       "Você pode configurar isto em mind3rd/env/mind.ini ini file\n".

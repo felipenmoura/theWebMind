@@ -11,14 +11,15 @@
  */
 class MindCommand extends Symfony\Component\Console\Command\Command
 {
-	private $restrict           = true;
-	private $fileName           = null;
-	private $requiredArguments  = Array();
-	private $optionalArguments  = Array();
-	private $requiredOptions    = Array();
-	private $optionalOptions    = Array();
-	private $commandFlags       = Array();
-	public  $answers            = Array();
+	private $restrict                = true;
+	private $fileName                = null;
+	private $requiredArguments       = Array();
+	private $optionalArguments       = Array();
+	private $requiredOptions         = Array();
+	private $optionalOptions         = Array();
+	private $commandFlags            = Array();
+	public  $answers                 = Array();
+	public  $commandAvailableOptions = Array();
     
     public function init()
     {
@@ -36,6 +37,19 @@ class MindCommand extends Symfony\Component\Console\Command\Command
                                  $this->optionalArguments,
                                  $this->optionalOptions,
                                  $this->commandFlags);
+        
+        $helpDetails= "\n";
+        $avOptsStr= Array();
+        foreach($this->commandAvailableOptions as $k=>$avOpts)
+        {
+            if($avOpts)
+            {
+                $avOptsStr[]= "    ->".$k."\n        ".implode(', ', $avOpts);
+            }
+        }
+        if(sizeof($avOptsStr)>0)
+            $helpDetails.= "\nAvailables options:\n".implode("\n", $avOptsStr);
+        $this->setHelp($this->getHelp().$helpDetails);
         
         $this->setDefinition($definition);
     }
@@ -112,45 +126,75 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         return $this->answers[$name];
     }
     
-    public function addRequiredArgument($argName, $agDescription='')
+    public function addRequiredArgument($argName,
+                                        $description='',
+                                        $availableOptions=null)
     {
-        $this->requiredArguments[]= new InputArgument($argName,
+        if($availableOptions)
+            $description.= "(".implode(', ', $availableOptions).")";
+        $this->requiredArguments[$argName]= new InputArgument($argName,
                                                       InputArgument::REQUIRED,
-                                                      $agDescription);
+                                                      $description);
+        $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
-    public function addOptionalArgument($argName, $agDescription='')
+    public function addOptionalArgument($argName,
+                                        $description='',
+                                        $availableOptions=null)
     {
-        $this->optionalArguments[]= new InputArgument($argName,
+        if($availableOptions)
+            $description.= "(".implode(', ', $availableOptions).")";
+        $this->optionalArguments[$argName]= new InputArgument($argName,
                                                       InputArgument::OPTIONAL,
-                                                      $agDescription);
+                                                      $description);
+        $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
-    public function addRequiredOption($name, $shortCut=null, $description='', $default=null)
+    public function addRequiredOption($argName,
+                                      $shortCut=null,
+                                      $description='',
+                                      $default=null,
+                                      $availableOptions=null)
     {
-        $this->requiredOptions[]= new InputOption($name,
+        if($availableOptions)
+            $description.= "(".implode(', ', $availableOptions).")";
+        $this->requiredOptions[$argName]= new InputOption($argName,
                                                   $shortCut,
                                                   InputOption::PARAMETER_REQUIRED,
                                                   $description,
                                                   $default);
+        $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
-    public function addOptionalOption($name, $shortCut=null, $description='', $default=null)
+    public function addOptionalOption($argName,
+                                      $shortCut=null,
+                                      $description='',
+                                      $default=null,
+                                      $availableOptions=null)
     {
-        $this->optionalOptions[]= new InputOption($name,
+        if($availableOptions)
+            $description.= "(".implode(', ', $availableOptions).")";
+        $this->optionalOptions[$argName]= new InputOption($argName,
                                                   $shortCut,
                                                   InputOption::PARAMETER_OPTIONAL,
                                                   $description,
                                                   $default);
+        $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
     
-    public function addFlag($name, $shortCut=null, $description='')
+    public function addFlag($argName,
+                            $shortCut=null,
+                            $description='',
+                            $availableOptions=null)
     {
-        $this->commandFlags[]= new InputOption($name,
+        if($availableOptions)
+            $description.= "(".implode(', ', $availableOptions).")";
+        $this->commandFlags[$argName]= new InputOption($argName,
                                                $shortCut,
                                                InputOption::PARAMETER_NONE,
                                                $description);
+        $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
     
@@ -361,11 +405,26 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         
         $this->runPlugins('before');
         
+        /*echo "\n\n";
+        print_r($this->commandAvailableOptions);
+        echo "\n\n";*/
+        
+        foreach($this->commandAvailableOptions as $k=>$avOpts)
+        {
+            if($avOpts && !in_array(strtolower($this->$k),
+                                    array_map('strtolower', $avOpts)))
+            {
+                Mind::write('invalidOptionValue', true, $this->$k, $k);
+                return false;
+            }
+        }
+        
         // yea, I know it looks a bit crazy!
         if(is_string($this->commandAction))
             $this->{$this->commandAction}();
         else
             call_user_func($this->commandAction, $this);
+        
         
         $this->runPlugins('after');
 	}

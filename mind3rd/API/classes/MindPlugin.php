@@ -13,6 +13,40 @@
 		public $description;
 		public $links= Array();
 
+        public function listPlugins($echoes)
+        {
+            if($echoes)
+            {
+                $col1= 34;
+                $col2= 25;
+                $col34= 8;
+                $header = "|".str_pad("Plugin", $col1, " ", STR_PAD_BOTH);
+                $header.= "|".str_pad("Trigger", $col2, " ", STR_PAD_BOTH);
+                $header.= "|".str_pad("Event", $col34, " ", STR_PAD_BOTH);
+                $header.= "|".str_pad("Active", $col34, " ", STR_PAD_BOTH)."|\n";
+                $line= "+".str_pad("", 78, '-')."+";
+                $echoes= $line;
+                $echoes.=$header;
+                $echoes.=$line;
+                foreach(Mind::$pluginList as $program)
+                {
+                    foreach($program as $event)
+                    {
+                        foreach($event as $plugin)
+                        {
+                            $echoes.="|".str_pad($plugin->name, $col1, ' ', STR_PAD_RIGHT);
+                            $echoes.="|".str_pad($plugin->trigger, $col2, ' ', STR_PAD_RIGHT);
+                            $echoes.="|".str_pad($plugin->event, $col34, ' ', STR_PAD_RIGHT);
+                            $echoes.="|".str_pad(($plugin->active? 'Y': 'N'), $col34, ' ', STR_PAD_BOTH)."|\n";
+                        }
+                    }
+                }
+                $echoes.=$line;
+                echo $echoes;
+            }
+            return Mind::$pluginList;
+        }
+        
 		public function setTrigger($trg)
 		{
 			$this->trigger= $trg;
