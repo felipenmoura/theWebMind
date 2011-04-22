@@ -11,32 +11,41 @@ namespace Lobe\testFacade;
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 class testFacade extends \Lobe\Neuron implements \neuron{
+    
 	// TODO: REMOVE THIS FILE AFTER THE REQUIRED TESTS
 	public function __construct(Array $data)
 	{
         echo "Here, a list of available commands from the \API package:\n";
         echo "\API\\\n";
-        echo "  GET::\n";
-        echo "    \API\Get::plugins(true); // passing true, it echoes directly\n";
-        echo "    \API\Get::projectData();\n";
-        echo "    \API\Get::currentProject();\n";
-        echo "    \API\Get::tables();\n";
-        echo "    \API\Get::DDL();\n";
-        echo "    \API\Get::DecoratedDDL();\n";
-        echo "    \API\Get::lobes();\n";
-        echo "    \API\Get::source();\n";
-        echo "    \API\Get::idioms();\n";
+        echo "     GET::";
+        echo "plugins(true); // passing true, it echoes directly\n";
+        echo "          projectData();\n";
+        echo "          currentProject();\n";
+        echo "          tables();\n";
+        echo "          DDL();\n";
+        echo "          DecoratedDDL();\n";
+        echo "          lobes();\n";
+        echo "          source();\n";
+        echo "          idioms();\n";
         
-        echo "  Project::\n";
-        echo "    \API\Project::data();\n";
-        echo "    \API\Project::current();\n";
-        echo "    \API\Project::getDDLCommand();\n";
-        echo "    \API\Project::getDDLCommand(false);\n";
-        echo "    \API\Project::openProject('demo_en');\n";
-        echo "    \API\Project::projectExists('demo_en');\n";
-        echo "    \API\Project::source();\n";
+        echo "     User::";
+        echo "projectsList();\n";
+        echo "           usersList();\n";
         
-        echo "  User::\n";
-        echo "    \API\User::projectsList();\n";
+        echo "     FileManager::";
+        echo "appendDataToFile(\$file, \$data);\n";
+        echo "                  createDir('newDir/anotherNewDir/finalNewDir');\n";
+        echo "                  createFile(\$uri); // also accepts nested directories\n";
+        echo "                  createXMLFile(\$uri);\n";
+        echo "                  writeToFile(\$file, \$data);\n";
+        
+        echo "     Project::";
+        echo "data();\n";
+        echo "              current();\n";
+        echo "              getDDLCommand();\n";
+        echo "              getDDLCommand(false); // not decorated\n";
+        echo "              openProject(\$projectName);\n";
+        echo "              projectExists(\$projectName);\n";
+        echo "              source();\n";
 	}
 }

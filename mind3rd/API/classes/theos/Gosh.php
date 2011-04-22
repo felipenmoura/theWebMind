@@ -12,6 +12,11 @@ namespace theos;
  */
 class Gosh {
 	public $bdGen= null;
+    
+    public static function getLobesDir()
+    {
+        return _MINDSRC_."/mind3rd/API/Lobe/";
+    }
 	
 	public function generate($data)
 	{

@@ -20,7 +20,7 @@
 
 		public function __construct()
 		{
-            $dir= \theos\ProjectFileManager::getLobesDir();
+            $dir= \theos\Gosh::getLobesDir();
             $d = dir($dir);
             $options= Array();
             $avOpts= Array();

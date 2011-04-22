@@ -10,14 +10,9 @@ namespace theos;
  *
  * @author felipe
  */
-final class ProjectFileManager {
-
-    public static function getLobesDir()
-    {
-        return _MINDSRC_."/mind3rd/API/Lobe/";
-    }
+class ProjectFileManager {
     
-    private static function filterURI($uri, $allowSlashes=true)
+    protected static function filterURI($uri, $allowSlashes=true)
     {
         $uri= \urlencode(\utf8_encode($uri));
         if($allowSlashes)
@@ -31,19 +26,20 @@ final class ProjectFileManager {
         return $uri;
     }
     
-    private static function mountURI($uri= '', $allowSlashes= true)
+    protected static function mountURI($uri= '', $allowSlashes= true)
     {
-        $tmpURI = '';//\Mind::$currentProject['path']."/";
+        $tmpURI = '';
         $tmpURI.= self::filterURI($uri, $allowSlashes);
         return $tmpURI;
     }
     
-    public static function createDir()
+    public static function createDir($uri)
     {
-        
+        $uri= self::setInnerURI($uri);
+        self::fixDirectory($uri);
     }
     
-    private static function fixDirectory($uri)
+    protected static function fixDirectory($uri)
     {
         if(file_exists($uri))
             return true;
@@ -57,12 +53,13 @@ final class ProjectFileManager {
     
     public static function appendDataToFile($file, $data)
     {
+        $file= self::setInnerURI($file);
         if(file_exists($file))
-            return \file_put_contents ($file, $data, \FILE_APPEND);
+            return \file_put_contents($file, $data, \FILE_APPEND);
         return false;
     }
     
-    private static function setInnerURI($uri)
+    protected static function setInnerURI($uri)
     {
         return \Mind::$currentProject['path']."/".$uri;
     }
@@ -83,13 +80,18 @@ final class ProjectFileManager {
         if($type=='general')
             return fopen($uri, 'wb+');
         else{
-                if(file_exists($uri))
-                    return @\simplexml_load_file($uri);
-                $h= fopen($uri, 'wb+');
-                $content= '<?xml version="1.0" ?><root></root>';
-                fwrite($h, $content);
-                fclose($h);
-                return @\simplexml_load_file($uri);
+                return self::createXMLFile($uri);
             }
+    }
+    
+    public static function createXMLFile($uri)
+    {
+        if(file_exists($uri))
+            return @\simplexml_load_file($uri);
+        $h= fopen($uri, 'wb+');
+        $content= '<?xml version="1.0" ?><root></root>';
+        fwrite($h, $content);
+        fclose($h);
+        return @\simplexml_load_file($uri);
     }
 }
