@@ -7,15 +7,6 @@
 	class VersionManager {
 		public static function commit()
 		{
-			/*
-			 * OK atualizar a versaopegando(pegando a chave da nova versão)
-			 * selecionar todas as tabelas e propriedades q nao estejam marcadas como drop
-			 * ver diferenças entre cada tabela
-			 * ver tabelas q ficaram sobrando na lista recem analisada(novas)
-			 * ver tabelas q ficaram sobrando na lista antiga(para dropar)
-			 * insere novas
-			 * marca antigas como dropped
-			 */
 			$project= new DAO\ProjectFactory(Mind::$currentProject);
 			$project->commit();
 			Mind::$currentProject['pk_version']= $project->versionId;

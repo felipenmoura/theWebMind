@@ -105,7 +105,7 @@ class mysql implements DBMS{
 (
     <properties>
     <primarykeys>
-);
+)ENGINE=InnoDB;
 ";
 	}
 	

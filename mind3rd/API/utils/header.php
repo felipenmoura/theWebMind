@@ -31,18 +31,29 @@
 		GLOBAL $_MIND;
 		$what= preg_replace("/[ '\"\.\/]/", '', $what);
 		$what= str_replace('\\', '/', $what);
+		$what= str_replace('.', '', $what);
 
 		if(file_exists(_MINDSRC_.'/mind3rd/API/programs/'.$what.'.php'))
 		{
 			include(_MINDSRC_.'/mind3rd/API/programs/'.$what.'.php');
 			return true;
 		}
-		if(strpos($what, '\\')>=0)
+        
+        // checking if the class is not a facad from the API
+		if(strpos($what, 'API/')!==false)
 		{
-			$what= explode('\\', $what);
-			$what= array_pop($what);
+            $what= explode('/', $what);
+            $classFile= array_pop($what);
+            $what= str_replace('/', '\\', $what);
+			$file= _MINDSRC_.'/mind3rd/API/facade/'.$classFile.".php";
+            if(file_exists($file))
+            {
+               include($file);
+               return true;
+            }
 		}
-
+        
+        // checking if the class is inside any of the autoload paths
 		$dirs= Mind::$autoloadPaths;
 
 		for($i=0; $i<sizeof($dirs); $i++)
@@ -62,9 +73,7 @@
 			return true;
 		}
 
-		// cortex has a special treatment
-		
-		
+        // ok, if it's reached here...it didn't go well!
 		echo " [ERROR] Class not found: ".$what."\n";
 		return false;
 	}

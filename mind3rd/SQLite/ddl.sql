@@ -12,6 +12,7 @@ CREATE TABLE project
 	info text  ,
 	creator int4  ,
 	dt_creation timestamp,
+    status char(1) default 'A',
 	PRIMARY KEY(pk_project)
 );
 
@@ -23,8 +24,9 @@ CREATE TABLE user
 	name varchar(255)  ,
 	login varchar(40) not null ,
 	pwd varchar(40) not null ,
-	status char(1)  ,
-	type char(1)  ,
+	status char(1),
+    email varchar(1024) not null,
+	type char(1),
 	PRIMARY KEY(pk_user)
 );
 
@@ -33,8 +35,9 @@ CREATE TABLE user
 CREATE TABLE project_user
 (
 	pk_project_user integer unique not null,
-	fk_project integer  ,
-	fk_user integer  ,
+	fk_project integer,
+	fk_user integer,
+    status char(1) default 'A',
 	PRIMARY KEY(pk_project_user),
 	FOREIGN KEY(fk_user) REFERENCES user(pk_user),
 	FOREIGN KEY(fk_project) REFERENCES project(pk_project)

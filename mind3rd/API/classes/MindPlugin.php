@@ -13,7 +13,7 @@
 		public $description;
 		public $links= Array();
 
-        public function listPlugins($echoes)
+        public static function listPlugins($echoes=true)
         {
             if($echoes)
             {
@@ -24,7 +24,7 @@
                 $header.= "|".str_pad("Trigger", $col2, " ", STR_PAD_BOTH);
                 $header.= "|".str_pad("Event", $col34, " ", STR_PAD_BOTH);
                 $header.= "|".str_pad("Active", $col34, " ", STR_PAD_BOTH)."|\n";
-                $line= "+".str_pad("", 78, '-')."+";
+                $line= "+".str_pad("", 78, '-')."+\n";
                 $echoes= $line;
                 $echoes.=$header;
                 $echoes.=$line;

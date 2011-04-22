@@ -10,9 +10,20 @@
  * @author felipe
  */
 class MindDB {
-	private $db= null;
+    
+	public static $db= null;
+	public static $inTransaction= false;
 	public $lastInsertedId= 0;
 
+    public function __get($what)
+    {
+        if($what=='db')
+            return self::$db;
+        if(isset($this->$what))
+            return $this->$what;
+        return false;
+    }
+    
 	/**
 	 * @method query
 	 * @param String $qr
@@ -20,7 +31,7 @@ class MindDB {
 	 */
 	public function query($qr)
 	{
-		$ret= $this->db->query($qr);
+		$ret= self::$db->query($qr);
 		$ar_ret= Array();
 		while($tuple= $ret->fetchArray(SQLITE3_ASSOC))
 		{
@@ -36,20 +47,29 @@ class MindDB {
 	 */
 	public function execute($command)
 	{
-		$ret= $this->db->exec($command);
-		$this->lastInsertedId= $this->db->lastInsertRowId();
+        if(strtoupper($command) == 'BEGIN')
+        {
+            if(self::$inTransaction)
+               return true;
+            self::$inTransaction= true;
+        }elseif(strtoupper($command) == 'COMMIT' || strtoupper($command) == 'ROLLBACK')
+            {
+                self::$inTransaction= false;
+            }
+		$ret= self::$db->exec($command);
+		$this->lastInsertedId= self::$db->lastInsertRowId();
 		return $this->lastInsertedId;
 	}
 
     public function  __construct()
 	{
-		if(!$db = new SQLite3(_MINDSRC_.SQLITE))
-		{
-			Mind::message('Database', '[Fail]');
-			return false;
-		}
-		$this->db= $db;
+        if(!self::$db)  
+            if(!self::$db = new SQLite3(_MINDSRC_.SQLITE))
+            {
+                Mind::message('Database', '[Fail]');
+                return false;
+            }
+        
 		return $this;
 	}
 }
-?>

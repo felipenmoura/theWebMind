@@ -13,6 +13,7 @@
 		public $defaults= null;
 		public $conf= null;
 
+        public static $project= null;
 		public static $autoloadPaths= Array();
 		public static $currentProject= null;
 		public static $ref= Array();
@@ -21,21 +22,51 @@
 		public static $l10n= null;
 		public static $triggers= Array();
 		public static $modelsDir= "";
-		public static $lexer;
-		public static $canonic;
-		public static $syntaxer;
-		public static $tokenizer;
-		/**
-		 *
-		 * @var theos\Gosh $gosh the "creator" class
-		 */
-		public static $gosh;
-		public static $darwin;
 		public static $langPath= "";
 		public static $content= "";
 		public static $originalContent= "";
 		public static $curLang= 'en';
+        
+		/**
+		 * @var Lexer An instance of the Lexer class
+		 */
+		public static $lexer;
+		/**
+		 * @var Canonic An instance of the Canonic class
+		 */
+		public static $canonic;
+		/**
+		 * @var Syntaxer An instance of the Syntaxer class
+		 */
+		public static $syntaxer;
+		/**
+		 * @var Tokenizer The tokenizer class
+		 */
+		public static $tokenizer;
+		/**
+		 * @var theos\Gosh $gosh the "creator" class
+		 */
+		public static $gosh;
+		/**
+		 * @var \scientia\Darwin An instance of the Darwin class
+		 */
+		public static $darwin;
 
+        /**
+         * Gets the list of the currently instaled idioms.
+         * @return Array
+         */
+        public static function getIdiomsList()
+        {
+            $ar= Array();
+            $d= dir(_MINDSRC_.L10N_DIR);
+            while(false !== $entry= $d->read())
+            {
+                if(substr($entry, 0, 1) != '.')
+                    $ar[]= str_replace('.php', '', $entry);
+            }
+            return $ar;
+        }
 		/**
 		 * Verifies wheter the software is installed or not
 		 * @return boolean

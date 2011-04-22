@@ -84,6 +84,49 @@ class MindProject extends VersionManager{
 		}
 		return $row;
 	}
+    
+    /**
+	 * Returns true if the project already exists,
+	 * false, otherwise
+	 *
+	 * @global Mind $_MIND
+	 * @param String $project
+	 * @return boolean
+	 */
+	public static function projectExists($projectName)
+	{
+		GLOBAL $_MIND;
+		$projectfile= Mind::$projectsDir.$projectName;
+		$noAccess= true;
+
+		$db= new MindDB();
+		$hasProject= "SELECT pk_project
+						from project
+					   where project.name = '".$projectName."'
+					 ";
+		$data= $db->query($hasProject);
+		if(sizeof($data)>0)
+            return true;
+		return false;
+	}
+    
+    public static function projectsList($user=false)
+    {
+		GLOBAL $_MIND;
+        
+        $user= $user? $user: $_SESSION['pk_user'];
+
+		$db= new MindDB();
+		$hasProject= "SELECT pk_project,
+							 project.name as name
+						from project_user,
+							 project
+					   where fk_user= ".$user."
+						 and fk_project = pk_project
+					 ";
+		$data= $db->query($hasProject);
+        return $data;
+    }
 
 	public static function loadIdiom($idiom)
 	{
@@ -102,6 +145,13 @@ class MindProject extends VersionManager{
 	public static function openProject($p)
 	{
 		GLOBAL $_REQ;
+        if(Mind::$project)
+        {
+            if($_SESSION['currentProject'] != $p['pk_project'])
+                Mind::$project->close();
+            else
+                return Mind::$project;
+        }
 		$_SESSION['currentProject']= $p['pk_project'];
 		$_SESSION['currentProjectName']= $p['name'];
 		$_SESSION['currentProjectDir']= Mind::$projectsDir.$p['name'];
@@ -122,7 +172,8 @@ class MindProject extends VersionManager{
 		$pF= new DAO\ProjectFactory(Mind::$currentProject);
 		Mind::$currentProject['version']= $pF->data['version'];
 		Mind::$currentProject['pk_version']= $pF->data['pk_version'];
-		
+		Mind::$project= $pF;
+                
 		Mind::write('projectOpened', true, $p['name']);
 		return true;
 	}
@@ -139,23 +190,23 @@ class MindProject extends VersionManager{
 		return false;
 	}
 	
-	public static function import($src)
+	public static function import($src, $sourceFile='main')
 	{
-		self::$sourceContent[$src]= $src;
+		self::$sourceContent[$sourceFile]= $src;
 		$extraFiles[]= preg_match_all(IMPORT_SOURCE, $src, $matches);
 		$matches= $matches[0];
 		foreach($matches as &$import)
 		{
 			$import= substr($import, 8);
 			$extraContent= self::loadSource($import);
-			self::import($extraContent);
+			self::import($extraContent, $import);
 		}
 	}
 	
 	public static function loadSources()
 	{
 		$main= self::loadSource();
-		self::import($main);
+		self::import($main, 'main');
 	}
 	
 	public static function setUp()
@@ -204,6 +255,7 @@ class MindProject extends VersionManager{
 			{
 				MindProject::commit();
 			}
+            
 			if(sizeof(Analyst::$entities) > 0)
 				$init= true;
 		}

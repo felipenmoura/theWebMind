@@ -23,9 +23,13 @@
             $dir= \theos\ProjectFileManager::getLobesDir();
             $d = dir($dir);
             $options= Array();
+            $avOpts= Array();
             while (false !== ($entry = $d->read())) {
                 if(is_dir($dir.$entry) && substr($entry, 0, 1) != '.')
+                {
                     $options[]= "     >".$entry."\n";
+                    $avOpts[]= $entry;
+                }
             }
             $d->close();
             
@@ -42,7 +46,7 @@ EOT;
                  ->setAction('action')
 				 ->setHelp($help);
             
-            $this->addRequiredArgument('lobe', 'Lobe to be used');
+            $this->addRequiredArgument('lobe', 'Lobe to be used', $avOpts);
             $this->addOptionalArgument('param', 'A param for that command');
             $this->addOptionalArgument('detail', 'A detail for that command');
             $this->addOptionalArgument('optional', 'An optional argument');

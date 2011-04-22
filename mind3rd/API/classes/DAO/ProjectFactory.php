@@ -187,6 +187,11 @@ class ProjectFactory extends Project{
 			$this->db->execute("COMMIT");
 	}
 	
+    public function close()
+    {
+        \Mind::$project= null;
+    }
+    
 	/**
 	 * The DAO\ProjectFactory constructor
 	 * It calls the DAO\Project's constructor

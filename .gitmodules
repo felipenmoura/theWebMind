@@ -1,0 +1,3 @@
+[submodule "mind3rd/API/external/doctrine2"]
+	path = mind3rd/API/external/doctrine2
+	url = https://github.com/doctrine/doctrine2.git

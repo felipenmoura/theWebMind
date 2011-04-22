@@ -2,6 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
+        <link rel="shortcut icon" href="images/logo.png" />
 		<script src='scripts/jquery.js'></script>
 		<style tye='text/css'>
 			property
@@ -51,6 +52,7 @@
 		<input type='button' value='logoff' onclick="logoff()"/>
 		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
 		<input type='button' value='run example' onclick="exampleModel()"/>
+		<input type='button' value='API Facade tests' onclick="APITest()"/>
 	</body>
 	<script>
 		function setLoading()
@@ -291,6 +293,21 @@
 					document.getElementById('result').innerHTML= ret
 				}
 			});
+		}
+		function APITest()
+		{
+			setLoading();
+			$.ajax({
+						type:'POST',
+						url:'../../',
+						data:{
+							program:'generate',
+							lobe: 'testfacade'
+						},
+						success: function(retQ){
+							document.getElementById('result').innerHTML= retQ;
+						}
+					});
 		}
 	</script>
 </html>

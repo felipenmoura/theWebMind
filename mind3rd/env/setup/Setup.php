@@ -156,6 +156,16 @@ abstract class Setup {
             echo "             ".str_replace('\\', '/', getcwd()).
                                "/".$sqliteBaseFile."\n";
         }else{
+                $email= 'mail@domain.com';
+                $pwd= 'admin';
+                if(isset($_POST))
+                {
+                    if(isset($_POST['adminEmail']))
+                        $email= $_POST['adminEmail'];
+                    if(isset($_POST['adminPWD']))
+                        $email= $_POST['adminPWD'];
+                }
+                
                 if(class_exists($sqlite) && $db = new SQLite3($sqliteBaseFile))
                 {
                     $DDL= file_get_contents($sqliteDDLFile);
@@ -170,18 +180,22 @@ abstract class Setup {
                                         login,
                                         pwd,
                                         status,
-                                        type
+                                        type,
+                                        email
                                     )VALUES(
                                         'Administrator',
                                         'admin',
-                                        '".sha1('admin')."',
+                                        '".sha1($pwd)."',
                                         'A',
-                                        'A'
+                                        'A',
+                                        '".$email."'
                                     );");
                     echo "  setting database permissions...\n";
 
-                                if($_MIND['sys']== 'unix')
-                                    echo shell_exec('sudo chmod 777 '.getcwd().'/mind3rd/SQLite/mind');
+                    if($_MIND['sys']== 'unix')
+                        echo shell_exec('sudo chmod 777 '.getcwd().'/mind3rd/SQLite/mind');
+                    chmod($sqliteBaseFile, 0777);
+                    
                 }else{
                     echo " <[ERROR] SQLite Database could not be created. ".
                          " Is your server working properly with SQLite?>\n";

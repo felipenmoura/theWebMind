@@ -26,7 +26,9 @@ EOT
                                                'entities',
                                                'relations',
                                                'version',
-                                               'plugins'));
+                                               'idioms',
+                                               'plugins',
+                                               'lobes'));
             $this->addOptionalArgument('extra', 'Any extra information to be used');
             $this->addFlag('detailed', '-d', 'Show detailed data');
             
@@ -65,7 +67,6 @@ EOT
 						{
 							echo JSON_encode($userList);
 						}else{
-								//foreach($projectList as $proj)
 								$this->printMatrix($userList);
 							 }
 					break;
@@ -138,6 +139,13 @@ EOT
                 case 'plugins':
                     MindPlugin::listPlugins($_REQ['env']!='http');
                     break;
+                case 'idioms':
+                    Mind::getIdiomsList();
+                    break;
+                case 'lobes':
+                    echo implode("\n", \Lobe\Neuron::listLobes());
+                    echo "\n";
+                    break;
 				default:
 					Mind::write('invalidOption', true, $this->what);
 					return false;
@@ -156,13 +164,7 @@ EOT
 		}
 		private function loadUsersList()
 		{
-
-			$db= new MindDB();
-			if($this->detailed)
-				$projs= $db->query('SELECT * from user');
-			else
-				$projs= $db->query('SELECT login from user');
-			return $projs;
+			return MindUser::listUsers($this->detailed);
 		}
 		private function printList($list)
 		{

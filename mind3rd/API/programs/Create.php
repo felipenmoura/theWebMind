@@ -167,6 +167,9 @@ EOT
                                   "\nWill this user be an administrator?",
                                   Array('Y'=>'Yes',
                                         'N'=>'No'));
+                    $this->prompt('email', "What is the user's e-mail?");
+                    
+                    $email= $this->answers['email'];
                     
 					$qr_newUser= "INSERT into user
 										 (
@@ -174,7 +177,8 @@ EOT
 											login,
 											pwd,
 											status,
-											type
+											type,
+                                            email
 										 )
 										 values
 										 (
@@ -185,7 +189,8 @@ EOT
 											'".(strtoupper(
                                                     substr($this->answers['type'],
                                                             0,
-                                                            1))=='Y'? 'A': 'N')."'
+                                                            1))=='Y'? 'A': 'N')."',
+                                            '".$email."'
 										 )";
 					$db->execute($qr_newUser);
 					Mind::write('userCreated', true, $this->argName);
