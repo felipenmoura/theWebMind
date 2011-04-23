@@ -1,11 +1,17 @@
 <?php
-	use Symfony\Component\Console\Input\InputArgument,
-		Symfony\Component\Console\Input\InputOption,
-		Symfony\Component\Console;
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+use Symfony\Component\Console\Input\InputArgument,
+    Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console;
 
 /**
- * This class extends the Command class from Symfony
- * All the program should extend it
+ * This class extends the class Command, from Symfony.
+ * All programs should extend it
  *
  * @author felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
@@ -21,12 +27,20 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	public  $answers                 = Array();
 	public  $commandAvailableOptions = Array();
     
+    /**
+     * A required call, to set your program to work.
+     * This method initiates the program registering it to the application's core.
+     */
     public function init()
     {
         parent::__construct();
     }
     
-    public function configure()
+    /**
+     * This method configures your program to the application.
+     * You don't need to call it.
+     */
+    final public function configure()
 	{
         $this->setDefinition(Array());
         $this->setName($this->commandName);
@@ -54,6 +68,21 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         $this->setDefinition($definition);
     }
     
+    /**
+     * This is a quite useful method for you to deal with user interaction.
+     * 
+     * You can use this method to get information already sent by the user trhough POST
+     * or asking the user via console.
+     * It deals with the environment and sets the answered values to the $this->answers properties.
+     * 
+     * Example: $myCommand->prompt('name', 'what is your name?');
+     *          echo $myCommand->answers['name'];
+     * 
+     * @param string $name
+     * @param string $question
+     * @param boolean $mode Set it to true, if it is a password(then, it will be represented by * in the console
+     * @return mixed the answer
+     */
     public function prompt($name, $question, $mode=false)
     {
 		GLOBAL $_REQ;
@@ -126,6 +155,18 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         return $this->answers[$name];
     }
     
+    /**
+     * Adds a required argument to your command.
+     * 
+     * That means that, the given parameter MUST be passed to the command to execute.
+     * Example: auth felipenmoura
+     *          in this case, 'auth' is the command and 'felipenmoura' is the required argument
+     * 
+     * @param string $argName
+     * @param string $description
+     * @param Array $availableOptions A list of available options
+     * @return MindCommand 
+     */
     public function addRequiredArgument($argName,
                                         $description='',
                                         $availableOptions=null)
@@ -138,6 +179,18 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
+    
+    /**
+     * Adds an optional argument to the command.
+     * An optional argument is that argument which may be ommited when the command is called.
+     * Example: auth admin 1234
+     *          Where 'auth' is the command, 'admin' is the required argument and '1234' is the password, an optional argument.
+     * 
+     * @param string $argName
+     * @param string $description
+     * @param Array $availableOptions A list of available options to the argument
+     * @return MindCommand 
+     */
     public function addOptionalArgument($argName,
                                         $description='',
                                         $availableOptions=null)
@@ -150,6 +203,20 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
+    
+    /**
+     * Adds a required option.
+     * An option is that argument which receives a value.
+     * Example: create project demo
+     *          Where 'project' is the option and 'demo' is its value.
+     * 
+     * @param string $argName
+     * @param string $shortCut
+     * @param string $description
+     * @param mixed $default
+     * @param Array $availableOptions A list of available options
+     * @return MindCommand 
+     */
     public function addRequiredOption($argName,
                                       $shortCut=null,
                                       $description='',
@@ -166,6 +233,18 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         $this->commandAvailableOptions[$argName]= $availableOptions;
         return $this;
     }
+    
+    /**
+     * Adds an optional option to the command.
+     * This is an option which, IF passed, receives a value.
+     * 
+     * @param string $argName
+     * @param string $shortCut
+     * @param string $description
+     * @param mixed $default
+     * @param Array $availableOptions A list of available options.
+     * @return MindCommand 
+     */
     public function addOptionalOption($argName,
                                       $shortCut=null,
                                       $description='',
@@ -183,6 +262,18 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         return $this;
     }
     
+    /**
+     * Adds a flag to the command.
+     * A flag is just a boolean which defines an specific data.
+     * Example: show users -d
+     *          Here, '-d' is the flag which defines the command to show detailed data about users.
+     * 
+     * @param string $argName
+     * @param string $shortCut
+     * @param string $description
+     * @param Array $availableOptions A list of available options.
+     * @return MindCommand 
+     */
     public function addFlag($argName,
                             $shortCut=null,
                             $description='',
@@ -198,24 +289,46 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         return $this;
     }
     
+    /**
+     * Sets the command's name.
+     * @param string $commandName
+     * @return MindCommand 
+     */
     public function setCommandName($commandName)
     {
         $this->commandName= $commandName;
         return $this;
     }
     
+    /**
+     * Sets the command's description.
+     * @param string $description
+     * @return MindCommand 
+     */
     public function description($description)
     {
         $this->description= $description;
         return $this;
     }
     
+    /**
+     * Sets the command's help message.
+     * @param string $helpContent
+     * @return MindCommand 
+     */
     public function help($helpContent)
     {
         $this->helpContent= $helpContent;
         return $this;
     }
     
+    /**
+     * This method sets the action the command will call.
+     * You can pass an annonymous function to it or the name of a method INSIDE the command's class.
+     * 
+     * @param string|function $action
+     * @return MindCommand 
+     */
     public function setAction($action)
     {
         $this->commandAction= $action;

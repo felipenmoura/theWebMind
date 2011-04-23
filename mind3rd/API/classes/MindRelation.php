@@ -1,8 +1,14 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	/**
 	 * Represents a relation between two Entities
 	 *
-	 * @author felipe
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
 	 */
 	class MindRelation {
 

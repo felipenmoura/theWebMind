@@ -1,7 +1,13 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	/**
 	 * A facade to deal with attributes/properties and methods
-	 * related to an entity
+	 * related to an entity.
 	 *
 	 * @author felipe
 	 */

@@ -1,6 +1,15 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	/**
-	 * Description of MindDir
+	 * The class which will deal with Directories and files.
+     * This is not the most complete fileManager and will be used by the
+     * application's core. To deal in a more advanced way with files, or to
+     * interact easily with files within a project, use the FileManager class.
 	 *
 	 * @author felipe
 	 */

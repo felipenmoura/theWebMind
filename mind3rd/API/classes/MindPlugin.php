@@ -1,6 +1,13 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	/**
-	 * Description of MindPlugin
+	 * The abstract class with generic methods Plugins may use.
+     * Also, offers methods to the application itself, allowing it to deal with plugins.
 	 *
 	 * @author felipe
 	 */
@@ -13,6 +20,12 @@
 		public $description;
 		public $links= Array();
 
+        /**
+         * Gets a list of all installed plugins.
+         * 
+         * @param boolean $echoes If the list should or not be sent to the output.
+         * @return Array The list of plugins
+         */
         public static function listPlugins($echoes=true)
         {
             if($echoes)
@@ -47,11 +60,23 @@
             return Mind::$pluginList;
         }
         
+        /**
+         * Informs which program/command will trigger the current plugin.
+         * 
+         * @param string $trg The name of the command which will trigger the plugin
+         * @return MindPlugin 
+         */
 		public function setTrigger($trg)
 		{
 			$this->trigger= $trg;
 			return $this;
 		}
+        /**
+         * Sets WHEN the plugin will be run.
+         * 
+         * @param string $evt 'before' or 'after' the trigger command be executed.
+         * @return MindPlugin 
+         */
 		public function setEvent($evt)
 		{
 			$this->event= $evt=='before'? 'before':'after';
@@ -66,16 +91,9 @@
 		 */
 		static function addPlugin(&$plugin)
 		{
-            //echo $plugin->name." - ".$plugin->trigger."\n\n";
-            
-            //print_r(Mind::$triggers);
-			//if(in_array($plugin->trigger, Mind::$triggers))
-			//{
-				if(!isset(Mind::$pluginList[$plugin->trigger]))
-					Mind::$pluginList[$plugin->trigger]= Array( 'before'=>Array(),
-																'after'=>Array());
-				Mind::$pluginList[$plugin->trigger][$plugin->event][]= $plugin;
-			//}
-            //print_r(Mind::$pluginList);
+            if(!isset(Mind::$pluginList[$plugin->trigger]))
+                Mind::$pluginList[$plugin->trigger]= Array( 'before'=>Array(),
+                                                            'after'=>Array());
+            Mind::$pluginList[$plugin->trigger][$plugin->event][]= $plugin;
 		}
 	}

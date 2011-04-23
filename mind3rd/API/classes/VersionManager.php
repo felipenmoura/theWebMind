@@ -1,10 +1,19 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
 	/**
 	 * This class takes care of the version control methods
 	 *
 	 * @author felipe
 	 */
 	class VersionManager {
+        
+        /**
+         * Commits the current project status.
+         */
 		public static function commit()
 		{
 			$project= new DAO\ProjectFactory(Mind::$currentProject);
@@ -13,10 +22,16 @@
 			Mind::$currentProject['version']= $project->data['version'];
 		}
 		
+        /**
+         * Sets the Version settings up.
+         */
 		public static function setUp()
 		{
 		}
 		
+        /**
+         * Clears any data that may interfere with future version maintainces.
+         */
 		public static function cleanUp()
 		{
 			$path= Mind::$currentProject['path']."/temp/";

@@ -1,8 +1,14 @@
 <?php
 /**
- * Will keep and deal with the current opened project
- *
- * @author felipe
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
+/**
+ * Will keep and deal with the current opened project.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 class MindProject extends VersionManager{
 	
@@ -46,6 +52,11 @@ class MindProject extends VersionManager{
 		return $qrs;
 	}
 	
+    /**
+     * Returns the list of registered and active projects.
+     * 
+     * @return Array
+     */
     public static function listProjects()
     {
         $db= new MindDB();
