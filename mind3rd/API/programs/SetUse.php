@@ -26,8 +26,15 @@
 EOT
 					);
             
-            $this->addRequiredArgument('projectName', 'Specify the project name, you want to use/open');
+            $projectsList= \API\Project::projectList();
+            foreach($projectsList as $k=>$p)
+            {
+                $projectsList[$k]= $p['name'];
+            }
             
+            $this->addRequiredArgument('projectName',
+                                       'Specify the project name, you want to use/open',
+                                       $projectsList);
             $this->init();
 		}
         

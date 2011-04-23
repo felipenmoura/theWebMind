@@ -46,6 +46,18 @@ class MindProject extends VersionManager{
 		return $qrs;
 	}
 	
+    public static function listProjects()
+    {
+        $db= new MindDB();
+        $hasProject= "SELECT distinct pk_project,
+							 project.name as name
+						from project
+					   where status='A'
+					 ";
+		$data= $db->query($hasProject);
+        return $data;
+    }
+    
     /**
 	 * Returns true if the project already exists,
 	 * false, otherwise

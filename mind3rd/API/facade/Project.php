@@ -21,7 +21,7 @@
 
         public static function projectList()
         {
-            
+            return \MindProject::listProjects();
         }
         
         public static function current()
