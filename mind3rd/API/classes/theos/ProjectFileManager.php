@@ -1,14 +1,16 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
  */
 namespace theos;
 /**
- * Description of ProjectFileManager
+ * This class allows you to change, add or even remove files and directories from/to/of
+ * projects.
  *
- * @author felipe
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
 class ProjectFileManager {
     
