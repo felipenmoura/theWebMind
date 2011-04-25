@@ -1,4 +1,10 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	/*
 		Thanks to http://www.eval.ca/articles/php-toPlural (MIT license)
 				   http://dev.rubyonrails.org/browser/trunk/activesupport/lib/active_support/inflections.rb (MIT license)

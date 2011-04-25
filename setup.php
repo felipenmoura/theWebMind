@@ -1,5 +1,10 @@
 <?php
     /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     * 
      * This file will perform the instalation of the system through the browser.
      * The source code will still get more beautiful, the focus now was to set
      * it to work in bouth Windows and Unix based Operational Systems.

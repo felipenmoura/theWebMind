@@ -1,11 +1,16 @@
 <?php
-	/**
-	* This file corresponds to the bootstrap.
-	* Every requisition should pass here
-	* This file decides which environment will be used
-	* and also some permissions, starting some environmental
-	* variables, such as language for localization
-	*/
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * This file corresponds to the bootstrap.
+     * Every requisition should pass here
+     * This file decides which environment will be used
+     * and also some permissions, starting some environmental
+     * variables, such as language for localization
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	require(_MINDSRC_.'/mind3rd/API/utils/header.php');
 	include(_MINDSRC_.'/mind3rd/API/utils/constants.php');
 	

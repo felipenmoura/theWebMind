@@ -1,4 +1,10 @@
 <?php
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
+ */
 if(!class_exists('Setup'))
     require('Setup.php');
 /**

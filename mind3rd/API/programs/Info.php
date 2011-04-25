@@ -1,11 +1,15 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	use Symfony\Component\Console\Input\InputArgument,
 		Symfony\Component\Console\Input\InputOption,
 		Symfony\Component\Console;
 	
 /**
- * Description of Info
- *
  * @author felipe
  */
 class Info extends MindCommand implements program

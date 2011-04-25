@@ -1,4 +1,10 @@
 <?php
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     */
 	session_start();
 	define('_CONSOLE_LINE_LENGTH_', 80);
 	require(_MINDSRC_.'/mind3rd/API/classes/Mind.php');
