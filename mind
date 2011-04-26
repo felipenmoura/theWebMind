@@ -1,6 +1,11 @@
 #!/usr/bin/env php
 <?php
-	/**
+    /**
+     * This file is part of TheWebMind 3rd generation.
+     * 
+     * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+     * @license licenses/mind3rd.license
+     * 
 	 * this file will be only accessed trhough the console
 	 * if you pass the parameter install to it, it will
 	 * create the SQLite database, start it, and try to

@@ -3,8 +3,8 @@
  * This file is part of theWebMind 3rd generation.
  * Under Cortex/Analyst structure
  * 
- * @filesource
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
  */
 /**
  * Generic methods to be used by the Normalizer.

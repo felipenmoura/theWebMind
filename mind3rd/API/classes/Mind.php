@@ -4,6 +4,7 @@
      * 
      * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
      * @license licenses/mind3rd.license
+     */
 	/**
 	 * This is the main class
 	 * It provides a bunch of static methods to deal with the console
