@@ -13,6 +13,8 @@ namespace API;
  */
 class User{
     
+    static protected $validAttrs= Array('name', 'email', 'password');
+    
     /**
      * Returns an array of all registered users.
      * @return Array
@@ -30,10 +32,12 @@ class User{
     {
         return \MindProject::projectsList();
     }
-    /*
-    public static function ()
+    
+    public static function set($attr, $value)
     {
+        print_r(self::$validAttrs);
     }
+    /*
     public static function ()
     {
     }*/
