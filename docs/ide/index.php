@@ -51,6 +51,7 @@
 		<input type='button' value='generate docs' onclick="genDocs()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
 		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
+		<input type='button' value='create demo_en project' onclick="createDemo_en()"/>
 		<input type='button' value='run example' onclick="exampleModel()"/>
 		<input type='button' value='API Facade tests' onclick="APITest()"/>
 	</body>
@@ -263,7 +264,22 @@
 						}
 					});
 		}
-
+        function createDemo_en()
+		{
+			setLoading();
+			$.ajax({
+				type:'POST',
+				url:'../../',
+				data:{
+                        program:'create',
+                        what: 'project',
+                        argName:'demo_en'
+				},
+				success: function(ret){
+					document.getElementById('result').innerHTML= ret
+				}
+			});
+		}
 		function logoff()
 		{
 			setLoading();
@@ -294,6 +310,7 @@
 				}
 			});
 		}
+        
 		function APITest()
 		{
 			setLoading();
