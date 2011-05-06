@@ -75,7 +75,6 @@ EOT
 				$this->query= 'update';
 				break;
 		}
-		
 		$qrs= \MindProject::showSQL(($this->table=='*'), $this->table, $this->query);
 		echo $qrs;
 		return $this;

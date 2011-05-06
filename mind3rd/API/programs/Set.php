@@ -19,12 +19,17 @@
         public $whose    = '';
         public $attribute= '';
         public $value    = '';
+        public $extra    = '';
         
         private function setUserData()
         {
             if($this->attribute=='pwd')
                 $this->value= $this->prompt('pwd', 'The new password, please', true);
-            \API\User::set($this->attribute, $this->value);
+            if($this->extra && $this->value=='as')
+            {
+                
+            }else
+                \API\User::set($this->attribute, $this->value);
         }
         
         private function setProjectData()
@@ -47,8 +52,13 @@
             
             $this->setCommandName('set')
                  ->setDescription("Sets user's or project's data ")
-                 ->setRestrict(false)
-                 ->setHelp("You can set information about the current user or a project's data.")
+                 ->setRestrict(true)
+                 ->setHelp("You can set information about the current user or a project's data.
+    if you are the admin, you can use the following line:
+        set user :username: as :status:
+    or
+        set user :username: as :type:
+    Where status may be 'A' or 'I', and type may be 'A' or 'N'")
                  ->setAction('executableFunction');
             
             $this->addRequiredArgument('whose',
@@ -58,6 +68,8 @@
                                        'The attribute you will change');
             $this->addOptionalArgument('value',
                                        'The value for that attribute(optional only for pwd');
+            $this->addOptionalArgument('extra',
+                                       'An extra data about the defined attribute(the status or type for users or projects)');
 
             $this->init();
         }
