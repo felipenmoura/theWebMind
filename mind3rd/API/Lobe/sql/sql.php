@@ -21,9 +21,6 @@ class sql extends \Lobe\Neuron implements \neuron{
 	
 	public function __construct(Array $data)
 	{
-        $file= 'docs/create.sql';
-        \API\FileManager::createFile($file);
-        \API\FileManager::writeToFile($file, \API\Get::DDL());
-        return true;
+        return \API\FileManager::writeToFile('docs/create.sql', \API\Get::DDL());
 	}
 }
