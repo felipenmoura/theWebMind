@@ -47,11 +47,13 @@
         if(substr($entry, 0, 1) !=  '.')
         {
             $entry= str_replace('.php', '', $entry);
-            $programs[]= new $entry();
+            $prog= new $entry();
+            $programs[strtolower($prog->getName())]= $prog;
         }
     }
     $d->close();
     $app->addCommands($programs);
+    \MIND::$programs= $programs;
 	
     // starting the application
 	if($_REQ['env']=='shell')

@@ -34,6 +34,7 @@ EOT
 		public function action()
 		{
 			GLOBAL $_MIND;
+            
             ob_start();
 			$this->runStep1();
             ob_flush();

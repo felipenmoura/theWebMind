@@ -175,6 +175,11 @@ class MindProject extends VersionManager{
             else
                 return Mind::$project;
         }
+        
+        $msg= false;
+        if($_SESSION['currentProject'] != $p['pk_project'])
+            $msg= true;
+        
 		$_SESSION['currentProject']= $p['pk_project'];
 		$_SESSION['currentProjectName']= $p['name'];
 		$_SESSION['currentProjectDir']= Mind::$projectsDir.$p['name'];
@@ -196,8 +201,11 @@ class MindProject extends VersionManager{
 		Mind::$currentProject['version']= $pF->data['version'];
 		Mind::$currentProject['pk_version']= $pF->data['pk_version'];
 		Mind::$project= $pF;
-                
-		Mind::write('projectOpened', true, $p['name']);
+         
+        if($msg)
+        {
+            Mind::write('projectOpened', true, $p['name']);
+        }
 		return true;
 	}
 	

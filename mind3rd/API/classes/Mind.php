@@ -15,23 +15,24 @@
 	 */
 	class Mind
 	{
-		public $about= null;
-		public $defaults= null;
-		public $conf= null;
+		public $about                   = null;
+		public $defaults                = null;
+		public $conf                    = null;
 
-        public static $project= null;
-		public static $autoloadPaths= Array();
-		public static $currentProject= null;
-		public static $ref= Array();
-		public static $projectsDir= '';
-		public static $pluginList= Array();
-		public static $l10n= null;
-		public static $triggers= Array();
-		public static $modelsDir= "";
-		public static $langPath= "";
-		public static $content= "";
-		public static $originalContent= "";
-		public static $curLang= 'en';
+        public static $programs         = null;
+        public static $project          = null;
+		public static $autoloadPaths    = Array();
+		public static $currentProject   = null;
+		public static $ref              = Array();
+		public static $projectsDir      = '';
+		public static $pluginList       = Array();
+		public static $l10n             = null;
+		public static $triggers         = Array();
+		public static $modelsDir        = "";
+		public static $langPath         = "";
+		public static $content          = "";
+		public static $originalContent  = "";
+		public static $curLang          = 'en';
         
 		/**
 		 * @var Lexer An instance of the Lexer class

@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
         <link rel="shortcut icon" href="images/logo.png" />
@@ -50,7 +49,26 @@
 		<input type='button' value='generate db' onclick="genDB()"/>
 		<input type='button' value='generate docs' onclick="genDocs()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
-		<pre><div id='result' style='border:solid 1px #777;'></div></pre>
+        <div style='border:solid 1px #777;
+                    overflow:auto;
+                    color:white;
+                    background-color: black;'
+             id="scrollingDiv">
+            <div  id='result'
+                  style='border:none;
+                         width:100%;
+                         font-family: Courier New;
+                         white-space:pre;'></div>
+            <textarea style='width:100%;
+                             margin: 0px;
+                             border: none;
+                             height:120px;
+                             color:white;
+                             font-family: Courier New;
+                             background-color: black;'
+                      id='consoleCommand'
+                      value=""></textarea>
+        </div>
 		<input type='button' value='create demo_en project' onclick="createDemo_en()"/>
 		<input type='button' value='run example' onclick="exampleModel()"/>
 		<input type='button' value='API Facade tests' onclick="APITest()"/>
@@ -326,5 +344,93 @@
 						}
 					});
 		}
+        
+        var MindConsole= {
+            history: [],
+            current: 0,
+            add: function(str)
+            {
+                if(str=='')
+                    return;
+                
+                MindConsole.current= MindConsole.history.length;
+                
+                if(MindConsole.current && MindConsole.history[MindConsole.current-1] == str)
+                {
+                    return;
+                }
+                MindConsole.history.push(str);
+                MindConsole.current++;
+            },
+            back: function(){
+                if(MindConsole.current == 0)
+                    return false;
+                MindConsole.current--;
+                return MindConsole.history[MindConsole.current];
+            },
+            next: function(){
+                if(MindConsole.current == MindConsole.history.length)
+                    return false;
+                MindConsole.current++;
+                return MindConsole.history[MindConsole.current];
+            }
+        };
+        
+        $('#consoleCommand').bind('keyup', function(event){
+            if(event.which == 38) // up
+            {
+                var comm= false;
+                if(comm = MindConsole.back())
+                    this.value= comm;
+            }
+            if(event.which == 40) // down
+            {
+                var comm= false;
+                if(comm= MindConsole.next())
+                    this.value= comm;
+                else{
+                    MindConsole.add(this.value);
+                    this.value= '';
+                }
+            }
+            if(event.which == 13)
+            {
+                this.value= this.value.replace(/[\t\n]/g, '');
+                MindConsole.add(this.value);
+                if(this.value == 'clear')
+                {
+                    var el= document.getElementById('result');
+                    var scr= document.getElementById('scrollingDiv');
+                    el.innerHTML= '';
+                    this.value= '';
+                    return;
+                }
+                var commandToExecute= this.value;
+                $.ajax({
+						type:'POST',
+						url:'../../',
+						data:{
+							program:'eval',
+							command: commandToExecute
+						},
+						success: function(retQ){
+                            var el= document.getElementById('result');
+							el.innerHTML+= commandToExecute+"\n"+retQ;
+                            //el.scrollIntoView(true);
+                            document.getElementById('scrollingDiv').scrollTop= el.offsetHeight;
+						}
+					});
+                this.value= '';
+            }
+        });
+        function adjust()
+        {
+            document.getElementById('scrollingDiv').style.height= ($(document).height() - 100)+"px";
+            document.getElementById('consoleCommand').focus();
+        }
+        
+        $('#scrollingDiv').bind('click', adjust);
+        $(document).ready(adjust);
+        $(window).bind('resize', adjust);
 	</script>
 </html>

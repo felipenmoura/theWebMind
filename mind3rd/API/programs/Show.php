@@ -27,7 +27,7 @@ EOT
             
             $this->addRequiredArgument('what',
                                        'What to show',
-                                        Array('projects',
+                                        Array( 'projects',
                                                'users',
                                                'entities',
                                                'relations',
