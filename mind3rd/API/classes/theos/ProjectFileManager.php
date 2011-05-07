@@ -94,9 +94,9 @@ class ProjectFileManager {
     public static function writeToFile($file, $data)
     {
         $file= self::setInnerURI($file);
-        if(file_exists($file))
-            return \file_put_contents ($file, $data);
-        return false;
+        if(!file_exists($file))
+            self::createFile($file);
+        return \file_put_contents($file, $data);
     }
     
     /**

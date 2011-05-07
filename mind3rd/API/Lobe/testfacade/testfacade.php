@@ -47,5 +47,6 @@ class testFacade extends \Lobe\Neuron implements \neuron{
         echo "              openProject(\$projectName);\n";
         echo "              projectExists(\$projectName);\n";
         echo "              source();\n";
+        
 	}
 }

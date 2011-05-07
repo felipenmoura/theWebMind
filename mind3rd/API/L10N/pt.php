@@ -65,6 +65,7 @@ class pt implements l10n{
 		$this->messages['done']                     = Mind::message("API: Pronto\n", '[Ok]', false);
 		$this->messages['invalidOptionValue']       = Mind::message("API: '%s' não é uma opção válida para '%s'", '[Fail]', false);
 		$this->messages['runnintPHPUnit']           = "Aguarde...executando testes unitários...\n";
+		$this->messages['mustBeAdmin']              = Mind::message("API: Você precisa ser o administrador para executar esta instrução", '[Fail]', false);
 		$this->messages['phpunitNotFound']          = "Especifique onde encontram-se as classes do PHPUnit\n".
                                                       "Você pode configurar isto em mind3rd/env/mind.ini ini file\n".
                                                       "alterando a propriedade phpunit-src\n";

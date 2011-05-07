@@ -25,7 +25,13 @@ class QueryFactory extends TableSort{
 	
 	public static function getCompleteQuery($decorated=true, $raw= false, $format='string')
 	{
-		$closingQueries= Array();
+		if(sizeof(self::$queries) == 0)
+        {
+            self::buildQuery();
+            //echo "No queries to show...have you commited your project?\n";
+            //return false;
+        }
+        $closingQueries= Array();
 		$outpt= ($format=='string')? "": Array();
 		if(self::$showHeader)
 		{

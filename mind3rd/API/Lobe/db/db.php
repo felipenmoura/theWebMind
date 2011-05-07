@@ -1,14 +1,21 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This file is part of TheWebMind 3rd generation.
+ * 
+ * Notice that, these packages are being used only for documentation,
+ * not to organize the classes.
+ * 
+ * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @license licenses/mind3rd.license
  */
 namespace Lobe\db;
 /**
- * Description of DBGen
+ * Database Generator.
+ * Generates/manages the database according to the current project's configuration.
  *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Lobe
+ * @subpackage db
  */
 class db extends \Lobe\Neuron implements \neuron{
 	

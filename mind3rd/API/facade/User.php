@@ -30,10 +30,12 @@ class User{
     {
         return \MindProject::projectsList();
     }
-    /*
-    public static function ()
+    
+    public static function set($attr, $value, $user=false)
     {
+        \MindUser::set($attr, $value, $user);
     }
+    /*
     public static function ()
     {
     }*/
