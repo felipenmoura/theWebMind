@@ -66,7 +66,8 @@
                 </tr>
                 <tr>
                     <td style="vertical-align:top;background-color: black;">
-                        <div style='overflow:auto;
+                        <div style='overflow-y:auto;
+                                    overflow-x:hidden;
                                     color:white;'
                              id="scrollingDiv">
                             <table style='width:100%;'>
@@ -94,6 +95,7 @@
                                                          font-family: Courier New;
                                                          background-color: black;
                                                          resize: none;'
+                                                 border="0"
                                                  id='consoleCommand'></textarea>
                                     </td>
                                 </tr>
