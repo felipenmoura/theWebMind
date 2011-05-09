@@ -58,9 +58,10 @@
 		<input type='button' value='generate docs' onclick="genDocs()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
         <div id="MindConsoleWindow" style="position:absolute; height:400px; width:90%;">
-            <table style="width:100%;height:100%;" border="1">
+            <table style="width:100%; height:100%; background-color:#a76;"
+                   border="1">
                 <tr>
-                    <td id='MindConsoleWindowTitle' style="height:30px;">
+                    <td id='MindConsoleWindowTitle' style="height:30px; color:white;">
                         Console
                     </td>
                 </tr>
