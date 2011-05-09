@@ -177,7 +177,8 @@ class MindProject extends VersionManager{
         }
         
         $msg= false;
-        if($_SESSION['currentProject'] != $p['pk_project'])
+        if(isset($_SESSION['currentProject']) &&
+           $_SESSION['currentProject'] != $p['pk_project'])
             $msg= true;
         
 		$_SESSION['currentProject']= $p['pk_project'];

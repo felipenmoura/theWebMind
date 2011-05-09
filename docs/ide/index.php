@@ -2,8 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
         <link rel="shortcut icon" href="images/logo.png" />
+        <link href="css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="stylesheet" type="text/css" />
+        
 		<script src='scripts/jquery.js'></script>
+		<script src='scripts/jquery-ui.js'></script>
+        
 		<style tye='text/css'>
+            td
+            {
+                vertical-align:top;
+            }
 			property
 			{
 				font-weight:bold;
@@ -49,31 +57,59 @@
 		<input type='button' value='generate db' onclick="genDB()"/>
 		<input type='button' value='generate docs' onclick="genDocs()"/>
 		<input type='button' value='logoff' onclick="logoff()"/>
-        <div style='border:solid 1px #777;
-                    overflow:auto;
-                    color:white;
-                    background-color: black;'
-             id="scrollingDiv">
-            <div  id='result'
-                  style='border:none;
-                         width:100%;
-                         font-family: Courier New;
-                         white-space:pre;'></div>
-            <textarea style='width:100%;
-                             margin: 0px;
-                             border: none;
-                             height:120px;
-                             color:white;
-                             font-family: Courier New;
-                             background-color: black;'
-                      id='consoleCommand'
-                      value=""></textarea>
+        <div id="MindConsoleWindow" style="position:absolute; height:400px; width:90%;">
+            <table style="width:100%;height:100%;" border="1">
+                <tr>
+                    <td id='MindConsoleWindowTitle' style="height:30px;">
+                        Console
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:top;background-color: black;">
+                        <div style='overflow:auto;
+                                    color:white;'
+                             id="scrollingDiv">
+                            <table style='width:100%;'>
+                                <tr>
+                                    <td colspan="2">
+                                        <div  id='result'
+                                              style='width:100%;
+                                                     height:100%;
+                                                     font-family: Courier New;
+                                                     white-space:pre-wrap;'></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='vertical-align:top;
+                                               font-family: Courier New;
+                                               width:75px;'>
+                                        mind3rd>
+                                    </td>
+                                    <td style="height:20px;">
+                                        <textarea style='width:100%;
+                                                         margin: 0px;
+                                                         border: none;
+                                                         color:white;
+                                                         height:100%;
+                                                         font-family: Courier New;
+                                                         background-color: black;
+                                                         resize: none;'
+                                                 id='consoleCommand'></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
+        
 		<input type='button' value='create demo_en project' onclick="createDemo_en()"/>
 		<input type='button' value='run example' onclick="exampleModel()"/>
 		<input type='button' value='API Facade tests' onclick="APITest()"/>
 	</body>
 	<script>
+        var consoleCall= "mind3rd>";
 		function setLoading()
 		{
 			document.getElementById('result').innerHTML= "&nbsp;&nbsp;<img src='images/loading_animation.gif' /><br/>Loading...";
@@ -373,6 +409,9 @@
                     return false;
                 MindConsole.current++;
                 return MindConsole.history[MindConsole.current];
+            },
+            focus: function()
+            {
             }
         };
         
@@ -381,16 +420,22 @@
             {
                 var comm= false;
                 if(comm = MindConsole.back())
+                {
                     this.value= comm;
+                    MindConsole.focus();
+                }
             }
             if(event.which == 40) // down
             {
                 var comm= false;
                 if(comm= MindConsole.next())
+                {
                     this.value= comm;
-                else{
+                    MindConsole.focus();
+                }else{
                     MindConsole.add(this.value);
                     this.value= '';
+                    MindConsole.focus();
                 }
             }
             if(event.which == 13)
@@ -415,22 +460,47 @@
 						},
 						success: function(retQ){
                             var el= document.getElementById('result');
-							el.innerHTML+= commandToExecute+"\n"+retQ;
-                            //el.scrollIntoView(true);
+							el.innerHTML+= consoleCall+commandToExecute+"\n"+retQ;
+                            
+                            if(retQ.substring(retQ.length -2) != "\n")
+                                el.innerHTML+= "\n";
+                            
                             document.getElementById('scrollingDiv').scrollTop= el.offsetHeight;
 						}
 					});
                 this.value= '';
+                this.parentNode.style.height= '20px';
+                MindConsole.focus();
+            }else{
+                if(this.scrollTop > 0)
+                {
+                    this.parentNode.style.height= this.parentNode.offsetHeight+30+"px";
+                }
             }
         });
         function adjust()
         {
-            document.getElementById('scrollingDiv').style.height= ($(document).height() - 100)+"px";
+            var sd= document.getElementById('scrollingDiv');
+            sd.style.height= sd.parentNode.offsetHeight+"px";
+            sd.style.width= sd.parentNode.offsetWidth+"px";
             document.getElementById('consoleCommand').focus();
+            sd.style.display= '';
         }
         
-        $('#scrollingDiv').bind('click', adjust);
+        $('#MindConsoleWindow').draggable({handle:'#MindConsoleWindowTitle'}).resizable({
+            ghost:true,
+            start:function(){
+                document.getElementById('scrollingDiv').style.display= 'none';
+            },
+            stop: adjust
+        });
+        
+        $('#MindConsoleWindow').bind('click', function(){
+            document.getElementById('consoleCommand').focus();
+        }).bind('dblclick', function(){
+            document.getElementById('consoleCommand').select();
+        });
         $(document).ready(adjust);
-        $(window).bind('resize', adjust);
+        //$(window).bind('resize', adjust);
 	</script>
 </html>
