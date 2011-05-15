@@ -162,7 +162,9 @@
                 }
                 $program->$realArgs[$k]= $arg;
             }
-            $program->action();
-            return true;
+            
+            if(is_string($program->commandAction))
+                return $program->{$program->commandAction}();
+            $program->runAction();
         }
     }

@@ -31,7 +31,6 @@ class ProjectFactory extends Project{
 	{
 		$props= $this->getProperties($entity1);
 		
-		
 		if(sizeof($props) != sizeof($entity2->properties)
 			||
 		   array_keys($props) != array_keys($entity2->properties))

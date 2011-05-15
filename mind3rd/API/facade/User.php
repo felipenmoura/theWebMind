@@ -15,11 +15,38 @@ class User{
     
     /**
      * Returns an array of all registered users.
+     * @param boolean detailed If you want only the login, or the complete data from user
      * @return Array
      */
-    public static function usersList()
+    public static function usersList($detailed=false)
     {
-        return \MindUser::listUsers();
+        return \MindUser::listUsers($detailed);
+    }
+    
+    /**
+     * Returns wether the user exists or not
+     * @param string $userLogin The user login
+     * @return boolean
+     */
+    public static function userExists($userLogin)
+    {
+        $usersList= \MindUser::listUsers(true);
+        foreach($usersList as $user)
+        {
+            if($user['login'] == $userLogin)
+                return $user;
+        }
+        return false;
+    }
+    
+    /**
+     * Loads the information about the specified user
+     * @param string login
+     * @return Array
+     */
+    public static function loadUserInfo($login)
+    {
+        return self::userExists($login);
     }
     
     /**

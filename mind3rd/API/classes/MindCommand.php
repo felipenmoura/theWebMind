@@ -25,6 +25,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	private $optionalOptions         = Array();
 	private $commandFlags            = Array();
 	public  $answers                 = Array();
+	public  $commandAction           = null;
 	public  $commandAvailableOptions = Array();
     
     /**
@@ -517,10 +518,6 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	public function runAction(){
         
         $this->runPlugins('before');
-        
-        /*echo "\n\n";
-        print_r($this->commandAvailableOptions);
-        echo "\n\n";*/
         
         foreach($this->commandAvailableOptions as $k=>$avOpts)
         {
