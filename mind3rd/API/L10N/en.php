@@ -58,6 +58,7 @@ class En implements l10n{
 		$this->messages['invalidOptionValue']       = Mind::message("API: '%s' is not a valid option for '%s'", '[Fail]', false);
 		$this->messages['runnintPHPUnit']           = "Please wait...running PHPUnit...\n";
 		$this->messages['mustBeAdmin']              = Mind::message("API: You must be the admin to perform this action", '[Fail]', false);
+		$this->messages['cannotInstall']            = Mind::message("API: To install a component, you need to change the 'allow_installation' property into mind.ini file, setting it as true", '[Fail]', false);
 		$this->messages['phpunitNotFound']          = "You must specify where to find phpUnit classes\n".
                                                       "You can configure it on mind3rd/env/mind.ini ini file\n".
                                                       "changing the phpunit-src ini property\n";;

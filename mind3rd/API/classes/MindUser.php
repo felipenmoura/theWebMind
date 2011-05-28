@@ -47,6 +47,24 @@ class MindUser
             echo "\n";
     }
     
+    /**
+     * Verifies if there is a user autenticated.
+     * @return boolean
+     */
+    public static function isIn()
+    {
+        return isset($_SESSION['pk_user']);
+    }
+    
+    /**
+     * Retrieves if the currently logged user is an administrator.
+     * @return boolean
+     */
+    public static function isAdmin()
+    {
+        return isset($_SESSION['pk_user']) && $_SESSION['type'] == 'A';
+    }
+    
     protected static function getDBConn()
     {
         if(!self::$dbConn)
@@ -54,6 +72,11 @@ class MindUser
         return self::$dbConn;
     }
     
+    /**
+     * Retrieves the list of users.
+     * @param boolean $detailed
+     * @return mixed
+     */
     public static function listUsers($detailed=false)
     {
         $db= self::getDBConn();

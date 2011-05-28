@@ -24,6 +24,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	private $requiredOptions         = Array();
 	private $optionalOptions         = Array();
 	private $commandFlags            = Array();
+	private $adminOnly               = false;
 	public  $answers                 = Array();
 	public  $commandAction           = null;
 	public  $commandAvailableOptions = Array();
@@ -301,6 +302,12 @@ class MindCommand extends Symfony\Component\Console\Command\Command
         return $this;
     }
     
+    public function setAdminAccess()
+    {
+        $this->adminOnly= true;
+        return $this;
+    }
+    
     /**
      * Sets the command's description.
      * @param string $description
@@ -388,12 +395,19 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	public function verifyCredentials()
 	{
 		if($this->restrict)
-			if(!isset($_SESSION['auth']))
+			if(!MindUser::isIn())
 			{
 				Mind::write('not_allowed');
 				Mind::write('not_allowed_tip');
 				return false;
 			}
+        
+        if($this->adminOnly && !MindUser::isAdmin())
+        {
+            Mind::write('mustBeAdmin');
+            return false;
+        }
+           
 		return true;
 	}
 
@@ -529,7 +543,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
             }
         }
         
-        // yea, I know it looks a bit crazy!
+        // yeah, I know it looks a bit crazy!
         if(is_string($this->commandAction))
             $this->{$this->commandAction}();
         else

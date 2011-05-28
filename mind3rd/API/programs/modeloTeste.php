@@ -76,4 +76,4 @@
             // after all the definition, you MUST initiate your program.
             $this->init();
         }
-	}
+    }
