@@ -25,13 +25,25 @@
         
         public function executableFunction()
         {
+            echo "AAAAAAAAA";
             if(!\API\User::userExists($this->user))
-               return false; // TODO: put it into L10N
+            {
+                echo "user does not exist";
+                return false; // TODO: put it into L10N
+            }
             if(!\API\Project::projectExists($this->project))
-               return false; // TODO: put it into L10N
+            {
+                echo "project does not exist";
+                return false; // TODO: put it into L10N
+            }
+            $pF= new DAO\ProjectFactory($this->project);
+            //print_r($pF);
+            echo $this->project."\n\n";
+            echo "BBBBBBBBB";
+            //$pF= new DAO\ProjectFactory(Mind::$currentProject);
             
-            $user= \API\User::loadUserInfo($this->user);
-            print_r(\API\Project::data());
+            //$user= \API\User::loadUserInfo($this->user);
+            //print_r(\API\Project::data());
         }
         
         public function __construct()
