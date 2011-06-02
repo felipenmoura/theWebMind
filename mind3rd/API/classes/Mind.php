@@ -34,6 +34,14 @@
 		public static $originalContent  = "";
 		public static $curLang          = 'en';
         
+        public static function &getInstance()
+        {
+            GLOBAL $_MIND;
+            if(!$_MIND)
+                $_MIND= new Mind();
+            return $_MIND;
+        }
+        
 		/**
 		 * @var Lexer An instance of the Lexer class
 		 */
@@ -171,13 +179,11 @@
 		 * false, otherwise
 		 * Alias for MindProject::hasProject
 		 *
-		 * @global Mind $_MIND
 		 * @param String $project
 		 * @return boolean
 		 */
 		static function hasProject($project)
 		{
-			GLOBAL $_MIND;
 			return MindProject::hasProject($project);
 		}
 
@@ -211,6 +217,10 @@
 		 * Constructor
 		 */
 		public function Mind(){
+            if(isset($GLOBALS['_MIND']))
+            {
+                return $GLOBALS['_MIND'];
+            }
 			$path= _MINDSRC_;
 			Mind::$projectsDir= $path.PROJECTS_DIR;
 			Mind::$modelsDir= $path.MODELS_DIR;

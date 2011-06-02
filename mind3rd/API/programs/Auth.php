@@ -38,6 +38,7 @@
                 $_SESSION['pk_user']= $row['pk_user'];
                 $_SESSION['status']= $row['status'];
                 $_SESSION['login']= $row['login'];
+                $_SESSION['type']= $row['type'];
                     
 				if(!$row)
 				{
