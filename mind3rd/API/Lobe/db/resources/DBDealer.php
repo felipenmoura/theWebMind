@@ -22,7 +22,7 @@ class DBDealer {
     private $dbal;
     private $curEntities;
     
-    public function createTable($queryData)
+    public function createTable($query)
     {
         
         $prjDao= new \DAO\Project();
@@ -36,7 +36,7 @@ class DBDealer {
             
         }
         
-        $exec = $this->dbal->execute($queryData->query);
+        $exec = $this->dbal->execute($query);
 
         /*if(\DQB\QueryFactory::tableExists($queryData->table['name']))
         {
@@ -45,7 +45,7 @@ class DBDealer {
         if($exec === false)
         {
             \Mind::write('theosDBQrFail');
-            echo $queryData->query."\n";
+            echo $query."\n";
             echo $this->dbal->getErrorMessage();
             \Mind::write('theosDBQrFailAbort');
             return false;

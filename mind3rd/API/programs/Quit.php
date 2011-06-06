@@ -19,7 +19,7 @@
                  ->setRestrict(false)
 				 ->setFileName('Quit')
 				 ->setHelp(<<<EOT
-			Finishes the application, leaving the console;
+			Finishes the application, leaving mind3rd console;
 EOT
 					);
             $this->init();

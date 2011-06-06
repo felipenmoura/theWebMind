@@ -43,14 +43,14 @@ class db extends \Lobe\Neuron implements \neuron{
 		\DQB\QueryFactory::setUp($ar['driver']);
 		\DQB\QueryFactory::buildQuery();
 		$qrs= \DQB\QueryFactory::getCompleteQuery(false, true, 'array');
-		$qrs= \DQB\QueryFactory::buildRawQuery();
+		//$qrs= \DQB\QueryFactory::buildRawQuery();
         
 		$this->dbal->begin();
         $dealer= new resources\DBDealer($this->dbal);
         
-		foreach($qrs['createTable'] as $tbName=>$qrObject)
+		foreach($qrs as $tbName=>$qr)
 		{
-            if(!$dealer->createTable($qrObject))
+            if(!$dealer->createTable($qr))
             {
                 return false;
             }

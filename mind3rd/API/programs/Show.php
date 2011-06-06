@@ -25,18 +25,22 @@
 EOT
 					);
             
+            $opts= Array(  'projects',
+                           'users',
+                           'entities',
+                           'relations',
+                           'version',
+                           'idioms',
+                           'plugins',
+                           'ddl',
+                           'info',
+                           'lobes');
+            asort($opts);
             $this->addRequiredArgument('what',
                                        'What to show',
-                                        Array( 'projects',
-                                               'users',
-                                               'entities',
-                                               'relations',
-                                               'version',
-                                               'idioms',
-                                               'plugins',
-                                               'lobes'));
+                                        $opts);
             $this->addOptionalArgument('extra', 'Any extra information to be used');
-            $this->addFlag('detailed', '-d', 'Show detailed data');
+            $this->addFlag('detailed', '-d', 'Show detailed data(or set scripts as decorated)');
             
             $this->init();
 		}
@@ -45,6 +49,7 @@ EOT
 		{
 			GLOBAL $_REQ;
 			GLOBAL $_MIND;
+            
 			switch($this->what)
 			{
 				case 'projects':
@@ -148,9 +153,18 @@ EOT
                 case 'idioms':
                     Mind::getIdiomsList();
                     break;
+                case 'ddl':
+                    $ddls= $this->detailed? \API\Get::DecoratedDDL():
+                                            \API\Get::DDL();
+                    foreach($ddls as $ddlCommand)
+                        echo $ddlCommand;
+                    break;
                 case 'lobes':
                     echo implode("\n", \Lobe\Neuron::listLobes());
                     echo "\n";
+                    break;
+                case 'info':
+                    print_r(\API\Project::data());
                     break;
 				default:
 					Mind::write('invalidOption', true, $this->what);
