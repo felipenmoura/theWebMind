@@ -6,7 +6,7 @@
  */
 namespace Lobe\testFacade;
 /**
- * Description of DBGen
+ * This is just a model
  *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  */
