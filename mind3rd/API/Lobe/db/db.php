@@ -7,6 +7,8 @@
  * 
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @license licenses/mind3rd.license
+ * @package Lobe
+ * @subpackage db
  */
 namespace Lobe\db;
 /**

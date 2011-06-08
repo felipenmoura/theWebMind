@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,6 +8,8 @@ namespace Lobe\testFacade;
  * This is just a model
  *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
+ * @package Lobe
+ * @subpackage test
  */
 class testFacade extends \Lobe\Neuron implements \neuron{
     
@@ -18,7 +19,7 @@ class testFacade extends \Lobe\Neuron implements \neuron{
         echo "Here, a list of available commands from the \API package:\n";
         echo "\API\\\n";
         echo "     GET::";
-        echo "plugins(true); // passing true, it echoes directly\n";
+        echo           "plugins(true); // passing true, it echoes directly\n";
         echo "          projectData();\n";
         echo "          currentProject();\n";
         echo "          tables();\n";
@@ -29,18 +30,18 @@ class testFacade extends \Lobe\Neuron implements \neuron{
         echo "          idioms();\n";
         
         echo "     User::";
-        echo "projectsList();\n";
+        echo            "projectsList();\n";
         echo "           usersList();\n";
         
         echo "     FileManager::";
-        echo "appendDataToFile(\$file, \$data);\n";
+        echo                   "appendDataToFile(\$file, \$data);\n";
         echo "                  createDir('newDir/anotherNewDir/finalNewDir');\n";
         echo "                  createFile(\$uri); // also accepts nested directories\n";
         echo "                  createXMLFile(\$uri);\n";
         echo "                  writeToFile(\$file, \$data);\n";
         
         echo "     Project::";
-        echo "data();\n";
+        echo               "data();\n";
         echo "              current();\n";
         echo "              getDDLCommand();\n";
         echo "              getDDLCommand(false); // not decorated\n";
