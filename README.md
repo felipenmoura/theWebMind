@@ -6,7 +6,7 @@ Requirements:
 ---------
 * PHP 5.3+
 * PHP-cli
-* PHP-SQLite
+* PHP-SQLite3
 * ReadLine(if you inted to use it in command line, not only with HTTP requisitions)
 
 Installation:

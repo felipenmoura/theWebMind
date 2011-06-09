@@ -8,9 +8,3 @@ Class Diagram
 	http://creately.com
 Many different charts
 	http://www.lucidchart.com/
-	
-	
-	
--- to read and use as reference:
-Botton-up parse or shift-reduce parsing
-http://en.wikipedia.org/wiki/Shift-reduce_parsing
