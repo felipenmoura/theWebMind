@@ -214,7 +214,7 @@
 		}
 
 		/**
-		 * Constructor
+		 * The Constructor
 		 */
 		public function Mind(){
             /*if(isset($GLOBALS['_MIND']))
