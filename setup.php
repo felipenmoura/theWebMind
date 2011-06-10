@@ -52,8 +52,8 @@
               If you are trying to reinstall the system, consider removing the file <br/><i>mind3rd/SQLite/mind</i>(the database itself...all the old projects will be lost, them) and then
               try to re-installing the application.<br/><br/>";
     }
-    echo "Admin's password: <input type=password name='adminEmail' /><br/>";
-    echo "Admin's e-mail: <input type=text name='adminPWD' /><br/>";
+    /*echo "Admin's password: <input type=password name='adminEmail' /><br/>";
+    echo "Admin's e-mail: <input type=text name='adminPWD' /><br/>";*/
     echo "<input type='button'
                  value='Verify again'
                  onclick='self.location.href=self.location.href' />";
