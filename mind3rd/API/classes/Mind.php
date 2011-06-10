@@ -217,10 +217,10 @@
 		 * Constructor
 		 */
 		public function Mind(){
-            if(isset($GLOBALS['_MIND']))
+            /*if(isset($GLOBALS['_MIND']))
             {
                 return $GLOBALS['_MIND'];
-            }
+            }*/
 			$path= _MINDSRC_;
 			Mind::$projectsDir= $path.PROJECTS_DIR;
 			Mind::$modelsDir= $path.MODELS_DIR;
