@@ -62,8 +62,14 @@ class User{
     {
         \MindUser::set($attr, $value, $user);
     }
-    /*
-    public static function ()
+    
+    public static function isAdmin()
     {
-    }*/
+        return $_SESSION['type']== 'A';
+    }
+    
+    public static function code()
+    {
+        return $_SESSION['pk_user'];
+    }
 }

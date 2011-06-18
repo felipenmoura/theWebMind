@@ -18,7 +18,12 @@ class pt implements l10n{
     public function getMessage($msg)
 	{
 		if(isset($this->messages[$msg]))
+        {
+            if(preg_match('[Fail]', $this->messages[$msg]))
+                if(!headers_sent())
+                    header('HTTP/1.1 412 Precondition Failed');
 			return $this->messages[$msg];
+        }
 		else
 			return false;
 	}

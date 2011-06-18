@@ -43,6 +43,10 @@
 			{
 				text-decoration: underline;
 			}
+            input,textarea
+            {
+                outline:none;
+            }
 		</style>
 	</head>
 	<body>
@@ -461,15 +465,16 @@
 							program:'eval',
 							command: commandToExecute
 						},
-						success: function(retQ){
+                        complete: function (xhr){
+                            var retQ= xhr.responseText
                             var el= document.getElementById('result');
-							el.innerHTML+= consoleCall+commandToExecute+"\n"+retQ;
-                            
+                            el.innerHTML+= consoleCall+commandToExecute+"\n"+retQ;
+
                             if(retQ.substring(retQ.length -2) != "\n")
                                 el.innerHTML+= "\n";
-                            
+
                             document.getElementById('scrollingDiv').scrollTop= el.offsetHeight;
-						}
+                        }
 					});
                 this.value= '';
                 this.parentNode.style.height= '20px';
@@ -481,6 +486,7 @@
                 }
             }
         });
+        
         function adjust()
         {
             var sd= document.getElementById('scrollingDiv');

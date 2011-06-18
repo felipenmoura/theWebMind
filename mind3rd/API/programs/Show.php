@@ -177,9 +177,9 @@ EOT
 		{
 			$db= new MindDB();
 			if($this->detailed)
-				$projs= $db->query('SELECT * from project');
+				$projs= \API\Project::projectList(true);
 			else
-				$projs= $db->query('SELECT name from project');
+				$projs= \API\Project::projectList(false);
 			return $projs;
 		}
 		private function loadUsersList()

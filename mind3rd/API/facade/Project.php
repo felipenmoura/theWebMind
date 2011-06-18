@@ -33,9 +33,9 @@
          * 
          * @return Array
          */
-        public static function projectList()
+        public static function projectList($detail=false)
         {
-            return \MindProject::listProjects();
+            return \MindProject::listProjects($detail);
         }
         
         /**
@@ -45,7 +45,7 @@
         public static function current()
         {
             return \Mind::$project? \Mind::$project:
-                                          false;
+                                    false;
         }
 
         /**

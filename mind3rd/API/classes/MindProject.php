@@ -56,15 +56,27 @@ class MindProject extends VersionManager{
      * Returns the list of registered and active projects.
      * 
      * @return Array
+     * @param boolean $detailed
      */
-    public static function listProjects()
+    public static function listProjects($detailed=false)
     {
         $db= new MindDB();
-        $hasProject= "SELECT distinct pk_project,
-							 project.name as name
+        $hasProject= "SELECT ".($detailed? " pk_project,project.name as name,
+                                             info, creator,
+                                             dt_creation":
+                                          "  distinct pk_project,
+                                             project.name as name")."
 						from project
-					   where status='A'
 					 ";
+        
+        if(!\API\User::isAdmin())
+            $hasProject.= ", project_user
+                      where  fk_project = pk_project
+                             and fk_user = ".\API\User::code()."
+                             and project.status='A'";
+        else
+            $hasProject.= " WHERE project.status='A'";
+        
 		$data= $db->query($hasProject);
         return $data;
     }
