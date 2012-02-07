@@ -25,7 +25,7 @@
         
         public function executableFunction()
         {
-            echo "AAAAAAAAA";
+            //echo "AAAAAAAAA";
             if(!\API\User::userExists($this->user))
             {
                 echo "user does not exist";

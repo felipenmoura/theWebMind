@@ -67,7 +67,7 @@
             $this->addRequiredArgument('attribute',
                                        'The attribute you will change');
             $this->addOptionalArgument('value',
-                                       'The value for that attribute(optional only for pwd');
+                                       'The value for that attribute(optional only for pwd)');
             $this->addOptionalArgument('extra',
                                        'An extra data about the defined attribute(the status or type for users or projects)');
 

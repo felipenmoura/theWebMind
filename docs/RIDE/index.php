@@ -25,8 +25,7 @@
                     include('components/ide.php');
                 }else
                     include('components/login.php');
-            }
-                
+            }   
         ?>
     </body>
 </html>

@@ -10,7 +10,7 @@
         <br/>
     </div>
     <div id="editorPanel">
-        <div id="editor">test<br/>test</div>
+        <div id="editor"></div>
     </div>
     <div id="consolePanel">
         <br/>
