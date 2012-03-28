@@ -160,7 +160,13 @@
                     echo self::getHelp($programName);
                     return;
                 }
-                $program->$realArgs[$k]= $arg;
+				
+				if(!key_exists($k, $realArgs)){
+					\Mind::write('wrongParam', true, $k, $arg);
+					exit;
+				}else{
+					$program->$realArgs[$k]= $arg;
+				}
             }
             
             if(is_string($program->commandAction))

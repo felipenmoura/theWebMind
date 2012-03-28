@@ -11,8 +11,20 @@
      * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
      * @license licenses/mind3rd.license
      */
+		
 	require(_MINDSRC_.'/mind3rd/API/utils/header.php');
+	
+	if(!Mind::isInstalled()){
+		if($_REQ['env']=='shell'){
+			echo "You have to install the application!\nTo install it, please run: sudo php mind install";
+		}else{
+			header('location:setup.php');
+		}
+		exit;
+	}
+	
 	include(_MINDSRC_.'/mind3rd/API/utils/constants.php');
+	require(_MINDSRC_.'/mind3rd/env/setup/Setup.php');
 	
 	/**
 	 * @global Mind $_MIND  This variable contains many information about the proect, the system and also have some methods an attributes to deal with such data
@@ -54,9 +66,9 @@
     $d->close();
     $app->addCommands($programs);
     \MIND::$programs= $programs;
-	
     // starting the application
-	if($_REQ['env']=='shell')
-            include('shell.php');
-	else
-            include('http.php');
+	if($_REQ['env']=='shell'){
+		include('shell.php');
+	}else{
+			include('http.php');
+	}

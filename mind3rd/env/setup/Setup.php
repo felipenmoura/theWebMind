@@ -135,6 +135,10 @@ abstract class Setup {
         return self::$installationOk= $phpVsOk && $sqliteOk && $projectsDir && $sqliteDir && $apiDir;
     }
     
+	public static function isInstalled(){
+		return file_exists('mind3rd/SQLite/mind');
+	}
+	
     /**
      * Creates the SQLite DataBase.
      * 
