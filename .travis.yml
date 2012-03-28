@@ -1,3 +1,6 @@
 language: php
+script: "cd Tests;phpunit ."
+
 php:
   - 5.3
+  
