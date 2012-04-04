@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of TheWebMind 3rd generation.
- * 
+ *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @license licenses/mind3rd.license
  */
@@ -32,7 +32,7 @@ abstract class WinSetup extends Setup{
             /*
             $runDir= str_replace('cmd.exe', '', getenv('COMSPEC'));
             $phpBin= '';
-            
+
             if(!isset($_SERVER))
             {
                 while(!file_exists($phpBin) || basename($phpBin)!='php.exe')
@@ -66,7 +66,7 @@ abstract class WinSetup extends Setup{
 
             $cwd= str_replace('\\', '/', getcwd());
 
-            $phpContent= '$_REQ= Array(); $_REQ["env"]= "shell"; define("_MINDSRC_", "'.$cwd.'"); require("'.$cwd.'/mind3rd/API/utils.php"); ';
+            $phpContent= '$_REQ= Array(); $_REQ["env"]= "shell"; define("_MINDSRC_", "'.$cwd.'"); require("'.$cwd.'/mind3rd/API/utils/utils.php"); ';
             @shell_exec('echo ^<?php '.$phpContent.' > '.$runDir.'mind3rd.php');
             */
             // </editor-fold>

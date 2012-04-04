@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of TheWebMind 3rd generation.
- * 
+ *
  * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
  * @license licenses/mind3rd.license
  */
@@ -38,7 +38,7 @@ class UnixSetup extends Setup{
 	$_REQ= Array();
 	$_REQ["env"]= "shell";
 	define("_MINDSRC_", "'.getcwd().'");
-	require("'.getcwd().'/mind3rd/API/utils.php");';
+	require("'.getcwd().'/mind3rd/API/utils/utils.php");';
 
 		echo "  starting the installation...\n";
 		echo "  creating the file...\n";

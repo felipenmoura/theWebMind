@@ -1,7 +1,7 @@
 <?php
     /**
      * This file is part of TheWebMind 3rd generation.
-     * 
+     *
      * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
      * @license licenses/mind3rd.license
      */
@@ -15,10 +15,10 @@
 					 break;
 		case 'POST': $_REQ['data']= $_POST;
 					 break;
-		case 'PUT' : parse_str(file_get_contents('php://input'), $put_vars);  
+		case 'PUT' : parse_str(file_get_contents('php://input'), $put_vars);
 		             $_REQ['data'] = $put_vars;
 		             break;
 		default:
 					 $_REQ['data']= null;
 	}
-	include('mind3rd/API/utils.php');
+	include('mind3rd/API/utils/utils.php');
