@@ -31,6 +31,8 @@
 
 	// addresses
 	define('PROJECTS_DIR',        '/mind3rd/projects/');
+	define('KNOWLEDGE_BASE',      'mind3rd/SQLite/mind');
+	define('KNOWLEDGE_DDL',       'mind3rd/SQLite/ddl.sql');
 	define('MODELS_DIR',          '/mind3rd/API/models/');
 	define('ABOUT_INI',           '/mind3rd/env/about.ini');
 	define('DEFAULTS_INI',        '/mind3rd/env/defaults.ini');

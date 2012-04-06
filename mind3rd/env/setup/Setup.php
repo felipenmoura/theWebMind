@@ -68,7 +68,7 @@ abstract class Setup {
     
     public static function databaseAlreadyExists()
     {
-        return file_exists('mind3rd/SQLite/mind');
+        return file_exists(\KNOWLEDGE_BASE);
     }
     
     /**
@@ -135,10 +135,39 @@ abstract class Setup {
         return self::$installationOk= $phpVsOk && $sqliteOk && $projectsDir && $sqliteDir && $apiDir;
     }
     
+    /**
+     * Return true if mind was already installed in this server.
+     * 
+     * @return boolean
+     */
 	public static function isInstalled(){
-		return file_exists('mind3rd/SQLite/mind');
+		return file_exists(\KNOWLEDGE_BASE);
 	}
 	
+    /**
+     * Tries to remove completely the database.
+     * 
+     * This method has NO ROLLBACK and should be called with parsimony.
+     * 
+     * @return boolean
+     */
+    public static function removeDataBase(){
+        return unlink(\KNOWLEDGE_BASE);
+    }
+    
+    /**
+     * Tries to remove all the created projects.
+     * 
+     * This method has NO ROLLBACK and should be called with parsimony.
+     * 
+     * @return boolean
+     */
+    public static function clearProjects(){
+        if($ret = shell_exec("sudo rm -rf ".'.'.\PROJECTS_DIR) == '')
+            return mkdir('.'.\PROJECTS_DIR);
+        return false;
+    }
+    
     /**
      * Creates the SQLite DataBase.
      * 
@@ -151,8 +180,8 @@ abstract class Setup {
         GLOBAL $_MIND;
         echo "  creating database...\n";
         $sqlite= class_exists('SQLite3')? 'SQLite3': 'SQLiteDatabase';
-        $sqliteDDLFile= 'mind3rd/SQLite/ddl.sql';
-        $sqliteBaseFile= 'mind3rd/SQLite/mind';
+        $sqliteDDLFile= \KNOWLEDGE_DDL;
+        $sqliteBaseFile= \KNOWLEDGE_BASE;
         
         if(file_exists($sqliteBaseFile))
         {

@@ -19,22 +19,48 @@
 	// checks if it has received any argument
 	if(sizeOf($_SERVER['argv'])>0 && isset($_SERVER['argv'][1]))
 	{
+        require('mind3rd/API/utils/constants.php');
 		// installation should create the required SQLite database and a shortcut command
-		if($_SERVER['argv'][1] == 'install')
+		switch($_SERVER['argv'][1])
 		{
-			// first, for linux and mac computers
-			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
-			{
-				require('mind3rd/env/setup/UnixSetup.php');
-                $_MIND['sys']= 'unix';
-				UnixSetup::install();
-			}else{
-                    require('mind3rd/env/setup/WinSetup.php');
-                    $_MIND['sys']= 'win';
-                    WinSetup::install();
-				 }
-			exit;
-		}
+            case 'install':{
+                // first, for linux and mac computers
+                if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
+                {
+                    require('mind3rd/env/setup/UnixSetup.php');
+                    $_MIND['sys']= 'unix';
+                    UnixSetup::install();
+                }else{
+                        require('mind3rd/env/setup/WinSetup.php');
+                        $_MIND['sys']= 'win';
+                        WinSetup::install();
+                     }
+                exit;
+                break;
+            }
+            case 'uninstall':{
+                // only for linux and mac computers
+                if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN'){
+                    require('mind3rd/env/setup/UnixSetup.php');
+                    $_MIND['sys']= 'unix';
+                    UnixSetup::uninstall();
+                    exit;
+                }else{
+                    echo "Available only in Unix Based Systems\n";
+                }
+                break;
+            }
+            case 'remove':{
+                // only for linux and mac computers
+                if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN'){
+                    require('mind3rd/env/setup/UnixSetup.php');
+                    $_MIND['sys']= 'unix';
+                    UnixSetup::remove();
+                    exit;
+                }
+                break;
+            }
+        }
 	}
 	// if not installing, it should be redirected to mind3rd/API/shell.php
     $_REQ= Array();

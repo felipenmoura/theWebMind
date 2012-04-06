@@ -143,7 +143,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
                        !in_array(strtolower($answer),
                                   array_map('strtolower', $options)))
                     {
-                        Mind::write('invalidOptionValue', true, $answer, $name);
+                       Mind::write('invalidOptionValue', true, $answer, $name);
                        $answer= false;
                     }
                 }
