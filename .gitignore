@@ -27,5 +27,7 @@ mind3rd/API/temp/*
 .project
 .DS_Store
 ./nbproject
+.buildpath
+.project
 nbproject
 nbproject/*
