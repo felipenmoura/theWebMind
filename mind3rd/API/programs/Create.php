@@ -159,6 +159,7 @@ EOT
                     
 					Mind::openProject(Array('pk_project'=>$key,
 											 'name'=>$this->argName));
+                    \MindLog::log(\MindLog::LOG_TYPE_PROJECT, " OK   - Project '".$this->argName."' create by ".$_SESSION['login']);
 				break;
 			case 'user':
 					$db= new MindDB();
@@ -195,6 +196,7 @@ EOT
 										 )";
 					$db->execute($qr_newUser);
 					Mind::write('userCreated', true, $this->argName);
+                    \MindLog::log(\MindLog::LOG_TYPE_USER, " OK   - User '".$this->argName."' create by ".$_SESSION['login']);
 					echo "\n";
 				break;
 			default:

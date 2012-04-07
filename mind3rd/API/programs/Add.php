@@ -25,7 +25,6 @@
         
         public function executableFunction()
         {
-            //echo "AAAAAAAAA";
             if(!\API\User::userExists($this->user))
             {
                 echo "user does not exist";
@@ -36,7 +35,7 @@
                 echo "project does not exist";
                 return false; // TODO: put it into L10N
             }
-            $pF= new DAO\ProjectFactory($this->project);
+            $pF= new DAO\ProjectFactory(Array('name'=>$this->project));
             //print_r($pF);
             echo $this->project."\n\n";
             echo "BBBBBBBBB";

@@ -141,7 +141,7 @@ class MindProject extends VersionManager{
 					 ";
 		$data= $db->query($hasProject);
 		if(sizeof($data)>0)
-            return true;
+            return $data;
 		return false;
 	}
     

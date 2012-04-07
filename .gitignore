@@ -18,6 +18,7 @@ mind3rd/SQLite/mind
 ## Temporary files
 ##
 mind3rd/API/temp/*
+mind3rd/API/logs/*
 
 ##
 ## Development meta files

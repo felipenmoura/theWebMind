@@ -36,6 +36,7 @@ class pt implements l10n{
 	public function __construct()
 	{
 		//header('Content-type: text/html; charset=iso-8859-1');
+        $this->messages['welcome']			        = "Bem vindo ao mind3rd.\nDigite 'help' para ver  o conteúdo básico da ajuda.\nDigite 'list' para ver a lista completa de comandos.\n";
 		$this->messages['programRequired']			= Mind::message("API: Você precisa passar o nome do programa a ser executado.", '[Fail]', false);
 		$this->messages['loginRequired']			= Mind::message("Auth: Tanto login quanto senha são obrigatórios.", '[Fail]', false);
 		$this->messages['passwordRequired']			= "Precisarei do password para este usuário, por favor: ";

@@ -19,7 +19,7 @@
 		case 'PUT' : parse_str(file_get_contents('php://input'), $put_vars);
 		             $_REQ['data'] = $put_vars;
 		             break;
-		default:
+		default    :
 					 $_REQ['data']= null;
 	}
 	include('mind3rd/API/utils/utils.php');

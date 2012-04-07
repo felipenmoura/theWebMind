@@ -29,6 +29,7 @@ class En implements l10n{
 	}
 	public function __construct()
 	{
+		$this->messages['welcome']			        = "Welcome to mind3rd.\nPlease, type 'help' to see the basic help content.\nType 'list' to see the complete list of commands.\n";
 		$this->messages['programRequired']			= Mind::message("API: You must send the program name, to execute", '[Fail]', false);
 		$this->messages['loginRequired']			= Mind::message("Auth: Both login and password are required", '[Fail]', false);
 		$this->messages['passwordRequired']			= "I need a password for this user, please: ";

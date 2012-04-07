@@ -481,9 +481,12 @@ class MindCommand extends Symfony\Component\Console\Command\Command
 	}
 
 	/**
+    * Reads from keyboard in hiddenn mode.
+    * 
 	* function taken from: http://www.dasprids.de/blog/2008/08/22/getting-a-password-hidden-from-stdin-with-php-cli
 	* this method should read the passwords from console, not showing any character
 	* or replacing them by stars(asterisks)
+    * 
 	* @method readPassword
 	* @param Boolan $stars if true, show an * for each typed char
 	* @return String password

@@ -7,8 +7,8 @@
      */
 
 	// setting the general helperSet
-	$helperSet= true;
-	/*$helperSet= ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
+    $helperSet= true;
+    /*$helperSet= ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
     $app->setHelperSet($helperSet);*/
 	
 	if(isset($_SERVER['argv']))
@@ -20,11 +20,10 @@
 	
 	/* let's load the plugins, if they are allowed */
 	Mind::$triggers= array_keys($app->getCommands());
-	
-    //var_dump($app);
-    
+
 	try {
         $sh= new Symfony\Component\Console\Shell($app);
+        \Mind::write('welcome');
         $sh->run();
     }catch(Exception $exc) {
 

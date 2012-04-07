@@ -43,12 +43,15 @@
 				if(!$row)
 				{
 					Mind::write('auth_fail', true);
+                    \MindLog::log(\MindLog::LOG_TYPE_USER, 'FAIL - Tried login with user \''.$this->login.'\' and failed');
 					return false;
 				}
 			}else{
 					 die('Database not found!');
 				 }
             Mind::write('autenticated', true, $this->login);
+            \MindLog::log(\MindLog::LOG_TYPE_USER, ' OK  - \''.$this->login.'\' logged in');
+            
 			return $this;
 		}
         
