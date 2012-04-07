@@ -28,6 +28,7 @@ EOT
 		public function action()
 		{
 			@session_destroy();
+            //\API\Program::execute('clear');
 			Mind::write('bye');
             exit;
 		}

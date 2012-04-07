@@ -28,7 +28,7 @@ abstract class WinSetup extends Setup{
              * for readline on windows! Then, on windows, the system will run
              * ONLY with HTTP requisitions...sorry guys!
              */
-            // <editor-fold defaultstate="collapsed" desc="Code responsible for the instalation in windows, but is not in use by now">
+            // <editor-fold defaultstate="collapsed" desc="Code responsible for the instalation in windows, but is not in use by now because some of the external console components does not work on Windows!">
             /*
             $runDir= str_replace('cmd.exe', '', getenv('COMSPEC'));
             $phpBin= '';

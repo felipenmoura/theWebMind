@@ -18,7 +18,7 @@ class Info extends MindCommand implements program
 	{
 		$this
 				->setCommandName('info')
-				->setDescription('Performs some tests on theWebMind')
+				->setDescription('Shows some information about this instalation')
 				->setRestrict(true)
                 ->setAction('action')
 				->setHelp(<<<EOT

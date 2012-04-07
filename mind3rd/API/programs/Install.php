@@ -53,7 +53,7 @@
         public function __construct()
         {
             $this->setCommandName('install')
-                 ->setDescription("This program will be able to install components to the application.")
+                 ->setDescription("Adds components to the application")
                  //->setFileName('modeloTeste') // use this if your class has NOT the same name as its file
                  ->setRestrict(true)
                  ->setAdminAccess()

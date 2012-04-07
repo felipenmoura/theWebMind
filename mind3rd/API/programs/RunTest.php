@@ -34,6 +34,19 @@ EOT
 		public function action()
 		{
 			GLOBAL $_MIND;
+            /*\API\Program::execute('clear');
+            echo "|==>                       |";
+            sleep(1);
+            \API\Program::execute('clear');
+            echo "|========>                 |";
+            sleep(1);
+            \API\Program::execute('clear');
+            echo "|===============>          |";
+            sleep(1);
+            \API\Program::execute('clear');
+            echo "|=========================>|\n";
+            sleep(1);*/
+            
             
             ob_start();
 			$this->runStep1();
@@ -55,6 +68,11 @@ EOT
                 echo shell_exec($_MIND->conf['phpunit-src']." "._MINDSRC_."/Tests/");
 			}
             ob_end_flush();
+            
+            // gotoxy
+            // printf("\033[2;10f");
+            
+            
             return true;
 		}
 

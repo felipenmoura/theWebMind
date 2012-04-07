@@ -45,13 +45,9 @@ class HelpCommand extends Command
       ->setAliases(array('?'))
       ->setDescription('Displays help for a command')
       ->setHelp(<<<EOF
-The <info>help</info> command displays help for a given command:
-
-  <info>./symfony help test:all</info>
-
-You can also output the help as XML by using the <comment>--xml</comment> option:
-
-  <info>./symfony help --xml test:all</info>
+The <info>help</info> command displays help for a given command.
+    Use the comand <info>list</info> to see the list of commands.
+    Use <info>command</info> <comment>--help</comment> to see details about each command.
 EOF
       );
   }

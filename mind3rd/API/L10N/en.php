@@ -37,7 +37,7 @@ class En implements l10n{
 		$this->messages['not_allowed_tip']			= "Try calling the command\n    auth < login >\nA password will be required.\n";
 		$this->messages['no_such_file']				= Mind::message("\nMain: No such command '%s'", "[Fail]", false);
 		$this->messages['auth_fail']				= Mind::message("\nAuth: Wrong user or password", "[Fail]", false);
-		$this->messages['bye']						= "Logging out...\n";
+		$this->messages['bye']						= "Thank you! See you later!\nLogging out...\n";
 		$this->messages['thinking']				    = "Please wait while I'm thinking...\n";
 		$this->messages['invalidCreateParams']		= Mind::message("Main: Invalid parameters", "[Fail]", false);
 		$this->messages['invalidOption']			= Mind::message("Invalid option '%s'", '[Fail]', false);

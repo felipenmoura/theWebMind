@@ -66,7 +66,15 @@ class Shell
     while (true)
     {
       $command = readline($this->application->getName().' > ');
-
+      
+      /**      changed by felipeNMoura       **/
+      if($command == "\n" || $command == ""){
+        $this->output->write("");
+        continue;
+      }
+      /** end of changes made by felipnmoura **/
+      
+      
       if (false === $command)
       {
         $this->output->writeln("\n");

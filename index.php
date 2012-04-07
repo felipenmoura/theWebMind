@@ -9,6 +9,7 @@
 	$_REQ['request_method']= $_SERVER['REQUEST_METHOD'];
 	$_REQ['env']= 'http';
 	define('_MINDSRC_', getcwd());
+    
 	switch($_REQ['request_method'])
 	{
 		case 'GET' : $_REQ['data']= $_GET;

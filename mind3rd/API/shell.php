@@ -7,9 +7,9 @@
      */
 
 	// setting the general helperSet
-	$helperSet= false;
-	$helperSet= ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
-        $app->setHelperSet($helperSet);
+	$helperSet= true;
+	/*$helperSet= ($helperSet) ?: new Symfony\Component\Console\Helper\HelperSet();
+    $app->setHelperSet($helperSet);*/
 	
 	if(isset($_SERVER['argv']))
 	{
@@ -21,6 +21,8 @@
 	/* let's load the plugins, if they are allowed */
 	Mind::$triggers= array_keys($app->getCommands());
 	
+    //var_dump($app);
+    
 	try {
         $sh= new Symfony\Component\Console\Shell($app);
         $sh->run();
@@ -34,6 +36,6 @@
         }
         else
             echo "   Please, follow these instructions to install it: http://goo.gl/UDrEY\n\n";
-        echo "   NOTE: Even without the readline extension, you already can use the\n";
-        echo "         system via HTTP once it does not need the shell to work\n\n";
+            echo "   NOTE: Even without the readline extension, you already can use the\n";
+            echo "         system via HTTP once it does not need the shell to work\n\n";
     }

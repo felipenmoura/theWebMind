@@ -60,6 +60,26 @@
                 }
                 break;
             }
+            case '--help':
+            case '-h':
+            case '?':
+            case 'help':{
+                echo "theWebMind(or just mind):\n    website: http://thewebmind.org\n    Twitter: @thewebmind\n    Docs: http://docs.thewebmind.org\n\n";
+                     "The list of  startup commands:\n".
+                     "    install  : installs the application itself\n".
+                     "    uninstall: uninstalls the application, but do NOT remove projects,\n".
+                     "               users or history\n".
+                     "    remove   : installs the application AND REMOVE every data it may\n".
+                     "               have created, including ALL projects, history and users.\n".
+                     "    --help   :\n";
+                     "    -h       :\n";
+                     "    help     :\n";
+                     "    ?        :\n";
+                     "              Shows this help content.\n\n";
+                echo "After installing, you can open the application by calling the 'mind' command anywhere.\n".
+                     "You will also be able to send POST requisition to mind's server address sending the command you want to execute and its parameters.\n";
+                exit;
+            }
         }
 	}
 	// if not installing, it should be redirected to mind3rd/API/shell.php

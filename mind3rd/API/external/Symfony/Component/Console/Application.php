@@ -61,6 +61,8 @@ class Application
   /**
    * Constructor.
    *
+   * CHANGED BY FELIPENMOURA
+   * 
    * @param string  $name    The name of the application
    * @param string  $version The version of the application
    */
@@ -84,11 +86,11 @@ class Application
       new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
 
       new InputOption('--help',           '-h', InputOption::PARAMETER_NONE, 'Display this help message.'),
-      new InputOption('--quiet',          '-q', InputOption::PARAMETER_NONE, 'Do not output any message.'),
-      new InputOption('--verbose',        '-v', InputOption::PARAMETER_NONE, 'Increase verbosity of messages.'),
-      new InputOption('--version',        '-V', InputOption::PARAMETER_NONE, 'Display this program version.'),
+      //new InputOption('--quiet',          '-q', InputOption::PARAMETER_NONE, 'Do not output any message.'),
+      //new InputOption('--verbose',        '-v', InputOption::PARAMETER_NONE, 'Increase verbosity of messages.'),
+      //new InputOption('--version',        '-V', InputOption::PARAMETER_NONE, 'Display this program version.'),
       new InputOption('--color',          '-c', InputOption::PARAMETER_NONE, 'Force ANSI color output.'),
-      new InputOption('--no-interaction', '-n', InputOption::PARAMETER_NONE, 'Do not ask any interactive question.'),
+      //new InputOption('--no-interaction', '-n', InputOption::PARAMETER_NONE, 'Do not ask any interactive question.'),
     ));
   }
 

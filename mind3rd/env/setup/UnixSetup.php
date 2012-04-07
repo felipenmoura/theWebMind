@@ -22,23 +22,18 @@ class UnixSetup extends Setup{
 	 */
 	public static function createExecFile()
 	{
-        /*
-        $uriToAdd= getcwd()."/";
-        //echo $uriToAdd."<br/>";
-        ///usr/local/bin:/usr/bin:/bin
-        //echo shell_exec('echo $PATH');
-        echo "<br/>";
-        echo getenv('PATH').PATH_SEPARATOR.$uriToAdd;
-        echo "<br/>";
-        echo shell_exec('expert PATH=$PATH'.PATH_SEPARATOR.$uriToAdd);
-        echo shell_exec('echo $PATH');
-        echo "<br/>";
-        */
 		self::$content= '<?php
 	$_REQ= Array();
 	$_REQ["env"]= "shell";
 	define("_MINDSRC_", "'.getcwd().'");
-	require("'.getcwd().'/mind3rd/API/utils/utils.php");';
+    
+    
+    if(sizeOf($_SERVER["argv"])>0 && isset($_SERVER["argv"][1])){
+        require("'.getcwd().'/mind");
+    }else{
+        require("'.getcwd().'/mind3rd/API/utils/utils.php");
+    }
+';
 
 		echo "  starting the installation...\n";
 		echo "  creating the file...\n";

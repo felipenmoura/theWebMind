@@ -31,7 +31,7 @@ class Create extends MindCommand implements program
              ->setAction('action')
 			 ->setHelp(<<<EOT
     You can create a new project by typing "create project name"
-    You can create your users typing "create user name" and then, adding the user to any specific group.
+    You can create your users typing "create user name" and then, adding the user to any specific project.
     You need to be a super user to perform these actions
 EOT
 					);
