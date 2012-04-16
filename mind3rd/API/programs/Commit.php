@@ -1,7 +1,7 @@
 <?php
     /**
      * This file is part of TheWebMind 3rd generation.
-     * 
+     *
      * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
      * @license licenses/mind3rd.license
      */
@@ -10,10 +10,8 @@
 		Symfony\Component\Console;
 
 	/**
-	 * This class represents the program auth, receiving the user and
-	 * may also receive the password. It will start your session
-	 * allowing you to run the restricted programs
-	 *
+	 * This program commits the current alterations to eveyone.
+     *
 	 * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
 	 */
 	class Commit extends MindCommand implements program
