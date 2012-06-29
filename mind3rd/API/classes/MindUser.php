@@ -25,13 +25,14 @@ class MindUser
     {
         if(\in_array($attr, self::$adminValidAttrs) || $user)
         {
-            if($_SESSION['pk_user'] != 1)
+            if(!\MindUser::isAdmin())
             {
                 \Mind::write('mustBeAdmin');
                 return false;
             }
-        }elseif(!\in_array($attr, self::$validAttrs))
-                return false;
+        }
+        if(!\in_array($attr, self::$validAttrs))
+            return false;
         
         if($attr == 'pwd')
             $value= self::hash($value);
@@ -39,9 +40,18 @@ class MindUser
         $value= (is_string($value))? "'".$value."'": $value;
         
         $db= self::getDBConn();
+        if($user && !is_numeric($user)){
+            $user= \MindUser::getUserByLogin($user);
+            if(!$user){
+                \MindSpeaker::write('auth_fail');
+                return false;
+            }
+            $user= $user['pk_user'];
+        }
         $user= $user? $user: $_SESSION['pk_user'];
         $qr= "UPDATE user set ".$attr."= ".$value.
              "WHERE pk_user=".$user;
+        
         $db->execute($qr);
         if($attr == 'pwd')
             echo "\n";
@@ -70,6 +80,31 @@ class MindUser
         if(!self::$dbConn)
             self::$dbConn= new \MindDB();
         return self::$dbConn;
+    }
+    
+    /**
+     * Retrieves the user details based on the login.
+     * 
+     * This method DEMANDS the current user to be admin.
+     * 
+     * @param String $login
+     * @return UserObject Or false if not admin
+     */
+    public static function getUserByLogin($login){
+        if(!\MindUser::isAdmin()){
+            \Mind::write('mustBeAdmin');
+            return false;
+        }
+            
+        $db= self::getDBConn();
+        $user= false;
+        $usrs= $db->query("SELECT * from user where login = '".addslashes($login)."'");
+        foreach($usrs as $k=>$usr)
+        {
+            $user= $usr;
+            break;
+        }
+        return $user;
     }
     
     /**

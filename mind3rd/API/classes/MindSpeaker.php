@@ -28,17 +28,25 @@ class MindSpeaker
 		{
 			$msg= Mind::message("L10N: Message $k does not exist", '[Fail]', false);
 		}
-		if(!is_array($args))
+		if(!is_array($args)){
 			$args= func_get_args();
+            array_shift($args);
+            array_shift($args); // ugly, isn't it?!
+        }
+            
 		$parms= "";
-		if(sizeof($args)>2)
+		if(sizeof($args)>=1)
 		{
-			for($i=2; $i<sizeof($args); $i++)
+			for($i=0; $i<sizeof($args); $i++)
 			{
-				$parms.= ', "'.$args[$i].'"';
+				$parms.= ', "'.addslashes($args[$i]).'"';
 			}
 			$parms= '"'.$msg.'"'.$parms;
-			eval("\$print= sprintf(".$parms.");");
+            try{
+                eval("\$print= sprintf(".$parms.");");
+            }catch(Exception $exc){
+                // actually,  do nothing...
+            }
 		}else{
 				$print= $msg;
 			 }

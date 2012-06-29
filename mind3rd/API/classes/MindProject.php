@@ -156,8 +156,10 @@ class MindProject extends VersionManager{
 							 project.name as name
 						from project_user,
 							 project
-					   where fk_user= ".$user."
-						 and fk_project = pk_project
+					   where fk_project = pk_project
+                       ";
+        if(!\API\User::isAdmin())
+            $hasProject.= "  and fk_user= ".$user."
 					 ";
 		$data= $db->query($hasProject);
         return $data;

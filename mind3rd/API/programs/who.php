@@ -29,7 +29,7 @@
             $this->setCommandName('who')
                  ->setDescription("Show information about the currently logged used")
                  ->setRestrict(true)
-                 ->setHelp("Show information about the currently logged used")
+                 ->setHelp("Show information about the currently logged used.\n    used as $ who am i?")
                  ->setAction(function($class){
                      $class->executableFunction();
                    });

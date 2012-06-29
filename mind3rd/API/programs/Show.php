@@ -33,7 +33,11 @@ EOT
                            'idioms',
                            'plugins',
                            'ddl',
+                           'source',
                            'info',
+                           'data',
+                           'props',
+                           'properties',
                            'lobes');
             asort($opts);
             $this->addRequiredArgument('what',
@@ -67,6 +71,35 @@ EOT
 								$this->printMatrix($projectList);
 							 }
 					break;
+				case 'data':
+				case 'props':
+				case 'properties':
+                    //var_dump($_MIND);
+                    $p= \Mind::$currentProject;
+                    if($p){
+                        if($_REQ['env']=='http')
+                            echo JSON_encode($p);
+                        else{
+                            foreach($p as $k=>$v){
+                                if($k == 'database_user' || $k == 'database_pwd'){
+                                    if(!\API\User::isAdmin())
+                                        continue;
+                                }
+                                echo "    ".str_pad($k, 16, " ").": ".$v."\n";
+                            }
+                        }
+                    }else{
+                        \MindSpeaker::write("currentProjectRequired");
+                    }
+                    break;
+                case 'source':
+                    $p= \Mind::$currentProject;
+                    if($p){
+                        var_dump(\MindProject::loadSource());
+                    }else{
+                        \MindSpeaker::write("currentProjectRequired");
+                    }
+                    break;
 				case 'users':
 						$users= $this->loadUsersList();
 						$userList= Array();
@@ -151,13 +184,23 @@ EOT
                     MindPlugin::listPlugins($_REQ['env']!='http');
                     break;
                 case 'idioms':
-                    Mind::getIdiomsList();
+                    if($_REQ['env']=='http'){
+                        echo JSON_encode(Mind::getIdiomsList());
+                    }else{
+                        echo "    ".implode(', ', Mind::getIdiomsList())."\n";
+                    }
                     break;
                 case 'ddl':
-                    $ddls= $this->detailed? \API\Get::DecoratedDDL():
-                                            \API\Get::DDL();
-                    foreach($ddls as $ddlCommand)
-                        echo $ddlCommand;
+                    $p= \Mind::$currentProject;
+                    if($p){
+                        $ddls= $this->detailed? \API\Get::DecoratedDDL():
+                                                \API\Get::DDL();
+                        foreach($ddls as $ddlCommand){
+                            echo $ddlCommand;
+                        }
+                    }else{
+                        \MindSpeaker::write("currentProjectRequired");
+                    }
                     break;
                 case 'lobes':
                     echo implode("\n", \Lobe\Neuron::listLobes());

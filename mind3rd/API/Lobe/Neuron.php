@@ -20,7 +20,7 @@ abstract class Neuron {
 	public static function listLobes()
     {
         $list= Array();
-        $d = dir(\theos\ProjectFileManager::getLobesDir());
+        $d = dir(\theos\Gosh::getLobesDir());
         while (false !== ($entry = $d->read()))
         {
             if($entry!= 'Neuron.php' && $entry[0] != '.')

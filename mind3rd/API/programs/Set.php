@@ -39,12 +39,35 @@
         
         public function executableFunction()
         {
-            if($this->whose == 'user')
+            $property= explode('.', $this->property);
+            if(sizeof($property) <= 1){
+                //\MindSpeaker::write('wrongParam', $this->property);
+                \MindSpeaker::write('wrongParam', true, "property", $this->property);
+                return false;
+            }
+            $entity= $property[0];
+            $property= $property[1];
+            if($entity == 'user'){
+                if($property == 'pwd' && !$this->extra){
+                    $this->prompt('pwd',  "What will be the password?", true);
+                    if($this->value)
+                        $this->extra= $this->value;
+                    $this->value= $this->answers['pwd'];
+                }
+                if($this->extra){
+                    \MindUser::set($property, $this->value, $this->extra);
+                }else{
+                    \MindUser::set($property, $this->value);
+                }
+            }else{
+                \MindUser::set($property, $this->value);
+            }
+            /*if($this->whose == 'user')
             {
                 $this->setUserData();
             }else{
                 $this->setProjectData();
-            }
+            }*/
         }
         
         public function __construct()
@@ -61,15 +84,15 @@
     Where status may be 'A' or 'I', and type may be 'A' or 'N'")
                  ->setAction('executableFunction');
             
-            $this->addRequiredArgument('whose',
-                                       'Who will suffer the update',
-                                       Array('user', 'project'));
-            $this->addRequiredArgument('attribute',
-                                       'The attribute you will change');
+            $this->addRequiredArgument('property',
+                                       'Who will suffer the update. Use entity.property(eg. user.pwd'/*,
+                                       Array('user', 'project')*/);
+            /*$this->addRequiredArgument('attribute',
+                                       'The attribute you will change');*/
             $this->addOptionalArgument('value',
-                                       'The value for that attribute(optional only for pwd)');
+                                       'The value for that attribute(optional for pwd)');
             $this->addOptionalArgument('extra',
-                                       'An extra data about the defined attribute(the status or type for users or projects)');
+                                       'An extra data about the defined attribute(eg. if admin, the user to be changed)');
 
             $this->init();
         }
