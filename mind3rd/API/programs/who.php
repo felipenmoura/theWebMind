@@ -34,8 +34,6 @@
                      $class->executableFunction();
                    });
 
-            /*$this->addOption('am', 'am');
-            $this->addOption('i', 'i');*/
             $this->addRequiredArgument('am',
                                        'am',
                                        Array('am'));
