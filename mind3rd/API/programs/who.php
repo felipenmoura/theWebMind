@@ -1,7 +1,7 @@
 <?php
     /**
      * This file is part of TheWebMind 3rd generation.
-     * 
+     *
      * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
      * @license licenses/mind3rd.license
      */
@@ -16,14 +16,14 @@
 	 */
 	class Who extends MindCommand implements program
 	{
-        
+
         public function executableFunction()
         {
             $name= JSON_decode($_SESSION['auth']);
             $name= $name->name;
             echo 'You are '.$_SESSION['login'].", also known as ".$name."\n";
         }
-        
+
         public function __construct()
         {
             $this->setCommandName('who')
@@ -33,7 +33,7 @@
                  ->setAction(function($class){
                      $class->executableFunction();
                    });
-            
+
             /*$this->addOption('am', 'am');
             $this->addOption('i', 'i');*/
             $this->addRequiredArgument('am',

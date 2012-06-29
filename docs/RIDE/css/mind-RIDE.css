@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : mind-RIDE
     Created on : Jun 10, 2011, 8:18:20 PM
     Author     : felipenmoura
@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
+root {
     display: block;
     height:100%;
 }
@@ -71,8 +71,31 @@ body
     position:absolute;
 }
 
+#menuList{
+    position: relative;
+}
+#menuList ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#menuList>ul>li{
+    padding: 4px;
+    margin-righ: 1px;
+    position: relative;
+    float: left;
+}
+#menuList>ul>li ul{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    display: none;
+}
+#menuList ul li:hover ul{
+    display: block;
+}
+#menuList ul li:focus ul{
 
-
-
+}
 
 

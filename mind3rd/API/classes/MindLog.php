@@ -38,7 +38,7 @@ class MindLog {
             case self::LOG_TYPE_USER:{
                 if(strtolower($_MIND->conf['log_user_interaction'])){
                     if(!@file_put_contents(_MINDSRC_.\LOGS_DIR.'user.log', $msg."\n", FILE_APPEND)){
-                        echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!";
+                        echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!\n";
                     }
                 }
                 break;
@@ -46,14 +46,14 @@ class MindLog {
             case self::LOG_TYPE_PROJECT:{
                 if(strtolower($_MIND->conf['log_project_interaction'])){
                     if(@file_put_contents(_MINDSRC_.\LOGS_DIR.'project.log', $msg."\n", FILE_APPEND)){
-                        echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!";
+                        echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!\n";
                     }
                 }
                 break;
             }
             default:{
                 if(!@file_put_contents(_MINDSRC_.\LOGS_DIR.'sys.log', $msg."\n", FILE_APPEND)){
-                    echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!";
+                    echo "ERROR: failed trying to create log! please, check the writting permissions for "._MINDSRC_.\LOGS_DIR."!\n";
                 }
                 break;
             }
