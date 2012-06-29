@@ -13,7 +13,7 @@
 class MindUser
 {
     static protected $dbConn          = false;
-    static protected $validAttrs      = Array('name', 'email', 'pwd');
+    static protected $validAttrs      = Array('name', 'email', 'pwd', 'status', 'type');
     static protected $adminValidAttrs = Array('status', 'type');
     
     protected static function hash($pwd)
@@ -31,8 +31,10 @@ class MindUser
                 return false;
             }
         }
-        if(!\in_array($attr, self::$validAttrs))
+        if(!\in_array($attr, self::$validAttrs)){
+            \Mind::write('invalidCreateParams');
             return false;
+        }
         
         if($attr == 'pwd')
             $value= self::hash($value);

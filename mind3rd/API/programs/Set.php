@@ -60,7 +60,7 @@
                     \MindUser::set($property, $this->value);
                 }
             }else{
-                \MindUser::set($property, $this->value);
+                
             }
             /*if($this->whose == 'user')
             {
