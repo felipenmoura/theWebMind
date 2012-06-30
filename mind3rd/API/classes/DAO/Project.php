@@ -166,7 +166,11 @@ class Project{
                                 ".$this->data['pk_project'].",
                                 ".$user['pk_user']."
                             )";
-            return $this->db->execute($qr_userProj);
+            if($this->db->execute($qr_userProj))
+                $this->db->execute('COMMIT');
+            else
+                return false;
+            return true;
         }else{
             return true;
             //echo "JA TINHA\n";

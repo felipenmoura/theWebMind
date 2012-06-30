@@ -46,15 +46,6 @@
             }else{
                 return false;
             }
-            
-            //var_dump($pF);
-            //print_r($pF);
-            //echo $this->project."\n\n";
-            //echo "BBBBBBBBB";
-            //$pF= new DAO\ProjectFactory(Mind::$currentProject);
-            
-            //$user= \API\User::loadUserInfo($this->user);
-            //print_r(\API\Project::data());
         }
         
         public function __construct()

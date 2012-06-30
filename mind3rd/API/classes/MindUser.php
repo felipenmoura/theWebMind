@@ -126,13 +126,16 @@ class MindUser
      * @param boolean $detailed
      * @return mixed
      */
-    public static function listUsers($detailed=false)
+    public static function listUsers($detailed=false, $proj= false)
     {
         $db= self::getDBConn();
-        if($detailed)
-            $usrs= $db->query('SELECT * from user');
-        else
-            $usrs= $db->query('SELECT login from user');
+        $det= $detailed? ' * ': 'login';
+        $qr= 'SELECT '.$det.' FROM user';
+        if($proj)
+            $qr.= ", project_user WHERE pk_user = fk_user and fk_project= ".((int)$proj);
+        
+        $usrs= $db->query($qr);
+        
         return $usrs;
     }
 }

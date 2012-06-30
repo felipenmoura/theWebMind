@@ -118,7 +118,7 @@ class MindProject extends VersionManager{
                            WHERE pk_project = ".$pk_project;
             $db= self::getDBConn();
             if($db->execute($qr_updProj))
-                return true;
+                return $db->execute('COMMIT');
             else
                 return false;
         }else{
@@ -145,6 +145,7 @@ class MindProject extends VersionManager{
             $attr= trim($attr);
             if(!\in_array($attr, self::$availableAttrs)){
                 \MindSpeaker::write('invalidCreateParams');
+                echo "Available list: ".implode(', ', self::$availableAttrs)."\n";
                 return false;
             }
             
@@ -191,21 +192,21 @@ class MindProject extends VersionManager{
     public static function listProjects($detailed=false)
     {
         $db= new MindDB();
-        $hasProject= "SELECT ".($detailed? " pk_project,project.name as name,
+        $hasProject= "SELECT ".($detailed? " pk_project, p.name as name,
                                              info, creator,
                                              dt_creation":
                                           "  distinct pk_project,
-                                             project.name as name")."
-						from project
+                                             name")."
+						from project p
 					 ";
         
         if(!\API\User::isAdmin())
-            $hasProject.= ", project_user
-                      where  fk_project = pk_project
-                             and fk_user = ".\API\User::code()."
-                             and project.status='A'";
+            $hasProject.= ", project_user pu
+                      where  pu.fk_project = p.pk_project
+                             and pu.fk_user = ".\API\User::code()."
+                             and p.status='A'";
         else
-            $hasProject.= " WHERE project.status='A'";
+            $hasProject.= " WHERE p.status='A'";
         
 		$data= $db->query($hasProject);
         return $data;
@@ -227,10 +228,11 @@ class MindProject extends VersionManager{
 
 		$db= new MindDB();
 		$hasProject= "SELECT pk_project,
+                             creator,
 							 project.name as name
 						from project_user,
 							 project
-					   where project.name = '".$project."'
+					   where name = '".$project."'
 						 and fk_project = pk_project
 					 ";
         

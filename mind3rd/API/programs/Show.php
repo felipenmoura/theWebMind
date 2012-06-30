@@ -36,6 +36,7 @@ EOT
                            'source',
                            'info',
                            'data',
+                           'conf',
                            'props',
                            'project',
                            'properties',
@@ -68,7 +69,6 @@ EOT
 						{
 							echo JSON_encode($projectList);
 						}else{
-								//foreach($projectList as $proj)
 								$this->printMatrix($projectList);
 							 }
 					break;
@@ -81,11 +81,24 @@ EOT
                     }
                     break;
 				case 'data':
+				case 'conf':
 				case 'props':
 				case 'properties':
                     //var_dump($_MIND);
                     $p= \Mind::$currentProject;
                     if($p){
+                        //$p['users']= Array();
+                        $p['users']= $this->loadUsersList($p['pk_project']);
+                        /*                        
+                        //var_dump($users);
+						$userList= Array();
+                        
+						foreach($users as $k=>$user)
+						{
+								$userList[$k]= $user;
+						}*/
+                        
+                        
                         if($_REQ['env']=='http')
                             echo JSON_encode($p);
                         else{
@@ -94,13 +107,17 @@ EOT
                                     if(!\API\User::isAdmin())
                                         continue;
                                 }
-                                echo "    ".str_pad($k, 16, " ").": ".$v."\n";
+                                echo "    ".str_pad($k, 16, " ").": ";
+                                if(is_array($v))
+                                    echo JSON_encode($v)."\n";
+                                else
+                                    echo $v."\n";
                             }
                         }
                     }else{
                         \MindSpeaker::write("currentProjectRequired");
                     }
-                    // TODO: list users IN THIS project
+                    
                     break;
                 case 'source':
                     $p= \Mind::$currentProject;
@@ -235,9 +252,9 @@ EOT
 				$projs= \API\Project::projectList(false);
 			return $projs;
 		}
-		private function loadUsersList()
+		private function loadUsersList($proj=false)
 		{
-			return MindUser::listUsers($this->detailed);
+			return MindUser::listUsers($this->detailed, $proj);
 		}
 		private function printList($list)
 		{
