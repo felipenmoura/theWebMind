@@ -154,6 +154,27 @@ class Project{
 		return $this->db->execute($qr);
 	}
 	
+    public function addUser($user){
+        if(!\Mind::hasProject($this->data['name'], $user['pk_user'])){
+            $qr_userProj= "INSERT into project_user
+                            (
+                                fk_project,
+                                fk_user
+                            )
+                            values
+                            (
+                                ".$this->data['pk_project'].",
+                                ".$user['pk_user']."
+                            )";
+            return $this->db->execute($qr_userProj);
+        }else{
+            return true;
+            //echo "JA TINHA\n";
+        }
+        
+        //var_dump($this->data['pk_project']);
+    }
+    
 	/**
 	 * Marks an entity as dropped from the last version.
 	 * The next version has not the passed entity, so, it will be marked
@@ -162,7 +183,7 @@ class Project{
 	 * @param array $en
 	 * @return boolean True in case of success, otherwise, generates an error
 	 */
-	public function markAsDopped(Array $en)
+	public function markAsDropped(Array $en)
 	{
 		$qr= "UPDATE entity
 			     SET status= ".\COMMIT_STATUS_DROP."

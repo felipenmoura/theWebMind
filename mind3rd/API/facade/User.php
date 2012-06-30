@@ -58,9 +58,21 @@ class User{
         return \MindProject::projectsList();
     }
     
+    /**
+     * Sets a property of the currend user.
+     * 
+     * If admin, you can pass the user to be changed.
+     * This method actually changes AND PERSISTS the change to the
+     * user's base.
+     * 
+     * @param String $attr
+     * @param Mixed $value
+     * @param Integer $user
+     * @return boolean
+     */
     public static function set($attr, $value, $user=false)
     {
-        \MindUser::set($attr, $value, $user);
+        return \MindUser::set($attr, $value, $user);
     }
     
     public static function isAdmin()

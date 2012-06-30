@@ -37,6 +37,7 @@ EOT
                            'info',
                            'data',
                            'props',
+                           'project',
                            'properties',
                            'lobes');
             asort($opts);
@@ -71,6 +72,14 @@ EOT
 								$this->printMatrix($projectList);
 							 }
 					break;
+                case 'project':
+                    $p= \Mind::$currentProject;
+                    if(!$p)
+                        \MindSpeaker::write("currentProjectRequired");
+                    else{
+                        echo "    ".\Mind::$currentProject['name'].": ".\Mind::$currentProject['title']."\n";
+                    }
+                    break;
 				case 'data':
 				case 'props':
 				case 'properties':
@@ -91,6 +100,7 @@ EOT
                     }else{
                         \MindSpeaker::write("currentProjectRequired");
                     }
+                    // TODO: list users IN THIS project
                     break;
                 case 'source':
                     $p= \Mind::$currentProject;

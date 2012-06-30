@@ -51,7 +51,7 @@
 				 }
             Mind::write('autenticated', true, $this->login);
             \MindLog::log(\MindLog::LOG_TYPE_USER, ' OK  - \''.$this->login.'\' logged in');
-            
+            \MindProject::close();
 			return $this;
 		}
         

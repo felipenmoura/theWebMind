@@ -94,6 +94,11 @@
             return MindProject::analyze(false);
         }
         
+        public static function set($attr, $val, $proj)
+        {
+            return \MindProject::set($attr, $val, $proj);
+        }
+        
         /**
          * Gets an array with all the source code, for the current project.
          * @return Array

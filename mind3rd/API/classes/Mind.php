@@ -182,9 +182,9 @@
 		 * @param String $project
 		 * @return boolean
 		 */
-		static function hasProject($project)
+		static function hasProject($project, $u=false)
 		{
-			return MindProject::hasProject($project);
+			return MindProject::hasProject($project, $u);
 		}
 
 		/**
@@ -192,11 +192,12 @@
 		 * Alias for MindProject::openProject.
 		 *
 		 * @param AssocArray $p
+		 * @param Boolean $silent Do not output anything
 		 * @return boolean
 		 */
-		public static function openProject($p)
+		public static function openProject($p, $silent=false)
 		{
-			return MindProject::openProject($p);
+			return MindProject::openProject($p, $silent);
 		}
 		
 		/**

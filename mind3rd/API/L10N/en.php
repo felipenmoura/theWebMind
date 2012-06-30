@@ -27,6 +27,7 @@ class En implements l10n{
 		else
 			return false;
 	}
+    
 	public function __construct()
 	{
 		$this->messages['welcome']			        = "Welcome to mind3rd.\nPlease, type 'help' to see the basic help content.\nType 'list' to see the complete list of commands.\n";
@@ -60,7 +61,7 @@ class En implements l10n{
 		$this->messages['theosDBQrOk']              = Mind::message("Theos: Database created successfuly", '[Ok]', false);
 		$this->messages['dbDriverNotFound']         = Mind::message("Theos: Database Driver not found", '[Fail]', false);
 		$this->messages['missingParameter']         = Mind::message("API: Missing argument: %s", '[Fail]', false);
-		$this->messages['done']                     = Mind::message("API: Done\n", '[Ok]', false);
+		$this->messages['done']                     = Mind::message("API: Done", '[Ok]', false);
 		$this->messages['invalidOptionValue']       = Mind::message("API: '%s' is not a valid option for '%s'", '[Fail]', false);
 		$this->messages['runnintPHPUnit']           = "Please wait...running PHPUnit...\n";
 		$this->messages['mustBeAdmin']              = Mind::message("API: You must be the admin to perform this action", '[Fail]', false);
@@ -68,7 +69,7 @@ class En implements l10n{
 		$this->messages['wrongParam']               = Mind::message("\nMain: The parameter '%s', whose value is '%s', is not valid!", '[Fail]', false);
 		$this->messages['phpunitNotFound']          = "You must specify where to find phpUnit classes\n".
                                                       "You can configure it on mind3rd/env/mind.ini ini file\n".
-                                                      "changing the phpunit-src ini property\n";;
+                                                      "changing the phpunit-src ini property\n";
 		
 		$this->messages['http_invalid_requisition']	= <<<MESSAGE
    Invalid HTTP requisition.

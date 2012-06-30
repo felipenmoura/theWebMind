@@ -68,7 +68,7 @@ class ProjectFactory extends Project{
 	}
 	
 	/**
-	 * Saves the current entities
+	 * Saves the current entities.
 	 * 
 	 * It will persist the current entities into the SQLite database.
 	 * This will also verifies the changes in the previous version and
@@ -107,7 +107,7 @@ class ProjectFactory extends Project{
 		foreach($currentEntities as $en)
 		{
 			$commited= true;
-			$this->markAsDopped($en);
+			$this->markAsDropped($en);
 		}
 		
 		if($commited)

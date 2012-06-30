@@ -10,7 +10,7 @@
 		Symfony\Component\Console;
 
 	/**
-	 * This class represents a model for programs
+	 * This class represents a model for programs.
 	 *
 	 * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
 	 */
@@ -35,10 +35,22 @@
                 echo "project does not exist";
                 return false; // TODO: put it into L10N
             }
-            $pF= new DAO\ProjectFactory(Array('name'=>$this->project));
+            
+            if(!$projectData= \Mind::hasProject($this->project))
+                return false;
+            
+            $pF= new DAO\ProjectFactory($projectData);
+            if($pF->addUser(\MindUser::getUserByLogin($this->user))){
+                \MindSpeaker::write('done');
+                return true;
+            }else{
+                return false;
+            }
+            
+            //var_dump($pF);
             //print_r($pF);
-            echo $this->project."\n\n";
-            echo "BBBBBBBBB";
+            //echo $this->project."\n\n";
+            //echo "BBBBBBBBB";
             //$pF= new DAO\ProjectFactory(Mind::$currentProject);
             
             //$user= \API\User::loadUserInfo($this->user);

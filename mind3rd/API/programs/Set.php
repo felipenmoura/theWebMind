@@ -21,7 +21,7 @@
         public $value    = '';
         public $extra    = '';
         
-        private function setUserData()
+        /*private function setUserData()
         {
             if($this->attribute=='pwd')
                 $this->value= $this->prompt('pwd', 'The new password, please', true);
@@ -36,12 +36,11 @@
         {
             echo "Project's data\n";
         }
-        
+        */
         public function executableFunction()
         {
             $property= explode('.', $this->property);
             if(sizeof($property) <= 1){
-                //\MindSpeaker::write('wrongParam', $this->property);
                 \MindSpeaker::write('wrongParam', true, "property", $this->property);
                 return false;
             }
@@ -55,19 +54,16 @@
                     $this->value= $this->answers['pwd'];
                 }
                 if($this->extra){
-                    \MindUser::set($property, $this->value, $this->extra);
+                    if(\MindUser::set($property, $this->value, $this->extra))
+                        \MindSpeaker::write('done');
                 }else{
-                    \MindUser::set($property, $this->value);
+                    if(\MindUser::set($property, $this->value))
+                        \MindSpeaker::write('done');
                 }
             }else{
-                
+                if(\MindProject::set($property, $this->value, $this->extra))
+                    \MindSpeaker::write('done');
             }
-            /*if($this->whose == 'user')
-            {
-                $this->setUserData();
-            }else{
-                $this->setProjectData();
-            }*/
         }
         
         public function __construct()
