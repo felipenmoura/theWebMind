@@ -154,8 +154,22 @@ class Project{
 		return $this->db->execute($qr);
 	}
 	
+    public function removeUser($user){
+        if(\Mind::hasProject($this->data['name'], $user['pk_user'])){
+            
+            $qr_userProj= "DELETE from project_user
+                            WHERE fk_project= ".((int)$this->data['pk_project'])."
+                              AND fk_user= ".((int)$user['pk_user']);
+            $this->db->execute($qr_userProj);
+            \Mind::write('done');
+            return $this->db->execute('COMMIT');
+        }
+        return true;
+    }
+    
     public function addUser($user){
-        if(!\Mind::hasProject($this->data['name'], $user['pk_user'])){
+        
+        if(!\Mind::hasProject($this->data['name'], $user['pk_user']) ){
             $qr_userProj= "INSERT into project_user
                             (
                                 fk_project,
@@ -173,10 +187,7 @@ class Project{
             return true;
         }else{
             return true;
-            //echo "JA TINHA\n";
         }
-        
-        //var_dump($this->data['pk_project']);
     }
     
 	/**

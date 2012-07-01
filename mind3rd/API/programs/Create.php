@@ -65,7 +65,7 @@ EOT
 
 					if($this->projectExists($this->argName))
 					{
-						Mind::write('projectAlreadyExists', true, $this->argName);
+						\MindSpeaker::write('projectAlreadyExists', true, $this->argName);
 						return false;
 					}
 					if(!file_exists($this->projectfile) && !@mkdir($this->projectfile))
@@ -154,7 +154,7 @@ EOT
                                           $ini);
                     }
                     
-                    Mind::write('projectCreated', true, $this->argName);
+                    \MindSpeaker::write('projectCreated', true, $this->argName);
 					$db->execute("COMMIT");
                     
 					Mind::openProject(Array('pk_project'=>$key,

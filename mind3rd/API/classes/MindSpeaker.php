@@ -30,9 +30,9 @@ class MindSpeaker
 		}
 		if(!is_array($args)){
 			$args= func_get_args();
-            array_shift($args);
-            array_shift($args); // ugly, isn't it?!
         }
+        array_shift($args);
+        array_shift($args); // ugly, isn't it?!
             
 		$parms= "";
 		if(sizeof($args)>=1)

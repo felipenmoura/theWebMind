@@ -218,7 +218,7 @@ class MindProject extends VersionManager{
 	 *
 	 * @global Mind $_MIND
 	 * @param String $project
-	 * @return boolean
+	 * @return Mixed False, or an Array with the project ID, Name and creator
 	 */
 	static function hasProject($project, $u=false)
 	{
@@ -253,7 +253,7 @@ class MindProject extends VersionManager{
 		{
             if($u && \MindUser::isAdmin())
                 return false;
-			Mind::write('noProject', true, $project);
+			\MindSpeaker::write('noProject', true, $project);
 			return false;
 		}
 		return $row;
@@ -274,7 +274,9 @@ class MindProject extends VersionManager{
 		$noAccess= true;
 
 		$db= new MindDB();
-		$hasProject= "SELECT pk_project
+		$hasProject= "SELECT pk_project,
+                             creator,
+							 project.name as name
 						from project
 					   where project.name = '".$projectName."'
 					 ";

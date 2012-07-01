@@ -14,39 +14,36 @@
 	 *
 	 * @author Felipe Nascimento de Moura <felipenmoura@gmail.com>
 	 */
-	class Add extends MindCommand implements program
+	class Remove extends MindCommand implements program
 	{
         /*
          * The properties you will use as argument MUST be declared, and public
          */
         public $user= '';
-        public $to= '';
+        public $from= '';
         public $project= '';
         
         public function executableFunction()
         {
+            if(!\MindUser::isAdmin()){
+                \MindSpeaker::write('mustBeAdmin');
+                return false;
+            }
+            
             if(!\API\User::userExists($this->user))
             {
                 \MindSpeaker::write('auth_fail');
                 return false;
             }
-            if(!\API\Project::projectExists($this->project))
+            
+            if(!\API\Project::projectExists($this->project) || !$projectData= \Mind::hasProject($this->project))
             {
                 \MindSpeaker::write('noProject', true, $this->project);
                 return false;
             }
             
-            if(!$projectData= \Mind::hasProject($this->project, $this->user)){
-                if(\MindUser::isAdmin()){
-                    $projectData= \API\Project::projectExists($this->project);
-                    $projectData= $projectData[0];
-                }else
-                    return false;
-            }
-            
             $pF= new DAO\ProjectFactory($projectData);
-            
-            if($pF->addUser(\MindUser::getUserByLogin($this->user))){
+            if($pF->removeUser(\MindUser::getUserByLogin($this->user))){
                 \MindSpeaker::write('done');
                 return true;
             }else{
@@ -59,25 +56,18 @@
             /**
              * You can use the following structure to set the program behavior
              */
-            $this->setCommandName('add')
-                 ->setDescription("Add a user to an specified project")
+            $this->setCommandName('remove')
+                 ->setDescription("Removes a user from a project")
                  ->setRestrict(true)
-                 ->setHelp("Use this command to add a user to a project.\nYou MUST be the project's owner")
+                 ->setHelp("Use this command to remove a user's access to a project.")
                  ->setAction('executableFunction');
            
-            /**
-             * The next commands shows you how to set the signature of you program, such as
-             * parameters, options or flags.
-             * Your class will receive a property for each parameter, which can be accessed
-             * by its argument name(in this example, 'firstArgument'.
-             */
             $this->addRequiredArgument('user',
-                                       'The user to be added');
-            $this->addRequiredArgument('to',
-                                       'string "to"');
+                                       'The user to be removed');
+            $this->addRequiredArgument('from',
+                                       'string "from"');
             $this->addRequiredArgument('project',
-                                       'The project in which the user will be added as developer');
-            
+                                       'The project from which the user will be removed');
             
             $this->init();
         }

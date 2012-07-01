@@ -126,7 +126,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
                        !in_array(strtolower($answer),
                                  array_map('strtolower', array_keys($options))))
                     {
-                        Mind::write('invalidOptionValue', true, $answer, $name);
+                        \MindSpeaker::write('invalidOptionValue', true, $answer, $name);
                         $answer= false;
                     }
                     
@@ -143,7 +143,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
                        !in_array(strtolower($answer),
                                   array_map('strtolower', $options)))
                     {
-                       Mind::write('invalidOptionValue', true, $answer, $name);
+                       \MindSpeaker::write('invalidOptionValue', true, $answer, $name);
                        $answer= false;
                     }
                 }
@@ -541,7 +541,7 @@ class MindCommand extends Symfony\Component\Console\Command\Command
             if($avOpts && !in_array(strtolower($this->$k),
                                     array_map('strtolower', $avOpts)))
             {
-                Mind::write('invalidOptionValue', true, $this->$k, $k);
+                \MindSpeaker::write('invalidOptionValue', true, $this->$k, $k);
                 return false;
             }
         }
