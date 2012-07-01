@@ -122,7 +122,8 @@ EOT
                 case 'source':
                     $p= \Mind::$currentProject;
                     if($p){
-                        var_dump(\MindProject::loadSource());
+                        $s= $this->extra? $this->extra: 'main';
+                        echo \MindProject::loadSource($s)."\n";
                     }else{
                         \MindSpeaker::write("currentProjectRequired");
                     }

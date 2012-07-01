@@ -77,7 +77,23 @@
         set user :username: as :status:
     or
         set user :username: as :type:
-    Where status may be 'A' or 'I', and type may be 'A' or 'N'")
+    
+    Where status may be 'A' or 'I', and type may be 'A' or 'N'
+    
+    Examples:
+    1) An administrator changing the name of another project
+        auth admin
+        set project.name \"New Name\" projectToBeChanged
+        
+    2) A user changing the idiom of one of his projects
+        auth felipe
+        use projectToBeChanged
+        set project.idiom pt
+    3) A user changing the source of a project(changing the main.mnd source file)
+        auth felipe
+        use projectToBeChanged
+        set project.source \"New content is written here, for the source of the project\" main
+        ")
                  ->setAction('executableFunction');
             
             $this->addRequiredArgument('property',

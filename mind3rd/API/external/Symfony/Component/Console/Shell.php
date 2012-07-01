@@ -68,9 +68,17 @@ class Shell
       $command = readline($this->application->getName().' > ');
       
       /**      changed by felipeNMoura       **/
+      // showing nothing when the user just hits ENTER
       if($command == "\n" || $command == ""){
         $this->output->write("");
         continue;
+      }
+      // enabling multiple lines when quoted
+      preg_filter('/\"/', '"', $command, -1, $count);
+      while($count%2>0){ // unended quoted string
+          $command.= "\\n".readline(' > ');
+          preg_filter('/\"/', '"', $command, -1, $count);
+          //continue;
       }
       /** end of changes made by felipnmoura **/
       

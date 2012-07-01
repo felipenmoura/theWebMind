@@ -23,7 +23,8 @@ class MindProject extends VersionManager{
                                            'database_name',
                                            'database_port',
                                            'database_user',
-                                           'database_pwd');
+                                           'database_pwd',
+                                           'source');
 	
 	/**
 	 * Uses the QueryFactory to return the sql to create all the database.
@@ -81,14 +82,18 @@ class MindProject extends VersionManager{
      * This method actually changes AND PERSISTS the change to the
      * database.
      * 
+     * To change the source of a project, the user MUST be with the project opened.
+     * Neither Admin users have access to change a source  of a project, without
+     * loging into it(opening the project).
+     * 
      * @param String $attr
      * @param Mixed $value
-     * @param String $proj
+     * @param String $proj The project or the source file to be chenged
      * @return boolean
      */
     public static function set($attr, $value, $proj=false)
     {
-        if(\in_array($attr, self::$adminValidAttrs) || $proj){
+        if(\in_array($attr, self::$adminValidAttrs) || ($proj && $attr != 'source')){
             if(!\MindUser::isAdmin()){
                 \Mind::write('mustBeAdmin');
                 return false;
@@ -142,6 +147,7 @@ class MindProject extends VersionManager{
                 \MindSpeaker::write('permissionDenied', true, $proj);
                 return false;
             }
+            
             $attr= trim($attr);
             if(!\in_array($attr, self::$availableAttrs)){
                 \MindSpeaker::write('invalidCreateParams');
@@ -149,14 +155,26 @@ class MindProject extends VersionManager{
                 return false;
             }
             
-            $iniContent= preg_replace("/".$attr."(( |\t)+)?=.+(\n|$)/", $attr."=".$value."\n", $iniContent);
-            try{
-                file_put_contents($iniSource, $iniContent);
-                \MindProject::reload();
-                return true;
-            }catch(Excepption $e){
-                \MindSpeaker::write('permissionDenied', true, $proj);
+            if($attr == 'source'){
+                $srcs= Mind::$currentProject['sources'];
+                $source= func_get_arg(2);
+                if(!$source)
+                    $source= 'main';
+                //echo "\n\n".$srcs.'/'.addslashes($source).'.mnd'."\n\n";
+                if(file_put_contents($srcs.'/'.addslashes($source).'.mnd', $value))
+                    return true;
+                Mind::write('permissionDenied');
                 return false;
+            }else{
+                $iniContent= preg_replace("/".$attr."(( |\t)+)?=.+(\n|$)/", $attr."=".str_replace('"', '', $value)."\n", $iniContent);
+                try{
+                    file_put_contents($iniSource, $iniContent);
+                    \MindProject::reload();
+                    return true;
+                }catch(Excepption $e){
+                    \MindSpeaker::write('permissionDenied', true, $proj);
+                    return false;
+                }
             }
         }
     }
