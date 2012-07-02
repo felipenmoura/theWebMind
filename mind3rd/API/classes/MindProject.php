@@ -24,6 +24,7 @@ class MindProject extends VersionManager{
                                            'database_port',
                                            'database_user',
                                            'database_pwd',
+                                           'sourceadd', 'sourceAdd',
                                            'source');
 	
 	/**
@@ -148,25 +149,31 @@ class MindProject extends VersionManager{
                 return false;
             }
             
-            $attr= trim($attr);
+            $attr= strtolower(trim($attr));
             if(!\in_array($attr, self::$availableAttrs)){
                 \MindSpeaker::write('invalidCreateParams');
                 echo "Available list: ".implode(', ', self::$availableAttrs)."\n";
                 return false;
             }
             
-            if($attr == 'source'){
+            if($attr == 'source' || $attr == 'sourceadd'){
                 $srcs= Mind::$currentProject['sources'];
                 $source= func_get_arg(2);
                 if(!$source)
                     $source= 'main';
                 //echo "\n\n".$srcs.'/'.addslashes($source).'.mnd'."\n\n";
-                if(file_put_contents($srcs.'/'.addslashes($source).'.mnd', $value))
+                if(
+                    file_put_contents(
+                                      $srcs.'/'.addslashes($source).'.mnd',
+                                      (($attr == 'sourceadd')? "\n": '').$value,
+                                      ($attr == 'sourceadd')? FILE_APPEND: false
+                                     )
+                  )
                     return true;
                 Mind::write('permissionDenied');
                 return false;
             }else{
-                $iniContent= preg_replace("/".$attr."(( |\t)+)?=.+(\n|$)/", $attr."=".str_replace('"', '', $value)."\n", $iniContent);
+                $iniContent= preg_replace("/".$attr."(( |\t)+)?=.+(\n|$)/", $attr."=\"".addslashes($value)."\"\n", $iniContent);
                 try{
                     file_put_contents($iniSource, $iniContent);
                     \MindProject::reload();

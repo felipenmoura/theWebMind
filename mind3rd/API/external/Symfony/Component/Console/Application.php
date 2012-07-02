@@ -89,7 +89,7 @@ class Application
       //new InputOption('--quiet',          '-q', InputOption::PARAMETER_NONE, 'Do not output any message.'),
       //new InputOption('--verbose',        '-v', InputOption::PARAMETER_NONE, 'Increase verbosity of messages.'),
       //new InputOption('--version',        '-V', InputOption::PARAMETER_NONE, 'Display this program version.'),
-      new InputOption('--color',          '-c', InputOption::PARAMETER_NONE, 'Force ANSI color output.'),
+      //new InputOption('--color',          '-c', InputOption::PARAMETER_NONE, 'Force ANSI color output.'),
       //new InputOption('--no-interaction', '-n', InputOption::PARAMETER_NONE, 'Do not ask any interactive question.'),
     ));
   }

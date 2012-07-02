@@ -39,6 +39,8 @@
         */
         public function executableFunction()
         {
+            GLOBAL $_MIND;
+            
             $property= explode('.', $this->property);
             if(sizeof($property) <= 1){
                 \MindSpeaker::write('wrongParam', true, "property", $this->property);
@@ -46,23 +48,33 @@
             }
             $entity= $property[0];
             $property= $property[1];
-            if($entity == 'user'){
-                if($property == 'pwd' && !$this->extra){
-                    $this->prompt('pwd',  "What will be the password?", true);
-                    if($this->value)
-                        $this->extra= $this->value;
-                    $this->value= $this->answers['pwd'];
-                }
-                if($this->extra){
-                    if(\MindUser::set($property, $this->value, $this->extra))
+            switch($entity){
+                case 'user':
+                    if($property == 'pwd' && !$this->extra){
+                        $this->prompt('pwd',  "What will be the password?", true);
+                        if($this->value)
+                            $this->extra= $this->value;
+                        $this->value= $this->answers['pwd'];
+                    }
+                    if($this->extra){
+                        if(\MindUser::set($property, $this->value, $this->extra))
+                            \MindSpeaker::write('done');
+                    }else{
+                        if(\MindUser::set($property, $this->value))
+                            \MindSpeaker::write('done');
+                    }
+                break;
+                case 'project':
+                    if(\MindProject::set($property, $this->value, $this->extra))
                         \MindSpeaker::write('done');
-                }else{
-                    if(\MindUser::set($property, $this->value))
-                        \MindSpeaker::write('done');
-                }
-            }else{
-                if(\MindProject::set($property, $this->value, $this->extra))
-                    \MindSpeaker::write('done');
+                break;
+                case 'conf':
+                    \Mind::set($property, $this->value);
+                break;
+                default:
+                    \Mind.write('invalidOption', true, $entity);
+                    return false;
+                break;
             }
         }
         

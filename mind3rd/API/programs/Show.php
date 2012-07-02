@@ -84,7 +84,6 @@ EOT
 				case 'conf':
 				case 'props':
 				case 'properties':
-                    //var_dump($_MIND);
                     $p= \Mind::$currentProject;
                     if($p){
                         //$p['users']= Array();

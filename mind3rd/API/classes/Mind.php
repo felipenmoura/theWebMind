@@ -33,6 +33,7 @@
 		public static $content          = "";
 		public static $originalContent  = "";
 		public static $curLang          = 'en';
+        public static $availableSetAttrs= Array();
         
         public static function &getInstance()
         {
@@ -214,6 +215,39 @@
 						Mind::$autoloadPaths[]= $p;
 		}
 
+        public static function set($property, $value){
+            if(!\MindUser::isAdmin()){
+                \Mind::write('mustBeAdmin');
+                return false;
+            }
+            $iniSource= _MINDSRC_.MIND_CONF;
+            if(!file_exists($iniSource)){
+                echo "[Main] Failed retrieving the configuration file!!!\nTry to reinstall mind!\n";
+                return false;
+            }
+            try{
+                $iniContent= file_get_contents($iniSource);
+            }catch(Exception $e){
+                \MindSpeaker::write('permissionDenied', true, $proj);
+                return false;
+            }
+            $attr= trim($property);
+            if(!\in_array($attr, self::$availableSetAttrs)){
+                \MindSpeaker::write('invalidCreateParams');
+                echo "Available list: ".implode(', ', self::$availableSetAttrs)."\n";
+                return false;
+            }
+            $iniContent= preg_replace("/".$attr."(( |\t)+)?=.+(\n|$)/", $attr."=\"".  addslashes($value)."\"\n", $iniContent);
+            try{
+                file_put_contents($iniSource, $iniContent);
+            }catch(Excepption $e){
+                \MindSpeaker::write('permissionDenied', true, $proj);
+                return false;
+            }
+            \Mind::write('done');
+            return true;
+        }
+        
 		/**
 		 * The Constructor
 		 */
@@ -222,12 +256,14 @@
             {
                 return $GLOBALS['_MIND'];
             }*/
+            
 			$path= _MINDSRC_;
 			Mind::$projectsDir= $path.PROJECTS_DIR;
 			Mind::$modelsDir= $path.MODELS_DIR;
 			$this->about= parse_ini_file($path.ABOUT_INI);
 			$this->defaults= parse_ini_file($path.DEFAULTS_INI);
 			$this->conf= parse_ini_file($path.MIND_CONF);
+            self::$availableSetAttrs= array_keys($this->conf);
 			require_once($path.L10N_DIR.$this->defaults['default_human_language'].'.php');
 			Mind::$curLang= $this->defaults['default_human_languageName'];
 			Mind::$l10n= new $this->defaults['default_human_language']();
@@ -239,5 +275,7 @@
 			
 			Mind::$gosh= new theos\Gosh();
 			Mind::$darwin= new scientia\Darwin();
+            
+            
 		}
 	}
