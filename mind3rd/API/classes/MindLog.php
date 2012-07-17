@@ -34,6 +34,14 @@ class MindLog {
                                                                  $_SERVER['REMOTE_ADDR']:
                                                                  'local');
         
+        if(!file_exists(_MINDSRC_.\LOGS_DIR)){
+            try{
+                mkdir(_MINDSRC_.\LOGS_DIR);
+            }catch(Exception $e){
+                echo "ERROR: failed trying to create log! Could not creaate the directory "._MINDSRC_.\LOGS_DIR."!\n";
+            }
+        }
+        
         switch($type){
             case self::LOG_TYPE_USER:{
                 if(strtolower($_MIND->conf['log_user_interaction'])){
