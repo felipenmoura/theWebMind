@@ -9,6 +9,15 @@ Requirements:
 * PHP-SQLite3
 * ReadLine(if you inted to use it in command line, not only with HTTP requisitions)
 
+NOTE: on linux, ReadLine is installed by default
+
+TIP: if you want to install the full environment to run mind3rd, here are the commands to do that on Unix based machines:
+
+  $ sudo apt-get install libsqlite3-0 libsqlite3-dev
+  $ sudo apt-get install apache2 php5 libapache2-mod-php5 php5-cli php-pear php5-dev php5-sqlite
+
+with these commands, your machine will be good to go ;)
+
 Installation:
 -------------
 For now, only working on mac and Linux...sorry bill!  
