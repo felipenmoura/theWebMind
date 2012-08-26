@@ -20,26 +20,32 @@
 	}
 	if(!isset($_REQ['data']))
 		$_REQ['data']= Array();
-	
+
 	foreach($_POST as $k=>$value)
 	{
 		$_REQ['data'][$k]= preg_replace("/['\"\\\.\/]/", '', $value);
 	}
 
-	if(isset($_SESSION['currentProject']))
+	if(isset($_SESSION['currentProject']) && $_SESSION['currentProject'])
 	{
 		$p= Array();
 		$p['pk_project']= $_SESSION['currentProject'];
 		$p['name']= $_SESSION['currentProjectName'];
 		Mind::openProject($p);
 	}
-
+    
 	if(isset($app))
 	{
 		if(!isset($_REQ['data']) || !isset($_REQ['data']['program']))
 		{
-			Mind::write('programRequired');
-			return false;
+            if($_MIND->defaults['use_default_ide'] != false){
+                header('Location: '.$_MIND->defaults['use_default_ide']);
+                exit;
+            }else{
+                Mind::write('programRequired');
+                return false;
+            }
+                
 		}
 		$program= $app->findCommand($_REQ['data']['program']);
 		$program= $program->getFileName();

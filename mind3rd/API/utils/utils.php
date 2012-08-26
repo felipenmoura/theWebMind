@@ -46,11 +46,12 @@
 		}
 		$d->close();
 	}
+    
 
 	// building the application
 	define('SYSTEM_NAME', 'mind');
 	$app= new Symfony\Component\Console\Application(SYSTEM_NAME);
-
+    
     // defining the programs/commands to be used
     $programs= Array();
     $d = dir(_MINDSRC_.'/mind3rd/API/programs');
@@ -66,6 +67,7 @@
     $d->close();
     $app->addCommands($programs);
     \MIND::$programs= $programs;
+    
     // starting the application
 	if($_REQ['env']=='shell'){
 		include(_MINDSRC_.'/mind3rd/API/shell.php');
