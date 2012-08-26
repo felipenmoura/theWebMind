@@ -32,5 +32,5 @@ mind3rd/API/logs/*
 .project
 nbproject
 nbproject/*
-/.settings/
+./.settings/
 /projects/demo-pt/.mind/
