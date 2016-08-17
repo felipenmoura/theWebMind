@@ -1,0 +1,64 @@
+.dd_tableName
+{
+	
+}
+.dd_tableName span
+{
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left:8px;
+	border-left: solid 1px #666;
+	border-right: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color: #ddf;
+	font-weight: bold;
+	text-align: center;
+}
+.dd_columnName
+{
+	background-color: #669;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+}
+/******************************************************/
+.dd_attName
+{
+	text-align: left;
+	border-left: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color:#fff;
+	border-right: solid 1px #fff;
+	padding-left:20;
+}
+.dd_attType
+{
+	text-align: left;
+	border-left: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color:#fff;
+}
+.dd_attNotNull
+{
+	text-align: center;
+	border-left: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color:#fff;
+}
+.dd_attDefaultValue
+{
+	text-align: left;
+	border-left: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color:#fff;
+}
+.dd_attReferences
+{
+	text-align: center;
+	border-left: solid 1px #666;
+	border-right: solid 1px #666;
+	border-top: solid 1px #666;
+	background-color:#fff;
+}

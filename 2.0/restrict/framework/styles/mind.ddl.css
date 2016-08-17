@@ -1,0 +1,48 @@
+.ddl_code_constructor
+{
+	font-weight:bold;
+	text-transform:uppercase;
+	color:red;
+}
+.ddl_code_element
+{
+	font-weight:bold;
+	text-transform:lowercase;
+	color:#88c;
+}
+.ddl_code_obj
+{
+	font-weight:bold;
+	text-transform:uppercase;
+	color:blue;
+}
+.ddl_code_mindComment
+{
+	font-style:italic;
+	color:#0a0;
+}
+.ddl_code_list
+{
+	margin:0px;
+	margin-left:4px;
+	margin-right:4px;
+	background-color:#f0f0f0;
+	border:solid 1px #666;
+}
+.ddl_code_list li
+{
+	white-space: pre;
+	padding-left:6px;
+	font-size:12px;
+	font-family:Courier New;
+	border-left: dotted 1px #666;
+	border-bottom: solid 1px #f0f0f0;
+	margin:0px;
+	background-color:#fff;
+}
+.ddl_code_objTable
+{
+	font-weight:bold;
+	color:black;
+	text-transform:lowercase;
+}

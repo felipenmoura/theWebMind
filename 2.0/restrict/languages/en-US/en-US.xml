@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<mindLanguage>
+	<verbs>
+		<verb value='has' />
+		<verb value='may have' />
+		<verb value='might have' />
+		<verb value='might have' />
+		<verb value='should have' />
+		<verb value='must have' />
+		<verb value='can have' />
+		<verb value='have' />
+		<verb value='can' />
+	</verbs>
+	<types>
+		<type value='char'>
+			<substantive value='character' />
+		    <substantive value='char' />
+		    <substantive value='leter' />
+		    <substantive value='leters' />
+		    <substantive value='alpha' />
+		</type>
+		<type value='varchar'>
+			<substantive value='varchar' />
+		    <substantive value='varying' />
+		    <substantive value='field' />
+		    <substantive value='input' />
+		    <substantive value='description' />
+		    <substantive value='descricao' />
+		    <substantive value='string' />
+		</type>
+		<type value='text'>
+		    <substantive value='free texto' />
+			<substantive value='text' />
+		    <substantive value='free content' />
+		    <substantive value='textarea' />
+		</type>
+		<type value='password'>
+			<substantive value='password' />
+		    <substantive value='pwd' />
+		    <substantive value='access key' />
+		    <substantive value='access' />
+		    <substantive value='key' />
+		</type>
+		<type value='file'>
+			<substantive value='file' />
+		    <substantive value='blob' />
+		    <substantive value='binary' />
+		    <substantive value='lo' />
+		    <substantive value='image' />
+		    <substantive value='graphic' />
+		    <substantive value='grafic' />
+		    <substantive value='doc' />
+		    <substantive value='pdf' />
+		    <substantive value='spreedsheet' />
+		</type>
+		<type value='smallint'>
+			<substantive value='smallint' />
+			<substantive value='tinyint' />
+			<substantive value='small int' />
+			<substantive value='tiny int' />
+		</type>
+		<type value='int'>
+			<substantive value='int' />
+		    <substantive value='integer' />
+		    <substantive value='numeric' />
+		    <substantive value='number' />
+		</type>
+		<type value='bigint'>
+			<substantive value='bigint' />
+		</type>
+		<type value='real'>
+			<substantive value='real' />
+			<substantive value='float' />
+			<substantive value='floating' />
+			<substantive value='value' />
+			<substantive value='money' />
+			<substantive value='percent' />
+			<substantive value='amount' />
+			<substantive value='fraction' />
+		</type>
+		<type value='time'>
+			<substantive value='date and time' />
+			<substantive value='time and date' />
+			<substantive value='time date' />
+			<substantive value='date time' />
+			<substantive value='datetime' />
+			<substantive value='timedate' />
+			<substantive value='schedule' />
+			<substantive value='calendar' />
+			<substantive value='date' />
+			<substantive value='time' />
+		</type>
+	</types>
+	<required>
+		<adjective value='not null' />
+		<adjective value='required' />
+		<adjective value='needed' />
+		<adjective value='obligated' />
+	</required>
+	<unique>
+		<adjective value='unique' />
+		<adjective value='single' />
+	</unique>
+	<especialchars>
+		<char value='á' />
+		<char value='é' />
+		<char value='í' />
+		<char value='ó' />
+		<char value='ú' />
+		<char value='à' />
+		<char value='è' />
+		<char value='ì' />
+		<char value='ò' />
+		<char value='ù' />
+		<char value='ã' />
+		<char value='õ' />
+		<char value='ü' />
+		<char value='ä' />
+		<char value='ë' />
+		<char value='ï' />
+		<char value='ö' />
+		<char value='ü' />
+		<char value='â' />
+		<char value='ê' />
+		<char value='î' />
+		<char value='ô' />
+		<char value='û' />
+		<char value='ç' />
+		<char value=' ' />
+	</especialchars>
+	<fixedchars>
+		<char value='a' />
+		<char value='e' />
+		<char value='i' />
+		<char value='o' />
+		<char value='u' />
+		<char value='a' />
+		<char value='e' />
+		<char value='i' />
+		<char value='o' />
+		<char value='u' />
+		<char value='a' />
+		<char value='o' />
+		<char value='u' />
+		<char value='a' />
+		<char value='e' />
+		<char value='i' />
+		<char value='o' />
+		<char value='u' />
+		<char value='a' />
+		<char value='e' />
+		<char value='i' />
+		<char value='o' />
+		<char value='u' />
+		<char value='c' />
+		<char value='_' />
+	</fixedchars>
+	<quantifiersId>
+		<world value='or' />
+	</quantifiersId>
+	<quantifiers>
+		<min>
+			<min>
+				<quantifier value='0' />
+			    <quantifier value='none' />
+			    <quantifier value='noone' />
+			    <quantifier value='no one' />
+			    <quantifier value='or not' />
+			    <quantifier value='zero' />
+			</min>
+			<max>
+				<quantifier value='1' />
+				<quantifier value='one' />
+				<quantifier value='once' />
+				<quantifier value='single' />
+				<quantifier value='a' />
+			</max>
+		</min>
+		<max>
+			<min>
+				<quantifier value='1' />
+				<quantifier value='one' />
+				<quantifier value='once' />
+				<quantifier value='a' />
+			</min>
+			<max>
+				<quantifier value='n' />
+				<quantifier value='very many' />
+				<quantifier value='very much' />
+				<quantifier value='too many' />
+				<quantifier value='too much' />
+				<quantifier value='so many' />
+				<quantifier value='so much' />
+				<quantifier value='many' />
+				<quantifier value='much' />
+				<quantifier value='series of' />
+				<quantifier value='lots' />
+				<quantifier value='a lot of' />
+				<quantifier value='a lot more' />
+				<quantifier value='a loud of' />
+				<quantifier value='too much more' />
+				<quantifier value='much more' />
+				<quantifier value='more' />
+				<quantifier value='lot' />
+				<quantifier value='diverse' />
+				<quantifier value='various' />
+			</max>
+		</max>
+	</quantifiers>
+</mindLanguage>

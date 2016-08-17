@@ -1,0 +1,298 @@
+theWebMind
+	+ documentation
+	+ images
+	index.php
+	login.php
+	+licenses
+	+ restrict
+		+ config
+			mind.php // informações de configuração, como diretorio de usuarios, linguagens, etc...
+		+ users
+			[+ user_login(login do usuario)
+				info.xml // informações extras sobre o usuario
+				conf.xml // dados de acesso,projetos q participa e permissoes (criptografado)
+				+ temp
+					[+ project_name]
+			]
+		+ languages
+			[+ language_name
+				info.xml // informações sobre a linguagem, criador do arquivo, etc...
+				conf.xml // configuração da linguagem, em si
+			]
+		+ dbmss // sgbds
+			[+ dbms_name
+				info.xml // informações sobre o dbms, criador do arquivo de configuração, versão, etc...
+				conf.xml // configuração da dbms, a ser usado pelo mind
+			]
+		+ plugins
+			[+ plugin_name
+				info.xml // informações sobre o plugin, criador do arquivo de configuração, versão, etc...
+				conf.xml // configuração da dbms, a ser usado pelo mind
+				[+ ...]  // possiveis diretorios ou arquivos a serem usados pelo plugin
+			]
+		+ modules
+			[+ module_name
+				info.xml // informações sobre o módulo, criador do arquivo de configuração, versão, etc...
+				conf.xml // configuração do módulo, a ser usado pelo mind
+				[+ ...]  // possiveis diretorios ou arquivos a serem usados pelo módulo
+			]
+		+ mind2db
+			[ arquivos do mind2db ]
+		+ mind2faces
+			[ arquivos do mind2faces ]
+		+ projects
+			[+ project_name
+				+ current // versão atual do sistema que esta sendo gerado
+				+ backups // versão anteriormente gerada, e substituída pela atual
+			]
+		+ docs
+			[ arquivos de ajuda do mind ]
+		+ framework
+			[+ scripts]
+			[+ styles]
+			[+ components]
+			[+ classes]
+		+ images
+		+ components	// calendarios, editores, arquivo header, includes, etc.
+		index.php
+		
+/*****************************************************************************************************/
+
+menus:
+	file
+		New Project
+		Open Project
+		-save project
+		-close project
+		-----
+		-export project
+		import project
+		-----
+		Properties
+		-----
+		Exit
+	show
+		Project Pane
+		Output Pane
+		MindApplications Pane
+		-----
+		-ER Diagram
+		-SQL-DDL
+		-Data Dictionary
+		-Details
+		-Notes
+		Issues
+	tools
+		Run/Simulate
+		Debug
+		-----
+		Generate Version
+		-----
+		Options
+			My personal Data
+			Mind Options
+	manage
+		Projects
+		Users
+		Languages
+		DBMSs
+		Plugins
+	plugins
+		[plugins]
+		-----
+		Find Plugins
+	developer
+		Create Plugin
+		Create/Edit Language
+		Create DBMS
+		Create Module
+		-----
+		Developer Documentations
+		Google Codes
+	help
+		Topics
+		Documentation
+		FAQ
+		Forum
+		Google Groups
+		-----
+		About
+		Credits
+		Licenses
+		-----
+		Updates
+		-----
+		website
+	 
+/**************************************************/
+
+/*
+*	as inf e conf de um projeto sao sempre buscadas no projeto que esta no diretorio dos projetos
+*	apenas o criador do projeto pode alterar as informações e configurações de um projeto
+*
+*/
+
+FILE ACITONS
+	ao clicar em novo projeto:
+		1-abre modal solicitando informações e configurações para o mesmo.
+		2-ao clicar em criate, o projeto deve ser carregado
+		3-cadastrar o projeto no diretorio de cada envolvido, mais no diretorio de projetos
+		4-atualizar a lista de projetos
+		5-abrir projeto
+	ao clicar em abrir(carregar) projeto:
+		1-verificar se ha projeto nao salvo aberto, caso haja, confirmar para continuar
+		2-carregar no output pane uma aba com as informações do projeto, outra com as configurações, e outra para os detalhes(em branco)
+			se o usuario for o criador do projeto, ele pode alterar as mesmas
+		3-carregar no mindApplications Pane as mind applications caso ja existam, senão, carregar em branco
+		4-rodar o plugins que estejam setados para carregar no onload de projetos
+		5-ativar os menus referentes a projetos
+		6-marcar o projeto como salvo
+	ao salvar o projeto:
+		1-salvar as info e conf do mesmo, alem do codigo escrito pelo desenvolvedor (mas nao interpreta o codigo escrito por ele)
+	ao fechar o projeto:
+		1-limpar o output pane, o body pane e o mindApplications pane.
+		2-limpar as variaveis referente às informações e configurações do projeto aberto
+		3-desabilitar os menus referentes a projetos
+	ao exportar um projeto:
+		1-modal pane perguntando o nome que deseja para o arquivo, e botao export
+		2-ao clicar em export, entregar um arquivo para download (.mind) com o nome selecionado pelo usuario
+	ao importar um projeto:
+		1-modal pane com formulario solicitando o arquivo para fazer o upload e o nome para o projeto
+		2-verificar se o projeto ja existe, nao substituir, caso ja exista, deve retornar um erro
+		3-criar o projeto o novo projeto
+	properties:
+		1-modal pane com as info, conf e historico do projeto
+			se o usuario logado for o criador do projeto, ele pode alterar estas informações
+			informações a mais do que no output pane:
+				*envolvidos no projeto
+				*versoes
+				*relatorios antigos e logs referentes a importações, exportações, gerações e versionamentos
+	exit:
+		1-mata a sessão, volta para a tela de login
+SHOW ACTIONS
+	projects pane:
+		1-verifica se o painel dos projetos esta aberto, entao fecha, senao, abre
+	output pane:
+		1-verifica se o painel das saidas e propriedades esta aberto, entao fecha, senao, abre
+	mindApplications pane:
+		1-verifica se o painel das mindApplications esta aberto, entao fecha, senao, abre
+	ER Diagram:
+		1-verifica se ha algum projeto carregado atualmente, e se o mesmo ja foi salvo e rodado
+		2-abre modal pane com o diagrama diagrama er do projeto
+	SQL-DDL:
+		1-verifica se ha algum projeto carregado atualmente, e se o mesmo ja foi salvo e rodado
+		2-abre modal pane com os codigos sql-ddl do projeto
+	data Dictionary:
+		1-verifica se ha algum projeto carregado atualmente, e se o mesmo ja foi salvo e rodado
+		2-abre modal pane com o dicionario de dados do projeto
+	details:
+		1-verifica se ha algum projeto carregado atualmente
+		2-abre modal pane com os detalhes do projeto, caso o mesmo nao tenha sido rodado ainda, os detalhes estarão em branco
+	notes:
+		1-verifica se ha algum projeto carregado atualmente
+		2-abre modal pane com as notas salvas sobre este projeto (podendo-se alterar ou deletar as criadas pelo usuario logado)
+	Issues:
+		1-verifica se ha algum projeto carregado atualmente
+		2-abre modal pane com as tarefas para este projeto
+			o usuario logado pode alterar o andamento de suas tarefas
+			o criador do projeto pode adicionar, editar, deletar e direcionar tarefas
+TOOLS ACTIONS
+	ao rodar/simular o projeto:
+		1-criar os arquivos no diretorio do projeto dentro do diretorio temp do usuario logado
+			caso hajam informações não salvas e o usuario logado for o criador do projeto, devera confirmar antes, e entao salvar
+		2-atualizar o output pane
+		3-atualizar o mindApplications pane
+	ao debugar o projeto:
+		1-envia o codigo para o mind interpretar, e retornar o codigo inalizado
+		2-abre modal pane exibindo o debug do codigo, insinuando o que e como o mind interpretará o mesmo, quando for rodar
+	ao gerar versao:
+		1-caso o usuario for o criador do projeto, verificar se o projeto tem alterações nas conf e info, para salvar antes(caso tenha, confirmar ação)
+		2-verificar se o codigo foi alterado desde a ultima vez em que foi rodado, se sim, roda-lo
+		3-copiar o projeto do diretorio de projetos para um backup
+		4-criar um log com dados do usuario que gerou a ultima vez, horario, ip, etc
+		5-enviar o projeto do diretorio temp do usuario para o diretorio dos projetos, alterando o terceiro dado da versao (z.y.x+1)
+	/* apenas para o administrador do mind */
+		OPTIONS ACTIONS
+			alterar os dados pessoais:
+				1-exibir um modal pane com os dados do usuario logado
+				2-ao clicar em salvar, deve atualizar os dados de conf e info do usuario logado
+			mind options:
+				1-abre modal pane com configurações basicas sobre o mind
+				2-ao clicar em salvar, deve atualizar os dados de conf e info do usuario logado
+	/* apenas para usuarios nao administradores */
+	alterar os dados pessoais:
+		1-exibir um modal pane com os dados do usuario logado
+		2-ao clicar em salvar, deve atualizar os dados de conf e info do usuario logado
+/* apenas para usuarios admin do mind */
+	MANAGE ACTIONS
+		projects
+			1-abre modal com 2 paineis:
+				esquerda:lista de projetos que o usuario participa (os projetos que ele criou ficam em negrito), com um botao excluir, ao lado
+				direita:dados do projeto clicado, na lista da esquerda (os projetos que ele criou ele pode alterar, os demais, apenas visualizar)
+		users
+			1-abre modal com 2 paineis:
+				esquerda:lista de usuarios com um botao excluir, ao lado (o primeiro item da lista será "cadastrar novo usuario")
+				direita:dados do usuario clicado
+		languages
+			1-abre modal com 2 paineis:
+				esquerda:lista de linguagens (o primeiro item da lista será "buscar nova linguagem")
+				direita:dados da linguagem clicada
+		dbmss
+			1-abre modal com 2 paineis:
+				esquerda:lista de DBMSs (o primeiro item da lista será "buscar mais DBMSs")
+				direita:dados do usuario clicado
+		plugins
+			1-abre modal com 2 paineis:
+				esquerda:lista de plugins (o primeiro item da lista será "buscar mais plugins")
+				direita:dados do plugin clicado
+PLUGINS ACTIONS
+	[lista de plugins
+		ao clicar em um plugin, verificar sua configuração de como deve ser carregado, e inicia-lo
+	]
+	Find Plugins:
+		1-abre modal buscando no nosso servidor uma lista de plugins, indicando os que o usuario ja tem instalado, e os que nao (indicando as versões, também)
+/* apenas se a flag em $_MIND estiver true*/
+DEVELOPER ACTIONS
+	Create Plugin:
+		1-abre um modal com a ferramenta preparada para criar o novo plugin e um pinel com a documntação sobre esta ferramenta, e sobre a criação de plugins
+	Create/Edit Language:
+		1-abre um modal com dois paineis:
+			*lista das linguagens ativas atualmente (com botao para criar nova)
+			*dados para a criação de uma nova linguagme, ou dados sobre a linguagem clicada
+	Create DBMS:
+		1-abre um modal com 2 paineis
+			*documentação sobre como criar um DBMS, e sobre como usar esta ferramenta
+			*ferramenta voltada para a riação mais prática de um DBMS
+	Create Module:
+		1-abre um modal com um formulario para a criação dos arquivos referentes ao modulo, e um link para uma ferramenta (um popup) para facilitar a criação de um modulo
+	Developer Documentations:
+		1-abre em um painel flutuante nao modal, a documentação para desenvolvedores (plugins, modulos, linguagens e DBMSs)
+	Google Codes:
+		1-abre em outra janela a página do projeto no google codes
+HELP ACTIONS
+	topics:
+		1-abre um floating pane com os arquivos referentes aos tópicos de ajuda
+	documentation:
+		1-abre um pop up levando ate a página do thewebmind/#docs
+	faq:
+		1-abre um pop up levando ate a página do thewebmind/#faq
+	forum:
+		1-abre um pop up levando ate a página do thewebmind/#forum
+	google groups:
+		1-abre um pop up levando ate a página do grupo no google groups
+	about:
+		1-abre um modal pane com informações sobre a versao do mind que esta sendo utilizada, endereço ip, data de instação, data de criação, logo e um link para donation
+	credits:
+		1-abre uma modal pane com os creditos dos desenvolvedores e um link para donation
+	licenses:
+		1-abre uma modal com os links para os arquivos com as licensas
+	website:
+		1-abre um popup que leva para a página oficial do projeto
+
+
+
+
+
+/********************************************/
+armazenar cookie dos tamanhos dos paineis (e se estao abertos ou fechados)
+em open_project, preparar a parte de importação (tal qual o menu importar)

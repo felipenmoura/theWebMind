@@ -1,0 +1,83 @@
+.der_list_table
+{
+	border-bottom:solid 1px #666;
+	border-left:solid 1px #d0d0d0;
+	border-right:solid 1px #666;
+	border-top:solid 2px #d0d0d0;
+	background-color:#f0f0f0;
+	padding:2px;
+	cursor:move;
+	width:210px;
+	overflow:hidden;
+}
+#outputPanel_ERDTab table
+{
+}
+#outputPanel_ERDTab
+{
+	margin:0px !IMPORTANT;
+	padding:0px !IMPORTANT;
+}
+#outputPanel_der_body
+{
+	background-color:#fff;
+	border-left:solid 1px #333;
+	overflow:auto;
+}
+#outputPanel_der_list
+{
+	width:210px;
+	vertical-align:top;
+	border-right:solid 3px #d0d0d0;
+	background-color:#fff;
+}
+.der_table
+{
+	position:absolute;
+	width:160px;
+	padding:0px;
+	margin:0px;
+	border:none !IMPORTANT;
+}
+.der_table_title
+{
+	background-color:#D1D1D1;
+	text-align:center;
+	color:#333;
+	font-weight:bold;
+	padding:3px;
+	cursor:default;
+	border:solid 1px #333;
+	border-bottom:solid 1px #909090;
+	-moz-border-radius:10px 10px 0px 0px;
+	-webkit-border-radius:10px 10px 0px 0px;
+}
+.der_table_att
+{
+	color:#333;
+	background-color:#f9f9f9;
+	padding-left:3px;
+	border-bottom:solid 1px #333;
+	border-left:solid 1px #333;
+	border-right:solid 1px #333;
+	cursor:default;
+}
+.der_table_separator
+{
+	height:1px;
+	background-color: #999;
+	border-left:solid 1px #333;
+	border-right:solid 1px #333;
+}
+.relationLeft
+{
+	border-top:dashed 1px #622;
+}
+.relationMiddle
+{
+	border-left:dashed 1px #622;
+}
+.relationRight
+{
+	border-top:dashed 1px #622;
+}

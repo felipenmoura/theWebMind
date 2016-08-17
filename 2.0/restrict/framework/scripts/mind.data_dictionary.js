@@ -1,0 +1,3 @@
+Mind.DataDictionary= function(pObj){
+	
+}

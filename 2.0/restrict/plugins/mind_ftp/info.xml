@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<name value='Mind FTP'/>
+	<date value='10/08/2009'/>
+	<author value='Fulano de Tal'/>
+	<link value='http://www.fulanodetal.com'/>
+	<detail value='Mind plugin to manage files using FTP'/>
+</root>

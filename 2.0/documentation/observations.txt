@@ -1,0 +1,16 @@
+/****************
+exemplo broblematico sobre consciencia da realidade.
+
+aluno tem um unico celular
+celular tem um aluno
+professor tem um celular
+celular tem um professor
+funcionario tem um celular
+celular tem um funcionario
+
+o correto seria transformar celular em um atributo em cada tabela
+
+*****************/
+
+TODA tabela DEVE estar ligada a alguma outra tabela, caso contrario, ela não existira
+No linux, verificar permissoes no diretorio de usuarios, no diretorio projects, dbms, languages, modules e plugins, dando permissão ao php para criar, alterar e excluir arquivos.
